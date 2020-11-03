@@ -11,6 +11,6 @@ frontend:
       commands:
         - yarn build
   artifacts:
-    baseDirectory: public
+    baseDirectory: build
     files:
       - '**/*'
