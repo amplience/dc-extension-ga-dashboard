@@ -1,0 +1,16 @@
+version: 1
+frontend:
+  phases:
+    preBuild:
+      commands:
+        - nvm install 12
+        - nvm use 12
+        - yarn install --frozen-lockfile
+        - yarn test
+    build:
+      commands:
+        - yarn build
+  artifacts:
+    baseDirectory: public
+    files:
+      - '**/*'
