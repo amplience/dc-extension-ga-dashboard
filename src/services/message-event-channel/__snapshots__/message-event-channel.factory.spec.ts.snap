@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`message event channel factory should return a new client connection with default params 1`] = `undefined`;
+
+exports[`message event channel factory should return a new client connection with default params 3`] = `
+Object {
+  "clientInitiates": false,
+  "connectionTimeout": 1000,
+  "debug": true,
+  "onload": true,
+  "targetOrigin": "target",
+  "timeout": 1000,
+}
+`;

@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Widget should render the Widget component 1`] = `
+<div>
+  <article
+    class="svelte-pntwh0"
+  >
+     
+  </article>
+</div>
+`;
+
+exports[`Widget should render the Widget component with loading spinner 1`] = `
+<div>
+  <article
+    class="svelte-pntwh0"
+  >
+    <div
+      class="spinner-container svelte-bvd1nw"
+    >
+      <div
+        class="spinner dot-0 svelte-bvd1nw"
+      />
+      <div
+        class="spinner dot-1 svelte-bvd1nw"
+      />
+      <div
+        class="spinner dot-2 svelte-bvd1nw"
+      />
+    </div>
+     
+  </article>
+</div>
+`;

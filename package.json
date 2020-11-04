@@ -1,58 +1,118 @@
 {
   "name": "dc-extension-ga-dashboard",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "@material-ui/core": "^4.9.9",
-    "@material-ui/icons": "^4.9.1",
-    "@material-ui/lab": "^4.0.0-alpha.56",
-    "@material-ui/pickers": "^4.0.0-alpha.12",
-    "@material-ui/styles": "^4.9.6",
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.3.2",
-    "@testing-library/user-event": "^7.1.2",
-    "@types/jest": "^24.0.0",
-    "@types/node": "^12.0.0",
-    "@types/react": "^16.9.0",
-    "@types/react-dom": "^16.9.0",
-    "@types/react-router-dom": "^5.1.3",
-    "clsx": "^1.1.1",
-    "moment": "^2.29.1",
-    "prettier": "^2.1.2",
-    "react": "^16.14.0",
-    "react-dom": "^16.14.0",
-    "react-router-dom": "^5.1.2",
-    "react-scripts": "3.4.3",
-    "react-use-analytics-api": "^1.4.15",
-    "typescript": "~3.7.2",
-    "unofficial-dynamic-content-ui": "^0.4.2"
-  },
+  "version": "1.1.0",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "lint": "prettier --check \"**/*.{ts}\"",
-    "lint:fix": "prettier --write '**/*.ts'"
+    "commit": "npx git-cz",
+    "build": "rollup -c",
+    "dev": "rollup -c -w",
+    "dev:standalone": "STANDALONE=1 rollup -c -w",
+    "start": "sirv public --port 3000",
+    "lint": "prettier --check \"**/*.{ts,svelte}\" && eslint \"**/*.ts\"",
+    "lint:fix": "prettier --write '**/*.{ts,svelte}'",
+    "test": "jest src --silent",
+    "test:watch": "npm run test -- --watch",
+    "prerelease": "npm run test",
+    "release": "standard-version",
+    "validate": "svelte-check"
   },
-  "eslintConfig": {
-    "extends": "react-app"
+  "devDependencies": {
+    "@commitlint/cli": "^10.0.0",
+    "@commitlint/config-conventional": "^10.0.0",
+    "@rollup/plugin-commonjs": "^15.0.0",
+    "@rollup/plugin-json": "^4.1.0",
+    "@rollup/plugin-node-resolve": "^9.0.0",
+    "@rollup/plugin-replace": "^2.3.3",
+    "@rollup/plugin-typescript": "^5.0.0",
+    "@smui/checkbox": "^1.0.0",
+    "@smui/select": "^1.0.0",
+    "@sveltejs/svelte-virtual-list": "^3.0.1",
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/svelte": "^3.0.0",
+    "@tsconfig/svelte": "^1.0.10",
+    "@types/jest": "^26.0.10",
+    "@typescript-eslint/eslint-plugin": "^3.10.0",
+    "@typescript-eslint/parser": "^3.10.0",
+    "commitizen": "^4.2.0",
+    "commitlint": "^9.1.2",
+    "cz-conventional-changelog": "^3.2.1",
+    "dotenv": "^8.2.0",
+    "eslint": "^7.7.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-svelte3": "^2.7.3",
+    "husky": "^4.2.5",
+    "jest": "^26.4.2",
+    "json-2-csv": "^3.7.6",
+    "lint-staged": "^10.2.11",
+    "node-sass": "^4.14.1",
+    "prettier": "^2.0.5",
+    "prettier-plugin-svelte": "^1.1.0",
+    "rollup": "^2.26.5",
+    "rollup-plugin-inline-svg": "^2.0.0",
+    "rollup-plugin-livereload": "^1.0.0",
+    "rollup-plugin-postcss": "^3.1.6",
+    "rollup-plugin-svelte": "^5.0.3",
+    "rollup-plugin-terser": "^7.0.0",
+    "snake-case": "^3.0.3",
+    "standard-version": "^9.0.0",
+    "svelte": "^3.24.1",
+    "svelte-check": "^1.0.23",
+    "svelte-flatpickr": "^2.4.0",
+    "svelte-jester": "^1.1.2",
+    "svelte-preprocess": "^4.1.1",
+    "sveltejs-tippy": "^3.0.0",
+    "ts-jest": "^26.2.0",
+    "tslib": "^2.0.1",
+    "typescript": "^3.9.6"
   },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
+  "dependencies": {
+    "dc-management-sdk-js": "1.7.0",
+    "message-event-channel": "^1.1.0",
+    "sirv-cli": "^1.0.6"
+  },
+  "engines": {
+    "node": ">=12.0.0",
+    "npm": ">=6.0.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged && npm test",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
     ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+    "rules": {
+      "header-max-length": [
+        2,
+        "always",
+        100
+      ],
+      "type-case": [
+        1,
+        "always",
+        "lower-case"
+      ],
+      "subject-case": [
+        1,
+        "always",
+        "lower-case"
+      ]
+    }
   },
-  "jest": {
-    "transformIgnorePatterns": [
-      "node_modules/(?!(unofficial-dynamic-content-ui)/)"
+  "lint-staged": {
+    "*.{ts,js}": [
+      "prettier --write",
+      "eslint --fix"
+    ],
+    "*.{svelte,json}": [
+      "prettier --write"
     ]
   }
 }

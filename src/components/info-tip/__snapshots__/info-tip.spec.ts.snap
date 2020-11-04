@@ -1,0 +1,70 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`InfoTip should render the InfoTip after click 1`] = `
+<body>
+  <div>
+    <div
+      aria-expanded="false"
+      class="svelte-usl6ua"
+      data-testid="info-tip"
+    >
+      <div
+        class=" svelte-zpbvvv"
+        style="--icon-width: 24px; --icon-height: 24px;"
+      >
+        <object
+          src="ic-asset-info.svg/"
+        />
+      </div>
+    </div>
+  </div>
+  <div
+    data-tippy-root=""
+    id="tippy-2"
+    style="z-index: 9999; visibility: visible; transition: none; position: absolute; left: 0px; top: 0px; margin: 0px; transform: translate(0px, 10px);"
+  >
+    <div
+      class="tippy-box"
+      data-animation="fade"
+      data-escaped=""
+      data-placement="bottom"
+      data-reference-hidden=""
+      data-state="hidden"
+      data-theme="amplience"
+      role="tooltip"
+      style="max-width: 350px;"
+      tabindex="-1"
+    >
+      <div
+        class="tippy-content"
+        data-state="hidden"
+      >
+        info tip content
+      </div>
+      <div
+        class="tippy-arrow"
+        style="position: absolute; left: 0px; transform: translate(3px, 0px);"
+      />
+    </div>
+  </div>
+</body>
+`;
+
+exports[`InfoTip should render the InfoTip intial state 1`] = `
+<div>
+  <div
+    aria-expanded="false"
+    class="svelte-usl6ua"
+    data-testid="info-tip"
+  >
+    <div
+      class=" svelte-zpbvvv"
+      style="--icon-width: 24px; --icon-height: 24px;"
+    >
+      <object
+        src="ic-asset-info.svg/"
+      />
+    </div>
+  </div>
+</div>
+`;

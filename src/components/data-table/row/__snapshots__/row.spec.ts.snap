@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Row should render the DataTable Row component 1`] = `
+<div>
+  <div
+    class="data-table-row svelte-hige1l"
+  />
+</div>
+`;

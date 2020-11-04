@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CopyButton should add some text to the clipboard when clicked 1`] = `
+<div>
+  <button
+    aria-label="Copy"
+    class="svelte-23tqn3"
+    title=""
+  >
+    <object
+      src="ic-copyicon.svg/"
+    />
+  </button>
+</div>
+`;
+
+exports[`CopyButton should render a copy button 1`] = `
+<div>
+  <button
+    aria-label="title"
+    class="svelte-23tqn3"
+    title="title"
+  >
+    <object
+      src="ic-copyicon.svg/"
+    />
+  </button>
+</div>
+`;

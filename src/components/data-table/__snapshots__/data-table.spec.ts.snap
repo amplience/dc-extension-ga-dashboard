@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DataTable should render the DataTable Body component 1`] = `
+<div>
+  <div
+    class="data-table svelte-2e8um5"
+  >
+    <div
+      class="data-table-slot 
+    scrollable svelte-2e8um5"
+    />
+  </div>
+</div>
+`;

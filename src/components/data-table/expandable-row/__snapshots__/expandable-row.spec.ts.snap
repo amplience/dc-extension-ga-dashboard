@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ExpandableRow should render the DataTable ExpandableRow and expand the row on click 1`] = `
+<div>
+  <div
+    class="data-table-expandable-row expanded svelte-ro6k9j"
+  >
+    <div
+      class="row-content svelte-ro6k9j"
+      data-testid="row-content"
+    />
+     
+    <div
+      class="expandable-content svelte-ro6k9j"
+    />
+  </div>
+</div>
+`;
+
+exports[`ExpandableRow should render the DataTable ExpandableRow component 1`] = `
+<div>
+  <div
+    class="data-table-expandable-row  svelte-ro6k9j"
+  >
+    <div
+      class="row-content svelte-ro6k9j"
+      data-testid="row-content"
+    />
+     
+    <div
+      class="expandable-content svelte-ro6k9j"
+    />
+  </div>
+</div>
+`;

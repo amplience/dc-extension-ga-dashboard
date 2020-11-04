@@ -1,0 +1,218 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Checkbox should render a checkbox checked 1`] = `
+<div>
+  <div
+    class="smui-checkbox test-class svelte-1929qnl"
+  >
+    <div
+      class="mdc-checkbox checkbox mdc-checkbox--upgraded"
+    >
+      <input
+        class="mdc-checkbox__native-control "
+        type="checkbox"
+        value=""
+      />
+       
+      <div
+        class="mdc-checkbox__background"
+      >
+        <svg
+          class="mdc-checkbox__checkmark"
+          viewBox="0 0 24 24"
+        >
+          <path
+            class="mdc-checkbox__checkmark-path"
+            d="M1.73,12.91 8.1,19.28 22.79,4.59"
+            fill="none"
+          />
+        </svg>
+         
+        <div
+          class="mdc-checkbox__mixedmark"
+        />
+      </div>
+    </div>
+     
+    <label
+      class="svelte-1929qnl"
+    >
+      test label
+    </label>
+  </div>
+</div>
+`;
+
+exports[`Checkbox should render a checkbox checked and disabled 1`] = `
+<div>
+  <div
+    class="smui-checkbox test-class svelte-1929qnl"
+  >
+    <div
+      class="mdc-checkbox checkbox mdc-checkbox--disabled mdc-checkbox--upgraded"
+    >
+      <input
+        class="mdc-checkbox__native-control "
+        disabled=""
+        type="checkbox"
+        value=""
+      />
+       
+      <div
+        class="mdc-checkbox__background"
+      >
+        <svg
+          class="mdc-checkbox__checkmark"
+          viewBox="0 0 24 24"
+        >
+          <path
+            class="mdc-checkbox__checkmark-path"
+            d="M1.73,12.91 8.1,19.28 22.79,4.59"
+            fill="none"
+          />
+        </svg>
+         
+        <div
+          class="mdc-checkbox__mixedmark"
+        />
+      </div>
+    </div>
+     
+    <label
+      class="svelte-1929qnl disabled"
+    >
+      test label
+    </label>
+  </div>
+</div>
+`;
+
+exports[`Checkbox should render a checkbox not checked - false supplied 1`] = `
+<div>
+  <div
+    class="smui-checkbox test-class svelte-1929qnl"
+  >
+    <div
+      class="mdc-checkbox checkbox mdc-checkbox--upgraded"
+    >
+      <input
+        class="mdc-checkbox__native-control "
+        type="checkbox"
+        value=""
+      />
+       
+      <div
+        class="mdc-checkbox__background"
+      >
+        <svg
+          class="mdc-checkbox__checkmark"
+          viewBox="0 0 24 24"
+        >
+          <path
+            class="mdc-checkbox__checkmark-path"
+            d="M1.73,12.91 8.1,19.28 22.79,4.59"
+            fill="none"
+          />
+        </svg>
+         
+        <div
+          class="mdc-checkbox__mixedmark"
+        />
+      </div>
+    </div>
+     
+    <label
+      class="svelte-1929qnl"
+    >
+      test label
+    </label>
+  </div>
+</div>
+`;
+
+exports[`Checkbox should render a checkbox not checked - undefined checked value 1`] = `
+<div>
+  <div
+    class="smui-checkbox test-class svelte-1929qnl"
+  >
+    <div
+      class="mdc-checkbox checkbox mdc-checkbox--upgraded"
+    >
+      <input
+        class="mdc-checkbox__native-control "
+        type="checkbox"
+        value=""
+      />
+       
+      <div
+        class="mdc-checkbox__background"
+      >
+        <svg
+          class="mdc-checkbox__checkmark"
+          viewBox="0 0 24 24"
+        >
+          <path
+            class="mdc-checkbox__checkmark-path"
+            d="M1.73,12.91 8.1,19.28 22.79,4.59"
+            fill="none"
+          />
+        </svg>
+         
+        <div
+          class="mdc-checkbox__mixedmark"
+        />
+      </div>
+    </div>
+     
+    <label
+      class="svelte-1929qnl"
+    >
+      test label
+    </label>
+  </div>
+</div>
+`;
+
+exports[`Checkbox should render a checkbox unchecked and disabled 1`] = `
+<div>
+  <div
+    class="smui-checkbox test-class svelte-1929qnl"
+  >
+    <div
+      class="mdc-checkbox checkbox mdc-checkbox--disabled mdc-checkbox--upgraded"
+    >
+      <input
+        class="mdc-checkbox__native-control "
+        disabled=""
+        type="checkbox"
+        value=""
+      />
+       
+      <div
+        class="mdc-checkbox__background"
+      >
+        <svg
+          class="mdc-checkbox__checkmark"
+          viewBox="0 0 24 24"
+        >
+          <path
+            class="mdc-checkbox__checkmark-path"
+            d="M1.73,12.91 8.1,19.28 22.79,4.59"
+            fill="none"
+          />
+        </svg>
+         
+        <div
+          class="mdc-checkbox__mixedmark"
+        />
+      </div>
+    </div>
+     
+    <label
+      class="svelte-1929qnl disabled"
+    >
+      test label
+    </label>
+  </div>
+</div>
+`;

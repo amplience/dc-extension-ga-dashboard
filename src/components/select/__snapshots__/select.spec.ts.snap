@@ -1,0 +1,176 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Select should render a Select component when the keys are different and the selected value is passed 1`] = `
+<div>
+  <div
+    class="select test-class svelte-c7jdhd"
+  >
+    <span>
+      Select
+    </span>
+     
+    <div
+      class="
+    mdc-select
+    smui-select
+    
+    
+    smui-select--standard
+    
+    
+  "
+    >
+       
+      <i
+        class="mdc-select__dropdown-icon"
+      />
+       
+      <input
+        id="SMUI-select-2"
+        type="hidden"
+        value="b"
+      />
+       
+      <div
+        aria-haspopup="listbox"
+        aria-labelledby="SMUI-select-2-smui-label SMUI-select-2-smui-selected-text"
+        aria-required="false"
+        class="mdc-select__selected-text"
+        id="SMUI-select-2-smui-selected-text"
+        role="button"
+        tabindex="0"
+      >
+        key2
+      </div>
+       
+       
+       
+      <div
+        class="
+    mdc-line-ripple
+    
+    
+  "
+      />
+      
+       
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Select should render an Select component when options are passed and display selected option 1`] = `
+<div>
+  <div
+    class="select test-class svelte-c7jdhd"
+  >
+    <span>
+      Select
+    </span>
+     
+    <div
+      class="
+    mdc-select
+    smui-select
+    
+    
+    smui-select--standard
+    
+    
+  "
+    >
+       
+      <i
+        class="mdc-select__dropdown-icon"
+      />
+       
+      <input
+        id="SMUI-select-1"
+        type="hidden"
+        value="b"
+      />
+       
+      <div
+        aria-haspopup="listbox"
+        aria-labelledby="SMUI-select-1-smui-label SMUI-select-1-smui-selected-text"
+        aria-required="false"
+        class="mdc-select__selected-text"
+        id="SMUI-select-1-smui-selected-text"
+        role="button"
+        tabindex="0"
+      >
+        b
+      </div>
+       
+       
+       
+      <div
+        class="
+    mdc-line-ripple
+    
+    
+  "
+      />
+      
+       
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Select should render an empty Select component when no options are passed 1`] = `
+<div>
+  <div
+    class="select test-class svelte-c7jdhd"
+  >
+    <span>
+      undefined
+    </span>
+     
+    <div
+      class="
+    mdc-select
+    smui-select
+    
+    
+    smui-select--standard
+    
+    
+  "
+    >
+       
+      <i
+        class="mdc-select__dropdown-icon"
+      />
+       
+      <input
+        id="SMUI-select-0"
+        type="hidden"
+        value=""
+      />
+       
+      <div
+        aria-haspopup="listbox"
+        aria-labelledby="SMUI-select-0-smui-label SMUI-select-0-smui-selected-text"
+        aria-required="false"
+        class="mdc-select__selected-text"
+        id="SMUI-select-0-smui-selected-text"
+        role="button"
+        tabindex="0"
+      />
+       
+       
+       
+      <div
+        class="
+    mdc-line-ripple
+    
+    
+  "
+      />
+      
+       
+    </div>
+  </div>
+</div>
+`;

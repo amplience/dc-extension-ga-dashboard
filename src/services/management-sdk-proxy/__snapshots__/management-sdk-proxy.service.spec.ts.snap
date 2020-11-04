@@ -1,0 +1,102 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`management sdk proxy service - Standalone mode should return a new client 1`] = `
+DynamicContent {
+  "client": DefaultHalClient {
+    "baseUrl": "__API_URL__",
+    "httpClient": AxiosHttpClient {
+      "client": [Function],
+      "config": Object {},
+    },
+    "tokenProvider": OAuth2Client {
+      "authUrl": "__AUTH_URL__",
+      "clientCredentials": Object {
+        "client_id": "__CLIENT_ID__",
+        "client_secret": "__CLIENT_SECRET__",
+      },
+      "httpClient": AxiosHttpClient {
+        "client": [Function],
+        "config": Object {},
+      },
+    },
+  },
+  "contentItems": Object {
+    "get": [Function],
+  },
+  "contentRepositories": Object {
+    "get": [Function],
+  },
+  "contentTypeSchemas": Object {
+    "get": [Function],
+    "getByVersion": [Function],
+  },
+  "contentTypes": Object {
+    "get": [Function],
+  },
+  "editions": Object {
+    "get": [Function],
+  },
+  "events": Object {
+    "get": [Function],
+  },
+  "folders": Object {
+    "get": [Function],
+  },
+  "hubs": Object {
+    "get": [Function],
+    "list": [Function],
+  },
+  "snapshots": Object {
+    "get": [Function],
+  },
+}
+`;
+
+exports[`management sdk proxy service - Using connection should return a new client 1`] = `
+DynamicContentProxy {
+  "client": DefaultHalClient {
+    "baseUrl": "https://mock.api.amplience.net/v2/content/",
+    "httpClient": DynamicContentClientProxy {
+      "connection": ClientConnection {
+        "addBeforeUnloadEvent": [MockFunction],
+        "init": [MockFunction],
+        "isClient": [MockFunction],
+        "listenForHandshake": [MockFunction],
+        "messageHandler": [MockFunction],
+      },
+    },
+    "tokenProvider": Object {
+      "getToken": [Function],
+    },
+  },
+  "contentItems": Object {
+    "get": [Function],
+  },
+  "contentRepositories": Object {
+    "get": [Function],
+  },
+  "contentTypeSchemas": Object {
+    "get": [Function],
+    "getByVersion": [Function],
+  },
+  "contentTypes": Object {
+    "get": [Function],
+  },
+  "editions": Object {
+    "get": [Function],
+  },
+  "events": Object {
+    "get": [Function],
+  },
+  "folders": Object {
+    "get": [Function],
+  },
+  "hubs": Object {
+    "get": [Function],
+    "list": [Function],
+  },
+  "snapshots": Object {
+    "get": [Function],
+  },
+}
+`;

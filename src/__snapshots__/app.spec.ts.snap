@@ -1,0 +1,111 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App should render the App component 1`] = `
+<div>
+  <main
+    class="svelte-bykbas"
+  >
+    <div
+      class="top-bar svelte-bykbas"
+    >
+      <section
+        class="top-bar svelte-1y6gr4b"
+      >
+        <div
+          class="container svelte-1y6gr4b"
+        />
+      </section>
+       
+      <section
+        class="date-range-bar svelte-e877a4"
+      >
+        <div
+          class="container svelte-e877a4"
+        >
+          <span
+            class="svelte-e877a4"
+          >
+            Date range
+          </span>
+           
+           
+          <section
+            class=" svelte-o6q9p0"
+          >
+            <div
+              class="date-range-inputs svelte-o6q9p0"
+              data-testid="date-range-inputs"
+            >
+              <div
+                class="date-selection svelte-o6q9p0"
+              >
+                <div
+                  class="calendar-icon svelte-zpbvvv"
+                  style="--icon-width: 24px; --icon-height: 24px;"
+                >
+                  <object
+                    src="ic-view-calendar.svg/"
+                  />
+                </div>
+                 
+                <input
+                  class="svelte-o6q9p0"
+                  placeholder="Pick a start date"
+                  readonly=""
+                />
+              </div>
+               
+              <div
+                class="date-selection svelte-o6q9p0"
+              >
+                <div
+                  class="calendar-icon svelte-zpbvvv"
+                  style="--icon-width: 24px; --icon-height: 24px;"
+                >
+                  <object
+                    src="ic-view-calendar.svg/"
+                  />
+                </div>
+                 
+                <input
+                  class="svelte-o6q9p0"
+                  placeholder="Pick an end date"
+                  readonly=""
+                />
+              </div>
+            </div>
+             
+          </section>
+        </div>
+      </section>
+    </div>
+     
+    <div
+      class="scroll-area svelte-bykbas"
+    >
+      <section
+        class="container svelte-bykbas"
+      >
+        <div
+          class="svelte-behl35"
+        >
+          <div
+            class="ga-authorize svelte-behl35"
+          >
+            <div
+              class="svelte-behl35"
+              id="auth-button"
+            />
+          </div>
+        </div>
+      </section>
+    </div>
+    <iframe
+      aria-hidden="true"
+      src="about:blank"
+      style="display: block; position: absolute; top: 0; left: 0; width: 100%; height: 100%; overflow: hidden; border: 0; opacity: 0; pointer-events: none; z-index: -1;"
+      tabindex="-1"
+    />
+  </main>
+</div>
+`;

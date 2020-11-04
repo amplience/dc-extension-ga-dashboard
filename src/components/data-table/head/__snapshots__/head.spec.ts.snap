@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Head should render the DataTable Head component 1`] = `
+<div>
+  <div
+    class="data-table-head svelte-1nivie3"
+  />
+</div>
+`;

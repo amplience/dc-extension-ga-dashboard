@@ -1,20 +1,16 @@
 version: 1
-env:
-  variables:
-    CI: true
 frontend:
   phases:
     preBuild:
       commands:
         - nvm install 12
         - nvm use 12
-        - yarn cache clean
-        - yarn install --frozen-lockfile
-        - yarn test
+        - npm ci
+        - npm test
     build:
       commands:
-        - yarn build
+        - npm run build
   artifacts:
-    baseDirectory: build
+    baseDirectory: public
     files:
       - '**/*'

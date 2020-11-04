@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Body should render the DataTable Body component 1`] = `
+<div>
+  <div
+    class="data-table-body"
+  />
+</div>
+`;

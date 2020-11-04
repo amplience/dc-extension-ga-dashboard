@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Link should render the Link component with default target 1`] = `
+<div>
+  <a
+    class="svelte-1c0jp0i"
+    href="https://test-href"
+    target="_self"
+  >
+    test-link-text
+  </a>
+</div>
+`;
+
+exports[`Link should render the Link component with defined target 1`] = `
+<div>
+  <a
+    class="svelte-1c0jp0i"
+    href="https://test-href"
+    target="test-target"
+  >
+    test-link-text
+  </a>
+</div>
+`;

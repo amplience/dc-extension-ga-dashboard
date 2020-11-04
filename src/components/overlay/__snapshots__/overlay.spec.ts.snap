@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Overlay should render an Overlay component 1`] = `
+<div>
+  <div
+    class="svelte-1k192f9"
+    data-testid="overlay"
+    style="z-index: 2"
+  />
+</div>
+`;
+
+exports[`Overlay should render an Overlay component with updated z-index 1`] = `
+<div>
+  <div
+    class="svelte-1k192f9"
+    data-testid="overlay"
+    style="z-index: 111"
+  />
+</div>
+`;

@@ -1,0 +1,68 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DateRangeBar should render a DateRangeBar 1`] = `
+<div>
+  <section
+    class="date-range-bar svelte-e877a4"
+  >
+    <div
+      class="container svelte-e877a4"
+    >
+      <span
+        class="svelte-e877a4"
+      >
+        Date range
+      </span>
+       
+       
+      <section
+        class=" svelte-o6q9p0"
+      >
+        <div
+          class="date-range-inputs svelte-o6q9p0"
+          data-testid="date-range-inputs"
+        >
+          <div
+            class="date-selection svelte-o6q9p0"
+          >
+            <div
+              class="calendar-icon svelte-zpbvvv"
+              style="--icon-width: 24px; --icon-height: 24px;"
+            >
+              <object
+                src="ic-view-calendar.svg/"
+              />
+            </div>
+             
+            <input
+              class="svelte-o6q9p0"
+              placeholder="Pick a start date"
+              readonly=""
+            />
+          </div>
+           
+          <div
+            class="date-selection svelte-o6q9p0"
+          >
+            <div
+              class="calendar-icon svelte-zpbvvv"
+              style="--icon-width: 24px; --icon-height: 24px;"
+            >
+              <object
+                src="ic-view-calendar.svg/"
+              />
+            </div>
+             
+            <input
+              class="svelte-o6q9p0"
+              placeholder="Pick an end date"
+              readonly=""
+            />
+          </div>
+        </div>
+         
+      </section>
+    </div>
+  </section>
+</div>
+`;
