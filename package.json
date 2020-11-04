@@ -7,8 +7,8 @@
     "dev": "rollup -c -w",
     "dev:standalone": "STANDALONE=1 rollup -c -w",
     "start": "sirv public --port 3000",
-    "lint": "prettier --check \"**/*.{ts,svelte}\" && eslint \"**/*.ts\"",
-    "lint:fix": "prettier --write '**/*.{ts,svelte}'",
+    "lint": "prettier --check \"src/**/*.{ts,svelte}\" && eslint \"src/**/*.ts\"",
+    "lint:fix": "prettier --write 'src/**/*.{ts,svelte}'",
     "test": "jest src --silent",
     "test:watch": "npm run test -- --watch",
     "prerelease": "npm run test",
@@ -107,11 +107,11 @@
     }
   },
   "lint-staged": {
-    "*.{ts,js}": [
+    "src/**/*.{ts,js}": [
       "prettier --write",
       "eslint --fix"
     ],
-    "*.{svelte,json}": [
+    "src/**/*.{svelte,json}": [
       "prettier --write"
     ]
   }
