@@ -1,0 +1,199 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App should render the App component 1`] = `
+<div>
+  <main
+    class="svelte-bykbas"
+  >
+    <div
+      class="top-bar svelte-bykbas"
+    >
+      <section
+        class="top-bar svelte-133enxk"
+      >
+        <div
+          class="container svelte-133enxk"
+        >
+          <div
+            class="container svelte-1cwa7q8"
+          >
+            <div
+              class="spinner-container svelte-bvd1nw"
+            >
+              <div
+                class="spinner dot-0 svelte-bvd1nw"
+              />
+              <div
+                class="spinner dot-1 svelte-bvd1nw"
+              />
+              <div
+                class="spinner dot-2 svelte-bvd1nw"
+              />
+            </div>
+          </div>
+
+          <div
+            class="index-options svelte-133enxk"
+          >
+
+
+            <div
+              class="svelte-wl8h5m"
+            >
+              <div
+                class="smui-checkbox index-sort-options svelte-1929qnl"
+              >
+                <div
+                  class="mdc-checkbox checkbox mdc-checkbox--disabled mdc-checkbox--upgraded"
+                >
+                  <input
+                    class="mdc-checkbox__native-control "
+                    disabled=""
+                    type="checkbox"
+                    value=""
+                  />
+
+                  <div
+                    class="mdc-checkbox__background"
+                  >
+                    <svg
+                      class="mdc-checkbox__checkmark"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        class="mdc-checkbox__checkmark-path"
+                        d="M1.73,12.91 8.1,19.28 22.79,4.59"
+                        fill="none"
+                      />
+                    </svg>
+
+                    <div
+                      class="mdc-checkbox__mixedmark"
+                    />
+                  </div>
+                </div>
+
+                <label
+                  class="svelte-1929qnl disabled"
+                >
+                  include sort options data
+                </label>
+              </div>
+
+              <div
+                class="info-icon svelte-wl8h5m"
+              >
+                <div
+                  aria-expanded="false"
+                  class="svelte-usl6ua"
+                  data-testid="info-tip"
+                >
+                  <div
+                    class=" svelte-zpbvvv"
+                    style="--icon-width: 24px; --icon-height: 24px;"
+                  >
+                    <object
+                      src="ic-asset-info.svg/"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="date-range-bar svelte-e877a4"
+      >
+        <div
+          class="container svelte-e877a4"
+        >
+          <span
+            class="svelte-e877a4"
+          >
+            Date range
+          </span>
+
+
+          <section
+            class=" svelte-o6q9p0"
+          >
+            <div
+              class="date-range-inputs svelte-o6q9p0"
+              data-testid="date-range-inputs"
+            >
+              <div
+                class="date-selection svelte-o6q9p0"
+              >
+                <div
+                  class="calendar-icon svelte-zpbvvv"
+                  style="--icon-width: 24px; --icon-height: 24px;"
+                >
+                  <object
+                    src="ic-view-calendar.svg/"
+                  />
+                </div>
+
+                <input
+                  class="svelte-o6q9p0"
+                  placeholder="Pick a start date"
+                  readonly=""
+                />
+              </div>
+
+              <div
+                class="date-selection svelte-o6q9p0"
+              >
+                <div
+                  class="calendar-icon svelte-zpbvvv"
+                  style="--icon-width: 24px; --icon-height: 24px;"
+                >
+                  <object
+                    src="ic-view-calendar.svg/"
+                  />
+                </div>
+
+                <input
+                  class="svelte-o6q9p0"
+                  placeholder="Pick an end date"
+                  readonly=""
+                />
+              </div>
+            </div>
+
+          </section>
+        </div>
+      </section>
+    </div>
+
+    <div
+      class="scroll-area svelte-bykbas"
+    >
+      <section
+        class="container svelte-bykbas"
+      >
+        <div
+          class="spinner-container svelte-bvd1nw"
+        >
+          <div
+            class="spinner dot-0 svelte-bvd1nw"
+          />
+          <div
+            class="spinner dot-1 svelte-bvd1nw"
+          />
+          <div
+            class="spinner dot-2 svelte-bvd1nw"
+          />
+        </div>
+      </section>
+    </div>
+    <iframe
+      aria-hidden="true"
+      src="about:blank"
+      style="display: block; position: absolute; top: 0; left: 0; width: 100%; height: 100%; overflow: hidden; border: 0; opacity: 0; pointer-events: none; z-index: -1;"
+      tabindex="-1"
+    />
+  </main>
+</div>
+`;

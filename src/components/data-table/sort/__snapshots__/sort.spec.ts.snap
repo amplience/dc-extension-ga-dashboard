@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Sort should render the DataTable Sort component 1`] = `
+<div>
+  <div
+    class="data-table-sort asc svelte-1xz2vfo"
+  />
+   
+  <div
+    class="data-table-sort-click-area svelte-1xz2vfo"
+    data-testid="data-table-sort-click-area"
+  />
+</div>
+`;

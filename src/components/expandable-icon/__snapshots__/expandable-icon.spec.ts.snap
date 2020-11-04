@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ExpandableIcon should render the ExpandableIcon component in a collapsed state 1`] = `
+<div>
+  <div
+    class="svelte-t93ore"
+  >
+    <div
+      class=" svelte-zpbvvv"
+      style="--icon-width: 24px; --icon-height: 24px;"
+    >
+      <object
+        src="ic-expandable.svg/"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`ExpandableIcon should render the ExpandableIcon component in a expanded state 1`] = `
+<div>
+  <div
+    class="svelte-t93ore"
+  >
+    <div
+      class=" svelte-zpbvvv"
+      style="--icon-width: 24px; --icon-height: 24px;"
+    >
+      <object
+        src="ic-contractable.svg/"
+      />
+    </div>
+  </div>
+</div>
+`;

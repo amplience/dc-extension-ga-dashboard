@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`QueryCount should render the QueryCount component 1`] = `
+<div>
+  <div
+    class="query-count svelte-oetuy1"
+  />
+</div>
+`;

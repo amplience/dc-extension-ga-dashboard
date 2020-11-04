@@ -1,0 +1,115 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`getTopSearches should list top hits for a given search index and params 1`] = `
+Array [
+  Object {
+    "averageClickPosition": 2.5,
+    "clickCount": 2,
+    "clickPositions": Array [
+      Object {
+        "clickCount": 3,
+        "position": Array [
+          1,
+          1,
+        ],
+      },
+      Object {
+        "clickCount": 0,
+        "position": Array [
+          2,
+          2,
+        ],
+      },
+      Object {
+        "clickCount": 0,
+        "position": Array [
+          3,
+          3,
+        ],
+      },
+      Object {
+        "clickCount": 0,
+        "position": Array [
+          4,
+          4,
+        ],
+      },
+      Object {
+        "clickCount": 0,
+        "position": Array [
+          5,
+          5,
+        ],
+      },
+      Object {
+        "clickCount": 4,
+        "position": Array [
+          6,
+          6,
+        ],
+      },
+      Object {
+        "clickCount": 0,
+        "position": Array [
+          7,
+          7,
+        ],
+      },
+      Object {
+        "clickCount": 0,
+        "position": Array [
+          8,
+          8,
+        ],
+      },
+      Object {
+        "clickCount": 0,
+        "position": Array [
+          9,
+          9,
+        ],
+      },
+      Object {
+        "clickCount": 0,
+        "position": Array [
+          10,
+          10,
+        ],
+      },
+      Object {
+        "clickCount": 0,
+        "position": Array [
+          11,
+          20,
+        ],
+      },
+      Object {
+        "clickCount": 0,
+        "position": Array [
+          21,
+          -1,
+        ],
+      },
+    ],
+    "clickThroughRate": 0.25,
+    "conversionCount": 2,
+    "conversionRate": 0.25,
+    "count": 11,
+    "nbHits": 9,
+    "search": "abc",
+    "trackedSearchCount": 8,
+  },
+]
+`;
+
+exports[`getTopSearchesForCsv should only list csv specific properties for top searches for a given search index and params 1`] = `
+Array [
+  Object {
+    "averageClickPosition": 2.5,
+    "clickThroughRate": 0.25,
+    "conversionRate": 0.25,
+    "count": 8,
+    "query": "abc",
+  },
+]
+`;

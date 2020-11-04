@@ -1,0 +1,63 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SearchesCountCard should render the SearchesCountCard component 1`] = `
+<div>
+  <article
+    class="svelte-14k6rag"
+    style="--overview-card-color: #2f6e8c;"
+  >
+    <div
+      class="overview-card-top svelte-14k6rag"
+    >
+      <div
+        class="overview-card-heading svelte-14k6rag"
+      >
+        <div
+          class="overview-card-title svelte-14k6rag"
+        >
+          <div
+            class=" svelte-zpbvvv"
+            style="--icon-width: 24px; --icon-height: 24px;"
+          >
+            <object
+              src="ic-asset-search.svg/"
+            />
+          </div>
+           
+          <h2
+            class="svelte-14k6rag"
+          >
+            Searches
+          </h2>
+        </div>
+         
+        <div
+          class="overview-card-value svelte-14k6rag"
+        >
+          10
+        </div>
+      </div>
+       
+      <div
+        class="overview-card-content svelte-14k6rag"
+      >
+        <div
+          slot="body"
+        >
+          Number of searches performed and average number of searches per visit
+        </div>
+      </div>
+    </div>
+     
+    <div
+      class="overview-card-footer svelte-14k6rag"
+    >
+      <div
+        slot="footer"
+      >
+        10 searches for each user
+      </div>
+    </div>
+  </article>
+</div>
+`;

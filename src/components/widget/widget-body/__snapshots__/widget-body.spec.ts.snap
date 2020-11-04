@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`WidgetBody should render the Widget component 1`] = `
+<div>
+  <section
+    class="widget-body svelte-4p1s5s"
+  />
+</div>
+`;

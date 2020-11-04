@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   width="24"
+   height="24"
+   viewBox="0 0 24 24"
+   version="1.1"
+   id="svg492">
+  <g
+     id="g490"
+     transform="rotate(-180,12.03598,12.806053)">
+    <rect
+       transform="rotate(-45,10.572876,12.809766)"
+       id="svg_2"
+       height="1.05481"
+       width="5.1947398"
+       y="12.28236"
+       x="7.9755101"
+       style="stroke-width:0" />
+    <rect
+       transform="rotate(45,13.499082,12.802346)"
+       id="svg_3"
+       height="1.05481"
+       width="5.1947398"
+       y="12.27494"
+       x="10.90171"
+       style="stroke-width:0" />
+  </g>
+</svg>

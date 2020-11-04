@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Button should render a default Button 1`] = `
+<div>
+  <button
+    class=" svelte-th9g9"
+    data-testid="button"
+  />
+</div>
+`;
+
+exports[`Button should render a disabled Button 1`] = `
+<div>
+  <button
+    class="primary svelte-th9g9"
+    data-testid="button"
+    disabled=""
+  />
+</div>
+`;
+
+exports[`Button should render a primary Button 1`] = `
+<div>
+  <button
+    class="primary svelte-th9g9"
+    data-testid="button"
+  />
+</div>
+`;

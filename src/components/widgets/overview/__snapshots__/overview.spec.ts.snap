@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Overview should render the Overview component 1`] = `
+<div>
+  <section
+    class="overview svelte-1516b4j"
+  >
+    <article
+      class="svelte-pntwh0"
+    >
+       
+      <section
+        class="widget-body svelte-4p1s5s"
+      >
+        
+        <div
+          class="spinner-container svelte-bvd1nw"
+        >
+          <div
+            class="spinner dot-0 svelte-bvd1nw"
+          />
+          <div
+            class="spinner dot-1 svelte-bvd1nw"
+          />
+          <div
+            class="spinner dot-2 svelte-bvd1nw"
+          />
+        </div>
+      </section>
+    </article>
+  </section>
+</div>
+`;

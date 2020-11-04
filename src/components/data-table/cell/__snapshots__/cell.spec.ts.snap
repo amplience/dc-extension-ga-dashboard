@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Cell should render the DataTable Cell component 1`] = `
+<div>
+  <div
+    class="data-table-cell svelte-1x8v3rk"
+    style="
+  max-width:100%;
+  justify-content:start;
+  color:#333;"
+  />
+</div>
+`;
+
+exports[`Cell should render the DataTable Cell component with a set alignment 1`] = `
+<div>
+  <div
+    class="data-table-cell svelte-1x8v3rk"
+    style="
+  max-width:100%;
+  justify-content:flex-end;
+  color:#333;"
+  />
+</div>
+`;
+
+exports[`Cell should render the DataTable Cell component with a set width 1`] = `
+<div>
+  <div
+    class="data-table-cell svelte-1x8v3rk"
+    style="
+  max-width:40%;
+  justify-content:start;
+  color:#333;"
+  />
+</div>
+`;

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="robots" content="noindex" />
+
+    <title>dc-extension-ga-dashboard</title>
+
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="stylesheet" href="/global.css" />
+    <link rel="stylesheet" href="/build/bundle.css" />
+
+    <script defer src="/build/bundle.js"></script>
+    <script async src="https://www.google-analytics.com/analytics.js"></script>
+
+    <script>
+      (function (w, d, s, g, js, fjs) {
+        g = w.gapi || (w.gapi = {});
+        g.analytics = {
+          q: [],
+          ready: function (cb) {
+            this.q.push(cb);
+          },
+        };
+        js = d.createElement(s);
+        fjs = d.getElementsByTagName(s)[0];
+        js.src = 'https://apis.google.com/js/platform.js';
+        fjs.parentNode.insertBefore(js, fjs);
+        js.onload = function () {
+          g.load('analytics');
+        };
+      })(window, document, 'script');
+    </script>
+  </head>
+
+  <body></body>
+</html>

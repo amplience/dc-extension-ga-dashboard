@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`WidgetHeader should render the Widget component 1`] = `
+<div>
+  <section
+    class="svelte-1kld2ef"
+  >
+    <div
+      class="title svelte-1kld2ef"
+    >
+      <h2
+        class="svelte-1kld2ef"
+      >
+        widget-header-title
+      </h2>
+       
+    </div>
+     
+    <div
+      class="actions svelte-1kld2ef"
+    />
+  </section>
+</div>
+`;

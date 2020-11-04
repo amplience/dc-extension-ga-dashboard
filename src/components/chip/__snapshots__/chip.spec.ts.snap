@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Chip should render a Chip 1`] = `
+<div>
+  <span
+    class=" svelte-ds5s27"
+    data-testid="chip"
+  >
+    test-label
+  </span>
+</div>
+`;
+
+exports[`Chip should render an active Chip 1`] = `
+<div>
+  <span
+    class="active svelte-ds5s27"
+    data-testid="chip"
+  >
+    test-label
+  </span>
+</div>
+`;

@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`getTopFiltersNoResultSearch should getTopFiltersNoResultSearch return data 1`] = `
+Array [
+  Object {
+    "count": 3,
+    "values": Array [
+      Object {
+        "attribute": "brand",
+        "operator": ":",
+        "value": "apple",
+      },
+      Object {
+        "attribute": "price",
+        "operator": ">",
+        "value": "100",
+      },
+    ],
+  },
+  Object {
+    "count": 1,
+    "values": Array [
+      Object {
+        "attribute": "brand",
+        "operator": ":",
+        "value": "apple",
+      },
+    ],
+  },
+]
+`;
+
+exports[`getTopFiltersNoResultSearchForCsv should getTopFiltersNoResultSearchForCsv return data 1`] = `
+Array [
+  Object {
+    "Count": 3,
+    "Filter attribute 1": "brand:apple",
+    "Filter attribute 2": "price>100",
+  },
+  Object {
+    "Count": 1,
+    "Filter attribute 1": "brand:apple",
+    "Filter attribute 2": "",
+  },
+]
+`;

@@ -1,0 +1,110 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DateRangePicker should render DateRangePicker calendar when inputs are clicked 1`] = `
+<div>
+  <div
+    class="svelte-1k192f9"
+    data-testid="overlay"
+    style="z-index: 2"
+  />
+   
+  <section
+    class=" svelte-5yo6vu"
+  >
+    <div
+      class="date-range-inputs svelte-5yo6vu"
+      data-testid="date-range-inputs"
+    >
+      <div
+        class="date-selection svelte-5yo6vu"
+      >
+        <div
+          class="calendar-icon svelte-1e8n6x9"
+        >
+          <object
+            src="ic-view-calendar.svg/"
+          />
+        </div>
+         
+        <input
+          class="svelte-5yo6vu"
+          placeholder="Pick a start date"
+          readonly=""
+        />
+      </div>
+       
+      <div
+        class="date-selection svelte-5yo6vu"
+      >
+        <div
+          class="calendar-icon svelte-1e8n6x9"
+        >
+          <object
+            src="ic-view-calendar.svg/"
+          />
+        </div>
+         
+        <input
+          class="svelte-5yo6vu"
+          placeholder="Pick an end date"
+          readonly=""
+        />
+      </div>
+    </div>
+     
+  </section>
+</div>
+`;
+
+exports[`DateRangePicker should render a DateRangePicker inputs with the given date range 1`] = `
+<div>
+   
+  <section
+    class=" svelte-o6q9p0"
+  >
+    <div
+      class="date-range-inputs svelte-o6q9p0"
+      data-testid="date-range-inputs"
+    >
+      <div
+        class="date-selection svelte-o6q9p0"
+      >
+        <div
+          class="calendar-icon svelte-zpbvvv"
+          style="--icon-width: 24px; --icon-height: 24px;"
+        >
+          <object
+            src="ic-view-calendar.svg/"
+          />
+        </div>
+         
+        <input
+          class="svelte-o6q9p0"
+          placeholder="Pick a start date"
+          readonly=""
+        />
+      </div>
+       
+      <div
+        class="date-selection svelte-o6q9p0"
+      >
+        <div
+          class="calendar-icon svelte-zpbvvv"
+          style="--icon-width: 24px; --icon-height: 24px;"
+        >
+          <object
+            src="ic-view-calendar.svg/"
+          />
+        </div>
+         
+        <input
+          class="svelte-o6q9p0"
+          placeholder="Pick an end date"
+          readonly=""
+        />
+      </div>
+    </div>
+     
+  </section>
+</div>
+`;
