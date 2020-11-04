@@ -13,6 +13,9 @@
   import SearchesWithNoResults from './components/widgets/searches-with-no-results/searches-with-no-results.svelte';
   import Overview from './components/widgets/overview/overview.svelte';
   import { gapiAuthorized } from './stores/gapi-authorized';
+  import { gaId } from './stores/ga-id';
+
+  $gaId = '232357561';
 
   connection.set(
     createConnection({
@@ -115,6 +118,7 @@
     <section class="container">
       {#if $gapiAuthorized}
         <section class="widgets-container">
+          {$gaId}
           <!-- <Overview />
           <TopSearches />
           <TopResults />

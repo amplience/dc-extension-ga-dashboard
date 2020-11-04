@@ -26,6 +26,5 @@
 </style>
 
 <section class="top-bar">
-  <div class="container">
-  </div>
+  <div class="container" />
 </section>

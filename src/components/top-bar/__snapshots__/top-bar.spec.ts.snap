@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TopBar should render the top bar 1`] = `
+<div>
+  <section
+    class="top-bar svelte-1y6gr4b"
+  >
+    <div
+      class="container svelte-1y6gr4b"
+    />
+  </section>
+</div>
+`;
