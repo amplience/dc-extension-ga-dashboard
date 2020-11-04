@@ -48,7 +48,7 @@ const DashboardPage: React.SFC<Props> = (props) => {
   const dashboardState: DashboardState = {
     startDate: '28daysAgo',
     endDate: 'today',
-    gaIds: 'ga:231294652',
+    gaIds: 'ga:232357561',
   };
 
   const [dateValue, setDateValue] = React.useState<any>([]);
