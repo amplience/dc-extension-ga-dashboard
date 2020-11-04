@@ -1,76 +1,89 @@
 <script lang="ts">
   import Widget from '../../widget/widget.svelte';
   import WidgetBody from '../../widget/widget-body/widget-body.svelte';
-  import UsersCountCard from './users-count-card/users-count-card.svelte';
-  import SearchesCountCard from './searches-count-card/searches-count-card.svelte';
-  import NoResultsRateCard from './no-results-rate-card/no-results-rate-card.svelte';
-  import getUsersCount from './services/get-users-count.service';
-  import getSearchesCount from './services/get-searches-count.service';
-  import getNoResultsRate from './services/get-no-results-rate.service';
-  import { includeReplicas, index } from '../../../stores/search-index';
   import { dateRange } from '../../../stores/date-range';
-  import { counts } from '../../../stores/counts';
-  import type { SearchIndex } from 'dc-management-sdk-js';
-  import NoDataPlaceholder from '../../no-data-placeholder/no-data-placeholder.svelte';
   import Loader from '../../loader/loader.svelte';
+  import { onMount } from 'svelte';
+  import { getGAPI } from '../../../services/gapi/gapi';
+  import WidgetHeader from '../../widget/widget-header/widget-header.svelte';
 
-  async function fetchCounts(
-    index: SearchIndex,
-    params: { includeReplicas: boolean; startDate: string; endDate: string }
-  ) {
-    try {
-      const usersCount = await getUsersCount(index, params);
-      const searchesCount = await getSearchesCount(index, params);
-      const noResultsRate = await getNoResultsRate(index, params);
+  let chart;
 
-      counts.set({
-        usersCount,
-        searchesCount,
-        noResultsRate,
+  onMount(async () => {
+    const gapi = getGAPI();
+    gapi.analytics.ready(function () {
+      chart = new gapi.analytics.googleCharts.DataChart({
+        query: {
+          ids: 'ga:232357561',
+          metrics: 'ga:totalEvents,ga:uniqueEvents',
+          dimensions: 'ga:date',
+          'start-date': $dateRange.from,
+          'end-date': $dateRange.to,
+        },
+        chart: {
+          type: 'LINE',
+          container: 'ga-line-chart',
+          options: {
+            fontSize: 12,
+            width: '100%',
+            animation: {
+              startup: true,
+            },
+            hAxis: {
+              gridlines: {
+                units: {
+                  days: { format: ['dd MMM'] },
+                },
+              },
+              minorGridlines: {
+                units: {
+                  hours: { format: [''] },
+                  minutes: { format: [''] },
+                },
+              },
+            },
+          },
+        },
       });
-    } catch (e) {
-      console.error('Unable to retrieve overview count data', e);
-      throw e;
+
+      chart.execute();
+    });
+  });
+
+  $: {
+    if (chart) {
+      chart.set({
+        query: { 'start-date': $dateRange.from, 'end-date': $dateRange.to },
+      });
+      chart.execute();
     }
   }
-
-  $: countsPromise = fetchCounts($index, {
-    includeReplicas: $includeReplicas,
-    startDate: $dateRange.from,
-    endDate: $dateRange.to,
-  });
 </script>
 
 <style>
   section {
     background-color: #fff;
+    min-height: 352px;
   }
 
   section :global(.widget-body) {
     min-height: unset;
     margin-bottom: 0;
+    padding: 0 10px;
   }
 
-  section > :global(article) {
-    padding: 30px;
-    display: grid;
-    grid-column-gap: 32px;
-    min-height: 240px;
+  .ga-line-chart {
+    width: 100%;
   }
 </style>
 
 <section class="overview">
   <Widget>
+    <WidgetHeader title="Overview" />
     <WidgetBody>
-      {#await countsPromise}
+      <section id="ga-line-chart" class="ga-line-chart">
         <Loader />
-      {:then}
-        <UsersCountCard />
-        <SearchesCountCard />
-        <NoResultsRateCard />
-      {:catch}
-        <NoDataPlaceholder />
-      {/await}
+      </section>
     </WidgetBody>
   </Widget>
 </section>

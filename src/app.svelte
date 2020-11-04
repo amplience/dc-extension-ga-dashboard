@@ -118,9 +118,8 @@
     <section class="container">
       {#if $gapiAuthorized}
         <section class="widgets-container">
-          {$gaId}
-          <!-- <Overview />
-          <TopSearches />
+          <Overview />
+          <!-- <TopSearches />
           <TopResults />
           <SearchesWithNoResults /> -->
         </section>

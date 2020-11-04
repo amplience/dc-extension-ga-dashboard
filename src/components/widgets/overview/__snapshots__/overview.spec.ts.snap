@@ -3,29 +3,52 @@
 exports[`Overview should render the Overview component 1`] = `
 <div>
   <section
-    class="overview svelte-1516b4j"
+    class="overview svelte-1gwsj7o"
   >
     <article
       class="svelte-pntwh0"
     >
        
       <section
+        class="svelte-1kld2ef"
+      >
+        <div
+          class="title svelte-1kld2ef"
+        >
+          <h2
+            class="svelte-1kld2ef"
+          >
+            Overview
+          </h2>
+           
+        </div>
+         
+        <div
+          class="actions svelte-1kld2ef"
+        />
+      </section>
+       
+      <section
         class="widget-body svelte-4p1s5s"
       >
-        
-        <div
-          class="spinner-container svelte-bvd1nw"
+        <section
+          class="ga-line-chart svelte-1gwsj7o"
+          id="ga-line-chart"
         >
           <div
-            class="spinner dot-0 svelte-bvd1nw"
-          />
-          <div
-            class="spinner dot-1 svelte-bvd1nw"
-          />
-          <div
-            class="spinner dot-2 svelte-bvd1nw"
-          />
-        </div>
+            class="spinner-container svelte-bvd1nw"
+          >
+            <div
+              class="spinner dot-0 svelte-bvd1nw"
+            />
+            <div
+              class="spinner dot-1 svelte-bvd1nw"
+            />
+            <div
+              class="spinner dot-2 svelte-bvd1nw"
+            />
+          </div>
+        </section>
       </section>
     </article>
   </section>
