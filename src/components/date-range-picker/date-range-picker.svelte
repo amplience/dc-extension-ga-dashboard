@@ -129,7 +129,6 @@
     mode: 'range',
     dateFormat,
     maxDate: new Date(NOW),
-    minDate: new Date(NOW - 90 * DAY),
     clickOpens: false,
     inline: true,
     closeOnSelect: false,
@@ -318,6 +317,10 @@
       input, .flatpickr-current-month .flatpickr-monthDropdown-months:hover) {
     background: url("data:image/svg+xml;charset=utf-8,%3Csvg width='9' height='4' viewBox='7 10 10 5' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='333' fill-rule='evenodd' d='M7 10l5 5 5-5z'/%3E%3C/svg%3E")
       no-repeat 99.2%;
+  }
+
+  :global(.flatpickr-current-month .numInputWrapper:hover input.cur-year) {
+    background: none;
   }
 
   :global(.flatpickr-current-month .numInputWrapper span.arrowUp:after) {
