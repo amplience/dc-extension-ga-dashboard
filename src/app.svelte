@@ -1,21 +1,23 @@
 <script lang="typescript">
-  import type { SearchIndex } from 'dc-management-sdk-js';
-  import { onDestroy, onMount } from 'svelte';
-  import TopBar from './components/top-bar/top-bar.svelte';
+  import { onMount } from 'svelte';
+  import DateRangeBar from './components/date-range-bar/date-range-bar.svelte';
   import GAAuthorize from './components/ga-authorize/ga-authorize.svelte';
-  import TopResults from './components/widgets/top-results/top-results.svelte';
-  import TopSearches from './components/widgets/top-searches/top-searches.svelte';
+  import TopBar from './components/top-bar/top-bar.svelte';
+  import getExtensionClient from './services/extension-sdk/extension-sdk.service';
+  import type { ExtensionConfiguration } from './services/extension-sdk/extension-sdk.service';
   import ManagementSDKProxyService from './services/management-sdk-proxy/management-sdk-proxy.service';
   import createConnection from './services/message-event-channel/message-event-channel.factory';
   import { client, hub, hubId } from './stores/dynamic-content';
-  import { connection } from './stores/message-channel';
-  import DateRangeBar from './components/date-range-bar/date-range-bar.svelte';
-  import SearchesWithNoResults from './components/widgets/searches-with-no-results/searches-with-no-results.svelte';
-  import Overview from './components/widgets/overview/overview.svelte';
   import { gapiAuthorized } from './stores/gapi-authorized';
-  import { gaId } from './stores/ga-id';
-
-  $gaId = '232357561';
+  import {
+    contentItemIdMapping,
+    gaClientId,
+    gaViewId,
+    setGaConfig,
+  } from './stores/google-analytics';
+  import { connection } from './stores/message-channel';
+  import Loader from './components/loader/loader.svelte';
+  import Overview from './components/widgets/overview/overview.svelte';
 
   connection.set(
     createConnection({
@@ -29,6 +31,8 @@
 
   onMount(async () => {
     try {
+      const extensionsSdk = await getExtensionClient();
+      setGaConfig(extensionsSdk.params.installation as ExtensionConfiguration);
       const dcClient = await managementSDKProxyService.getClient();
       client.set(dcClient);
       hubId.set(managementSDKProxyService.hubId);
@@ -116,12 +120,22 @@
   </div>
   <div class="scroll-area">
     <section class="container">
-      {#if $gapiAuthorized}
+      {#if !$gaClientId}
+        <Loader />
+      {:else if $gapiAuthorized}
         <section class="widgets-container">
           <Overview />
           <!-- <TopSearches />
           <TopResults />
           <SearchesWithNoResults /> -->
+          ViewId:
+          {$gaViewId}
+          <br />
+          ClientId:
+          {$gaClientId}
+          <br />
+          ContentItemId:
+          {$contentItemIdMapping}
         </section>
       {:else}
         <GAAuthorize />
