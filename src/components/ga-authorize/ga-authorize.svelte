@@ -2,13 +2,14 @@
   import { onMount } from 'svelte';
   import { getGAPI } from '../../services/gapi/gapi';
   import { gapiAuthorized } from '../../stores/gapi-authorized';
+  import { gaClientId } from '../../stores/google-analytics';
 
   onMount(async () => {
     const gapi = getGAPI();
     gapi.analytics.ready(function () {
       gapi.analytics.auth.authorize({
         container: 'auth-button',
-        clientid: '__GOOGLE_ANALYTICS_CLIENT_ID__',
+        clientid: $gaClientId,
       });
 
       gapi.analytics.auth.on('success', function (response) {
