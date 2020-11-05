@@ -9,12 +9,7 @@
   import createConnection from './services/message-event-channel/message-event-channel.factory';
   import { client, hub, hubId } from './stores/dynamic-content';
   import { gapiAuthorized } from './stores/gapi-authorized';
-  import {
-    contentItemIdMapping,
-    gaClientId,
-    gaViewId,
-    setGaConfig,
-  } from './stores/google-analytics';
+  import { gaClientId, setGaConfig } from './stores/google-analytics';
   import { connection } from './stores/message-channel';
   import Loader from './components/loader/loader.svelte';
   import Overview from './components/widgets/overview/overview.svelte';
@@ -125,17 +120,6 @@
       {:else if $gapiAuthorized}
         <section class="widgets-container">
           <Overview />
-          <!-- <TopSearches />
-          <TopResults />
-          <SearchesWithNoResults /> -->
-          ViewId:
-          {$gaViewId}
-          <br />
-          ClientId:
-          {$gaClientId}
-          <br />
-          ContentItemId:
-          {$contentItemIdMapping}
         </section>
       {:else}
         <GAAuthorize />

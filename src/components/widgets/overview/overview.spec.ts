@@ -2,6 +2,7 @@ import { render } from '@testing-library/svelte';
 import Overview from './overview.svelte';
 import { tick } from 'svelte';
 import { dateRange } from '../../../stores/date-range';
+import { setGaConfig } from '../../../stores/google-analytics';
 
 const mockDataChartSet = jest.fn();
 const mockDataChartExecute = jest.fn();
@@ -26,6 +27,15 @@ jest.mock('../../../services/gapi/gapi', () => ({
 describe('Overview', () => {
   beforeEach(() => {
     dateRange.set({ from: '2020-11-01', to: '2020-11-02' });
+    setGaConfig({
+      googleAnalyticsViewId: '1234567890',
+      googleAnalyticsClientId: '1234567890',
+      mappings: {
+        contentItemId: 'dimension1',
+        editionId: 'dimension2',
+        slotId: 'dimension3',
+      },
+    });
   });
   it('should render the Overview component', async () => {
     const { container } = render(Overview, {});

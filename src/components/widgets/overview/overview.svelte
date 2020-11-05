@@ -6,6 +6,7 @@
   import { onMount } from 'svelte';
   import { getGAPI } from '../../../services/gapi/gapi';
   import WidgetHeader from '../../widget/widget-header/widget-header.svelte';
+  import { gaViewId } from '../../../stores/google-analytics';
 
   let chart;
 
@@ -14,7 +15,7 @@
     gapi.analytics.ready(function () {
       chart = new gapi.analytics.googleCharts.DataChart({
         query: {
-          ids: 'ga:232357561',
+          ids: `ga:${$gaViewId}`,
           metrics: 'ga:totalEvents,ga:uniqueEvents',
           dimensions: 'ga:date',
           'start-date': $dateRange.from,
