@@ -13,6 +13,7 @@
   import { connection } from './stores/message-channel';
   import Loader from './components/loader/loader.svelte';
   import Overview from './components/widgets/overview/overview.svelte';
+  import TopContentReport from './components/widgets/top-content-report/top-content-report.svelte';
 
   connection.set(
     createConnection({
@@ -54,14 +55,8 @@
     box-sizing: border-box;
   }
 
-  .widgets-container :global(section.top-searches) {
-    grid-area: top-searches;
-  }
-  .widgets-container :global(section.top-results) {
-    grid-area: top-results;
-  }
-  .widgets-container :global(section.searches-with-no-results) {
-    grid-area: searches-with-no-results;
+  .widgets-container :global(section.top-content-report) {
+    grid-area: top-content-report;
   }
 
   .widgets-container :global(section.overview) {
@@ -90,8 +85,7 @@
     grid-template-columns: 1fr 1fr;
     grid-template-areas:
       'overview overview'
-      'top-searches top-searches'
-      'top-results searches-with-no-results';
+      'top-content-report top-content-report';
     align-items: flex-start;
   }
 
@@ -118,6 +112,7 @@
       {:else if $gapiAuthorized}
         <section class="widgets-container">
           <Overview />
+          <TopContentReport />
         </section>
       {:else}
         <GAAuthorize />
