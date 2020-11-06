@@ -16,14 +16,14 @@ exports[`DateRangeBar should render a DateRangeBar 1`] = `
        
        
       <section
-        class=" svelte-o6q9p0"
+        class=" svelte-1wu764x"
       >
         <div
-          class="date-range-inputs svelte-o6q9p0"
+          class="date-range-inputs svelte-1wu764x"
           data-testid="date-range-inputs"
         >
           <div
-            class="date-selection svelte-o6q9p0"
+            class="date-selection svelte-1wu764x"
           >
             <div
               class="calendar-icon svelte-zpbvvv"
@@ -35,14 +35,14 @@ exports[`DateRangeBar should render a DateRangeBar 1`] = `
             </div>
              
             <input
-              class="svelte-o6q9p0"
+              class="svelte-1wu764x"
               placeholder="Pick a start date"
               readonly=""
             />
           </div>
            
           <div
-            class="date-selection svelte-o6q9p0"
+            class="date-selection svelte-1wu764x"
           >
             <div
               class="calendar-icon svelte-zpbvvv"
@@ -54,7 +54,7 @@ exports[`DateRangeBar should render a DateRangeBar 1`] = `
             </div>
              
             <input
-              class="svelte-o6q9p0"
+              class="svelte-1wu764x"
               placeholder="Pick an end date"
               readonly=""
             />

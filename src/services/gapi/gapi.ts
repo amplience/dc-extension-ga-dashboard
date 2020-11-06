@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 type ReactText = string | number;
 /**
  * Google Analytics Embed API.
