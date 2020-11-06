@@ -14,6 +14,7 @@
   import Loader from './components/loader/loader.svelte';
   import Overview from './components/widgets/overview/overview.svelte';
   import TopContentReport from './components/widgets/top-content-report/top-content-report.svelte';
+  import { currencyCode, locale } from './stores/localization';
 
   connection.set(
     createConnection({
@@ -31,6 +32,14 @@
       client.set(dcClient);
       hubId.set(extensionsSdk.params.hubId);
       hub.set(await $client.hubs.get($hubId));
+      locale.set(
+        (extensionsSdk.params.installation as ExtensionConfiguration)
+          ?.localization?.locale || $locale
+      );
+      currencyCode.set(
+        (extensionsSdk.params.installation as ExtensionConfiguration)
+          ?.localization?.currencyCode || $currencyCode
+      );
     } catch (e) {
       console.error(e);
     }

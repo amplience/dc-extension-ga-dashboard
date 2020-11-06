@@ -14,12 +14,7 @@ const config: TopContentReportTableConfig = {
     {
       title: 'Content',
       dataType: 'CONTENT_ITEM_ID',
-      width: '30%',
-    },
-    {
-      title: 'Content type',
-      dataType: 'CONTENT_TYPE',
-      width: '30%',
+      width: '40%',
     },
     {
       title: 'Total events',
@@ -27,7 +22,17 @@ const config: TopContentReportTableConfig = {
       width: '10%',
     },
     {
+      title: '% Total events',
+      align: 'flex-end',
+      width: '10%',
+    },
+    {
       title: 'Unique events',
+      align: 'flex-end',
+      width: '10%',
+    },
+    {
+      title: '% Unique events',
       align: 'flex-end',
       width: '10%',
     },

@@ -1,6 +1,9 @@
 import { init, Options, Params, SDK } from 'dc-extensions-sdk';
 
-type SdkExtensionConfiguration = SDK<ExtensionConfiguration, Params & { hubId: string }>;
+type SdkExtensionConfiguration = SDK<
+  ExtensionConfiguration,
+  Params & { hubId: string }
+>;
 export interface ExtensionConfiguration {
   googleAnalyticsClientId: string;
   googleAnalyticsViewId: string;
@@ -8,6 +11,10 @@ export interface ExtensionConfiguration {
     contentItemId: string;
     editionId: string;
     slotId: string;
+  };
+  localization?: {
+    locale: string;
+    currencyCode: string;
   };
 }
 
@@ -27,6 +34,10 @@ async function standaloneClient(): Promise<SdkExtensionConfiguration> {
           editionId: 'dimension2',
           slotId: 'dimension3',
         },
+        localization: {
+          locale: '__GOOGLE_ANALYTICS_LOCALE__',
+          currencyCode: '__GOOGLE_ANALYTICS_CURRENCY_CODE__',
+        },
       },
     },
   } as unknown) as SdkExtensionConfiguration;
@@ -39,5 +50,7 @@ export default async function getExtensionClient(
     return standaloneClient();
   }
 
-  return await init<ExtensionConfiguration, Params & { hubId: string }>(options);
+  return await init<ExtensionConfiguration, Params & { hubId: string }>(
+    options
+  );
 }
