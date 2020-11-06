@@ -25,6 +25,8 @@
     "@rollup/plugin-typescript": "^5.0.0",
     "@smui/checkbox": "^1.0.0",
     "@smui/select": "^1.0.0",
+    "@smui/radio": "^1.0.0",
+    "@smui/form-field": "^1.0.0",
     "@sveltejs/svelte-virtual-list": "^3.0.1",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/svelte": "^3.0.0",

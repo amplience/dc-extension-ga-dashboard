@@ -1,14 +1,20 @@
 <script lang="ts">
   import { dateRange } from '../../stores/date-range';
   import { onDestroy, createEventDispatcher, onMount } from 'svelte';
+  import WidgetHeader from '../widget/widget-header/widget-header.svelte';
+  import WidgetBody from '../widget/widget-body/widget-body.svelte';
+  import Widget from '../widget/widget.svelte';
   import Button from '../button/button.svelte';
   import Overlay from '../overlay/overlay.svelte';
+  import Radio from '@smui/radio';
+  import FormField from '@smui/form-field';
 
   let isModalVisible = false;
   let sectionElement: HTMLElement;
   let okButton: HTMLButtonElement;
   let modalPositionStyle = ``;
   let isOkButtonDisabled = true;
+  let selected = '';
 
   const dispatch = createEventDispatcher();
 
@@ -17,7 +23,6 @@
     modalPositionStyle = [
       `top: ${targetBound.y + targetBound.height}px`,
       `left: ${targetBound.x}px`,
-      `width: ${targetBound.width}px`,
     ].join(';');
 
     isModalVisible = true;
@@ -48,22 +53,58 @@
   .modal-popup {
     background-color: #fff;
     position: fixed;
+    width: 500px;
     z-index: 1;
-    --webkit-box-shadow: 0 3px 13px rgba(0, 0, 0, 0.08);
-    box-shadow: 0 3px 13px rgba(0, 0, 0, 0.08);
+    --webkit-box-shadow: 0 3px 13px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 3px 13px rgba(0, 0, 0, 0.2);
+  }
+
+  section :global(.widget-header [slot='title'] h3) {
+    font-size: 16px;
+    margin: auto 32px auto 0;
+  }
+  section :global(.widget-header [slot='title']) {
+    justify-content: center;
+    display: flex;
+    flex-direction: row;
+  }
+
+  section :global(.widget-header) {
+    height: 54px;
+    padding: 12px;
+  }
+  section :global(.widget-header [slot='actions'] button) {
+    margin-right: 8px;
   }
 </style>
 
-{#if isModalVisible}
+<!-- {#if isModalVisible}
   <Overlay onClick={onCancelClick} />
-{/if}
+{/if} -->
 <section bind:this={sectionElement} class={isModalVisible ? 'active' : ''}>
   <div on:click={showModal}><span>No filters applied</span></div>
   {#if isModalVisible}
     <div class="modal-popup" style={modalPositionStyle}>
-      <div>
-        <Button onClick={onOkClick}>Apply</Button>
-      </div>
+      <Widget>
+        <WidgetHeader>
+          <div slot="title">
+            <h3>Filter by</h3>
+            <FormField>
+              <Radio bind:group={selected} value="Edition" />
+              <span slot="label">Edition</span>
+            </FormField>
+            <FormField>
+              <Radio bind:group={selected} value="Content" />
+              <span slot="label">Content</span>
+            </FormField>
+          </div>
+          <div slot="actions">
+            <Button primary={false} onClick={onCancelClick}>Cancel</Button>
+            <Button disabled={true} onClick={onOkClick}>Apply</Button>
+          </div>
+        </WidgetHeader>
+        <WidgetBody />
+      </Widget>
     </div>
   {/if}
 </section>

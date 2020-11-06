@@ -37,10 +37,13 @@
   }
 </style>
 
-<section>
+<section class="widget-header">
   <div class="title">
-    <h2>{title}</h2>
+    {#if title}
+      <h2>{title}</h2>
+    {/if}
     <slot name="help" />
+    <slot name="title" />
   </div>
   <div class="actions">
     <slot name="actions" />

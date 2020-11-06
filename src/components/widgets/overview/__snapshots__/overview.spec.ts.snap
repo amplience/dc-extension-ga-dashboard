@@ -60,7 +60,7 @@ exports[`Overview should render the Overview component 2`] = `
     >
        
       <section
-        class="svelte-1kld2ef"
+        class="widget-header svelte-1kld2ef"
       >
         <div
           class="title svelte-1kld2ef"
@@ -70,6 +70,7 @@ exports[`Overview should render the Overview component 2`] = `
           >
             Overview
           </h2>
+           
            
         </div>
          
