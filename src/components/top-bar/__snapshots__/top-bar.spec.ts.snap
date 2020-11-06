@@ -3,11 +3,23 @@
 exports[`TopBar should render the top bar 1`] = `
 <div>
   <section
-    class="top-bar svelte-1y6gr4b"
+    class="top-bar svelte-1y25f5"
   >
     <div
-      class="container svelte-1y6gr4b"
-    />
+      class="container svelte-1y25f5"
+    >
+       
+      <section
+        class=" svelte-reteiu"
+      >
+        <div>
+          <span>
+            No filters applied
+          </span>
+        </div>
+         
+      </section>
+    </div>
   </section>
 </div>
 `;
