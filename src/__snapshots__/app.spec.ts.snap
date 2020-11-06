@@ -30,14 +30,14 @@ exports[`App should render the App component 1`] = `
            
            
           <section
-            class=" svelte-1wu764x"
+            class=" svelte-ws099h"
           >
             <div
-              class="date-range-inputs svelte-1wu764x"
+              class="date-range-inputs svelte-ws099h"
               data-testid="date-range-inputs"
             >
               <div
-                class="date-selection svelte-1wu764x"
+                class="date-selection svelte-ws099h"
               >
                 <div
                   class="calendar-icon svelte-zpbvvv"
@@ -49,14 +49,14 @@ exports[`App should render the App component 1`] = `
                 </div>
                  
                 <input
-                  class="svelte-1wu764x"
+                  class="svelte-ws099h"
                   placeholder="Pick a start date"
                   readonly=""
                 />
               </div>
                
               <div
-                class="date-selection svelte-1wu764x"
+                class="date-selection svelte-ws099h"
               >
                 <div
                   class="calendar-icon svelte-zpbvvv"
@@ -68,7 +68,7 @@ exports[`App should render the App component 1`] = `
                 </div>
                  
                 <input
-                  class="svelte-1wu764x"
+                  class="svelte-ws099h"
                   placeholder="Pick an end date"
                   readonly=""
                 />

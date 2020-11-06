@@ -217,7 +217,7 @@
 
   .date-picker-footer {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
     padding: 12px 26px 32px 26px;
     color: #666;
@@ -399,7 +399,6 @@
         bind:value={flatPickrDate}
         hidden="hidden" />
       <div class="date-picker-footer">
-        <span>Data available for the last 90 days</span>
         <Button
           onClick={onOkClick}
           bind:button={okButton}
