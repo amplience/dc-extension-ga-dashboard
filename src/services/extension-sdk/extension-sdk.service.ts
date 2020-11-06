@@ -1,6 +1,6 @@
 import { init, Options, Params, SDK } from 'dc-extensions-sdk';
 
-type SdkExtensionConfiguration = SDK<ExtensionConfiguration, Params>;
+type SdkExtensionConfiguration = SDK<ExtensionConfiguration, Params & { hubId: string }>;
 export interface ExtensionConfiguration {
   googleAnalyticsClientId: string;
   googleAnalyticsViewId: string;
@@ -18,6 +18,7 @@ function isStandalone(): string {
 async function standaloneClient(): Promise<SdkExtensionConfiguration> {
   return ({
     params: {
+      hubId: '__HUB_ID__',
       installation: {
         googleAnalyticsClientId: '__GOOGLE_ANALYTICS_CLIENT_ID__',
         googleAnalyticsViewId: '__GOOGLE_ANALYTICS_VIEW_ID__',
@@ -38,5 +39,5 @@ export default async function getExtensionClient(
     return standaloneClient();
   }
 
-  return await init<ExtensionConfiguration, Params>(options);
+  return await init<ExtensionConfiguration, Params & { hubId: string }>(options);
 }

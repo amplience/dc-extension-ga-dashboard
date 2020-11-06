@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ManagementSDK - getManagementClient should return a new client 1`] = `
+Array [
+  Array [
+    Object {
+      "client_id": "",
+      "client_secret": "",
+    },
+    Object {},
+    HttpClient {
+      "DEFAULT_ERROR": Object {
+        "data": Object {
+          "errors": Array [
+            Object {
+              "code": "UNKNOWN",
+              "level": "ERROR",
+              "message": "Unknown error",
+            },
+          ],
+        },
+        "status": 403,
+      },
+      "connection": Object {},
+    },
+  ],
+]
+`;

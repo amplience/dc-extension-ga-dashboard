@@ -5,7 +5,7 @@
   import TopBar from './components/top-bar/top-bar.svelte';
   import getExtensionClient from './services/extension-sdk/extension-sdk.service';
   import type { ExtensionConfiguration } from './services/extension-sdk/extension-sdk.service';
-  import ManagementSDKProxyService from './services/management-sdk-proxy/management-sdk-proxy.service';
+  import getManagementClient from './services/management-sdk/management-sdk.service';
   import createConnection from './services/message-event-channel/message-event-channel.factory';
   import { client, hub, hubId } from './stores/dynamic-content';
   import { gapiAuthorized } from './stores/gapi-authorized';
@@ -22,15 +22,13 @@
     })
   );
 
-  const managementSDKProxyService = new ManagementSDKProxyService($connection);
-
   onMount(async () => {
     try {
       const extensionsSdk = await getExtensionClient();
       setGaConfig(extensionsSdk.params.installation as ExtensionConfiguration);
-      const dcClient = await managementSDKProxyService.getClient();
+      const dcClient = getManagementClient(extensionsSdk.client);
       client.set(dcClient);
-      hubId.set(managementSDKProxyService.hubId);
+      hubId.set(extensionsSdk.params.hubId);
       hub.set(await $client.hubs.get($hubId));
     } catch (e) {
       console.error(e);
