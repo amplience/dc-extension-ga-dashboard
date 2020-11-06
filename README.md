@@ -7,11 +7,13 @@ Install the dependencies...
 ```bash
 npm install
 ```
+
 ## Environment Vars
 
-| Environment Var            | Description                | Example                           |
-| -------------------------- | -------------------------- | --------------------------------- |
-| GOOGLE_ANALYTICS_CLIENT_ID | Google Analytics Client ID | abc123.apps.googleusercontent.com |
+| Environment Var            | Description                     | Example                           |
+| -------------------------- | ------------------------------- | --------------------------------- |
+| GOOGLE_ANALYTICS_CLIENT_ID | Google Analytics Client ID      | abc123.apps.googleusercontent.com |
+| GOOGLE_ANALYTICS_APP_ID    | Google Analytics Application ID | 1234567890                        |
 
 ## Building and running in production mode
 
@@ -34,6 +36,7 @@ Additional environments vars
 | CLIENT_SECRET   | Client Secret         | abdde...                              |
 
 Example `.env` file
+
 ```
 CLIENT_ID=abcdef
 CLIENT_SECRET=abcdef
@@ -50,7 +53,6 @@ STANDALONE=1 npm run dev
 
 Navigate to [localhost:5000](http://localhost:5000). You should see your app running. Edit a component file in `src`, save it, and reload the page to see your changes.
 
-
 ## Running tests
 
 ```bash
@@ -66,7 +68,7 @@ npm run test
 3. Create a release commit `npm run release`
 4. Push the new tag back to master `git push --follow-tags origin master` - If you get an error regarding "Required status check "build(12.x)" is in progress", wait 5 minutes and try again
 5. Raise a Github Release - Click on Releases (right hand side), click on the tags button and click "...", enter the version and copy and copy the changelog.md changes into the release notes
-6. Raise [Amplience Release Request](https://amplience.sharepoint.com/sites/DeliveryManagement/SitePages/Release-Requests(1).aspx)
+6. Raise [Amplience Release Request](<https://amplience.sharepoint.com/sites/DeliveryManagement/SitePages/Release-Requests(1).aspx>)
 
 ### Releasing
 
@@ -97,3 +99,32 @@ npm run test
 2. Point `production` branch to the old git commit ID `git branch -f production OLD_COMMIT_ID`
 3. Force push `production` branch `git push -f origin production`
 4. Log into AWS Amplify and check deployment status
+
+# Dashboard extension configuration
+
+An extension needs to be registered in the Dynamic Content Application under the type of dashboard.
+
+The dashboard requires certain configuration to work with Google analytics and the following example settings need to be defined:
+
+### Permissions
+
+To use the application the following permissions must be enabled:
+
+- Allow same origin
+- Allow pop-ups
+
+### Installation parameters
+
+```json
+{
+  "googleAnalyticsClientId": "abc123.apps.googleusercontent.com",
+  "googleAnalyticsViewId": "1234567890",
+  "mappings": {
+    "contentItemId": "dimension1",
+    "editionId": "dimension2",
+    "slotId": "dimension3"
+  }
+}
+```
+
+The dimensions provided should map to the fields in which have been set up in the Google analytics dashboard for the fields outlined above.

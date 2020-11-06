@@ -87,16 +87,17 @@ exports[`App should render the App component 1`] = `
         class="container svelte-bykbas"
       >
         <div
-          class="svelte-behl35"
+          class="spinner-container svelte-bvd1nw"
         >
           <div
-            class="ga-authorize svelte-behl35"
-          >
-            <div
-              class="svelte-behl35"
-              id="auth-button"
-            />
-          </div>
+            class="spinner dot-0 svelte-bvd1nw"
+          />
+          <div
+            class="spinner dot-1 svelte-bvd1nw"
+          />
+          <div
+            class="spinner dot-2 svelte-bvd1nw"
+          />
         </div>
       </section>
     </div>
