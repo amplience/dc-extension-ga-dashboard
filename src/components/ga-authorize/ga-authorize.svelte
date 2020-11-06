@@ -13,7 +13,6 @@
       });
 
       gapi.analytics.auth.on('success', function (response) {
-        console.log(response);
         $gapiAuthorized = true;
       });
     });

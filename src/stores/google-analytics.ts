@@ -13,7 +13,7 @@ export const editionIdMapping = persistedWritable<string>(
 );
 export const slotIdMapping = persistedWritable<string>('ga-slot-id', null);
 
-export function setGaConfig(config: ExtensionConfiguration) {
+export function setGaConfig(config: ExtensionConfiguration): void {
   gaViewId.set(config?.googleAnalyticsViewId || '');
   gaClientId.set(config?.googleAnalyticsClientId || '');
   contentItemIdMapping.set(config?.mappings?.contentItemId);
