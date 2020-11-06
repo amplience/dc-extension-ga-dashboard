@@ -1,60 +1,60 @@
 import { render } from '@testing-library/svelte';
 import Overview from './overview.svelte';
-import getUsersCount from './services/get-users-count.service';
-import getSearchesCount from './services/get-searches-count.service';
-import getNoResultsRate from './services/get-no-results-rate.service';
 import { tick } from 'svelte';
-import { index } from '../../../stores/search-index';
-import { counts } from '../../../stores/counts';
-import type { SearchIndex } from 'dc-management-sdk-js';
+import { dateRange } from '../../../stores/date-range';
+import { setGaConfig } from '../../../stores/google-analytics';
 
-jest.mock('./services/get-users-count.service');
-jest.mock('./services/get-searches-count.service');
-jest.mock('./services/get-no-results-rate.service');
-jest.mock('../../../stores/counts', () => ({
-  ...jest.requireActual('../../../stores/counts'),
-  counts: {
-    ...jest.requireActual('../../../stores/counts').counts,
-    set: jest.fn(),
-  },
+const mockDataChartSet = jest.fn();
+const mockDataChartExecute = jest.fn();
+const mockDataChart = jest.fn().mockImplementation(() => ({
+  set: mockDataChartSet,
+  execute: mockDataChartExecute,
 }));
-jest.mock('../../../stores/search-index', () => ({
-  ...jest.requireActual('../../../stores/search-index'),
-  index: {
-    ...jest.requireActual('../../../stores/search-index').index,
-    set: jest.fn(),
+
+jest.mock('../../../services/gapi/gapi', () => ({
+  getGAPI: () => {
+    return {
+      analytics: {
+        ready: (fn) => fn(),
+        googleCharts: {
+          DataChart: mockDataChart,
+        },
+      },
+    };
   },
 }));
 
 describe('Overview', () => {
   beforeEach(() => {
-    (getUsersCount as jest.Mock).mockImplementation(() => ({
-      count: 11111,
-    }));
-    (getSearchesCount as jest.Mock).mockImplementation(() => ({
-      count: 22222,
-    }));
-    (getNoResultsRate as jest.Mock).mockImplementation(() => ({
-      rate: 0.33,
-    }));
+    dateRange.set({ from: '2020-11-01', to: '2020-11-02' });
+    setGaConfig({
+      googleAnalyticsViewId: '1234567890',
+      googleAnalyticsClientId: '1234567890',
+      mappings: {
+        contentItemId: 'dimension1',
+        editionId: 'dimension2',
+        slotId: 'dimension3',
+      },
+    });
   });
   it('should render the Overview component', async () => {
     const { container } = render(Overview, {});
     await tick();
+
+    expect(mockDataChart.mock.calls[0]).toMatchSnapshot();
+    expect(mockDataChartExecute).toHaveBeenCalled();
     expect(container.firstChild).toMatchSnapshot();
   });
 
-  it('should call count function on index change', async () => {
-    index.set(({ name: 'test-trigger-name' } as unknown) as SearchIndex);
+  it('should update the chart when the dateRange changes', async () => {
     render(Overview, {});
     await tick();
-    expect(getUsersCount).toHaveBeenCalled();
-    expect(getSearchesCount).toHaveBeenCalled();
-    expect(getNoResultsRate).toHaveBeenCalled();
-    expect(counts.set).toHaveBeenCalledWith({
-      noResultsRate: { rate: 0.33 },
-      searchesCount: { count: 22222 },
-      usersCount: { count: 11111 },
+
+    dateRange.set({ from: '2020-01-01', to: '2020-01-02' });
+    await tick();
+    expect(mockDataChartSet).toBeCalledWith({
+      query: { 'end-date': '2020-01-02', 'start-date': '2020-01-01' },
     });
+    expect(mockDataChartExecute).toHaveBeenCalled();
   });
 });
