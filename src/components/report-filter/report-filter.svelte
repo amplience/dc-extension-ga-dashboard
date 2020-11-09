@@ -1,20 +1,18 @@
 <script lang="ts">
   import { dateRange } from '../../stores/date-range';
-  import { onDestroy, createEventDispatcher, onMount } from 'svelte';
+  import { createEventDispatcher } from 'svelte';
   import WidgetHeader from '../widget/widget-header/widget-header.svelte';
   import WidgetBody from '../widget/widget-body/widget-body.svelte';
   import Widget from '../widget/widget.svelte';
   import Button from '../button/button.svelte';
-  import Overlay from '../overlay/overlay.svelte';
   import Radio from '@smui/radio';
   import FormField from '@smui/form-field';
+  import EditionPicker from '../edition-picker/edition-picker.svelte';
 
   let isModalVisible = false;
   let sectionElement: HTMLElement;
-  let okButton: HTMLButtonElement;
   let modalPositionStyle = ``;
-  let isOkButtonDisabled = true;
-  let selected = '';
+  let selected = 'Edition';
 
   const dispatch = createEventDispatcher();
 
@@ -39,6 +37,10 @@
   const onCancelClick = () => {
     isModalVisible = false;
   };
+
+  function onEditionSelected(event) {
+    console.log(event);
+  }
 </script>
 
 <style>
@@ -93,17 +95,17 @@
               <Radio bind:group={selected} value="Edition" />
               <span slot="label">Edition</span>
             </FormField>
-            <FormField>
-              <Radio bind:group={selected} value="Content" />
-              <span slot="label">Content</span>
-            </FormField>
           </div>
           <div slot="actions">
             <Button primary={false} onClick={onCancelClick}>Cancel</Button>
             <Button disabled={true} onClick={onOkClick}>Apply</Button>
           </div>
         </WidgetHeader>
-        <WidgetBody />
+        <WidgetBody>
+          {#if selected === 'Edition'}
+            <EditionPicker on:change={onEditionSelected} />
+          {/if}
+        </WidgetBody>
       </Widget>
     </div>
   {/if}
