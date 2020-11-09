@@ -52,7 +52,7 @@
   section {
     background-color: #fff;
     height: 36px;
-    width: 360px;
+    width: 500px;
     padding: 5px;
     position: relative;
   }
@@ -60,10 +60,14 @@
   .modal-popup {
     background-color: #fff;
     position: fixed;
-    width: 500px;
+    width: 750px;
     z-index: 1;
     --webkit-box-shadow: 0 3px 13px rgba(0, 0, 0, 0.2);
     box-shadow: 0 3px 13px rgba(0, 0, 0, 0.2);
+  }
+
+  .select-filter {
+    cursor: pointer;
   }
 
   section :global(.widget-header [slot='title'] h3) {
@@ -89,7 +93,9 @@
   <Overlay onClick={onCancelClick} />
 {/if} -->
 <section bind:this={sectionElement} class={isModalVisible ? 'active' : ''}>
-  <div on:click={showModal}><span>No filters applied</span></div>
+  <div class="select-filter" on:click={showModal}>
+    <span>No filters applied</span>
+  </div>
   {#if isModalVisible}
     <div class="modal-popup" style={modalPositionStyle}>
       <Widget>

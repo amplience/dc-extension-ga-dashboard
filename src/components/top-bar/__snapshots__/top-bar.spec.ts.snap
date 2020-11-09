@@ -9,9 +9,11 @@ exports[`TopBar should render the top bar 1`] = `
       class="container svelte-1y25f5"
     >
       <section
-        class=" svelte-17kiwrm"
+        class=" svelte-bq8tuq"
       >
-        <div>
+        <div
+          class="select-filter svelte-bq8tuq"
+        >
           <span>
             No filters applied
           </span>

@@ -31,7 +31,12 @@
   async function loadEditions() {
     const results = (
       await $hub.related.editions.findByDate(
-        { rangeEnd: new Date().toISOString(), size: 100, bounded: true },
+        {
+          rangeEnd: new Date().toISOString(),
+          size: 100,
+          bounded: true,
+          sort: 'start,desc',
+        },
         'withEvent'
       )
     ).getItems();
@@ -58,13 +63,13 @@
   }
 
   * :global(select, .select-width) {
-    min-width: 300px;
+    min-width: 600px;
   }
 </style>
 
 <div class="container">
   <div>
-    <h3>Select from the options below...</h3>
+    <h3>Select a recent edition...</h3>
   </div>
 
   <div>
@@ -78,7 +83,10 @@
         <Option
           value={edition.id}
           selected={selectedEdition ? selectedEdition.id === edition.id : false}>
+          {edition.event.name}
+          /
           {edition.name}
+          ({new Date(edition.start).toLocaleDateString()})
         </Option>
       {/each}
     </Select>
