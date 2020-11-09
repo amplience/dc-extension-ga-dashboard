@@ -3,21 +3,23 @@
 exports[`Chip should render a Chip 1`] = `
 <div>
   <span
-    class=" svelte-ds5s27"
+    class="clickable svelte-dk7ls5"
     data-testid="chip"
   >
     test-label
   </span>
+  
 </div>
 `;
 
 exports[`Chip should render an active Chip 1`] = `
 <div>
   <span
-    class="active svelte-ds5s27"
+    class="active clickable svelte-dk7ls5"
     data-testid="chip"
   >
     test-label
   </span>
+  
 </div>
 `;

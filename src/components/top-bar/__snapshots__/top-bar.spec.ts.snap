@@ -9,12 +9,27 @@ exports[`TopBar should render the top bar 1`] = `
       class="container svelte-1y25f5"
     >
       <section
-        class=" svelte-bq8tuq"
+        class="svelte-17fo8w9"
       >
         <div
-          class="select-filter svelte-bq8tuq"
+          class="select-filter svelte-17fo8w9"
         >
-          <span>
+          <span
+            class="icon-wrapper svelte-17fo8w9"
+          >
+            <div
+              class=" svelte-zpbvvv"
+              style="--icon-width: 20px; --icon-height: 20px;"
+            >
+              <object
+                src="ic-filter.svg/"
+              />
+            </div>
+          </span>
+           
+          <span
+            class="svelte-17fo8w9"
+          >
             No filters applied
           </span>
         </div>

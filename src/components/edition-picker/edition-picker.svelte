@@ -63,7 +63,7 @@
   }
 
   * :global(select, .select-width) {
-    min-width: 600px;
+    min-width: 600px !important;
   }
 </style>
 
