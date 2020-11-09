@@ -1,54 +1,25 @@
 <script lang="ts">
-  import Widget from '../../widget/widget.svelte';
-  import WidgetBody from '../../widget/widget-body/widget-body.svelte';
-  import { dateRange } from '../../../stores/date-range';
-  import Loader from '../../loader/loader.svelte';
   import { onMount } from 'svelte';
-  import { getGAPI } from '../../../services/gapi/gapi';
-  import WidgetHeader from '../../widget/widget-header/widget-header.svelte';
+  import { dateRange } from '../../../stores/date-range';
+  import gapi, { getDataChart } from '../../../stores/gapi';
   import { gaViewId } from '../../../stores/google-analytics';
+  import Loader from '../../loader/loader.svelte';
+  import WidgetBody from '../../widget/widget-body/widget-body.svelte';
+  import WidgetHeader from '../../widget/widget-header/widget-header.svelte';
+  import Widget from '../../widget/widget.svelte';
 
   let chart;
 
   onMount(async () => {
-    const gapi = getGAPI();
-    gapi.analytics.ready(function () {
-      chart = new gapi.analytics.googleCharts.DataChart({
-        query: {
-          ids: `ga:${$gaViewId}`,
-          metrics: 'ga:totalEvents,ga:uniqueEvents',
-          dimensions: 'ga:date',
-          'start-date': $dateRange.from,
-          'end-date': $dateRange.to,
-        },
-        chart: {
-          type: 'LINE',
-          container: 'ga-line-chart',
-          options: {
-            fontSize: 12,
-            width: '100%',
-            animation: {
-              startup: true,
-            },
-            hAxis: {
-              gridlines: {
-                units: {
-                  days: { format: ['dd MMM'] },
-                },
-              },
-              minorGridlines: {
-                units: {
-                  hours: { format: [''] },
-                  minutes: { format: [''] },
-                },
-              },
-            },
-          },
-        },
-      });
-
-      chart.execute();
+    chart = getDataChart({
+      ids: `ga:${$gaViewId}`,
+      metrics: 'ga:totalEvents,ga:uniqueEvents',
+      dimensions: 'ga:date',
+      'start-date': $dateRange.from,
+      'end-date': $dateRange.to,
     });
+
+    chart.execute();
   });
 
   $: {
@@ -79,12 +50,14 @@
 </style>
 
 <section class="overview">
-  <Widget>
-    <WidgetHeader title="Overview" />
-    <WidgetBody>
-      <section id="ga-line-chart" class="ga-line-chart">
-        <Loader />
-      </section>
-    </WidgetBody>
-  </Widget>
+  {#if $gapi}
+    <Widget>
+      <WidgetHeader title="Overview" />
+      <WidgetBody>
+        <section id="ga-line-chart" class="ga-line-chart">
+          <Loader />
+        </section>
+      </WidgetBody>
+    </Widget>
+  {/if}
 </section>

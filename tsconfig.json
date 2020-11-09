@@ -1,7 +1,7 @@
 {
   "extends": "@tsconfig/svelte/tsconfig.json",
 
-  "include": ["src/**/*", "defintions/svg.d.ts"],
+  "include": ["src/**/*", "definitions/google-analytics-embed-api.d.ts"],
   "exclude": ["node_modules/*", "__sapper__/*", "public/*"],
   "compilerOptions": {
     "types": ["jest", "@testing-library/jest-dom"],

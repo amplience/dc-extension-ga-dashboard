@@ -1,20 +1,21 @@
 <script lang="ts">
-  import { onMount } from 'svelte';
-  import { getGAPI } from '../../services/gapi/gapi';
+  import { afterUpdate } from 'svelte';
+  import gapi from '../../stores/gapi';
   import { gapiAuthorized } from '../../stores/gapi-authorized';
   import { gaClientId } from '../../stores/google-analytics';
 
-  onMount(async () => {
-    const gapi = getGAPI();
-    gapi.analytics.ready(function () {
-      gapi.analytics.auth.authorize({
-        container: 'auth-button',
-        clientid: $gaClientId,
-      });
+  afterUpdate(() => {
+    if (!$gapi) {
+      return;
+    }
 
-      gapi.analytics.auth.on('success', function (response) {
-        $gapiAuthorized = true;
-      });
+    $gapi.analytics.auth.authorize({
+      container: 'auth-button',
+      clientid: $gaClientId,
+    });
+
+    $gapi.analytics.auth.on('success', function () {
+      $gapiAuthorized = true;
     });
   });
 </script>

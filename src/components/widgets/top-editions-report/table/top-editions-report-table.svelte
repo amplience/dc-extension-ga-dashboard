@@ -1,9 +1,9 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   import { dateRange } from '../../../../stores/date-range';
-  import gapi, { getDataReport } from '../../../../stores/gapi';
+  import { getDataReport } from '../../../../stores/gapi';
   import {
-    contentItemIdMapping,
+    editionIdMapping,
     gaViewId,
   } from '../../../../stores/google-analytics';
   import { topContentReportShowCount } from '../../../../stores/widget-settings';
@@ -21,11 +21,10 @@
   let report;
 
   onMount(() => {
-    console.log($contentItemIdMapping);
     report = getDataReport({
       ids: `ga:${$gaViewId}`,
       metrics: 'ga:totalEvents,ga:uniqueEvents,ga:eventValue,ga:avgEventValue',
-      dimensions: `ga:${$contentItemIdMapping}`,
+      dimensions: `ga:${$editionIdMapping}`,
       sort: '-ga:totalEvents',
       'max-results': $topContentReportShowCount,
       'start-date': $dateRange.from,
