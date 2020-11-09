@@ -62,6 +62,10 @@ export default {
         process.env.GOOGLE_ANALYTICS_CLIENT_ID || '',
       __GOOGLE_ANALYTICS_VIEW_ID__: () =>
         process.env.GOOGLE_ANALYTICS_VIEW_ID || '',
+      __GOOGLE_ANALYTICS_LOCALE__: () =>
+        process.env.GOOGLE_ANALYTICS_LOCALE || '',
+      __GOOGLE_ANALYTICS_CURRENCY_CODE__: () =>
+        process.env.GOOGLE_ANALYTICS_CURRENCY_CODE || '',
       'process.env.NODE_ENV': JSON.stringify(
         production ? 'production' : 'development'
       ),

@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`GAAuthorize should render the GAAuthorize component 1`] = `
+<div>
+  <div
+    class="svelte-behl35"
+  >
+    <div
+      class="ga-authorize svelte-behl35"
+    >
+      <div
+        class="svelte-behl35"
+        id="auth-button"
+      />
+    </div>
+  </div>
+</div>
+`;

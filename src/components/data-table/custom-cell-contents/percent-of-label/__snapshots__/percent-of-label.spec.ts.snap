@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PercentOfLabel should render a PercentOfLabel component 1`] = `
+<div>
+  <div
+    class="svelte-1av7bio"
+  >
+    <div
+      class="percent-bar svelte-1av7bio"
+    >
+      <div
+        class="percent-bar-marker svelte-1av7bio"
+        style="width: 50%;"
+      />
+       
+      <div
+        class="percent-value svelte-1av7bio"
+      >
+        50%
+      </div>
+    </div>
+  </div>
+</div>
+`;
