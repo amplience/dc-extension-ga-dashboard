@@ -1,25 +1,32 @@
 <script lang="ts">
   import Select, { Option } from '@smui/select';
   import type { Edition } from 'dc-management-sdk-js';
-  import { createEventDispatcher } from 'svelte';
+  import { createEventDispatcher, onMount } from 'svelte';
   import { hub } from '../../stores/dynamic-content';
-  let selectedEdition;
+  export let selectedEdition;
+  let selectValue;
   let loaded = false;
   let publishedEditions: Edition[] = [];
 
   const dispatch = createEventDispatcher();
 
-  $: selectedEdition = handleSelectedEdition(selectedEdition);
-  function handleSelectedEdition(option: string) {
+  $: selectValue = handleSelectValue(selectValue);
+  function handleSelectValue(option: string) {
     if (loaded) {
-      dispatch('change', option);
+      const edition: Edition = publishedEditions.find(
+        (publishedEdition) => publishedEdition.id === option
+      );
+      dispatch('change', edition);
     }
+
     return option;
   }
 
-  if ($hub) {
-    loadEditions();
-  }
+  onMount(() => {
+    if ($hub) {
+      loadEditions();
+    }
+  });
 
   async function loadEditions() {
     const results = (
@@ -63,13 +70,14 @@
   <div>
     <Select
       enhanced
-      bind:value={selectedEdition}
+      bind:value={selectValue}
       label="Edition"
       class="select-width"
       menu$class="select-width">
-      <Option value="" />
       {#each publishedEditions as edition}
-        <Option value={edition.id} selected={selectedEdition === edition.id}>
+        <Option
+          value={edition.id}
+          selected={selectedEdition ? selectedEdition.id === edition.id : false}>
           {edition.name}
         </Option>
       {/each}

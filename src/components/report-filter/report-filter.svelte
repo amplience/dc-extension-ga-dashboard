@@ -1,6 +1,6 @@
 <script lang="ts">
   import { dateRange } from '../../stores/date-range';
-  import { createEventDispatcher } from 'svelte';
+  import { createEventDispatcher, onMount } from 'svelte';
   import WidgetHeader from '../widget/widget-header/widget-header.svelte';
   import WidgetBody from '../widget/widget-body/widget-body.svelte';
   import Widget from '../widget/widget.svelte';
@@ -8,11 +8,14 @@
   import Radio from '@smui/radio';
   import FormField from '@smui/form-field';
   import EditionPicker from '../edition-picker/edition-picker.svelte';
+  import type { Edition } from 'dc-management-sdk-js';
+  import { selectedEdition } from '../../stores/selected-edition';
 
   let isModalVisible = false;
   let sectionElement: HTMLElement;
   let modalPositionStyle = ``;
   let selected = 'Edition';
+  let uncomittedEdition: Edition = null;
 
   const dispatch = createEventDispatcher();
 
@@ -24,10 +27,12 @@
     ].join(';');
 
     isModalVisible = true;
+    uncomittedEdition = $selectedEdition;
   };
 
-  const onOkClick = () => {
+  const onApplyClick = () => {
     isModalVisible = false;
+    $selectedEdition = uncomittedEdition;
 
     dispatch('dateSelected', {
       option: dateRange,
@@ -39,7 +44,7 @@
   };
 
   function onEditionSelected(event) {
-    console.log(event);
+    uncomittedEdition = event.detail;
   }
 </script>
 
@@ -98,12 +103,16 @@
           </div>
           <div slot="actions">
             <Button primary={false} onClick={onCancelClick}>Cancel</Button>
-            <Button disabled={true} onClick={onOkClick}>Apply</Button>
+            <Button disabled={uncomittedEdition == null} onClick={onApplyClick}>
+              Apply
+            </Button>
           </div>
         </WidgetHeader>
         <WidgetBody>
           {#if selected === 'Edition'}
-            <EditionPicker on:change={onEditionSelected} />
+            <EditionPicker
+              on:change={onEditionSelected}
+              selectedEdition={uncomittedEdition ? uncomittedEdition : null} />
           {/if}
         </WidgetBody>
       </Widget>
