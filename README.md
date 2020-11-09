@@ -26,15 +26,17 @@ npm run test
 
 Additional environments vars
 
-| Environment Var            | Description                | Example                              |
-| -------------------------- | -------------------------- | ------------------------------------ |
-| API_URL                    | DC API URL                 | https://api.amplience.net/v2/content |
-| AUTH_URL                   | Amplience Auth URL         | https://auth.adis.ws                 |
-| HUB_ID                     | Hub ID                     | abcdef...                            |
-| CLIENT_ID                  | Client ID for the Hub      | abcdef...                            |
-| CLIENT_SECRET              | Client Secret              | abdde...                             |
-| GOOGLE_ANALYTICS_CLIENT_ID | Google Analytics Client ID | abc123.apps.googleusercontent.com    |
-| GOOGLE_ANALYTICS_VIEW_ID   | Google Analytics View ID   | 1234567890                           |
+| Environment Var                | Description                | Example                              |
+| ------------------------------ | -------------------------- | ------------------------------------ |
+| API_URL                        | DC API URL                 | https://api.amplience.net/v2/content |
+| AUTH_URL                       | Amplience Auth URL         | https://auth.adis.ws                 |
+| HUB_ID                         | Hub ID                     | abcdef...                            |
+| CLIENT_ID                      | Client ID for the Hub      | abcdef...                            |
+| CLIENT_SECRET                  | Client Secret              | abdde...                             |
+| GOOGLE_ANALYTICS_CLIENT_ID     | Google Analytics Client ID | abc123.apps.googleusercontent.com    |
+| GOOGLE_ANALYTICS_VIEW_ID       | Google Analytics View ID   | 1234567890                           |
+| GOOGLE_ANALYTICS_LOCALE        | Google Analytics View ID   | en-GB                                |
+| GOOGLE_ANALYTICS_CURRENCY_CODE | Google Analytics View ID   | GBP                                  |
 
 Example `.env` file
 
@@ -46,6 +48,8 @@ API_URL=https://api.amplience.net/v2/content
 AUTH_URL=https://auth.adis.ws
 GOOGLE_ANALYTICS_CLIENT_ID=abc123.apps.googleusercontent.com
 GOOGLE_ANALYTICS_VIEW_ID=1234567890
+GOOGLE_ANALYTICS_LOCALE=en-GB
+GOOGLE_ANALYTICS_CURRENCY_CODE=GBP
 ```
 
 ...then start [Rollup](https://rollupjs.org):
@@ -79,6 +83,10 @@ To use the application the following permissions must be enabled:
     "contentItemId": "dimension1",
     "editionId": "dimension2",
     "slotId": "dimension3"
+  },
+  "localization": {
+    "locale": "en-GB",
+    "currencyCode": "GBP"
   }
 }
 ```

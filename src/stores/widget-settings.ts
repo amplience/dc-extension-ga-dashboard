@@ -5,8 +5,3 @@ export const topContentReportShowCount = persistedWritable<string>(
   'topSearchesShowCount',
   DEFAULT_SIZE
 );
-
-export const topContentReportExpandedRows = persistedWritable<string[]>(
-  'topSearchesExpandedRows',
-  []
-);

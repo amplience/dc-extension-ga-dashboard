@@ -3,9 +3,6 @@
   export let contentItemId: string;
 </script>
 
-<style>
-</style>
-
 {#await contentItems.fetch(contentItemId)}
   <span>{contentItemId}</span>
 {:then contentItem}
