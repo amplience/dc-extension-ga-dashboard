@@ -1,5 +1,5 @@
-import { writable } from './persisted-store';
 import { formatDateAsISOString } from '../utils/date-format';
+import { persistedWritable } from './persisted-writable';
 
 export const DAY = 24 * 60 * 60 * 1000;
 
@@ -15,4 +15,7 @@ export const INITIAL_DATE_RANGE = {
   to: formatDateAsISOString(new Date(NOW - DAY)),
 };
 
-export const dateRange = writable<DateRange>('date-range', INITIAL_DATE_RANGE);
+export const dateRange = persistedWritable<DateRange>(
+  'date-range',
+  INITIAL_DATE_RANGE
+);
