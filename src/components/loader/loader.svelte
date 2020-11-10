@@ -1,5 +1,6 @@
 <script>
   const dots = new Array(3);
+  export let zIndex = 10;
 </script>
 
 <style>
@@ -8,7 +9,7 @@
     justify-content: center;
     align-items: center;
     position: absolute;
-    z-index: 10;
+    z-index: var(--z-index);
     width: 100%;
     height: 100%;
     opacity: 0.8;
@@ -56,10 +57,8 @@
   }
 </style>
 
-<div class="spinner-container">
-
+<div class="spinner-container" style="--z-index: {zIndex}">
   {#each dots as dot, i}
     <div class="spinner dot-{i}" />
   {/each}
-
 </div>

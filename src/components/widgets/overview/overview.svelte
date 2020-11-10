@@ -7,6 +7,7 @@
   import { getGAPI } from '../../../services/gapi/gapi';
   import WidgetHeader from '../../widget/widget-header/widget-header.svelte';
   import { gaViewId } from '../../../stores/google-analytics';
+  import { gaQueryFilter } from '../../../stores/ga-query-filters';
 
   let chart;
 
@@ -20,6 +21,7 @@
           dimensions: 'ga:date',
           'start-date': $dateRange.from,
           'end-date': $dateRange.to,
+          filters: $gaQueryFilter,
         },
         chart: {
           type: 'LINE',
@@ -54,7 +56,11 @@
   $: {
     if (chart) {
       chart.set({
-        query: { 'start-date': $dateRange.from, 'end-date': $dateRange.to },
+        query: {
+          'start-date': $dateRange.from,
+          'end-date': $dateRange.to,
+          filters: $gaQueryFilter,
+        },
       });
       chart.execute();
     }

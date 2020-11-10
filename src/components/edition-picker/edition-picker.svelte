@@ -3,6 +3,7 @@
   import type { Edition } from 'dc-management-sdk-js';
   import { createEventDispatcher, onMount } from 'svelte';
   import { hub } from '../../stores/dynamic-content';
+  import Loader from '../loader/loader.svelte';
   export let selectedEdition;
   let selectValue;
   let loaded = false;
@@ -58,6 +59,10 @@
     font-weight: 400;
   }
 
+  .container {
+    min-height: 50px;
+  }
+
   .container :global(*) {
     font-size: 15px;
   }
@@ -68,27 +73,35 @@
 </style>
 
 <div class="container">
-  <div>
-    <h3>Select a recent edition...</h3>
-  </div>
+  {#if !$hub}
+    <div>
+      <h3>Unable to load editions</h3>
+    </div>
+  {:else if !loaded}
+    <Loader zIndex={11} />
+  {:else}
+    <div>
+      <h3>Select a recent edition...</h3>
+    </div>
 
-  <div>
-    <Select
-      enhanced
-      bind:value={selectValue}
-      label="Edition"
-      class="select-width"
-      menu$class="select-width">
-      {#each publishedEditions as edition}
-        <Option
-          value={edition.id}
-          selected={selectedEdition ? selectedEdition.id === edition.id : false}>
-          {edition.event.name}
-          /
-          {edition.name}
-          ({new Date(edition.start).toLocaleDateString()})
-        </Option>
-      {/each}
-    </Select>
-  </div>
+    <div>
+      <Select
+        enhanced
+        bind:value={selectValue}
+        label="Recent edition"
+        class="select-width"
+        menu$class="select-width">
+        {#each publishedEditions as edition}
+          <Option
+            value={edition.id}
+            selected={selectedEdition ? selectedEdition.id === edition.id : false}>
+            {edition.event.name}
+            /
+            {edition.name}
+            ({new Date(edition.start).toLocaleDateString()})
+          </Option>
+        {/each}
+      </Select>
+    </div>
+  {/if}
 </div>
