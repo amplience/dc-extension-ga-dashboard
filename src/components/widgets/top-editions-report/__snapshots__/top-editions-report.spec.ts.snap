@@ -1,0 +1,111 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TopContentReport should render the TopContentReport component 1`] = `
+<div>
+  <section
+    class="top-editions-report svelte-3d73gc"
+  >
+    <article
+      class="svelte-pntwh0"
+    >
+       
+      <section
+        class="svelte-1kld2ef"
+      >
+        <div
+          class="title svelte-1kld2ef"
+        >
+          <h2
+            class="svelte-1kld2ef"
+          >
+            Top editions
+          </h2>
+           
+        </div>
+         
+        <div
+          class="actions svelte-1kld2ef"
+        >
+          <div
+            slot="actions"
+          >
+            <div
+              class="select top-editions-report-sizes-select svelte-c7jdhd"
+            >
+              <span>
+                Show
+              </span>
+               
+              <div
+                class="
+    mdc-select
+    smui-select
+    
+    
+    smui-select--standard
+    
+    
+  "
+              >
+                 
+                <i
+                  class="mdc-select__dropdown-icon"
+                />
+                 
+                <input
+                  id="SMUI-select-0"
+                  type="hidden"
+                  value="5"
+                />
+                 
+                <div
+                  aria-haspopup="listbox"
+                  aria-labelledby="SMUI-select-0-smui-label SMUI-select-0-smui-selected-text"
+                  aria-required="false"
+                  class="mdc-select__selected-text"
+                  id="SMUI-select-0-smui-selected-text"
+                  role="button"
+                  tabindex="0"
+                >
+                  5
+                </div>
+                 
+                 
+                 
+                <div
+                  class="
+    mdc-line-ripple
+    
+    
+  "
+                />
+                
+                 
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+       
+      <section
+        class="widget-body svelte-4p1s5s"
+      >
+        <div
+          class="spinner-container svelte-bvd1nw"
+        >
+          <div
+            class="spinner dot-0 svelte-bvd1nw"
+          />
+          <div
+            class="spinner dot-1 svelte-bvd1nw"
+          />
+          <div
+            class="spinner dot-2 svelte-bvd1nw"
+          />
+        </div>
+        
+      </section>
+    </article>
+  </section>
+</div>
+`;

@@ -7,10 +7,15 @@ import type {
 
 const gapi = writable<GoogleAnalyticsEmbedAPI>(null);
 
-const gaEmbedApi: GoogleAnalyticsEmbedAPI = window['gapi'] || undefined;
-gaEmbedApi.analytics.ready(function () {
-  gapi.set(gaEmbedApi);
-});
+export const initGapi = (): Promise<void> => {
+  return new Promise((resolve) => {
+    const gaEmbedApi: GoogleAnalyticsEmbedAPI = window['gapi'] || undefined;
+    gaEmbedApi.analytics.ready(function () {
+      gapi.set(gaEmbedApi);
+      resolve();
+    });
+  });
+};
 
 const getGapi = (): GoogleAnalyticsEmbedAPI => {
   return get(gapi) as GoogleAnalyticsEmbedAPI;

@@ -1,19 +1,21 @@
-interface TableConfigColumn {
+import CurrencyLabel from '../report-table/custom-cell-contents/currency-label/currency-label.svelte';
+import PercentageLabel from '../report-table/custom-cell-contents/percent-label/percent-label.svelte';
+
+export interface TableConfigColumn {
   title: string;
-  dataType?: string;
   width?: string;
   align?: string;
+  component?: any;
 }
 
-interface TopContentReportTableConfig {
+export interface TableConfig {
   columns: TableConfigColumn[];
 }
 
-const config: TopContentReportTableConfig = {
+const config: TableConfig = {
   columns: [
     {
-      title: 'Content',
-      dataType: 'CONTENT_ITEM_ID',
+      title: 'Edition',
       width: '40%',
     },
     {
@@ -25,6 +27,7 @@ const config: TopContentReportTableConfig = {
       title: '% Total events',
       align: 'flex-end',
       width: '10%',
+      component: PercentageLabel,
     },
     {
       title: 'Unique events',
@@ -35,16 +38,19 @@ const config: TopContentReportTableConfig = {
       title: '% Unique events',
       align: 'flex-end',
       width: '10%',
+      component: PercentageLabel,
     },
     {
       title: 'Event value',
       align: 'flex-end',
       width: '10%',
+      component: CurrencyLabel,
     },
     {
       title: 'Avg event value',
       align: 'flex-end',
       width: '10%',
+      component: CurrencyLabel,
     },
   ],
 };

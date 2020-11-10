@@ -1,0 +1,148 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ReportTable should render the ReportTable component in a loading state 1`] = `
+<div>
+  <div
+    class="spinner-container svelte-bvd1nw"
+  >
+    <div
+      class="spinner dot-0 svelte-bvd1nw"
+    />
+    <div
+      class="spinner dot-1 svelte-bvd1nw"
+    />
+    <div
+      class="spinner dot-2 svelte-bvd1nw"
+    />
+  </div>
+  
+</div>
+`;
+
+exports[`ReportTable should render the ReportTable component in a no data state 1`] = `
+<div>
+  <div
+    class="no-data-container svelte-1kq81j9"
+  >
+    <p>
+      No data for the selected date range
+    </p>
+  </div>
+  
+</div>
+`;
+
+exports[`ReportTable should render the ReportTable component with data 1`] = `
+<div>
+  <div
+    class="data-table svelte-2e8um5"
+  >
+    <div
+      class="data-table-slot 
+    scrollable svelte-2e8um5"
+    >
+      <div
+        class="data-table-head svelte-1nivie3"
+      >
+        <div
+          class="data-table-row svelte-hige1l"
+        >
+          <div
+            class="data-table-cell svelte-1x8v3rk"
+            style="
+  max-width:10%;
+  justify-content:flex-end;
+  color:#999;"
+          >
+            column-title
+             
+          </div>
+          
+        </div>
+      </div>
+       
+      <div
+        class="data-table-body"
+      >
+        <div
+          class="data-table-row svelte-hige1l"
+        >
+          <div
+            class="data-table-cell svelte-1x8v3rk"
+            style="
+  max-width:10%;
+  justify-content:flex-end;
+  color:#333;"
+          >
+            cell-value
+            
+          </div>
+           
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  
+</div>
+`;
+
+exports[`ReportTable should render the ReportTable component with data and a custom component 1`] = `
+<div>
+  <div
+    class="data-table svelte-2e8um5"
+  >
+    <div
+      class="data-table-slot 
+    scrollable svelte-2e8um5"
+    >
+      <div
+        class="data-table-head svelte-1nivie3"
+      >
+        <div
+          class="data-table-row svelte-hige1l"
+        >
+          <div
+            class="data-table-cell svelte-1x8v3rk"
+            style="
+  max-width:10%;
+  justify-content:flex-end;
+  color:#999;"
+          >
+            column-title
+             
+          </div>
+          
+        </div>
+      </div>
+       
+      <div
+        class="data-table-body"
+      >
+        <div
+          class="data-table-row svelte-hige1l"
+        >
+          <div
+            class="data-table-cell svelte-1x8v3rk"
+            style="
+  max-width:10%;
+  justify-content:flex-end;
+  color:#333;"
+          >
+            <div>
+              0
+               
+              cell-value
+            </div>
+            
+            
+          </div>
+           
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  
+</div>
+`;

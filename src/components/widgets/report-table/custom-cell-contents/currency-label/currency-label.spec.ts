@@ -1,6 +1,6 @@
 import { render } from '@testing-library/svelte';
 import PercentOfLabel from './currency-label.svelte';
-import { locale, currencyCode } from '../../../../stores/localization';
+import { locale, currencyCode } from '../../../../../stores/localization';
 
 describe('CurrencyLabel', () => {
   beforeEach(() => {

@@ -50,14 +50,12 @@
 </style>
 
 <section class="overview">
-  {#if $gapi}
-    <Widget>
-      <WidgetHeader title="Overview" />
-      <WidgetBody>
-        <section id="ga-line-chart" class="ga-line-chart">
-          <Loader />
-        </section>
-      </WidgetBody>
-    </Widget>
-  {/if}
+  <Widget>
+    <WidgetHeader title="Overview" />
+    <WidgetBody>
+      <section id="ga-line-chart" class="ga-line-chart">
+        <Loader />
+      </section>
+    </WidgetBody>
+  </Widget>
 </section>

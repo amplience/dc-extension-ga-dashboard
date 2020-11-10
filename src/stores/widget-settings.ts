@@ -5,3 +5,8 @@ export const topContentReportShowCount = persistedWritable<number>(
   'topSearchesShowCount',
   SIZES.get(DEFAULT_SIZE)
 );
+
+export const topEditionReportShowCount = persistedWritable<number>(
+  'topSearchesShowCount',
+  SIZES.get(DEFAULT_SIZE)
+);

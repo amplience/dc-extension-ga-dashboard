@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { contentItems } from '../../../../stores/content-items';
+  import { contentItems } from '../../../../../stores/content-items';
   export let contentItemId: string;
 </script>
 
@@ -7,4 +7,6 @@
   <span>{contentItemId}</span>
 {:then contentItem}
   <span>{contentItem.label}</span>
+{:catch}
+  <span>{contentItemId}</span>
 {/await}

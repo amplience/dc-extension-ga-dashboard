@@ -2,26 +2,16 @@ import { tick } from 'svelte';
 import { render } from '@testing-library/svelte';
 import TopContentReport from './top-editions-report.svelte';
 
-const mockDataChartOn = jest.fn();
-const mockDataChartSet = jest.fn();
-const mockDataChartExecute = jest.fn();
-const mockData = jest.fn().mockImplementation(() => ({
-  on: mockDataChartOn,
-  set: mockDataChartSet,
-  execute: mockDataChartExecute,
-}));
+const mockDataReportSet = jest.fn();
+const mockDataReportExecute = jest.fn();
 
-jest.mock('../../../services/gapi/gapi', () => ({
-  getGAPI: () => {
-    return {
-      analytics: {
-        ready: (fn) => fn(),
-        report: {
-          Data: mockData,
-        },
-      },
-    };
-  },
+jest.mock('../../../stores/gapi', () => ({
+  ...jest.requireActual('../../../stores/gapi'),
+  getDataReport: jest.fn().mockImplementation(() => ({
+    set: mockDataReportSet,
+    execute: mockDataReportExecute,
+    on: jest.fn(),
+  })),
 }));
 
 describe('TopContentReport', () => {

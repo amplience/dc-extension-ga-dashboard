@@ -12,6 +12,7 @@
   import getManagementClient from './services/management-sdk/management-sdk.service';
   import createConnection from './services/message-event-channel/message-event-channel.factory';
   import { client, hub, hubId } from './stores/dynamic-content';
+  import { initGapi } from './stores/gapi';
   import { gapiAuthorized } from './stores/gapi-authorized';
   import {
     contentItemIdMapping,
@@ -32,6 +33,7 @@
 
   onMount(async () => {
     try {
+      await initGapi();
       const extensionsSdk = await getExtensionClient();
       setGaConfig(extensionsSdk.params.installation as ExtensionConfiguration);
       const dcClient = getManagementClient(extensionsSdk.client);

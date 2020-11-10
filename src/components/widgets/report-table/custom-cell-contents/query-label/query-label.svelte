@@ -1,5 +1,5 @@
 <script lang="ts">
-  import ExpandableIcon from '../../../expandable-icon/expandable-icon.svelte';
+  import ExpandableIcon from '../../../../expandable-icon/expandable-icon.svelte';
 
   export let index: number;
   export let expandable: boolean = false;
@@ -21,9 +21,7 @@
   }
 </style>
 
-{#if showRowNumber}
-  <span class="query-index">{index}</span>
-{/if}
+{#if showRowNumber}<span class="query-index">{index}</span>{/if}
 
 {#if expandable}
   <ExpandableIcon {expanded} />

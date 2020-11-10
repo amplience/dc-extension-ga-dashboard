@@ -5,7 +5,81 @@
   import WidgetHeader from '../../widget/widget-header/widget-header.svelte';
   import Widget from '../../widget/widget.svelte';
   import { SIZES } from '../widgets-config';
-  import TopContentReportTable from './table/top-content-report-table.svelte';
+  import ReportTable from '../report-table/report-table.svelte';
+  import { getDataReport } from '../../../stores/gapi';
+  import {
+    contentItemIdMapping,
+    gaViewId,
+  } from '../../../stores/google-analytics';
+  import { dateRange } from '../../../stores/date-range';
+  import { onMount } from 'svelte';
+  import config from './table-config';
+
+  let reportData;
+  let report;
+
+  onMount(() => {
+    report = getDataReport({
+      ids: `ga:${$gaViewId}`,
+      metrics: 'ga:totalEvents,ga:uniqueEvents,ga:eventValue,ga:avgEventValue',
+      dimensions: `ga:${$contentItemIdMapping}`,
+      sort: '-ga:totalEvents',
+      'max-results': $topContentReportShowCount,
+      'start-date': $dateRange.from,
+      'end-date': $dateRange.to,
+    });
+
+    report.on('success', (response) => {
+      const {
+        rows = [],
+        totalsForAllResults: {
+          'ga:totalEvents': allTotalEvents,
+          'ga:uniqueEvents': allUniqueEvents,
+        },
+      } = response;
+      const hydratedRows = rows.map((row) => {
+        const [
+          contentId,
+          totalEvents,
+          uniqueEvents,
+          eventValue,
+          avgEventValue,
+        ] = row;
+        const totalEventsPercentage = Math.round(
+          (totalEvents / allTotalEvents) * 100
+        );
+        const uniqueEventsPercentage = Math.round(
+          (uniqueEvents / allUniqueEvents) * 100
+        );
+
+        return [
+          contentId,
+          totalEvents,
+          totalEventsPercentage,
+          uniqueEvents,
+          uniqueEventsPercentage,
+          eventValue,
+          avgEventValue,
+        ];
+      });
+      reportData = hydratedRows;
+    });
+
+    report.execute();
+  });
+
+  $: {
+    if (report) {
+      report.set({
+        query: {
+          'max-results': $topContentReportShowCount,
+          'start-date': $dateRange.from,
+          'end-date': $dateRange.to,
+        },
+      });
+      report.execute();
+    }
+  }
 </script>
 
 <style>
@@ -33,7 +107,7 @@
       </div>
     </WidgetHeader>
     <WidgetBody>
-      <TopContentReportTable />
+      <ReportTable data={reportData} {config} />
     </WidgetBody>
   </Widget>
 </section>

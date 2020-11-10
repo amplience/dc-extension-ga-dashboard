@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { locale, currencyCode } from '../../../../stores/localization';
+  import { locale, currencyCode } from '../../../../../stores/localization';
   export let value: number;
 
   const formatter = new Intl.NumberFormat($locale, {
