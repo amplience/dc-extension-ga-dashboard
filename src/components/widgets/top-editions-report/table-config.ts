@@ -25,7 +25,6 @@ const config: TableConfig = {
     },
     {
       title: '% Total events',
-      align: 'flex-end',
       width: '10%',
       component: PercentageLabel,
     },
@@ -36,7 +35,6 @@ const config: TableConfig = {
     },
     {
       title: '% Unique events',
-      align: 'flex-end',
       width: '10%',
       component: PercentageLabel,
     },
