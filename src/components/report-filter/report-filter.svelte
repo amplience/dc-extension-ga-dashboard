@@ -13,6 +13,7 @@
   import Chip from '../chip/chip.svelte';
   import Icon from '../icon/icon.svelte';
   import FilterIcon from '../../assets/icons/ic-filter.svg';
+  import { formatDateAsISOString } from '../../utils/date-format';
 
   let isModalVisible = false;
   let sectionElement: HTMLElement;
@@ -34,23 +35,31 @@
   const onApplyClick = () => {
     isModalVisible = false;
     $selectedEdition = uncomittedEdition;
+    $dateRange = {
+      from: formatDateAsISOString(new Date($selectedEdition.start)),
+      to: formatDateAsISOString(
+        $selectedEdition.activeEndDate
+          ? new Date($selectedEdition.start)
+          : new Date()
+      ),
+    };
   };
 
   const onCancelClick = () => {
     isModalVisible = false;
   };
 
-  function onEditionSelected(event) {
+  const onEditionSelected = (event) => {
     uncomittedEdition = event.detail;
-  }
+  };
 
-  function generateEditionLabel(edition) {
+  const generateEditionLabel = (edition) => {
     return `${edition.event.name} / ${edition.name}`;
-  }
+  };
 
-  function resetFilter() {
+  const resetFilter = () => {
     $selectedEdition = null;
-  }
+  };
 </script>
 
 <style>
