@@ -1,4 +1,5 @@
 <script lang="ts">
+  export let index: number;
   export let value: number;
 </script>
 
