@@ -1,11 +1,12 @@
 import CurrencyLabel from '../report-table/custom-cell-contents/currency-label/currency-label.svelte';
 import PercentageLabel from '../report-table/custom-cell-contents/percent-label/percent-label.svelte';
+import EditionLabel from '../report-table/custom-cell-contents/edition-label/edition-label.svelte';
 
 export interface TableConfigColumn {
   title: string;
   width?: string;
   align?: string;
-  component?: any;
+  component?: unknown;
 }
 
 export interface TableConfig {
@@ -17,6 +18,7 @@ const config: TableConfig = {
     {
       title: 'Edition',
       width: '40%',
+      component: EditionLabel,
     },
     {
       title: 'Total events',
