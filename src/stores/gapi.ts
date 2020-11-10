@@ -4,6 +4,7 @@ import type {
   GoogleAnalyticsEmbedAPI,
   Query,
 } from '../definitions/google-analytics-embed-api';
+import type { DateRange } from './date-range';
 
 const gapi = writable<GoogleAnalyticsEmbedAPI>(null);
 
@@ -21,8 +22,53 @@ const getGapi = (): GoogleAnalyticsEmbedAPI => {
   return get(gapi) as GoogleAnalyticsEmbedAPI;
 };
 
-export const getDataReport = (query: Query): Data => {
-  return new (getGapi().analytics.report.Data)({ query });
+export const getDataReport = (
+  gaViewId: string,
+  dimension: string,
+  limit: number,
+  dateRange: DateRange
+): Data => {
+  return new (getGapi().analytics.report.Data)({
+    query: {
+      ids: `ga:${gaViewId}`,
+      metrics: 'ga:totalEvents,ga:uniqueEvents,ga:eventValue,ga:avgEventValue',
+      dimensions: `ga:${dimension}`,
+      sort: '-ga:totalEvents',
+      'max-results': limit,
+      'start-date': dateRange.from,
+      'end-date': dateRange.to,
+    },
+  });
+};
+
+export const processReportData = (response: any): any[] => {
+  const {
+    rows = [],
+    totalsForAllResults: {
+      'ga:totalEvents': allTotalEvents,
+      'ga:uniqueEvents': allUniqueEvents,
+    },
+  } = response;
+
+  return rows.map((row) => {
+    const [
+      dimension,
+      totalEvents,
+      uniqueEvents,
+      eventValue,
+      avgEventValue,
+    ] = row;
+
+    return [
+      dimension,
+      totalEvents,
+      Math.round((totalEvents / allTotalEvents) * 100) || 0,
+      uniqueEvents,
+      Math.round((uniqueEvents / allUniqueEvents) * 100) || 0,
+      eventValue,
+      avgEventValue,
+    ];
+  });
 };
 
 export const getDataChart = (query: Query): Data => {

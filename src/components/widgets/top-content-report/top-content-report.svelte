@@ -6,7 +6,7 @@
   import Widget from '../../widget/widget.svelte';
   import { SIZES } from '../widgets-config';
   import ReportTable from '../report-table/report-table.svelte';
-  import { getDataReport } from '../../../stores/gapi';
+  import { getDataReport, processReportData } from '../../../stores/gapi';
   import {
     contentItemIdMapping,
     gaViewId,
@@ -19,48 +19,15 @@
   let report;
 
   onMount(() => {
-    report = getDataReport({
-      ids: `ga:${$gaViewId}`,
-      metrics: 'ga:totalEvents,ga:uniqueEvents,ga:eventValue,ga:avgEventValue',
-      dimensions: `ga:${$contentItemIdMapping}`,
-      sort: '-ga:totalEvents',
-      'max-results': $topContentReportShowCount,
-      'start-date': $dateRange.from,
-      'end-date': $dateRange.to,
-    });
+    report = getDataReport(
+      $gaViewId,
+      $contentItemIdMapping,
+      $topContentReportShowCount,
+      $dateRange
+    );
 
     report.on('success', (response) => {
-      const {
-        rows = [],
-        totalsForAllResults: {
-          'ga:totalEvents': allTotalEvents,
-          'ga:uniqueEvents': allUniqueEvents,
-        },
-      } = response;
-      const hydratedRows = rows.map((row) => {
-        const [
-          contentId,
-          totalEvents,
-          uniqueEvents,
-          eventValue,
-          avgEventValue,
-        ] = row;
-        const totalEventsPercentage =
-          Math.round((totalEvents / allTotalEvents) * 100) || 0;
-        const uniqueEventsPercentage =
-          Math.round((uniqueEvents / allUniqueEvents) * 100) || 0;
-
-        return [
-          contentId,
-          totalEvents,
-          totalEventsPercentage,
-          uniqueEvents,
-          uniqueEventsPercentage,
-          eventValue,
-          avgEventValue,
-        ];
-      });
-      reportData = hydratedRows;
+      reportData = processReportData(response);
     });
 
     report.execute();
