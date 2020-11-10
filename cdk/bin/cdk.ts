@@ -46,6 +46,31 @@ export const qaStack = new AmplifyStack(app, 'qa-dc-extension-ga-dashboard', {
   },
 });
 
+export const willowStack = new AmplifyStack(
+  app,
+  'willow-dc-extension-ga-dashboard',
+  {
+    owner: 'amplience',
+    repository: 'dc-extension-ga-dashboard',
+    oauthTokenSecretId: 'qa-tupperware-github-pat',
+    branch: 'production',
+    sourceCodeProvider: SupportedSourceCodeProviders.GITHUB,
+    domain: 'willow-dc-extension-ga-dashboard.dev.adis.ws',
+    buildPullRequestsPreview: true,
+    environmentVariables: {},
+    tagging: {
+      application: 'dc-extension-ga-dashboard',
+      applicationFunction: 'frontend',
+      confidentiality: 'public',
+      env: 'willow',
+      owner: 'tupperware',
+      product: 'dc',
+      zone: 'public',
+    },
+  }
+);
+
+
 export const prodStack = new AmplifyStack(
   app,
   'prod-dc-extension-ga-dashboard',
