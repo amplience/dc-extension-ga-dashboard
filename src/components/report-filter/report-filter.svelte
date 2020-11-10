@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { dateRange } from '../../stores/date-range';
+  import { dateRange, INITIAL_DATE_RANGE } from '../../stores/date-range';
   import { createEventDispatcher, onMount } from 'svelte';
   import WidgetHeader from '../widget/widget-header/widget-header.svelte';
   import WidgetBody from '../widget/widget-body/widget-body.svelte';
@@ -35,14 +35,17 @@
   const onApplyClick = () => {
     isModalVisible = false;
     $selectedEdition = uncomittedEdition;
-    $dateRange = {
+    const updatedDateRange = {
+      ...INITIAL_DATE_RANGE,
       from: formatDateAsISOString(new Date($selectedEdition.start)),
-      to: formatDateAsISOString(
-        $selectedEdition.activeEndDate
-          ? new Date($selectedEdition.start)
-          : new Date()
-      ),
     };
+    if ($selectedEdition.activeEndDate) {
+      updatedDateRange.to = formatDateAsISOString(
+        new Date($selectedEdition.end)
+      );
+    }
+
+    $dateRange = updatedDateRange;
   };
 
   const onCancelClick = () => {
@@ -59,6 +62,7 @@
 
   const resetFilter = () => {
     $selectedEdition = null;
+    $dateRange = INITIAL_DATE_RANGE;
   };
 </script>
 
