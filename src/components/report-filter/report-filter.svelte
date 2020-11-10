@@ -14,6 +14,7 @@
   import Icon from '../icon/icon.svelte';
   import FilterIcon from '../../assets/icons/ic-filter.svg';
   import { formatDateAsISOString } from '../../utils/date-format';
+  import Overlay from '../overlay/overlay.svelte';
 
   let isModalVisible = false;
   let sectionElement: HTMLElement;
@@ -73,6 +74,7 @@
     width: 500px;
     padding: 5px;
     position: relative;
+    z-index: 3;
   }
 
   .modal-popup {
@@ -130,9 +132,9 @@
   }
 </style>
 
-<!-- {#if isModalVisible}
+{#if isModalVisible}
   <Overlay onClick={onCancelClick} />
-{/if} -->
+{/if}
 <section bind:this={sectionElement}>
   {#if $selectedEdition}
     <div class="selected-edition">
@@ -146,7 +148,10 @@
         on:close={resetFilter} />
     </div>
   {:else}
-    <div class="select-filter" on:click={showModal}>
+    <div
+      data-testid="display-modal-button"
+      class="select-filter"
+      on:click={showModal}>
       <span class="icon-wrapper">
         <Icon icon={FilterIcon} width="20px" height="20px" />
       </span>

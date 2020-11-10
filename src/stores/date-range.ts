@@ -8,7 +8,7 @@ export interface DateRange {
   to: string;
 }
 
-const NOW = new Date().setHours(0, 0, 0, 0).valueOf();
+export const NOW = new Date().setHours(0, 0, 0, 0).valueOf();
 
 export const INITIAL_DATE_RANGE = {
   from: formatDateAsISOString(new Date(NOW - DAY * 30)),

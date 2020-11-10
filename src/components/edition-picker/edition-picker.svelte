@@ -79,6 +79,12 @@
     </div>
   {:else if !loaded}
     <Loader zIndex={11} />
+  {:else if publishedEditions.length === 0}
+    <div>
+      <h3 data-testid="no-published-editions">
+        Cannot find any published editions
+      </h3>
+    </div>
   {:else}
     <div>
       <h3>Select a recent edition...</h3>

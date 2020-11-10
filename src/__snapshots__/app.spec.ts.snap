@@ -14,14 +14,16 @@ exports[`App should render the App component 1`] = `
         <div
           class="container svelte-1y25f5"
         >
+           
           <section
-            class="svelte-17fo8w9"
+            class="svelte-oi6i0s"
           >
             <div
-              class="select-filter svelte-17fo8w9"
+              class="select-filter svelte-oi6i0s"
+              data-testid="display-modal-button"
             >
               <span
-                class="icon-wrapper svelte-17fo8w9"
+                class="icon-wrapper svelte-oi6i0s"
               >
                 <div
                   class=" svelte-zpbvvv"
@@ -34,7 +36,7 @@ exports[`App should render the App component 1`] = `
               </span>
                
               <span
-                class="svelte-17fo8w9"
+                class="svelte-oi6i0s"
               >
                 No filters applied
               </span>

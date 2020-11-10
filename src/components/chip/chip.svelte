@@ -50,7 +50,10 @@
     on:click={onChipClick}
     class={active ? 'active' : ''}>
     {label}
-    <span class="cross" on:click={onCloseClick}>
+    <span
+      data-testid="remove-chip-button"
+      class="cross"
+      on:click={onCloseClick}>
       <Icon icon={DeleteIcon} width="12px" height="12px" />
     </span>
   </span>
