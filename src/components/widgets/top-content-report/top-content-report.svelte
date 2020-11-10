@@ -45,12 +45,10 @@
           eventValue,
           avgEventValue,
         ] = row;
-        const totalEventsPercentage = Math.round(
-          (totalEvents / allTotalEvents) * 100
-        );
-        const uniqueEventsPercentage = Math.round(
-          (uniqueEvents / allUniqueEvents) * 100
-        );
+        const totalEventsPercentage =
+          Math.round((totalEvents / allTotalEvents) * 100) || 0;
+        const uniqueEventsPercentage =
+          Math.round((uniqueEvents / allUniqueEvents) * 100) || 0;
 
         return [
           contentId,
