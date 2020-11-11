@@ -5,11 +5,8 @@
     DataReportResponse,
   } from '../../../definitions/google-analytics-embed-api';
   import { dateRange } from '../../../stores/date-range';
-  import {
-    getDataReport,
-    processReportData,
-    ReportData,
-  } from '../../../stores/gapi';
+  import { getDataReport, processReportData } from '../../../stores/gapi';
+  import type { ReportData } from '../../../stores/gapi';
   import {
     contentItemIdMapping,
     gaViewId,
