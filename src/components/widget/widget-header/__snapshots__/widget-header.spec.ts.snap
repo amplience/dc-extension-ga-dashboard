@@ -3,7 +3,7 @@
 exports[`WidgetHeader should render the Widget component 1`] = `
 <div>
   <section
-    class="svelte-1kld2ef"
+    class="widget-header svelte-1kld2ef"
   >
     <div
       class="title svelte-1kld2ef"
@@ -13,6 +13,7 @@ exports[`WidgetHeader should render the Widget component 1`] = `
       >
         widget-header-title
       </h2>
+       
        
     </div>
      

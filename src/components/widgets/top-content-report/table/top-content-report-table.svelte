@@ -3,6 +3,7 @@
   import { getGAPI } from '../../../../services/gapi/gapi';
 
   import { dateRange } from '../../../../stores/date-range';
+  import { gaQueryFilter } from '../../../../stores/ga-query-filters';
   import { gaViewId } from '../../../../stores/google-analytics';
   import { topContentReportShowCount } from '../../../../stores/widget-settings';
   import { Body, Cell, DataTable, Head, Row } from '../../../data-table';
@@ -31,6 +32,7 @@
           'max-results': $topContentReportShowCount,
           'start-date': $dateRange.from,
           'end-date': $dateRange.to,
+          filters: $gaQueryFilter,
         },
       });
 
@@ -59,6 +61,7 @@
           'max-results': $topContentReportShowCount,
           'start-date': $dateRange.from,
           'end-date': $dateRange.to,
+          filters: $gaQueryFilter,
         },
       });
       report.execute();

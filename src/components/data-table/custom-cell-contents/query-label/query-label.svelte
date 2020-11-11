@@ -21,9 +21,7 @@
   }
 </style>
 
-{#if showRowNumber}
-  <span class="query-index">{index}</span>
-{/if}
+{#if showRowNumber}<span class="query-index">{index}</span>{/if}
 
 {#if expandable}
   <ExpandableIcon {expanded} />

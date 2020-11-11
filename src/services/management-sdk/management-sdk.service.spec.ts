@@ -1,6 +1,6 @@
-import { HttpClient } from "dc-extensions-sdk";
-import type { ClientConnection } from "message-event-channel";
-import getManagementClient from "./management-sdk.service";
+import { HttpClient } from 'dc-extensions-sdk';
+import type { ClientConnection } from 'message-event-channel';
+import getManagementClient from './management-sdk.service';
 import { DynamicContent } from 'dc-management-sdk-js';
 
 jest.mock('dc-management-sdk-js');

@@ -1,0 +1,124 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ReportFilter component should render initial state when a selectedEdition has been removed 1`] = `
+<div>
+   
+  <section
+    class="svelte-oi6i0s"
+  >
+    <div
+      class="select-filter svelte-oi6i0s"
+      data-testid="display-modal-button"
+    >
+      <span
+        class="icon-wrapper svelte-oi6i0s"
+      >
+        <div
+          class=" svelte-zpbvvv"
+          style="--icon-width: 20px; --icon-height: 20px;"
+        >
+          <object
+            src="ic-filter.svg/"
+          />
+        </div>
+      </span>
+       
+      <span
+        class="svelte-oi6i0s"
+      >
+        No filters applied
+      </span>
+    </div>
+     
+  </section>
+</div>
+`;
+
+exports[`ReportFilter component should render the ReportFilter component no selectedEdition 1`] = `
+<div>
+   
+  <section
+    class="svelte-oi6i0s"
+  >
+    <div
+      class="select-filter svelte-oi6i0s"
+      data-testid="display-modal-button"
+    >
+      <span
+        class="icon-wrapper svelte-oi6i0s"
+      >
+        <div
+          class=" svelte-zpbvvv"
+          style="--icon-width: 20px; --icon-height: 20px;"
+        >
+          <object
+            src="ic-filter.svg/"
+          />
+        </div>
+      </span>
+       
+      <span
+        class="svelte-oi6i0s"
+      >
+        No filters applied
+      </span>
+    </div>
+     
+  </section>
+</div>
+`;
+
+exports[`ReportFilter component should render the ReportFilter component with a selectedEdition 1`] = `
+<div>
+   
+  <section
+    class="svelte-oi6i0s"
+  >
+    <div
+      class="selected-edition"
+    >
+      <span
+        class="icon-wrapper active svelte-oi6i0s"
+      >
+        <div
+          class=" svelte-zpbvvv"
+          style="--icon-width: 20px; --icon-height: 20px;"
+        >
+          <object
+            src="ic-filter.svg/"
+          />
+        </div>
+      </span>
+       
+      <span
+        class="svelte-oi6i0s"
+      >
+        Edition
+      </span>
+       
+      <span
+        class=" svelte-dk7ls5"
+        data-testid="chip"
+      >
+        Test Event / Test Edition
+         
+        <span
+          class="cross svelte-dk7ls5"
+          data-testid="remove-chip-button"
+        >
+          <div
+            class=" svelte-zpbvvv"
+            style="--icon-width: 12px; --icon-height: 12px;"
+          >
+            <object
+              src="ic-delete.svg/"
+            />
+          </div>
+        </span>
+      </span>
+      
+    </div>
+     
+  </section>
+</div>
+`;
