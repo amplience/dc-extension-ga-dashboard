@@ -1,6 +1,3 @@
-import { writable as persistedWritable } from './persisted-store';
+import { writable } from 'svelte/store';
 
-export const gapiAuthorized = persistedWritable<boolean>(
-  'gapiAuthorized',
-  false
-);
+export const gapiAuthorized = writable<boolean>(false);

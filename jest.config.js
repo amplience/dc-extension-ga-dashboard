@@ -20,4 +20,5 @@ module.exports = {
   moduleNameMapper: {
     '^.+\\.(css|less|scss)$': 'ts-jest',
   },
+  setupFiles: ['jest-localstorage-mock'],
 };
