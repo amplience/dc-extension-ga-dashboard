@@ -10,7 +10,7 @@ exports[`TopContentReport should render the TopContentReport component 1`] = `
     >
        
       <section
-        class="svelte-1kld2ef"
+        class="widget-header svelte-1kld2ef"
       >
         <div
           class="title svelte-1kld2ef"
@@ -20,6 +20,7 @@ exports[`TopContentReport should render the TopContentReport component 1`] = `
           >
             Top content
           </h2>
+           
            
         </div>
          
@@ -91,16 +92,17 @@ exports[`TopContentReport should render the TopContentReport component 1`] = `
         class="widget-body svelte-4p1s5s"
       >
         <div
-          class="spinner-container svelte-bvd1nw"
+          class="spinner-container svelte-wkqaim"
+          style="--z-index: 10;"
         >
           <div
-            class="spinner dot-0 svelte-bvd1nw"
+            class="spinner dot-0 svelte-wkqaim"
           />
           <div
-            class="spinner dot-1 svelte-bvd1nw"
+            class="spinner dot-1 svelte-wkqaim"
           />
           <div
-            class="spinner dot-2 svelte-bvd1nw"
+            class="spinner dot-2 svelte-wkqaim"
           />
         </div>
         

@@ -1,6 +1,13 @@
 <script lang="ts">
   export let zIndex: number = 2;
   export let onClick;
+
+  const onKeydown = (event) => {
+    console.log(event);
+    if (event.key === 'Escape') {
+      onClick();
+    }
+  };
 </script>
 
 <style>
@@ -12,6 +19,8 @@
     width: 100%;
   }
 </style>
+
+<svelte:window on:keydown={onKeydown} />
 
 <div
   on:click={onClick}

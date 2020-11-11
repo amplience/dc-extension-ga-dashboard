@@ -16,16 +16,17 @@ exports[`Widget should render the Widget component with loading spinner 1`] = `
     class="svelte-pntwh0"
   >
     <div
-      class="spinner-container svelte-bvd1nw"
+      class="spinner-container svelte-wkqaim"
+      style="--z-index: 10;"
     >
       <div
-        class="spinner dot-0 svelte-bvd1nw"
+        class="spinner dot-0 svelte-wkqaim"
       />
       <div
-        class="spinner dot-1 svelte-bvd1nw"
+        class="spinner dot-1 svelte-wkqaim"
       />
       <div
-        class="spinner dot-2 svelte-bvd1nw"
+        class="spinner dot-2 svelte-wkqaim"
       />
     </div>
      

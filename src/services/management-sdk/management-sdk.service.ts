@@ -10,7 +10,9 @@ function isStandalone(): string {
   return '__STANDALONE__';
 }
 
-export default function getManagementClient(client: HttpClient): DynamicContent {
+export default function getManagementClient(
+  client: HttpClient
+): DynamicContent {
   if (isStandalone() === '1') {
     return new DynamicContent(
       {
@@ -26,4 +28,3 @@ export default function getManagementClient(client: HttpClient): DynamicContent 
 
   return new DynamicContent(CLIENT_CREDENTIALS, {}, client);
 }
-

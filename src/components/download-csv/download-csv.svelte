@@ -56,8 +56,6 @@
   class="download-csv-button"
   data-testid="download-csv-button"
   title="Download CSV (max 1000)">
-  {#if label}
-    <span>{label}</span>
-  {/if}
+  {#if label}<span>{label}</span>{/if}
   <Icon icon={DownloadIcon} />
 </button>
