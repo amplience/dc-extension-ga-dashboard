@@ -87,6 +87,9 @@ To use the application the following permissions must be enabled:
   "localization": {
     "locale": "en-GB",
     "currencyCode": "GBP"
+  },
+  "breakdownChart": {
+    "dimension": "ga:deviceCategory"
   }
 }
 ```
