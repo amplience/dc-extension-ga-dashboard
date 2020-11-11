@@ -1,14 +1,13 @@
 <script lang="ts">
   import { contentItems } from '../../../../../stores/content-items';
-import { hub } from '../../../../../stores/dynamic-content';
+  import { hub } from '../../../../../stores/dynamic-content';
   import { sdkExtensionConfiguration } from '../../../../../stores/sdk-extension-configuration';
   import Link from '../../../../link/link.svelte';
 
   export let contentItemId: string;
 
   let contentItemHref;
-  if ($sdkExtensionConfiguration) {
-    console.log($sdkExtensionConfiguration.params?.locationHref);
+  if ($sdkExtensionConfiguration && $hub) {
     const appUrl = $sdkExtensionConfiguration.params?.locationHref?.split(
       '#!'
     )[0];

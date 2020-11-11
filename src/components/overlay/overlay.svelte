@@ -3,7 +3,6 @@
   export let onClick;
 
   const onKeydown = (event) => {
-    console.log(event);
     if (event.key === 'Escape') {
       onClick();
     }
