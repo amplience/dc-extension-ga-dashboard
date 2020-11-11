@@ -2,44 +2,8 @@
 
 exports[`Overview should render the Overview component 1`] = `
 Array [
-  Object {
-    "chart": Object {
-      "container": "ga-line-chart",
-      "options": Object {
-        "animation": Object {
-          "startup": true,
-        },
-        "fontSize": 12,
-        "hAxis": Object {
-          "gridlines": Object {
-            "units": Object {
-              "days": Object {
-                "format": Array [
-                  "dd MMM",
-                ],
-              },
-            },
-          },
-          "minorGridlines": Object {
-            "units": Object {
-              "hours": Object {
-                "format": Array [
-                  "",
-                ],
-              },
-              "minutes": Object {
-                "format": Array [
-                  "",
-                ],
-              },
-            },
-          },
-        },
-        "width": "100%",
-      },
-      "type": "LINE",
-    },
-    "query": Object {
+  Array [
+    Object {
       "dimensions": "ga:date",
       "end-date": "2020-11-02",
       "filters": null,
@@ -47,7 +11,7 @@ Array [
       "metrics": "ga:totalEvents,ga:uniqueEvents",
       "start-date": "2020-11-01",
     },
-  },
+  ],
 ]
 `;
 

@@ -13,13 +13,9 @@ function createContentItems() {
       if (cachedContentItem) {
         return cachedContentItem;
       }
-      try {
-        const contentItem = await get(client).contentItems.get(id);
-        update((n) => [...n, ...[contentItem]]);
-        return contentItem;
-      } catch {
-        return { id };
-      }
+      const contentItem = await get(client).contentItems.get(id);
+      update((n) => [...n, ...[contentItem]]);
+      return contentItem;
     },
     reset: () => set([]),
   };

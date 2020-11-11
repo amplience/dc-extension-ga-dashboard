@@ -1,6 +1,6 @@
 import { tick } from 'svelte';
 import { render } from '@testing-library/svelte';
-import TopContentReport from './top-content-report.svelte';
+import TopContentReport from './top-editions-report.svelte';
 
 const mockDataReportSet = jest.fn();
 const mockDataReportExecute = jest.fn();

@@ -2,6 +2,7 @@ import { render } from '@testing-library/svelte';
 import Overview from './overview.svelte';
 import { tick } from 'svelte';
 import { dateRange } from '../../../stores/date-range';
+import { getDataChart } from '../../../stores/gapi';
 import {
   editionIdMapping,
   setGaConfig,
@@ -11,22 +12,13 @@ import { Edition } from 'dc-management-sdk-js';
 
 const mockDataChartSet = jest.fn();
 const mockDataChartExecute = jest.fn();
-const mockDataChart = jest.fn().mockImplementation(() => ({
-  set: mockDataChartSet,
-  execute: mockDataChartExecute,
-}));
 
-jest.mock('../../../services/gapi/gapi', () => ({
-  getGAPI: () => {
-    return {
-      analytics: {
-        ready: (fn) => fn(),
-        googleCharts: {
-          DataChart: mockDataChart,
-        },
-      },
-    };
-  },
+jest.mock('../../../stores/gapi', () => ({
+  ...jest.requireActual('../../../stores/gapi'),
+  getDataChart: jest.fn().mockImplementation(() => ({
+    set: mockDataChartSet,
+    execute: mockDataChartExecute,
+  })),
 }));
 
 describe('Overview', () => {
@@ -46,8 +38,8 @@ describe('Overview', () => {
     const { container } = render(Overview, {});
     await tick();
 
-    expect(mockDataChart.mock.calls[0]).toMatchSnapshot();
     expect(mockDataChartExecute).toHaveBeenCalled();
+    expect((getDataChart as jest.Mock).mock.calls).toMatchSnapshot();
     expect(container.firstChild).toMatchSnapshot();
   });
 

@@ -1,5 +1,5 @@
 <script lang="ts">
-  import ExpandableIcon from '../../../expandable-icon/expandable-icon.svelte';
+  import ExpandableIcon from '../../../../expandable-icon/expandable-icon.svelte';
 
   export let index: number;
   export let expandable: boolean = false;

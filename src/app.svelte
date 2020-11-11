@@ -2,22 +2,25 @@
   import { onMount } from 'svelte';
   import DateRangeBar from './components/date-range-bar/date-range-bar.svelte';
   import GAAuthorize from './components/ga-authorize/ga-authorize.svelte';
+  import Loader from './components/loader/loader.svelte';
   import TopBar from './components/top-bar/top-bar.svelte';
-  import getExtensionClient from './services/extension-sdk/extension-sdk.service';
+  import Overview from './components/widgets/overview/overview.svelte';
+  import TopContentReport from './components/widgets/top-content-report/top-content-report.svelte';
+  import TopEditionsReport from './components/widgets/top-editions-report/top-editions-report.svelte';
   import type { ExtensionConfiguration } from './services/extension-sdk/extension-sdk.service';
+  import getExtensionClient from './services/extension-sdk/extension-sdk.service';
   import getManagementClient from './services/management-sdk/management-sdk.service';
   import createConnection from './services/message-event-channel/message-event-channel.factory';
   import { client, hub, hubId } from './stores/dynamic-content';
+  import { initGapi } from './stores/gapi';
   import { gapiAuthorized } from './stores/gapi-authorized';
   import {
     contentItemIdMapping,
+    editionIdMapping,
     gaClientId,
     setGaConfig,
   } from './stores/google-analytics';
   import { connection } from './stores/message-channel';
-  import Loader from './components/loader/loader.svelte';
-  import Overview from './components/widgets/overview/overview.svelte';
-  import TopContentReport from './components/widgets/top-content-report/top-content-report.svelte';
   import { currencyCode, locale } from './stores/localization';
 
   connection.set(
@@ -30,6 +33,7 @@
 
   onMount(async () => {
     try {
+      await initGapi();
       const extensionsSdk = await getExtensionClient();
       setGaConfig(extensionsSdk.params.installation as ExtensionConfiguration);
       const dcClient = getManagementClient(extensionsSdk.client);
@@ -72,6 +76,10 @@
     grid-area: top-content-report;
   }
 
+  .widgets-container :global(section.top-editions-report) {
+    grid-area: top-editions-report;
+  }
+
   .widgets-container :global(section.overview) {
     grid-area: overview;
   }
@@ -98,7 +106,8 @@
     grid-template-columns: 1fr 1fr;
     grid-template-areas:
       'overview overview'
-      'top-content-report top-content-report';
+      'top-content-report top-content-report'
+      'top-editions-report top-editions-report';
     align-items: flex-start;
   }
 
@@ -127,6 +136,9 @@
           <Overview />
           {#if $contentItemIdMapping}
             <TopContentReport />
+          {/if}
+          {#if $editionIdMapping}
+            <TopEditionsReport />
           {/if}
         </section>
       {:else}

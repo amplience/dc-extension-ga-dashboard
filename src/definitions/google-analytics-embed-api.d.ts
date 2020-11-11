@@ -1,5 +1,4 @@
 /* eslint-disable */
-
 type ReactText = string | number;
 /**
  * Google Analytics Embed API.
@@ -64,7 +63,10 @@ export interface GoogleAnalyticsEmbedAPI {
     go: (arg0: any) => any;
     render: (arg0: any, arg1: any) => any;
   };
-  community: { go: (arg0: any) => any; render: (arg0: any, arg1: any) => any };
+  community: {
+    go: (arg0: any) => any;
+    render: (arg0: any, arg1: any) => any;
+  };
   donation: { go: (arg0: any) => any; render: (arg0: any, arg1: any) => any };
   family_creation: {
     go: (arg0: any) => any;
@@ -80,7 +82,10 @@ export interface GoogleAnalyticsEmbedAPI {
   };
   person: { go: (arg0: any) => any; render: (arg0: any, arg1: any) => any };
   playemm: { go: (arg0: any) => any; render: (arg0: any, arg1: any) => any };
-  playreview: { go: (arg0: any) => any; render: (arg0: any, arg1: any) => any };
+  playreview: {
+    go: (arg0: any) => any;
+    render: (arg0: any, arg1: any) => any;
+  };
   plus: { go: (arg0: any) => any; render: (arg0: any, arg1: any) => any };
   plusone: { go: (arg0: any) => any; render: (arg0: any, arg1: any) => any };
   post: { go: (arg0: any) => any; render: (arg0: any, arg1: any) => any };
@@ -104,13 +109,19 @@ export interface GoogleAnalyticsEmbedAPI {
     go: (arg0: any) => any;
     render: (arg0: any, arg1: any) => any;
   };
-  shortlists: { go: (arg0: any) => any; render: (arg0: any, arg1: any) => any };
+  shortlists: {
+    go: (arg0: any) => any;
+    render: (arg0: any, arg1: any) => any;
+  };
   signin2: { go: (arg0: any) => any; render: (arg0: any, arg1: any) => any };
   surveyoptin: {
     go: (arg0: any) => any;
     render: (arg0: any, arg1: any) => any;
   };
-  visibility: { go: (arg0: any) => any; render: (arg0: any, arg1: any) => any };
+  visibility: {
+    go: (arg0: any) => any;
+    render: (arg0: any, arg1: any) => any;
+  };
   youtube: { go: (arg0: any) => any; render: (arg0: any, arg1: any) => any };
   ytsubscribe: {
     go: (arg0: any) => any;
@@ -1522,15 +1533,11 @@ export interface PieChartOptions {
   width?: ReactText;
 }
 
-export function getGAPI(): GoogleAnalyticsEmbedAPI {
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  if (window === undefined) {
-    return;
-  }
-
-  if (window['gapi'] === undefined) {
-    return;
-  }
-
-  return window['gapi'];
+export type DataReportRow = [string, number, number, number, number];
+export interface DataReportResponse {
+  rows: DataReportRow[];
+  totalsForAllResults: {
+    'ga:totalEvents': number;
+    'ga:uniqueEvents': number;
+  };
 }
