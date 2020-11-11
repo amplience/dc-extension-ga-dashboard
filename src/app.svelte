@@ -11,8 +11,8 @@
   import getExtensionClient from './services/extension-sdk/extension-sdk.service';
   import getManagementClient from './services/management-sdk/management-sdk.service';
   import createConnection from './services/message-event-channel/message-event-channel.factory';
-  import { client, hub, hubId } from './stores/dynamic-content';
   import { initGapi } from './stores/gapi';
+  import { client, hub } from './stores/dynamic-content';
   import { gapiAuthorized } from './stores/gapi-authorized';
   import {
     contentItemIdMapping,
@@ -22,6 +22,7 @@
   } from './stores/google-analytics';
   import { connection } from './stores/message-channel';
   import { currencyCode, locale } from './stores/localization';
+  import { sdkExtensionConfiguration } from './stores/sdk-extension-configuration';
 
   connection.set(
     createConnection({
@@ -32,25 +33,18 @@
   );
 
   onMount(async () => {
-    try {
-      await initGapi();
-      const extensionsSdk = await getExtensionClient();
-      setGaConfig(extensionsSdk.params.installation as ExtensionConfiguration);
-      const dcClient = getManagementClient(extensionsSdk.client);
-      client.set(dcClient);
-      hubId.set(extensionsSdk.params.hubId);
-      hub.set(await $client.hubs.get($hubId));
-      locale.set(
-        (extensionsSdk.params.installation as ExtensionConfiguration)
-          ?.localization?.locale || $locale
-      );
-      currencyCode.set(
-        (extensionsSdk.params.installation as ExtensionConfiguration)
-          ?.localization?.currencyCode || $currencyCode
-      );
-    } catch (e) {
-      console.error(e);
-    }
+    await initGapi();
+    const extensionsSdk = await getExtensionClient();
+    $sdkExtensionConfiguration = extensionsSdk;
+    setGaConfig(extensionsSdk.params.installation as ExtensionConfiguration);
+    $client = getManagementClient(extensionsSdk.client);
+    $hub = await $client.hubs.get(extensionsSdk.params.hubId);
+    $locale =
+      (extensionsSdk.params.installation as ExtensionConfiguration)
+        ?.localization?.locale || $locale;
+    $currencyCode =
+      (extensionsSdk.params.installation as ExtensionConfiguration)
+        ?.localization?.currencyCode || $currencyCode;
   });
 
   function setParentHeight(height: number): void {

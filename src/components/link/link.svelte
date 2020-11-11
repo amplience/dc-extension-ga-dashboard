@@ -1,7 +1,13 @@
 <script lang="ts">
   export let href: string;
-  export let text: string;
   export let linkTarget = '_self';
+
+  const onClick = (event: Event) => {
+    if (window.parent) {
+      window.parent.location.href = href;
+      return event.preventDefault();
+    }
+  };
 </script>
 
 <style>
@@ -15,4 +21,4 @@
   }
 </style>
 
-<a {href} target={linkTarget}>{text}</a>
+<a {href} on:click={onClick} target={linkTarget}><slot /></a>

@@ -1,9 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`CurrencyLabel should render a CurrencyLabel component 1`] = `
-<div>
-  <div>
-    £12.00
-  </div>
-</div>
-`;
