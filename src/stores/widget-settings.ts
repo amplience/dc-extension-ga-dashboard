@@ -1,12 +1,12 @@
-import { writable as persistedWritable } from './persisted-store';
 import { DEFAULT_SIZE, SIZES } from '../components/widgets/widgets-config';
+import { persistedWritable } from './persisted-writable';
 
 export const topContentReportShowCount = persistedWritable<number>(
-  'topSearchesShowCount',
+  'topContentReportShowCount',
   SIZES.get(DEFAULT_SIZE)
 );
 
 export const topEditionReportShowCount = persistedWritable<number>(
-  'topSearchesShowCount',
+  'topEditionReportShowCount',
   SIZES.get(DEFAULT_SIZE)
 );

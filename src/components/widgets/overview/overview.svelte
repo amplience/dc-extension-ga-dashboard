@@ -8,6 +8,7 @@
   import WidgetBody from '../../widget/widget-body/widget-body.svelte';
   import WidgetHeader from '../../widget/widget-header/widget-header.svelte';
   import Widget from '../../widget/widget.svelte';
+  import { gaQueryFilter } from '../../../stores/ga-query-filters';
 
   let chart: DataChart;
 
@@ -18,6 +19,7 @@
       dimensions: 'ga:date',
       'start-date': $dateRange.from,
       'end-date': $dateRange.to,
+      filters: $gaQueryFilter,
     });
 
     chart.execute();
@@ -26,7 +28,11 @@
   $: {
     if (chart) {
       chart.set({
-        query: { 'start-date': $dateRange.from, 'end-date': $dateRange.to },
+        query: {
+          'start-date': $dateRange.from,
+          'end-date': $dateRange.to,
+          filters: $gaQueryFilter,
+        },
       });
       chart.execute();
     }

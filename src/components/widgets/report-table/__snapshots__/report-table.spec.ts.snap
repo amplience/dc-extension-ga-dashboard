@@ -3,16 +3,17 @@
 exports[`ReportTable should render the ReportTable component in a loading state 1`] = `
 <div>
   <div
-    class="spinner-container svelte-bvd1nw"
+    class="spinner-container svelte-wkqaim"
+    style="--z-index: 10;"
   >
     <div
-      class="spinner dot-0 svelte-bvd1nw"
+      class="spinner dot-0 svelte-wkqaim"
     />
     <div
-      class="spinner dot-1 svelte-bvd1nw"
+      class="spinner dot-1 svelte-wkqaim"
     />
     <div
-      class="spinner dot-2 svelte-bvd1nw"
+      class="spinner dot-2 svelte-wkqaim"
     />
   </div>
   

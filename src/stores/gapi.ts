@@ -38,7 +38,8 @@ export const getDataReport = (
   gaViewId: string,
   dimension: string,
   limit: number,
-  dateRange: DateRange
+  dateRange: DateRange,
+  gaQueryFilter?: string
 ): Data => {
   return new (getGapi().analytics.report.Data)({
     query: {
@@ -49,6 +50,7 @@ export const getDataReport = (
       'max-results': limit,
       'start-date': dateRange.from,
       'end-date': dateRange.to,
+      filter: gaQueryFilter,
     },
   });
 };

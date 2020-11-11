@@ -2,8 +2,13 @@ import { render } from '@testing-library/svelte';
 import Overview from './overview.svelte';
 import { tick } from 'svelte';
 import { dateRange } from '../../../stores/date-range';
-import { setGaConfig } from '../../../stores/google-analytics';
 import { getDataChart } from '../../../stores/gapi';
+import {
+  editionIdMapping,
+  setGaConfig,
+} from '../../../stores/google-analytics';
+import { selectedEdition } from '../../../stores/selected-edition';
+import { Edition } from 'dc-management-sdk-js';
 
 const mockDataChartSet = jest.fn();
 const mockDataChartExecute = jest.fn();
@@ -45,7 +50,28 @@ describe('Overview', () => {
     dateRange.set({ from: '2020-01-01', to: '2020-01-02' });
     await tick();
     expect(mockDataChartSet).toBeCalledWith({
-      query: { 'end-date': '2020-01-02', 'start-date': '2020-01-01' },
+      query: {
+        'end-date': '2020-01-02',
+        'start-date': '2020-01-01',
+        filters: null,
+      },
+    });
+    expect(mockDataChartExecute).toHaveBeenCalled();
+  });
+
+  it('should update the chart when the selectedEdition changes', async () => {
+    editionIdMapping.set('dimension2');
+    render(Overview, {});
+    await tick();
+
+    selectedEdition.set(new Edition({ id: 'editionId' }));
+    await tick();
+    expect(mockDataChartSet).toBeCalledWith({
+      query: {
+        'end-date': '2020-11-02',
+        'start-date': '2020-11-01',
+        filters: 'ga:dimension2==editionId',
+      },
     });
     expect(mockDataChartExecute).toHaveBeenCalled();
   });

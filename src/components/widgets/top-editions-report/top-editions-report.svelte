@@ -16,6 +16,7 @@
   import ReportTable from '../report-table/report-table.svelte';
   import { SIZES } from '../widgets-config';
   import config from './table-config';
+  import { gaQueryFilter } from '../../../stores/ga-query-filters';
 
   let reportData: ReportData[];
   let report: Data;
@@ -25,7 +26,8 @@
       $gaViewId,
       $editionIdMapping,
       $topEditionReportShowCount,
-      $dateRange
+      $dateRange,
+      $gaQueryFilter
     );
 
     report.on('success', (response: DataReportResponse) => {
@@ -42,6 +44,7 @@
           'max-results': $topEditionReportShowCount,
           'start-date': $dateRange.from,
           'end-date': $dateRange.to,
+          filters: $gaQueryFilter,
         },
       });
       report.execute();

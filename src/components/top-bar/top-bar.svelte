@@ -1,3 +1,7 @@
+<script>
+  import ReportFilter from '../report-filter/report-filter.svelte';
+</script>
+
 <style>
   .top-bar {
     width: 100%;
@@ -11,7 +15,6 @@
     display: flex;
     margin: 0 auto;
     max-width: 1256px;
-    min-height: 50px;
   }
 
   div.index-options {
@@ -26,5 +29,7 @@
 </style>
 
 <section class="top-bar">
-  <div class="container" />
+  <div class="container">
+    <ReportFilter />
+  </div>
 </section>

@@ -6,6 +6,7 @@ Array [
     Object {
       "dimensions": "ga:date",
       "end-date": "2020-11-02",
+      "filters": null,
       "ids": "ga:1234567890",
       "metrics": "ga:totalEvents,ga:uniqueEvents",
       "start-date": "2020-11-01",
@@ -24,7 +25,7 @@ exports[`Overview should render the Overview component 2`] = `
     >
        
       <section
-        class="svelte-1kld2ef"
+        class="widget-header svelte-1kld2ef"
       >
         <div
           class="title svelte-1kld2ef"
@@ -34,6 +35,7 @@ exports[`Overview should render the Overview component 2`] = `
           >
             Overview
           </h2>
+           
            
         </div>
          
@@ -50,16 +52,17 @@ exports[`Overview should render the Overview component 2`] = `
           id="ga-line-chart"
         >
           <div
-            class="spinner-container svelte-bvd1nw"
+            class="spinner-container svelte-wkqaim"
+            style="--z-index: 10;"
           >
             <div
-              class="spinner dot-0 svelte-bvd1nw"
+              class="spinner dot-0 svelte-wkqaim"
             />
             <div
-              class="spinner dot-1 svelte-bvd1nw"
+              class="spinner dot-1 svelte-wkqaim"
             />
             <div
-              class="spinner dot-2 svelte-bvd1nw"
+              class="spinner dot-2 svelte-wkqaim"
             />
           </div>
         </section>

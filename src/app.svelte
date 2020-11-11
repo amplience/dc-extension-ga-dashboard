@@ -20,8 +20,8 @@
     gaClientId,
     setGaConfig,
   } from './stores/google-analytics';
-  import { currencyCode, locale } from './stores/localization';
   import { connection } from './stores/message-channel';
+  import { currencyCode, locale } from './stores/localization';
 
   connection.set(
     createConnection({

@@ -1,4 +1,4 @@
-import { writable } from './persisted-store';
+import { writable } from 'svelte/store';
 
-export const locale = writable<string>('locale', 'en-GB');
-export const currencyCode = writable<string>('currency-code', 'GBP');
+export const locale = writable<string>('en-GB');
+export const currencyCode = writable<string>('GBP');

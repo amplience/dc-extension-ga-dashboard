@@ -16,24 +16,7 @@ describe('Chip', () => {
     const { container } = render(Chip, {
       label: 'test-label',
       active: true,
-      onClick: () => {
-        /* noop */
-      },
     });
     expect(container.firstChild).toMatchSnapshot();
-  });
-
-  it('should trigger the onClick prop', async () => {
-    const onClickMock = jest.fn();
-    render(Chip, {
-      label: 'test-label',
-      onClick: onClickMock,
-    });
-
-    const element = screen.getByTestId('chip');
-
-    await fireEvent.click(element);
-
-    expect(onClickMock).toHaveBeenCalled();
   });
 });
