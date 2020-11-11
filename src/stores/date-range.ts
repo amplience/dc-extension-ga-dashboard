@@ -11,7 +11,7 @@ export interface DateRange {
 export const NOW = new Date().setHours(0, 0, 0, 0).valueOf();
 
 export const INITIAL_DATE_RANGE = {
-  from: formatDateAsISOString(new Date(NOW - DAY * 30)),
+  from: formatDateAsISOString(new Date(NOW - DAY * 7)),
   to: formatDateAsISOString(new Date(NOW - DAY)),
 };
 
