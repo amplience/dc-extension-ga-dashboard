@@ -1,14 +1,15 @@
 <script lang="ts">
   import { onMount } from 'svelte';
+  import type { DataChart } from '../../../definitions/google-analytics-embed-api';
   import { dateRange } from '../../../stores/date-range';
-  import gapi, { getDataChart } from '../../../stores/gapi';
+  import { getDataChart } from '../../../stores/gapi';
   import { gaViewId } from '../../../stores/google-analytics';
   import Loader from '../../loader/loader.svelte';
   import WidgetBody from '../../widget/widget-body/widget-body.svelte';
   import WidgetHeader from '../../widget/widget-header/widget-header.svelte';
   import Widget from '../../widget/widget.svelte';
 
-  let chart;
+  let chart: DataChart;
 
   onMount(async () => {
     chart = getDataChart({

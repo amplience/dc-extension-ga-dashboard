@@ -1,10 +1,22 @@
 import { get, writable } from 'svelte/store';
 import type {
   Data,
+  DataReportResponse,
+  DataReportRow,
   GoogleAnalyticsEmbedAPI,
   Query,
 } from '../definitions/google-analytics-embed-api';
 import type { DateRange } from './date-range';
+
+export type ReportData = [
+  string,
+  number,
+  number,
+  number,
+  number,
+  number,
+  number
+];
 
 const gapi = writable<GoogleAnalyticsEmbedAPI>(null);
 
@@ -41,7 +53,9 @@ export const getDataReport = (
   });
 };
 
-export const processReportData = (response: any): any[] => {
+export const processReportData = (
+  response: DataReportResponse
+): ReportData[] => {
   const {
     rows = [],
     totalsForAllResults: {
@@ -50,25 +64,27 @@ export const processReportData = (response: any): any[] => {
     },
   } = response;
 
-  return rows.map((row) => {
-    const [
-      dimension,
-      totalEvents,
-      uniqueEvents,
-      eventValue,
-      avgEventValue,
-    ] = row;
+  return rows.map(
+    (row: DataReportRow): ReportData => {
+      const [
+        dimension,
+        totalEvents,
+        uniqueEvents,
+        eventValue,
+        avgEventValue,
+      ] = row;
 
-    return [
-      dimension,
-      totalEvents,
-      Math.round((totalEvents / allTotalEvents) * 100) || 0,
-      uniqueEvents,
-      Math.round((uniqueEvents / allUniqueEvents) * 100) || 0,
-      eventValue,
-      avgEventValue,
-    ];
-  });
+      return [
+        dimension,
+        totalEvents,
+        Math.round((totalEvents / allTotalEvents) * 100) || 0,
+        uniqueEvents,
+        Math.round((uniqueEvents / allUniqueEvents) * 100) || 0,
+        eventValue,
+        avgEventValue,
+      ];
+    }
+  );
 };
 
 export const getDataChart = (query: Query): Data => {

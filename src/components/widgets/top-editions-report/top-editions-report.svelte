@@ -1,20 +1,27 @@
 <script lang="ts">
   import { onMount } from 'svelte';
+  import type {
+    Data,
+    DataReportResponse,
+  } from '../../../definitions/google-analytics-embed-api';
   import { dateRange } from '../../../stores/date-range';
-  import { getDataReport, processReportData } from '../../../stores/gapi';
+  import {
+    getDataReport,
+    processReportData,
+    ReportData,
+  } from '../../../stores/gapi';
   import { editionIdMapping, gaViewId } from '../../../stores/google-analytics';
-
   import { topEditionReportShowCount } from '../../../stores/widget-settings';
-  import ReportTable from '../report-table/report-table.svelte';
   import Select from '../../select/select.svelte';
   import WidgetBody from '../../widget/widget-body/widget-body.svelte';
   import WidgetHeader from '../../widget/widget-header/widget-header.svelte';
   import Widget from '../../widget/widget.svelte';
+  import ReportTable from '../report-table/report-table.svelte';
   import { SIZES } from '../widgets-config';
   import config from './table-config';
 
-  let reportData;
-  let report;
+  let reportData: ReportData[];
+  let report: Data;
 
   onMount(() => {
     report = getDataReport(
@@ -24,7 +31,7 @@
       $dateRange
     );
 
-    report.on('success', (response) => {
+    report.on('success', (response: DataReportResponse) => {
       reportData = processReportData(response);
     });
 

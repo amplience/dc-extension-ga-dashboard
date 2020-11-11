@@ -1,10 +1,12 @@
 <script lang="ts">
+  import type { ReportData } from '../../../stores/gapi';
+
   import { Body, Cell, DataTable, Head, Row } from '../../data-table';
   import Loader from '../../loader/loader.svelte';
   import NoDataPlaceholder from '../../no-data-placeholder/no-data-placeholder.svelte';
   import type { TableConfig } from '../top-editions-report/table-config';
 
-  export let data;
+  export let data: ReportData[];
   export let config: TableConfig;
 </script>
 

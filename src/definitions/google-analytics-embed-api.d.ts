@@ -1532,3 +1532,12 @@ export interface PieChartOptions {
   tooltip?: any;
   width?: ReactText;
 }
+
+export type DataReportRow = [string, number, number, number, number];
+export interface DataReportResponse {
+  rows: DataReportRow[];
+  totalsForAllResults: {
+    'ga:totalEvents': number;
+    'ga:uniqueEvents': number;
+  };
+}
