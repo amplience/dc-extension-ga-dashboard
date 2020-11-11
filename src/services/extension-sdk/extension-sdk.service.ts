@@ -1,8 +1,8 @@
 import { init, Options, Params, SDK } from 'dc-extensions-sdk';
 
-type SdkExtensionConfiguration = SDK<
+export type SdkExtensionConfiguration = SDK<
   ExtensionConfiguration,
-  Params & { hubId: string }
+  Params & { hubId: string; locationHref: string }
 >;
 export interface ExtensionConfiguration {
   googleAnalyticsClientId: string;
@@ -50,7 +50,7 @@ export default async function getExtensionClient(
     return standaloneClient();
   }
 
-  return await init<ExtensionConfiguration, Params & { hubId: string }>(
+  return await init<ExtensionConfiguration, Params & { hubId: string; locationHref: string }>(
     options
   );
 }

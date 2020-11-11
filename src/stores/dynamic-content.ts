@@ -3,6 +3,4 @@ import { writable } from 'svelte/store';
 
 export const client = writable<DynamicContent>(null);
 
-export const hubId = writable<string>(null);
-
 export const hub = writable<Hub>(null);

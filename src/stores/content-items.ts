@@ -1,5 +1,5 @@
 import { get, writable } from 'svelte/store';
-import { client } from './dynamic-content';
+import { client, hub } from './dynamic-content';
 
 function createContentItems() {
   const { subscribe, set, update } = writable([]);
