@@ -26,6 +26,7 @@ async function standaloneClient(): Promise<SdkExtensionConfiguration> {
   return ({
     params: {
       hubId: '__HUB_ID__',
+      locationHref: '__LOCATION_HREF__',
       installation: {
         googleAnalyticsClientId: '__GOOGLE_ANALYTICS_CLIENT_ID__',
         googleAnalyticsViewId: '__GOOGLE_ANALYTICS_VIEW_ID__',
@@ -50,7 +51,8 @@ export default async function getExtensionClient(
     return standaloneClient();
   }
 
-  return await init<ExtensionConfiguration, Params & { hubId: string; locationHref: string }>(
-    options
-  );
+  return await init<
+    ExtensionConfiguration,
+    Params & { hubId: string; locationHref: string }
+  >(options);
 }
