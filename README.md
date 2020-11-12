@@ -33,6 +33,7 @@ Additional environments vars
 | HUB_ID                         | Hub ID                     | abcdef...                            |
 | CLIENT_ID                      | Client ID for the Hub      | abcdef...                            |
 | CLIENT_SECRET                  | Client Secret              | abdde...                             |
+| LOCATION_HREF                  | Location href of parent    | http://localhost:3000                |
 | GOOGLE_ANALYTICS_CLIENT_ID     | Google Analytics Client ID | abc123.apps.googleusercontent.com    |
 | GOOGLE_ANALYTICS_VIEW_ID       | Google Analytics View ID   | 1234567890                           |
 | GOOGLE_ANALYTICS_LOCALE        | Google Analytics View ID   | en-GB                                |
@@ -46,6 +47,7 @@ CLIENT_SECRET=abcdef
 HUB_ID=abcdef
 API_URL=https://api.amplience.net/v2/content
 AUTH_URL=https://auth.adis.ws
+LOCATION_HREF=http://localhost:3000
 GOOGLE_ANALYTICS_CLIENT_ID=abc123.apps.googleusercontent.com
 GOOGLE_ANALYTICS_VIEW_ID=1234567890
 GOOGLE_ANALYTICS_LOCALE=en-GB
@@ -87,6 +89,9 @@ To use the application the following permissions must be enabled:
   "localization": {
     "locale": "en-GB",
     "currencyCode": "GBP"
+  },
+  "breakdownChart": {
+    "dimension": "ga:deviceCategory"
   }
 }
 ```
