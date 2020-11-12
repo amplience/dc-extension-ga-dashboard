@@ -8,6 +8,7 @@
 
   export let data: ReportData[];
   export let config: TableConfig;
+  export let loading = false;
 </script>
 
 <style>
@@ -18,9 +19,9 @@
   }
 </style>
 
-{#if !Array.isArray(data)}
+{#if loading}
   <Loader />
-{:else if data.length > 0}
+{:else if data && data.length > 0}
   <DataTable>
     <Head>
       <Row>

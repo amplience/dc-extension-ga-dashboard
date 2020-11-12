@@ -92,18 +92,11 @@ exports[`TopContentReport should render the TopContentReport component 1`] = `
         class="widget-body svelte-4p1s5s"
       >
         <div
-          class="spinner-container svelte-wkqaim"
-          style="--z-index: 10;"
+          class="no-data-container svelte-1kq81j9"
         >
-          <div
-            class="spinner dot-0 svelte-wkqaim"
-          />
-          <div
-            class="spinner dot-1 svelte-wkqaim"
-          />
-          <div
-            class="spinner dot-2 svelte-wkqaim"
-          />
+          <p>
+            No data for the selected date range
+          </p>
         </div>
         
       </section>

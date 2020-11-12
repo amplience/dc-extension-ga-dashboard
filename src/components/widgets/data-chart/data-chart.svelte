@@ -1,8 +1,6 @@
 <script lang="ts">
-  import { onMount } from 'svelte';
-  import type { DataChart } from '../../../definitions/google-analytics-embed-api';
   import { dateRange } from '../../../stores/date-range';
-  import { ChartType, getDataChart } from '../../../stores/gapi';
+  import { ChartType, insertDataChart } from '../../../stores/gapi';
   import { gaViewId } from '../../../stores/google-analytics';
   import Loader from '../../loader/loader.svelte';
   import WidgetBody from '../../widget/widget-body/widget-body.svelte';
@@ -16,8 +14,7 @@
   export let chartType: ChartType = ChartType.LINE;
   export let containerId = `ga-chart-${className}`;
 
-  export let chart: DataChart;
-
+  let loading = true;
   let chartOptions = {};
   if (chartType === ChartType.LINE) {
     chartOptions = {
@@ -37,36 +34,28 @@
     };
   }
 
-  onMount(async () => {
-    chart = getDataChart(
-      {
-        ids: `ga:${$gaViewId}`,
-        metrics: 'ga:totalEvents,ga:uniqueEvents',
-        dimensions,
-        'start-date': $dateRange.from,
-        'end-date': $dateRange.to,
-        filters: $gaQueryFilter,
-      },
-      containerId,
-      chartType,
-      chartOptions
-    );
-
-    chart.execute();
-  });
-
-  $: {
-    if (chart) {
-      chart.set({
-        query: {
+  $: (async () => {
+    try {
+      loading = true;
+      await insertDataChart(
+        {
+          ids: `ga:${$gaViewId}`,
+          metrics: 'ga:totalEvents,ga:uniqueEvents',
+          dimensions,
           'start-date': $dateRange.from,
           'end-date': $dateRange.to,
           filters: $gaQueryFilter,
         },
-      });
-      chart.execute();
+        containerId,
+        chartType,
+        chartOptions
+      );
+    } catch (e) {
+      console.error(`Unable to load chart data: ${e?.error?.message}`);
+    } finally {
+      loading = false;
     }
-  }
+  })();
 </script>
 
 <style>
@@ -90,8 +79,11 @@
   <Widget>
     <WidgetHeader {title} />
     <WidgetBody>
-      <section id={containerId} class="ga-chart">
-        <Loader />
+      <section class="ga-chart">
+        {#if loading}
+          <Loader />
+        {/if}
+        <div id={containerId} />
       </section>
     </WidgetBody>
   </Widget>
