@@ -99,21 +99,6 @@ export const getDataChart = (
   type: ChartType,
   options: Record<string, unknown>
 ): Data => {
-  console.log({
-    query,
-    chart: {
-      type: type,
-      container: containerId,
-      options: {
-        fontSize: 12,
-        width: '100%',
-        animation: {
-          startup: true,
-        },
-        ...options,
-      },
-    },
-  });
   return new (getGapi().analytics.googleCharts.DataChart)({
     query,
     chart: {
