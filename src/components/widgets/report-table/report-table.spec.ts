@@ -18,6 +18,7 @@ describe('ReportTable', () => {
   });
   it('should render the ReportTable component in a loading state', async () => {
     const { container } = render(ReportTable, {
+      loading: true,
       data: null,
       config: tableConfig,
     });
@@ -49,7 +50,7 @@ describe('ReportTable', () => {
   it('should render the ReportTable component with data and a custom component', async () => {
     tableConfig.columns[0].component = CustomCellMock;
     const { container } = render(ReportTable, {
-      data: [['cell-value']],
+      data: [['custom-cell-value']],
       config: tableConfig,
     });
 
