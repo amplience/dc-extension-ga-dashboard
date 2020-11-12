@@ -1,20 +1,19 @@
 import {
-  render,
-  screen,
   fireEvent,
+  getByLabelText,
+  getByRole,
   getByTestId,
   getByText,
-  getByRole,
-  getByLabelText,
+  render,
 } from '@testing-library/svelte';
 import { Edition, Hub } from 'dc-management-sdk-js';
 import { tick } from 'svelte';
+import { get } from 'svelte/store';
+import { dateRange, NOW } from '../../stores/date-range';
 import { hub } from '../../stores/dynamic-content';
 import { selectedEdition } from '../../stores/selected-edition';
-import ReportFilter from './report-filter.svelte';
-import { get } from 'svelte/store';
-import { dateRange, NOW, DAY } from '../../stores/date-range';
 import { formatDateAsISOString } from '../../utils/date-format';
+import ReportFilter from './report-filter.svelte';
 
 describe('ReportFilter component', () => {
   beforeEach(() => {
@@ -72,7 +71,7 @@ describe('ReportFilter component', () => {
     expect(get(selectedEdition)).toEqual(publishedEdition);
     const dates = get(dateRange);
     expect(dates.from).toEqual('2020-01-01');
-    expect(dates.to).toEqual(formatDateAsISOString(new Date(NOW - DAY))); //yesterday
+    expect(dates.to).toEqual(formatDateAsISOString(new Date(NOW))); //today
   });
 
   it('should report there are no editions when there are no published editions', async () => {
