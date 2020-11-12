@@ -89,31 +89,43 @@ export const processReportData = (
   );
 };
 
-export const getDataChart = (query: Query): Data => {
-  return new (getGapi().analytics.googleCharts.DataChart)({
+export enum ChartType {
+  LINE = 'LINE',
+  BAR = 'BAR',
+}
+export const getDataChart = (
+  query: Query,
+  containerId: string,
+  type: ChartType,
+  options: Record<string, unknown>
+): Data => {
+  console.log({
     query,
     chart: {
-      type: 'LINE',
-      container: 'ga-line-chart',
+      type: type,
+      container: containerId,
       options: {
         fontSize: 12,
         width: '100%',
         animation: {
           startup: true,
         },
-        hAxis: {
-          gridlines: {
-            units: {
-              days: { format: ['dd MMM'] },
-            },
-          },
-          minorGridlines: {
-            units: {
-              hours: { format: [''] },
-              minutes: { format: [''] },
-            },
-          },
+        ...options,
+      },
+    },
+  });
+  return new (getGapi().analytics.googleCharts.DataChart)({
+    query,
+    chart: {
+      type: type,
+      container: containerId,
+      options: {
+        fontSize: 12,
+        width: '100%',
+        animation: {
+          startup: true,
         },
+        ...options,
       },
     },
   });

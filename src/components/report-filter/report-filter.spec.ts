@@ -1,6 +1,5 @@
 import {
   render,
-  screen,
   fireEvent,
   getByTestId,
   getByText,
