@@ -9,11 +9,28 @@ exports[`EditionName should initially render with an edition id 1`] = `
 </div>
 `;
 
-exports[`EditionName should render and resolve an edition name 1`] = `
+exports[`EditionName should render and resolve an edition name an edition link href 1`] = `
+<div>
+  <a
+    class="svelte-1c0jp0i"
+    href="http://example.com#!/hub-name/planning/edition/event-id/edition-id/"
+    target="_self"
+  >
+    <span>
+      test-edition-name
+    </span>
+  </a>
+  
+  
+</div>
+`;
+
+exports[`EditionName should render and resolve an edition name when we cannot generate an edition link href 1`] = `
 <div>
   <span>
     test-edition-name
   </span>
+  
   
 </div>
 `;

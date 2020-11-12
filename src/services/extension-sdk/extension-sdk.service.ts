@@ -31,6 +31,7 @@ async function standaloneClient(): Promise<SdkExtensionConfiguration> {
   return ({
     params: {
       hubId: '__HUB_ID__',
+      locationHref: '__LOCATION_HREF__',
       installation: {
         googleAnalyticsClientId: '__GOOGLE_ANALYTICS_CLIENT_ID__',
         googleAnalyticsViewId: '__GOOGLE_ANALYTICS_VIEW_ID__',
