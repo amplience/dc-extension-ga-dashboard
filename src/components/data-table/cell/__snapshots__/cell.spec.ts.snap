@@ -6,7 +6,7 @@ exports[`Cell should render the DataTable Cell component 1`] = `
     class="data-table-cell svelte-1x8v3rk"
     style="
   max-width:100%;
-  justify-content:start;
+  justify-content:flex-start;
   color:#333;"
   />
 </div>
@@ -30,7 +30,7 @@ exports[`Cell should render the DataTable Cell component with a set width 1`] = 
     class="data-table-cell svelte-1x8v3rk"
     style="
   max-width:40%;
-  justify-content:start;
+  justify-content:flex-start;
   color:#333;"
   />
 </div>
