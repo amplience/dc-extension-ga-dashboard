@@ -2,7 +2,7 @@
   import { onMount } from 'svelte';
   import type { DataChart } from '../../../definitions/google-analytics-embed-api';
   import { dateRange } from '../../../stores/date-range';
-  import { getDataChart } from '../../../stores/gapi';
+  import { ChartType, getDataChart } from '../../../stores/gapi';
   import { gaViewId } from '../../../stores/google-analytics';
   import Loader from '../../loader/loader.svelte';
   import WidgetBody from '../../widget/widget-body/widget-body.svelte';
@@ -10,17 +10,47 @@
   import Widget from '../../widget/widget.svelte';
   import { gaQueryFilter } from '../../../stores/ga-query-filters';
 
-  let chart: DataChart;
+  export let className = '';
+  export let title;
+  export let dimensions;
+  export let chartType: ChartType = ChartType.LINE;
+  export let containerId = `ga-chart-${className}`;
+
+  export let chart: DataChart;
+
+  let chartOptions = {};
+  if (chartType === ChartType.LINE) {
+    chartOptions = {
+      hAxis: {
+        gridlines: {
+          units: {
+            days: { format: ['dd MMM'] },
+          },
+        },
+        minorGridlines: {
+          units: {
+            hours: { format: [''] },
+            minutes: { format: [''] },
+          },
+        },
+      },
+    };
+  }
 
   onMount(async () => {
-    chart = getDataChart({
-      ids: `ga:${$gaViewId}`,
-      metrics: 'ga:totalEvents,ga:uniqueEvents',
-      dimensions: 'ga:date',
-      'start-date': $dateRange.from,
-      'end-date': $dateRange.to,
-      filters: $gaQueryFilter,
-    });
+    chart = getDataChart(
+      {
+        ids: `ga:${$gaViewId}`,
+        metrics: 'ga:totalEvents,ga:uniqueEvents',
+        dimensions,
+        'start-date': $dateRange.from,
+        'end-date': $dateRange.to,
+        filters: $gaQueryFilter,
+      },
+      containerId,
+      chartType,
+      chartOptions
+    );
 
     chart.execute();
   });
@@ -51,16 +81,16 @@
     padding: 0 10px;
   }
 
-  .ga-line-chart {
+  .ga-chart {
     width: 100%;
   }
 </style>
 
-<section class="overview">
+<section class={className}>
   <Widget>
-    <WidgetHeader title="Overview" />
+    <WidgetHeader {title} />
     <WidgetBody>
-      <section id="ga-line-chart" class="ga-line-chart">
+      <section id={containerId} class="ga-chart">
         <Loader />
       </section>
     </WidgetBody>

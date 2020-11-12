@@ -4,9 +4,14 @@ export type SdkExtensionConfiguration = SDK<
   ExtensionConfiguration,
   Params & { hubId: string; locationHref: string }
 >;
+
+export interface BreakdownChartConfiguration {
+  dimension: string;
+}
 export interface ExtensionConfiguration {
   googleAnalyticsClientId: string;
   googleAnalyticsViewId: string;
+  breakdownChart?: BreakdownChartConfiguration;
   mappings: {
     contentItemId: string;
     editionId: string;
@@ -50,7 +55,8 @@ export default async function getExtensionClient(
     return standaloneClient();
   }
 
-  return await init<ExtensionConfiguration, Params & { hubId: string; locationHref: string }>(
-    options
-  );
+  return await init<
+    ExtensionConfiguration,
+    Params & { hubId: string; locationHref: string }
+  >(options);
 }

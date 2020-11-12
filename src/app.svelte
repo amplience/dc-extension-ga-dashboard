@@ -4,17 +4,18 @@
   import GAAuthorize from './components/ga-authorize/ga-authorize.svelte';
   import Loader from './components/loader/loader.svelte';
   import TopBar from './components/top-bar/top-bar.svelte';
-  import Overview from './components/widgets/overview/overview.svelte';
+  import DataChart from './components/widgets/data-chart/data-chart.svelte';
   import TopContentReport from './components/widgets/top-content-report/top-content-report.svelte';
   import TopEditionsReport from './components/widgets/top-editions-report/top-editions-report.svelte';
   import type { ExtensionConfiguration } from './services/extension-sdk/extension-sdk.service';
   import getExtensionClient from './services/extension-sdk/extension-sdk.service';
   import getManagementClient from './services/management-sdk/management-sdk.service';
   import createConnection from './services/message-event-channel/message-event-channel.factory';
-  import { initGapi } from './stores/gapi';
+  import { ChartType, initGapi } from './stores/gapi';
   import { client, hub } from './stores/dynamic-content';
   import { gapiAuthorized } from './stores/gapi-authorized';
   import {
+    breakdownChart,
     contentItemIdMapping,
     editionIdMapping,
     gaClientId,
@@ -99,7 +100,7 @@
     grid-template-rows: 1fr;
     grid-template-columns: 1fr 1fr;
     grid-template-areas:
-      'overview overview'
+      'overview breakdown'
       'top-content-report top-content-report'
       'top-editions-report top-editions-report';
     align-items: flex-start;
@@ -127,7 +128,16 @@
         <Loader />
       {:else if $gapiAuthorized}
         <section class="widgets-container">
-          <Overview />
+          <DataChart
+            className="overview"
+            title="Overview"
+            dimensions="ga:date"
+            chartType={ChartType.LINE} />
+          <DataChart
+            className="breakdown"
+            title="Breakdown"
+            dimensions={$breakdownChart.dimension}
+            chartType={ChartType.BAR} />
           {#if $contentItemIdMapping}
             <TopContentReport />
           {/if}
