@@ -58,6 +58,7 @@ export default {
       __AUTH_URL__: () => process.env.AUTH_URL,
       __STANDALONE__: () => process.env.STANDALONE,
       __DOCS_BASE_URL__: () => process.env.DOCS_BASE_URL,
+      __LOCATION_HREF__: () => process.env.LOCATION_HREF,
       __GOOGLE_ANALYTICS_CLIENT_ID__: () =>
         process.env.GOOGLE_ANALYTICS_CLIENT_ID || '',
       __GOOGLE_ANALYTICS_VIEW_ID__: () =>
