@@ -6,6 +6,7 @@ export type SdkExtensionConfiguration = SDK<
 >;
 
 export interface BreakdownChartConfiguration {
+  title: string;
   dimension: string;
 }
 export interface ExtensionConfiguration {
@@ -43,6 +44,10 @@ async function standaloneClient(): Promise<SdkExtensionConfiguration> {
         localization: {
           locale: '__GOOGLE_ANALYTICS_LOCALE__',
           currencyCode: '__GOOGLE_ANALYTICS_CURRENCY_CODE__',
+        },
+        breakdownChart: {
+          title: '__BREAKDOWN_CHART_TITLE__',
+          dimension: '__BREAKDOWN_CHART_DIMENSION__',
         },
       },
     },

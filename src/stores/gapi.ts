@@ -1,7 +1,5 @@
 import { get, writable } from 'svelte/store';
 import type {
-  Chart,
-  Data,
   DataReportResponse,
   DataReportRow,
   GoogleAnalyticsEmbedAPI,
@@ -119,9 +117,20 @@ export const insertDataChart = (
         container: containerId,
         options: {
           fontSize: 12,
+          fontName: 'Roboto',
           width: '100%',
           animation: {
             startup: true,
+          },
+          vAxis: {
+            textStyle: {
+              color: '#999',
+            },
+          },
+          hAxis: {
+            textStyle: {
+              color: '#999',
+            },
           },
           ...options,
         },
