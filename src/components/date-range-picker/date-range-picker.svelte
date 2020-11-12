@@ -312,6 +312,10 @@
     padding-right: 15px;
   }
 
+  :global(.flatpickr-current-month .numInputWrapper input.cur-year) {
+    appearance: textfield;
+  }
+
   :global(.flatpickr-current-month
       .numInputWrapper
       input, .flatpickr-current-month .flatpickr-monthDropdown-months:hover) {
