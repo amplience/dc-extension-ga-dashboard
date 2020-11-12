@@ -1,6 +1,6 @@
 <script lang="ts">
   export let width: string = '100%';
-  export let align: string = 'start';
+  export let align: string = 'flex-start';
   export let color: string = '#333';
 </script>
 
