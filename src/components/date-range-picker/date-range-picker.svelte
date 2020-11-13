@@ -309,6 +309,10 @@
     padding-right: 15px;
   }
 
+  :global(.flatpickr-current-month .numInputWrapper input.cur-year) {
+    appearance: textfield;
+  }
+
   :global(.flatpickr-current-month
       .numInputWrapper
       input, .flatpickr-current-month .flatpickr-monthDropdown-months:hover) {
@@ -396,11 +400,12 @@
         bind:value={flatPickrDate}
         hidden="hidden" />
       <div class="date-picker-footer">
+        <Button primary={false} onClick={onCancelClick}>Cancel</Button>
         <Button
           onClick={onOkClick}
           bind:button={okButton}
           disabled={isOkButtonDisabled}>
-          OK
+          Apply
         </Button>
       </div>
     </div>

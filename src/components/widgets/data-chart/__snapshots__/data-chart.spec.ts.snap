@@ -4,126 +4,9 @@ exports[`DataChart breakdown chart should render the DataChart component 1`] = `
 Array [
   Array [
     Object {
-      "dimensions": "ga:date",
-      "end-date": "2020-11-02",
-      "filters": null,
-      "ids": "ga:1234567890",
-      "metrics": "ga:totalEvents,ga:uniqueEvents",
-      "start-date": "2020-11-01",
-    },
-    "ga-chart-overview",
-    "LINE",
-    Object {
-      "hAxis": Object {
-        "gridlines": Object {
-          "units": Object {
-            "days": Object {
-              "format": Array [
-                "dd MMM",
-              ],
-            },
-          },
-        },
-        "minorGridlines": Object {
-          "units": Object {
-            "hours": Object {
-              "format": Array [
-                "",
-              ],
-            },
-            "minutes": Object {
-              "format": Array [
-                "",
-              ],
-            },
-          },
-        },
-      },
-    },
-  ],
-  Array [
-    Object {
-      "dimensions": "ga:date",
-      "end-date": "2020-11-02",
-      "filters": null,
-      "ids": "ga:1234567890",
-      "metrics": "ga:totalEvents,ga:uniqueEvents",
-      "start-date": "2020-11-01",
-    },
-    "ga-chart-overview",
-    "LINE",
-    Object {
-      "hAxis": Object {
-        "gridlines": Object {
-          "units": Object {
-            "days": Object {
-              "format": Array [
-                "dd MMM",
-              ],
-            },
-          },
-        },
-        "minorGridlines": Object {
-          "units": Object {
-            "hours": Object {
-              "format": Array [
-                "",
-              ],
-            },
-            "minutes": Object {
-              "format": Array [
-                "",
-              ],
-            },
-          },
-        },
-      },
-    },
-  ],
-  Array [
-    Object {
-      "dimensions": "ga:date",
-      "end-date": "2020-11-02",
-      "filters": null,
-      "ids": "ga:1234567890",
-      "metrics": "ga:totalEvents,ga:uniqueEvents",
-      "start-date": "2020-11-01",
-    },
-    "ga-chart-overview",
-    "LINE",
-    Object {
-      "hAxis": Object {
-        "gridlines": Object {
-          "units": Object {
-            "days": Object {
-              "format": Array [
-                "dd MMM",
-              ],
-            },
-          },
-        },
-        "minorGridlines": Object {
-          "units": Object {
-            "hours": Object {
-              "format": Array [
-                "",
-              ],
-            },
-            "minutes": Object {
-              "format": Array [
-                "",
-              ],
-            },
-          },
-        },
-      },
-    },
-  ],
-  Array [
-    Object {
       "dimensions": "ga:deviceCategory",
       "end-date": "2020-11-02",
-      "filters": "ga:dimension2==editionId",
+      "filters": null,
       "ids": "ga:1234567890",
       "metrics": "ga:totalEvents,ga:uniqueEvents",
       "start-date": "2020-11-01",
@@ -169,27 +52,78 @@ exports[`DataChart breakdown chart should render the DataChart component 2`] = `
       >
         <section
           class="ga-chart svelte-12xsrpj"
-          id="ga-chart-breakdown"
         >
+           
           <div
-            class="spinner-container svelte-wkqaim"
-            style="--z-index: 10;"
-          >
-            <div
-              class="spinner dot-0 svelte-wkqaim"
-            />
-            <div
-              class="spinner dot-1 svelte-wkqaim"
-            />
-            <div
-              class="spinner dot-2 svelte-wkqaim"
-            />
-          </div>
+            id="ga-chart-breakdown"
+          />
         </section>
       </section>
     </article>
   </section>
 </div>
+`;
+
+exports[`DataChart breakdown chart should update the chart when the dateRange changes 1`] = `
+Array [
+  Array [
+    Object {
+      "dimensions": "ga:deviceCategory",
+      "end-date": "2020-11-02",
+      "filters": null,
+      "ids": "ga:1234567890",
+      "metrics": "ga:totalEvents,ga:uniqueEvents",
+      "start-date": "2020-11-01",
+    },
+    "ga-chart-breakdown",
+    "BAR",
+    Object {},
+  ],
+  Array [
+    Object {
+      "dimensions": "ga:deviceCategory",
+      "end-date": "2020-01-02",
+      "filters": null,
+      "ids": "ga:1234567890",
+      "metrics": "ga:totalEvents,ga:uniqueEvents",
+      "start-date": "2020-01-01",
+    },
+    "ga-chart-breakdown",
+    "BAR",
+    Object {},
+  ],
+]
+`;
+
+exports[`DataChart breakdown chart should update the chart when the selectedEdition changes 1`] = `
+Array [
+  Array [
+    Object {
+      "dimensions": "ga:deviceCategory",
+      "end-date": "2020-11-02",
+      "filters": null,
+      "ids": "ga:1234567890",
+      "metrics": "ga:totalEvents,ga:uniqueEvents",
+      "start-date": "2020-11-01",
+    },
+    "ga-chart-breakdown",
+    "BAR",
+    Object {},
+  ],
+  Array [
+    Object {
+      "dimensions": "ga:deviceCategory",
+      "end-date": "2020-11-02",
+      "filters": "ga:dimension2==editionId",
+      "ids": "ga:1234567890",
+      "metrics": "ga:totalEvents,ga:uniqueEvents",
+      "start-date": "2020-11-01",
+    },
+    "ga-chart-breakdown",
+    "BAR",
+    Object {},
+  ],
+]
 `;
 
 exports[`DataChart overview chart should render the DataChart component 1`] = `
@@ -270,25 +204,180 @@ exports[`DataChart overview chart should render the DataChart component 2`] = `
       >
         <section
           class="ga-chart svelte-12xsrpj"
-          id="ga-chart-overview"
         >
+           
           <div
-            class="spinner-container svelte-wkqaim"
-            style="--z-index: 10;"
-          >
-            <div
-              class="spinner dot-0 svelte-wkqaim"
-            />
-            <div
-              class="spinner dot-1 svelte-wkqaim"
-            />
-            <div
-              class="spinner dot-2 svelte-wkqaim"
-            />
-          </div>
+            id="ga-chart-overview"
+          />
         </section>
       </section>
     </article>
   </section>
 </div>
+`;
+
+exports[`DataChart overview chart should update the chart when the dateRange changes 1`] = `
+Array [
+  Array [
+    Object {
+      "dimensions": "ga:date",
+      "end-date": "2020-11-02",
+      "filters": null,
+      "ids": "ga:1234567890",
+      "metrics": "ga:totalEvents,ga:uniqueEvents",
+      "start-date": "2020-11-01",
+    },
+    "ga-chart-overview",
+    "LINE",
+    Object {
+      "hAxis": Object {
+        "gridlines": Object {
+          "units": Object {
+            "days": Object {
+              "format": Array [
+                "dd MMM",
+              ],
+            },
+          },
+        },
+        "minorGridlines": Object {
+          "units": Object {
+            "hours": Object {
+              "format": Array [
+                "",
+              ],
+            },
+            "minutes": Object {
+              "format": Array [
+                "",
+              ],
+            },
+          },
+        },
+      },
+    },
+  ],
+  Array [
+    Object {
+      "dimensions": "ga:date",
+      "end-date": "2020-01-02",
+      "filters": null,
+      "ids": "ga:1234567890",
+      "metrics": "ga:totalEvents,ga:uniqueEvents",
+      "start-date": "2020-01-01",
+    },
+    "ga-chart-overview",
+    "LINE",
+    Object {
+      "hAxis": Object {
+        "gridlines": Object {
+          "units": Object {
+            "days": Object {
+              "format": Array [
+                "dd MMM",
+              ],
+            },
+          },
+        },
+        "minorGridlines": Object {
+          "units": Object {
+            "hours": Object {
+              "format": Array [
+                "",
+              ],
+            },
+            "minutes": Object {
+              "format": Array [
+                "",
+              ],
+            },
+          },
+        },
+      },
+    },
+  ],
+]
+`;
+
+exports[`DataChart overview chart should update the chart when the selectedEdition changes 1`] = `
+Array [
+  Array [
+    Object {
+      "dimensions": "ga:date",
+      "end-date": "2020-11-02",
+      "filters": null,
+      "ids": "ga:1234567890",
+      "metrics": "ga:totalEvents,ga:uniqueEvents",
+      "start-date": "2020-11-01",
+    },
+    "ga-chart-overview",
+    "LINE",
+    Object {
+      "hAxis": Object {
+        "gridlines": Object {
+          "units": Object {
+            "days": Object {
+              "format": Array [
+                "dd MMM",
+              ],
+            },
+          },
+        },
+        "minorGridlines": Object {
+          "units": Object {
+            "hours": Object {
+              "format": Array [
+                "",
+              ],
+            },
+            "minutes": Object {
+              "format": Array [
+                "",
+              ],
+            },
+          },
+        },
+      },
+    },
+  ],
+  Array [
+    Object {
+      "dimensions": "ga:date",
+      "end-date": "2020-11-02",
+      "filters": "ga:dimension2==editionId",
+      "ids": "ga:1234567890",
+      "metrics": "ga:totalEvents,ga:uniqueEvents",
+      "start-date": "2020-11-01",
+    },
+    "ga-chart-overview",
+    "LINE",
+    Object {
+      "hAxis": Object {
+        "gridlines": Object {
+          "units": Object {
+            "days": Object {
+              "format": Array [
+                "dd MMM",
+              ],
+            },
+          },
+        },
+        "minorGridlines": Object {
+          "units": Object {
+            "hours": Object {
+              "format": Array [
+                "",
+              ],
+            },
+            "minutes": Object {
+              "format": Array [
+                "",
+              ],
+            },
+          },
+        },
+      },
+    },
+  ],
+]
 `;

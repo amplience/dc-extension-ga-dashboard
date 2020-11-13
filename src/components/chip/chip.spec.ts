@@ -1,4 +1,4 @@
-import { render, fireEvent, screen } from '@testing-library/svelte';
+import { render } from '@testing-library/svelte';
 import Chip from './chip.svelte';
 
 describe('Chip', () => {
