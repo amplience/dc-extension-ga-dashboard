@@ -1,28 +1,27 @@
 <script lang="ts">
-  import { contentItems } from '../../../../../stores/content-items';
-  import { hub } from '../../../../../stores/dynamic-content';
-  import { sdkExtensionConfiguration } from '../../../../../stores/sdk-extension-configuration';
+  import { ContentItem } from 'dc-management-sdk-js';
+  import {
+    hub,
+    managementSdkService,
+  } from '../../../../../stores/dynamic-content';
   import Link from '../../../../link/link.svelte';
 
   export let contentItemId: string;
 
-  let contentItemHref;
-  if ($sdkExtensionConfiguration && $hub) {
-    const appUrl = $sdkExtensionConfiguration.params?.locationHref?.split(
-      '#!'
-    )[0];
-    if (appUrl) {
-      contentItemHref = `${appUrl}#!/${$hub.name}/authoring/content-item/edit/${contentItemId}`;
-    }
-  }
+  const getContentItem = (id: string) =>
+    $managementSdkService.client.contentItems.get(id);
 </script>
 
-{#await contentItems.fetch(contentItemId)}
-  <span>{contentItemId}</span>
-{:then contentItem}
-  {#if contentItemHref}
-    <Link href={contentItemHref}><span>{contentItem.label}</span></Link>
-  {:else}<span>{contentItem.label}</span>{/if}
+{#await $managementSdkService.getAppLinkForResource($hub, ContentItem, contentItemId)}
+  <span data-testid="loading-1">{contentItemId}</span>
+{:then contentItemHref}
+  {#await getContentItem(contentItemId)}
+    <span data-testid="loading-2">{contentItemId}</span>
+  {:then contentItem}
+    <Link href={contentItemHref}>
+      <span data-testid="loaded">{contentItem.label}</span>
+    </Link>
+  {/await}
 {:catch}
-  <span>{contentItemId}</span>
+  <span data-testid="error">{contentItemId}</span>
 {/await}
