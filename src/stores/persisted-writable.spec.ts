@@ -1,8 +1,15 @@
+import type { Hub } from 'dc-management-sdk-js';
 import { get } from 'svelte/store';
+import { hub } from './dynamic-content';
 import { persistedWritable, PREFIX } from './persisted-writable';
+
+const testHub = {
+  name: 'hubName',
+} as Hub;
 
 describe('persisted writable', () => {
   beforeEach(() => {
+    hub.set(testHub);
     jest.clearAllMocks();
     sessionStorage.clear();
   });
@@ -19,7 +26,9 @@ describe('persisted writable', () => {
 
     const store = persistedWritable(key, null);
     expect(get(store)).toEqual(null);
-    expect(sessionStorage.getItem).toHaveBeenLastCalledWith(PREFIX + key);
+    expect(sessionStorage.getItem).toHaveBeenLastCalledWith(
+      `${PREFIX}${testHub.name}-${key}`
+    );
   });
 
   it('should load the value using the sessionStorage - string', () => {
@@ -52,11 +61,15 @@ function setAndGetFromStore(value: unknown) {
   persistedWritable(key, value);
   const store = persistedWritable(key, null);
   expect(get(store)).toEqual(value);
-  expect(sessionStorage.getItem).toHaveBeenCalledWith(PREFIX + key);
+  expect(sessionStorage.getItem).toHaveBeenCalledWith(
+    `${PREFIX}${testHub.name}-${key}`
+  );
 
   expect(sessionStorage.setItem).toHaveBeenCalledWith(
-    PREFIX + key,
+    `${PREFIX}${testHub.name}-${key}`,
     JSON.stringify(value)
   );
-  expect(sessionStorage.getItem).toHaveBeenCalledWith(PREFIX + key);
+  expect(sessionStorage.getItem).toHaveBeenCalledWith(
+    `${PREFIX}${testHub.name}-${key}`
+  );
 }
