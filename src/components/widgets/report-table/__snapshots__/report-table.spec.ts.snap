@@ -131,9 +131,10 @@ exports[`ReportTable should render the ReportTable component with data and a cus
   color:#333;"
           >
             <div>
+              custom cell: 
               0
                
-              cell-value
+              custom-cell-value
             </div>
             
             
