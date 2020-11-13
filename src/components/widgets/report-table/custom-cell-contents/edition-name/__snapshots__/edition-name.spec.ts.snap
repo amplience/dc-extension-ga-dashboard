@@ -1,45 +1,59 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`EditionName should initially render with an edition id 1`] = `
-<div>
-  
-  <span>
-    0f590113-9733-4446-abcd-a103d17a2063
-  </span>
-</div>
+exports[`EditionName should initially render with id 1`] = `
+<span
+  data-testid="loading-1"
+>
+  EDITION_ID
+</span>
 `;
 
-exports[`EditionName should render and resolve an edition name an edition link href 1`] = `
+exports[`EditionName should render fallback to the id if no app link is found 1`] = `
+<span
+  data-testid="error"
+>
+  EDITION_ID
+</span>
+`;
+
+exports[`EditionName should render the link 1`] = `
+<span
+  data-testid="loading-1"
+>
+  EDITION_ID
+</span>
+`;
+
+exports[`EditionName should render the link 2`] = `
+<span
+  data-testid="loading-2"
+>
+  EDITION_ID
+</span>
+`;
+
+exports[`EditionName should render the link 3`] = `
+<span
+  data-testid="loaded"
+>
+  EDITION_NAME
+</span>
+`;
+
+exports[`EditionName should render the link 4`] = `
 <div>
   <a
     class="svelte-1c0jp0i"
-    href="http://example.com#!/hub-name/planning/edition/event-id/edition-id/"
+    href="LINK"
     target="_self"
   >
-    <span>
-      test-edition-name
+    <span
+      data-testid="loaded"
+    >
+      EDITION_NAME
     </span>
   </a>
   
   
-</div>
-`;
-
-exports[`EditionName should render and resolve an edition name when we cannot generate an edition link href 1`] = `
-<div>
-  <span>
-    test-edition-name
-  </span>
-  
-  
-</div>
-`;
-
-exports[`EditionName should render with an edition id when edition fetch throws an error 1`] = `
-<div>
-  
-  <span>
-    0f590113-9733-4446-abcd-a103d17a2063
-  </span>
 </div>
 `;

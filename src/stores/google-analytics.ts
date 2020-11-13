@@ -11,6 +11,7 @@ export const editionIdMapping = writable<string>(null);
 export const slotIdMapping = writable<string>(null);
 
 export const breakdownChart = writable<BreakdownChartConfiguration>(null);
+export const breakdownChartTitle = writable<BreakdownChartConfiguration>(null);
 
 export function setGaConfig(config: ExtensionConfiguration): void {
   gaViewId.set(config?.googleAnalyticsViewId || '');
@@ -19,8 +20,10 @@ export function setGaConfig(config: ExtensionConfiguration): void {
   contentItemIdMapping.set(config?.mappings?.contentItemId);
   editionIdMapping.set(config?.mappings?.editionId);
   slotIdMapping.set(config?.mappings?.slotId);
-
   breakdownChart.set(
-    config?.breakdownChart || { dimension: 'ga:deviceCategory' }
+    config?.breakdownChart || {
+      dimension: 'ga:deviceCategory',
+      title: 'Device Breakdown',
+    }
   );
 }
