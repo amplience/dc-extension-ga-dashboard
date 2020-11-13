@@ -6,7 +6,7 @@ export interface TableConfigColumn {
   title: string;
   width?: string;
   align?: string;
-  component?: any;
+  component?: unknown;
 }
 
 export interface TableConfig {

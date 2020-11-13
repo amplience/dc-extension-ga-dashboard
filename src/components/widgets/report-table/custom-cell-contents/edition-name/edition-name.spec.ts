@@ -1,74 +1,75 @@
-import { tick } from 'svelte';
-import { render } from '@testing-library/svelte';
-import { editions } from '../../../../../stores/editions';
-import { hub } from '../../../../../stores/dynamic-content';
-import { sdkExtensionConfiguration } from '../../../../../stores/sdk-extension-configuration';
-import EditionName from './edition-name.svelte';
-import { Hub } from 'dc-management-sdk-js';
-import type { SdkExtensionConfiguration } from '../../../../../services/extension-sdk/extension-sdk.service';
+/* eslint-disable @typescript-eslint/no-empty-function */
 
-jest.mock('../../../../../stores/editions');
+import { getByTestId, render } from '@testing-library/svelte';
+import { Edition, Hub } from 'dc-management-sdk-js';
+import { tick } from 'svelte';
+import { get } from 'svelte/store';
+import type { ManagementSdkService } from '../../../../../services/management-sdk/management-sdk.service';
+import {
+  hub,
+  managementSdkService,
+} from '../../../../../stores/dynamic-content';
+import EditionName from './edition-name.svelte';
+
 describe('EditionName', () => {
   beforeEach(() => {
-    hub.set(
-      new Hub({
-        name: 'hub-name',
-      })
-    );
-    sdkExtensionConfiguration.set({
-      params: {
-        locationHref: 'http://example.com',
+    jest.clearAllMocks();
+  });
+  it('should initially render with id', async () => {
+    managementSdkService.set(({
+      getAppLinkForResource: () => new Promise(() => {}),
+    } as unknown) as ManagementSdkService);
+
+    const { container } = render(EditionName, {
+      editionId: 'EDITION_ID',
+    });
+    expect(getByTestId(container, 'loading-1')).toMatchSnapshot();
+  });
+
+  it('should render the link', async () => {
+    const mockHub = new Hub();
+    hub.set(mockHub);
+    managementSdkService.set(({
+      getAppLinkForResource: jest.fn(() => Promise.resolve('LINK')),
+      client: {
+        editions: {
+          get: jest.fn(() =>
+            Promise.resolve(new Edition({ name: 'EDITION_NAME' }))
+          ),
+        },
       },
-    } as SdkExtensionConfiguration);
-  });
+    } as unknown) as ManagementSdkService);
 
-  it('should initially render with an edition id', async () => {
-    ((editions.fetch as unknown) as jest.Mock).mockResolvedValue({
-      name: 'test-edition-name',
-    });
     const { container } = render(EditionName, {
-      editionId: '0f590113-9733-4446-abcd-a103d17a2063',
+      editionId: 'EDITION_ID',
     });
-    expect(container.firstChild).toMatchSnapshot();
-  });
-
-  it('should render and resolve an edition name an edition link href', async () => {
-    ((editions.fetch as unknown) as jest.Mock).mockResolvedValue({
-      id: 'edition-id',
-      name: 'test-edition-name',
-      eventId: 'event-id',
-    });
-    const { container } = render(EditionName, {
-      editionId: '0f590113-9733-4446-abcd-a103d17a2063',
-    });
-
+    expect(getByTestId(container, 'loading-1')).toMatchSnapshot();
     await tick();
-    expect(editions.fetch).toBeCalledWith(
-      '0f590113-9733-4446-abcd-a103d17a2063'
-    );
-    expect(container.firstChild).toMatchSnapshot();
-  });
-  it('should render and resolve an edition name when we cannot generate an edition link href', async () => {
-    sdkExtensionConfiguration.set({ params: {} } as SdkExtensionConfiguration);
-    ((editions.fetch as unknown) as jest.Mock).mockResolvedValue({
-      name: 'test-edition-name',
-    });
-    const { container } = render(EditionName, {
-      editionId: '0f590113-9733-4446-abcd-a103d17a2063',
-    });
-
+    expect(getByTestId(container, 'loading-2')).toMatchSnapshot();
     await tick();
-    expect(editions.fetch).toBeCalledWith(
-      '0f590113-9733-4446-abcd-a103d17a2063'
-    );
+    expect(getByTestId(container, 'loaded')).toMatchSnapshot();
     expect(container.firstChild).toMatchSnapshot();
+
+    expect(get(managementSdkService).getAppLinkForResource).toBeCalledWith(
+      mockHub,
+      Edition,
+      'EDITION_ID'
+    );
+
+    expect(get(managementSdkService).client.editions.get).toBeCalledWith(
+      'EDITION_ID'
+    );
   });
 
-  it('should render with an edition id when edition fetch throws an error', async () => {
-    ((editions.fetch as unknown) as jest.Mock).mockRejectedValue({});
+  it('should render fallback to the id if no app link is found', async () => {
+    managementSdkService.set(({
+      getAppLinkForResource: jest.fn().mockRejectedValue(new Error('test')),
+    } as unknown) as ManagementSdkService);
+
     const { container } = render(EditionName, {
-      editionId: '0f590113-9733-4446-abcd-a103d17a2063',
+      editionId: 'EDITION_ID',
     });
-    expect(container.firstChild).toMatchSnapshot();
+    await tick();
+    expect(getByTestId(container, 'error')).toMatchSnapshot();
   });
 });
