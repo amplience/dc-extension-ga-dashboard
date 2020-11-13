@@ -21,7 +21,7 @@
     flex-direction: column;
     border-bottom: 1px solid #e5e5e5;
     min-height: 40px;
-    max-height: 265px;
+    max-height: 600px;
     justify-content: center;
   }
 
@@ -37,7 +37,6 @@
     transition: opacity 0.6s ease-out;
     opacity: 0;
     height: 0;
-    overflow: auto;
   }
 
   .data-table-expandable-row.expanded .expandable-content {

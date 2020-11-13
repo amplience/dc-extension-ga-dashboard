@@ -15,7 +15,6 @@
 
   .data-table-slot.scrollable > :global(.data-table-body) {
     min-height: 200px;
-    overflow: auto;
   }
 </style>
 

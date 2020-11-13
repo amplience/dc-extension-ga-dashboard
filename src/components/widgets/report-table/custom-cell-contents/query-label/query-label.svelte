@@ -21,11 +21,12 @@
   }
 </style>
 
-{#if showRowNumber}<span class="query-index">{index}</span>{/if}
-
 {#if expandable}
   <ExpandableIcon {expanded} />
 {/if}
+
+{#if showRowNumber}<span class="query-index">{index}</span>{/if}
+
 <div class="query-label">
   <slot />
 </div>

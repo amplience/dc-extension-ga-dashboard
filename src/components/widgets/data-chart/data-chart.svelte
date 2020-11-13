@@ -7,12 +7,14 @@
   import WidgetHeader from '../../widget/widget-header/widget-header.svelte';
   import Widget from '../../widget/widget.svelte';
   import { gaQueryFilter } from '../../../stores/ga-query-filters';
+import App from '../../../app.svelte';
 
   export let className = '';
   export let title;
   export let dimensions;
   export let chartType: ChartType = ChartType.LINE;
   export let containerId = `ga-chart-${className}`;
+  export let additionalFilters: string[] = [];
 
   let loading = true;
   let chartOptions = {};
@@ -46,6 +48,7 @@
   $: (async () => {
     try {
       loading = true;
+      const filters = [...$gaQueryFilter, ...additionalFilters];
       await insertDataChart(
         {
           ids: `ga:${$gaViewId}`,
@@ -53,7 +56,7 @@
           dimensions,
           'start-date': $dateRange.from,
           'end-date': $dateRange.to,
-          filters: $gaQueryFilter,
+          filters: filters.length > 0 ? filters.join(',') : undefined
         },
         containerId,
         chartType,

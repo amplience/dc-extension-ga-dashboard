@@ -27,7 +27,7 @@
         $contentItemIdMapping,
         $topContentReportShowCount,
         $dateRange,
-        $gaQueryFilter
+        $gaQueryFilter.join(',')
       );
 
       reportData = processReportData(data);
@@ -65,7 +65,7 @@
       </div>
     </WidgetHeader>
     <WidgetBody>
-      <ReportTable data={reportData} {config} {loading} />
+      <ReportTable data={reportData} dimension={$contentItemIdMapping} {config} {loading} />
     </WidgetBody>
   </Widget>
 </section>
