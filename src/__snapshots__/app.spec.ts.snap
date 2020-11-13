@@ -16,30 +16,32 @@ exports[`App should render the App component 1`] = `
         >
            
           <section
-            class="svelte-oi6i0s"
+            class="svelte-1htar53"
           >
             <div
-              class="select-filter svelte-oi6i0s"
+              class="select-filter svelte-1htar53"
               data-testid="display-modal-button"
             >
-              <span
-                class="icon-wrapper svelte-oi6i0s"
+              <div
+                class="edition-filter svelte-1htar53"
               >
                 <div
-                  class=" svelte-zpbvvv"
-                  style="--icon-width: 20px; --icon-height: 20px;"
+                  class="icon-wrapper svelte-1htar53"
                 >
-                  <object
-                    src="ic-filter.svg/"
-                  />
+                  <div
+                    class=" svelte-zpbvvv"
+                    style="--icon-width: 20px; --icon-height: 20px;"
+                  >
+                    <object
+                      src="ic-filter.svg/"
+                    />
+                  </div>
                 </div>
-              </span>
-               
-              <span
-                class="svelte-oi6i0s"
-              >
-                No filters applied
-              </span>
+                 
+                <div>
+                  No filters applied
+                </div>
+              </div>
             </div>
              
           </section>
