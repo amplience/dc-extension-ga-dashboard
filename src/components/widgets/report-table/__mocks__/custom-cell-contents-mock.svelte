@@ -3,4 +3,4 @@
   export let index;
 </script>
 
-<div>{index} {value}</div>
+<div>custom cell: {index} {value}</div>

@@ -1,5 +1,6 @@
 import { get, writable } from 'svelte/store';
 import type {
+  Chart,
   Data,
   DataReportResponse,
   DataReportRow,
@@ -40,18 +41,29 @@ export const getDataReport = (
   limit: number,
   dateRange: DateRange,
   gaQueryFilter?: string
-): Data => {
-  return new (getGapi().analytics.report.Data)({
-    query: {
-      ids: `ga:${gaViewId}`,
-      metrics: 'ga:totalEvents,ga:uniqueEvents,ga:eventValue,ga:avgEventValue',
-      dimensions: `ga:${dimension}`,
-      sort: '-ga:totalEvents',
-      'max-results': limit,
-      'start-date': dateRange.from,
-      'end-date': dateRange.to,
-      filter: gaQueryFilter,
-    },
+): Promise<DataReportResponse> => {
+  return new Promise(function (resolve, reject) {
+    const data = new (getGapi().analytics.report.Data)({
+      query: {
+        ids: `ga:${gaViewId}`,
+        metrics:
+          'ga:totalEvents,ga:uniqueEvents,ga:eventValue,ga:avgEventValue',
+        dimensions: `ga:${dimension}`,
+        sort: '-ga:totalEvents',
+        'max-results': limit,
+        'start-date': dateRange.from,
+        'end-date': dateRange.to,
+        filter: gaQueryFilter,
+      },
+    });
+    data
+      .once('success', function (response) {
+        resolve(response);
+      })
+      .once('error', function (response) {
+        reject(response);
+      })
+      .execute();
   });
 };
 
@@ -93,26 +105,37 @@ export enum ChartType {
   LINE = 'LINE',
   BAR = 'BAR',
 }
-export const getDataChart = (
+export const insertDataChart = (
   query: Query,
   containerId: string,
   type: ChartType,
   options: Record<string, unknown>
-): Data => {
-  return new (getGapi().analytics.googleCharts.DataChart)({
-    query,
-    chart: {
-      type: type,
-      container: containerId,
-      options: {
-        fontSize: 12,
-        width: '100%',
-        animation: {
-          startup: true,
+): Promise<void> => {
+  return new Promise(function (resolve, reject) {
+    const chart = new (getGapi().analytics.googleCharts.DataChart)({
+      query,
+      chart: {
+        type: type,
+        container: containerId,
+        options: {
+          fontSize: 12,
+          width: '100%',
+          animation: {
+            startup: true,
+          },
+          ...options,
         },
-        ...options,
       },
-    },
+    });
+
+    chart
+      .once('success', (response) => {
+        resolve(response);
+      })
+      .once('error', (response) => {
+        reject(response);
+      })
+      .execute();
   });
 };
 

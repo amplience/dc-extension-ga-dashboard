@@ -1,17 +1,17 @@
 <script lang="ts">
-  import SvelteFlatpickr from 'svelte-flatpickr';
   import type Flatpickr from 'flatpickr';
-  import Icon from '../icon/icon.svelte';
   import 'flatpickr/dist/themes/material_blue.css';
-  import './date-range-picker.css';
-  import { dateRange } from '../../stores/date-range';
-  import type { DateRange } from '../../stores/date-range';
-  import { onDestroy, createEventDispatcher, onMount } from 'svelte';
-  import Chip from '../chip/chip.svelte';
-  import Button from '../button/button.svelte';
+  import { createEventDispatcher, onDestroy, onMount } from 'svelte';
+  import SvelteFlatpickr from 'svelte-flatpickr';
   import CalendarIcon from '../../assets/icons/ic-view-calendar.svg';
-  import Overlay from '../overlay/overlay.svelte';
+  import type { DateRange } from '../../stores/date-range';
+  import { dateRange, DAY, NOW } from '../../stores/date-range';
   import { formatDateAsISOString } from '../../utils/date-format';
+  import Button from '../button/button.svelte';
+  import Chip from '../chip/chip.svelte';
+  import Icon from '../icon/icon.svelte';
+  import Overlay from '../overlay/overlay.svelte';
+  import './date-range-picker.css';
 
   let dateFormat = 'Y-m-d';
   let showDatePicker = false;
@@ -28,9 +28,6 @@
   let uncommitDateRange: DateRange;
 
   const dispatch = createEventDispatcher();
-
-  const DAY = 24 * 60 * 60 * 1000;
-  const NOW = new Date().setHours(0, 0, 0, 0).valueOf();
   const dateRangeChips: { label: string; range: [Date, Date] }[] = [
     {
       label: 'Last 30 days',
@@ -312,6 +309,10 @@
     padding-right: 15px;
   }
 
+  :global(.flatpickr-current-month .numInputWrapper input.cur-year) {
+    appearance: textfield;
+  }
+
   :global(.flatpickr-current-month
       .numInputWrapper
       input, .flatpickr-current-month .flatpickr-monthDropdown-months:hover) {
@@ -399,11 +400,12 @@
         bind:value={flatPickrDate}
         hidden="hidden" />
       <div class="date-picker-footer">
+        <Button primary={false} onClick={onCancelClick}>Cancel</Button>
         <Button
           onClick={onOkClick}
           bind:button={okButton}
           disabled={isOkButtonDisabled}>
-          OK
+          Apply
         </Button>
       </div>
     </div>
