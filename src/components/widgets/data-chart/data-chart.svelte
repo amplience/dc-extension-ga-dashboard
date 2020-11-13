@@ -16,9 +16,18 @@
 
   let loading = true;
   let chartOptions = {};
+  if (chartType === ChartType.BAR) {
+    chartOptions = {
+      orientation: 'horizontal',
+      colors: ['#058dc7', '#aadff3'],
+    };
+  }
   if (chartType === ChartType.LINE) {
     chartOptions = {
       hAxis: {
+        textStyle: {
+          color: '#999',
+        },
         gridlines: {
           units: {
             days: { format: ['dd MMM'] },
@@ -61,7 +70,7 @@
 <style>
   section {
     background-color: #fff;
-    min-height: 352px;
+    min-height: 300px;
   }
 
   section :global(.widget-body) {

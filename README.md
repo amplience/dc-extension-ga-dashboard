@@ -34,6 +34,8 @@ Additional environments vars
 | CLIENT_ID                      | Client ID for the Hub      | abcdef...                            |
 | CLIENT_SECRET                  | Client Secret              | abdde...                             |
 | LOCATION_HREF                  | Location href of parent    | http://localhost:3000                |
+| BREAKDOWN_CHART_TITLE          | Breakdown chart title      | Breakdown chart                      |
+| BREAKDOWN_CHART_DIMENSION      | Dimension for the chart    | ga:deviceCategory                    |
 | GOOGLE_ANALYTICS_CLIENT_ID     | Google Analytics Client ID | abc123.apps.googleusercontent.com    |
 | GOOGLE_ANALYTICS_VIEW_ID       | Google Analytics View ID   | 1234567890                           |
 | GOOGLE_ANALYTICS_LOCALE        | Google Analytics View ID   | en-GB                                |
@@ -48,6 +50,8 @@ HUB_ID=abcdef
 API_URL=https://api.amplience.net/v2/content
 AUTH_URL=https://auth.adis.ws
 LOCATION_HREF=http://localhost:3000
+BREAKDOWN_CHART_TITLE=Device Breakdown
+BREAKDOWN_CHART_DIMENSION=ga:deviceCategory
 GOOGLE_ANALYTICS_CLIENT_ID=abc123.apps.googleusercontent.com
 GOOGLE_ANALYTICS_VIEW_ID=1234567890
 GOOGLE_ANALYTICS_LOCALE=en-GB

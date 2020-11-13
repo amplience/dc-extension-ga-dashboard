@@ -1,7 +1,5 @@
 import { get, writable } from 'svelte/store';
 import type {
-  Chart,
-  Data,
   DataReportResponse,
   DataReportRow,
   GoogleAnalyticsEmbedAPI,
@@ -54,6 +52,7 @@ export const getDataReport = (
         'start-date': dateRange.from,
         'end-date': dateRange.to,
         filter: gaQueryFilter,
+        z: new Date().valueOf(), // cache-bust
       },
     });
     data
@@ -113,15 +112,29 @@ export const insertDataChart = (
 ): Promise<void> => {
   return new Promise(function (resolve, reject) {
     const chart = new (getGapi().analytics.googleCharts.DataChart)({
-      query,
+      query: {
+        ...query,
+        z: new Date().valueOf(), // cache-bust
+      },
       chart: {
         type: type,
         container: containerId,
         options: {
           fontSize: 12,
+          fontName: 'Roboto',
           width: '100%',
           animation: {
             startup: true,
+          },
+          vAxis: {
+            textStyle: {
+              color: '#999',
+            },
+          },
+          hAxis: {
+            textStyle: {
+              color: '#999',
+            },
           },
           ...options,
         },

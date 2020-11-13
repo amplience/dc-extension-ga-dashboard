@@ -70,8 +70,6 @@
 <style>
   section {
     background-color: #fff;
-    height: 36px;
-    width: 500px;
     padding: 5px;
     position: relative;
     z-index: 3;
@@ -84,6 +82,17 @@
     z-index: 1;
     --webkit-box-shadow: 0 3px 13px rgba(0, 0, 0, 0.2);
     box-shadow: 0 3px 13px rgba(0, 0, 0, 0.2);
+  }
+
+  .selected-edition {
+    display: flex;
+    align-items: center;
+  }
+
+  .edition-filter {
+    display: flex;
+    align-items: center;
+    margin-right: 12px;
   }
 
   .select-filter {
@@ -117,18 +126,17 @@
     margin-right: 12px;
   }
 
-  span.icon-wrapper {
+  div.icon-wrapper {
+    height: 30px;
+    width: 30px;
     padding: 6px;
     background-color: hsl(0, 0%, 90%);
     border-radius: 4px;
     margin-right: 8px;
   }
-  span.icon-wrapper.active :global(svg) {
+
+  div.icon-wrapper.active :global(svg) {
     fill: #039be5;
-  }
-  span.icon-wrapper :global(div) {
-    top: 5px;
-    position: relative;
   }
 </style>
 
@@ -138,10 +146,12 @@
 <section bind:this={sectionElement}>
   {#if $selectedEdition}
     <div class="selected-edition">
-      <span class="icon-wrapper active">
-        <Icon icon={FilterIcon} width="20px" height="20px" />
-      </span>
-      <span>Edition</span>
+      <div class="edition-filter">
+        <div class="icon-wrapper active">
+          <Icon icon={FilterIcon} width="20px" height="20px" />
+        </div>
+        <div>Edition</div>
+      </div>
       <Chip
         label={generateEditionLabel($selectedEdition)}
         removeable={true}
@@ -152,10 +162,12 @@
       data-testid="display-modal-button"
       class="select-filter"
       on:click={showModal}>
-      <span class="icon-wrapper">
-        <Icon icon={FilterIcon} width="20px" height="20px" />
-      </span>
-      <span>No filters applied</span>
+      <div class="edition-filter">
+        <div class="icon-wrapper">
+          <Icon icon={FilterIcon} width="20px" height="20px" />
+        </div>
+        <div>No filters applied</div>
+      </div>
     </div>
   {/if}
   {#if isModalVisible}

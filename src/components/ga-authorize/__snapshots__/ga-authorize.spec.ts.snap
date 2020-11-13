@@ -3,13 +3,13 @@
 exports[`GAAuthorize should render the GAAuthorize component 1`] = `
 <div>
   <div
-    class="svelte-behl35"
+    class="svelte-1i1pnuw"
   >
     <div
-      class="ga-authorize svelte-behl35"
+      class="ga-authorize svelte-1i1pnuw"
     >
       <div
-        class="svelte-behl35"
+        class="auth-button svelte-1i1pnuw"
         id="auth-button"
       />
     </div>

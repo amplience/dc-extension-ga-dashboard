@@ -973,6 +973,8 @@ export interface Query {
   callback?: string;
   /** Optional. Used for OAuth 1.0a authorization to specify your application to get quota. For example: key=AldefliuhSFADSfasdfasdfASdf. */
   key?: string;
+
+  z?: number;
 }
 
 export interface Chart {
