@@ -69,7 +69,7 @@
   },
   "dependencies": {
     "dc-extensions-sdk": "github:amplience/dc-extensions-sdk#feature/CMP-7377",
-    "dc-management-sdk-js": "github:amplience/dc-management-sdk-js#feature/expose-edition-find-by-date",
+    "dc-management-sdk-js": "github:amplience/dc-management-sdk-js#feature/able-to-get-back-to-a-hub",
     "message-event-channel": "^1.1.0",
     "sirv-cli": "^1.0.6"
   },

@@ -4,6 +4,7 @@
   import { createEventDispatcher, onMount } from 'svelte';
   import { hub } from '../../stores/dynamic-content';
   import Loader from '../loader/loader.svelte';
+
   export let selectedEdition;
   let selectValue;
   let loaded = false;
@@ -33,7 +34,7 @@
     const results = (
       await $hub.related.editions.findByDate(
         {
-          rangeEnd: new Date().toISOString(),
+          rangeStart: '1970-01-01T00:00:00.000Z',
           size: 100,
           bounded: true,
           sort: 'start,desc',
@@ -69,6 +70,21 @@
 
   * :global(select, .select-width) {
     min-width: 600px !important;
+  }
+
+  .container
+    :global(.mdc-select:not(.mdc-select--disabled).mdc-select--focused
+      .mdc-line-ripple) {
+    background-color: transparent;
+    border-bottom: 3px solid #42a5f5;
+  }
+
+  .container :global(.mdc-select__selected-text) {
+    padding-bottom: 0;
+  }
+
+  .container :global(.mdc-line-ripple) {
+    padding-top: 0;
   }
 </style>
 
