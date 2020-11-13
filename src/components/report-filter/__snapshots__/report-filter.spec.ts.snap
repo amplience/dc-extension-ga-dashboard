@@ -4,30 +4,32 @@ exports[`ReportFilter component should render initial state when a selectedEditi
 <div>
    
   <section
-    class="svelte-oi6i0s"
+    class="svelte-1htar53"
   >
     <div
-      class="select-filter svelte-oi6i0s"
+      class="select-filter svelte-1htar53"
       data-testid="display-modal-button"
     >
-      <span
-        class="icon-wrapper svelte-oi6i0s"
+      <div
+        class="edition-filter svelte-1htar53"
       >
         <div
-          class=" svelte-zpbvvv"
-          style="--icon-width: 20px; --icon-height: 20px;"
+          class="icon-wrapper svelte-1htar53"
         >
-          <object
-            src="ic-filter.svg/"
-          />
+          <div
+            class=" svelte-zpbvvv"
+            style="--icon-width: 20px; --icon-height: 20px;"
+          >
+            <object
+              src="ic-filter.svg/"
+            />
+          </div>
         </div>
-      </span>
-       
-      <span
-        class="svelte-oi6i0s"
-      >
-        No filters applied
-      </span>
+         
+        <div>
+          No filters applied
+        </div>
+      </div>
     </div>
      
   </section>
@@ -38,30 +40,32 @@ exports[`ReportFilter component should render the ReportFilter component no sele
 <div>
    
   <section
-    class="svelte-oi6i0s"
+    class="svelte-1htar53"
   >
     <div
-      class="select-filter svelte-oi6i0s"
+      class="select-filter svelte-1htar53"
       data-testid="display-modal-button"
     >
-      <span
-        class="icon-wrapper svelte-oi6i0s"
+      <div
+        class="edition-filter svelte-1htar53"
       >
         <div
-          class=" svelte-zpbvvv"
-          style="--icon-width: 20px; --icon-height: 20px;"
+          class="icon-wrapper svelte-1htar53"
         >
-          <object
-            src="ic-filter.svg/"
-          />
+          <div
+            class=" svelte-zpbvvv"
+            style="--icon-width: 20px; --icon-height: 20px;"
+          >
+            <object
+              src="ic-filter.svg/"
+            />
+          </div>
         </div>
-      </span>
-       
-      <span
-        class="svelte-oi6i0s"
-      >
-        No filters applied
-      </span>
+         
+        <div>
+          No filters applied
+        </div>
+      </div>
     </div>
      
   </section>
@@ -72,38 +76,44 @@ exports[`ReportFilter component should render the ReportFilter component with a 
 <div>
    
   <section
-    class="svelte-oi6i0s"
+    class="svelte-1htar53"
   >
     <div
-      class="selected-edition"
+      class="selected-edition svelte-1htar53"
     >
-      <span
-        class="icon-wrapper active svelte-oi6i0s"
+      <div
+        class="edition-filter svelte-1htar53"
       >
         <div
-          class=" svelte-zpbvvv"
-          style="--icon-width: 20px; --icon-height: 20px;"
+          class="icon-wrapper active svelte-1htar53"
         >
-          <object
-            src="ic-filter.svg/"
-          />
+          <div
+            class=" svelte-zpbvvv"
+            style="--icon-width: 20px; --icon-height: 20px;"
+          >
+            <object
+              src="ic-filter.svg/"
+            />
+          </div>
         </div>
-      </span>
+         
+        <div>
+          Edition
+        </div>
+      </div>
        
-      <span
-        class="svelte-oi6i0s"
+      <div
+        class="svelte-1gdb3z"
       >
-        Edition
-      </span>
-       
-      <span
-        class=" svelte-dk7ls5"
-        data-testid="chip"
-      >
-        Test Event / Test Edition
+        <span
+          class="label svelte-1gdb3z"
+          data-testid="chip"
+        >
+          Test Event / Test Edition
+        </span>
          
         <span
-          class="cross svelte-dk7ls5"
+          class="cross svelte-1gdb3z"
           data-testid="remove-chip-button"
         >
           <div
@@ -115,7 +125,7 @@ exports[`ReportFilter component should render the ReportFilter component with a 
             />
           </div>
         </span>
-      </span>
+      </div>
       
     </div>
      

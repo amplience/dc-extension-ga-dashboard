@@ -13,16 +13,20 @@
 </script>
 
 <style>
-  span {
+  div {
+    min-width: 0;
+    display: flex;
     background-color: hsl(0, 0%, 95%);
     padding: 4px 8px;
-    margin-right: 12px;
     border-radius: 12px;
   }
 
-  span:last-child {
-    margin-right: 0;
+  span.label {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
+
   span.active {
     background-color: #039be5;
     color: #fff;
@@ -36,6 +40,7 @@
   span.cross {
     cursor: pointer;
     font-weight: bold;
+    padding: 0 8px;
   }
 
   span.cross :global(div) {
@@ -45,23 +50,27 @@
 </style>
 
 {#if removeable}
-  <span
-    data-testid="chip"
-    on:click={onChipClick}
-    class={active ? 'active' : ''}>
-    {label}
+  <div>
+    <span
+      data-testid="chip"
+      on:click={onChipClick}
+      class={active ? 'active label' : 'label'}>
+      {label}
+    </span>
     <span
       data-testid="remove-chip-button"
       class="cross"
       on:click={onCloseClick}>
       <Icon icon={DeleteIcon} width="12px" height="12px" />
     </span>
-  </span>
+  </div>
 {:else}
-  <span
-    data-testid="chip"
-    on:click={onChipClick}
-    class={active ? 'active clickable' : 'clickable'}>
-    {label}
-  </span>
+  <div>
+    <span
+      data-testid="chip"
+      on:click={onChipClick}
+      class={active ? 'active clickable' : 'clickable'}>
+      {label}
+    </span>
+  </div>
 {/if}
