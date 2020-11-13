@@ -71,6 +71,21 @@
   * :global(select, .select-width) {
     min-width: 600px !important;
   }
+
+  .container
+    :global(.mdc-select:not(.mdc-select--disabled).mdc-select--focused
+      .mdc-line-ripple) {
+    background-color: transparent;
+    border-bottom: 3px solid #42a5f5;
+  }
+
+  .container :global(.mdc-select__selected-text) {
+    padding-bottom: 0;
+  }
+
+  .container :global(.mdc-line-ripple) {
+    padding-top: 0;
+  }
 </style>
 
 <div class="container">
