@@ -90,7 +90,7 @@
     <WidgetBody>
       <section class="ga-chart">
         {#if loading}
-          <Loader />
+          <Loader zIndex={1} />
         {/if}
         <div id={containerId} />
       </section>
