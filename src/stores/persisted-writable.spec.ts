@@ -11,7 +11,7 @@ describe('persisted writable', () => {
   beforeEach(() => {
     hub.set(testHub);
     jest.clearAllMocks();
-    localStorage.clear();
+    sessionStorage.clear();
   });
 
   it('should return a svelte writeable', () => {
@@ -21,37 +21,37 @@ describe('persisted writable', () => {
     expect(result.subscribe).toBeDefined();
   });
 
-  it('should load the value using the localstorage - null', () => {
+  it('should load the value using the sessionStorage - null', () => {
     const key = 'a-key';
 
     const store = persistedWritable(key, null);
     expect(get(store)).toEqual(null);
-    expect(localStorage.getItem).toHaveBeenLastCalledWith(
+    expect(sessionStorage.getItem).toHaveBeenLastCalledWith(
       `${PREFIX}${testHub.name}-${key}`
     );
   });
 
-  it('should load the value using the localstorage - string', () => {
+  it('should load the value using the sessionStorage - string', () => {
     setAndGetFromStore('a string');
   });
 
-  it('should load the value using the localstorage - bool (true)', () => {
+  it('should load the value using the sessionStorage - bool (true)', () => {
     setAndGetFromStore(true);
   });
 
-  it('should load the value using the localstorage - bool (false)', () => {
+  it('should load the value using the sessionStorage - bool (false)', () => {
     setAndGetFromStore(false);
   });
 
-  it('should load the value using the localstorage - number', () => {
+  it('should load the value using the sessionStorage - number', () => {
     setAndGetFromStore(123);
   });
 
-  it('should load the value using the localstorage - array', () => {
+  it('should load the value using the sessionStorage - array', () => {
     setAndGetFromStore(['a', 123, false, true, {}, []]);
   });
 
-  it('should load the value using the localstorage - object', () => {
+  it('should load the value using the sessionStorage - object', () => {
     setAndGetFromStore({ a: 'a', b: 123, c: false });
   });
 });
@@ -61,15 +61,15 @@ function setAndGetFromStore(value: unknown) {
   persistedWritable(key, value);
   const store = persistedWritable(key, null);
   expect(get(store)).toEqual(value);
-  expect(localStorage.getItem).toHaveBeenCalledWith(
+  expect(sessionStorage.getItem).toHaveBeenCalledWith(
     `${PREFIX}${testHub.name}-${key}`
   );
 
-  expect(localStorage.setItem).toHaveBeenCalledWith(
+  expect(sessionStorage.setItem).toHaveBeenCalledWith(
     `${PREFIX}${testHub.name}-${key}`,
     JSON.stringify(value)
   );
-  expect(localStorage.getItem).toHaveBeenCalledWith(
+  expect(sessionStorage.getItem).toHaveBeenCalledWith(
     `${PREFIX}${testHub.name}-${key}`
   );
 }

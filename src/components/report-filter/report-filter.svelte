@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { dateRange, INITIAL_DATE_RANGE } from '../../stores/date-range';
+  import { dateRange, INITIAL_DATE_RANGE, NOW } from '../../stores/date-range';
   import { createEventDispatcher, onMount } from 'svelte';
   import WidgetHeader from '../widget/widget-header/widget-header.svelte';
   import WidgetBody from '../widget/widget-body/widget-body.svelte';
@@ -37,7 +37,7 @@
     isModalVisible = false;
     $selectedEdition = uncomittedEdition;
     const updatedDateRange = {
-      ...INITIAL_DATE_RANGE,
+      to: formatDateAsISOString(new Date(NOW)),
       from: formatDateAsISOString(new Date($selectedEdition.start)),
     };
     if ($selectedEdition.activeEndDate) {

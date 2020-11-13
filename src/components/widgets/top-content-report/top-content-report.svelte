@@ -1,9 +1,4 @@
 <script lang="ts">
-  import { onMount } from 'svelte';
-  import type {
-    Data,
-    DataReportResponse,
-  } from '../../../definitions/google-analytics-embed-api';
   import { dateRange } from '../../../stores/date-range';
   import { getDataReport, processReportData } from '../../../stores/gapi';
   import type { ReportData } from '../../../stores/gapi';
@@ -22,37 +17,27 @@
   import { gaQueryFilter } from '../../../stores/ga-query-filters';
 
   let reportData: ReportData[];
-  let report: Data;
+  let loading = true;
 
-  onMount(() => {
-    report = getDataReport(
-      $gaViewId,
-      $contentItemIdMapping,
-      $topContentReportShowCount,
-      $dateRange,
-      $gaQueryFilter
-    );
+  $: (async () => {
+    try {
+      loading = true;
+      const data = await getDataReport(
+        $gaViewId,
+        $contentItemIdMapping,
+        $topContentReportShowCount,
+        $dateRange,
+        $gaQueryFilter
+      );
 
-    report.on('success', (response: DataReportResponse) => {
-      reportData = processReportData(response);
-    });
-
-    report.execute();
-  });
-
-  $: {
-    if (report) {
-      report.set({
-        query: {
-          'max-results': $topContentReportShowCount,
-          'start-date': $dateRange.from,
-          'end-date': $dateRange.to,
-          filters: $gaQueryFilter,
-        },
-      });
-      report.execute();
+      reportData = processReportData(data);
+    } catch (e) {
+      console.error(`Unable to get report data: ${e?.error?.message}`);
+      reportData = [];
+    } finally {
+      loading = false;
     }
-  }
+  })();
 </script>
 
 <style>
@@ -80,7 +65,7 @@
       </div>
     </WidgetHeader>
     <WidgetBody>
-      <ReportTable data={reportData} {config} />
+      <ReportTable data={reportData} {config} {loading} />
     </WidgetBody>
   </Widget>
 </section>

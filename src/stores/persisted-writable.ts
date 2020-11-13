@@ -12,13 +12,13 @@ export function persistedWritable<T>(key: string, value: T): Writable<T> {
 
     const localStorageKey = `${PREFIX}${selectedHub?.name}-${key}`;
 
-    const newValue = localStorage.getItem(localStorageKey);
+    const newValue = sessionStorage.getItem(localStorageKey);
     if (newValue) {
       svelteStore.set(JSON.parse(newValue));
     }
 
     svelteStore.subscribe((value) => {
-      localStorage.setItem(localStorageKey, JSON.stringify(value));
+      sessionStorage.setItem(localStorageKey, JSON.stringify(value));
     });
   });
 
