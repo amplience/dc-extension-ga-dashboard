@@ -7,6 +7,12 @@ import type {
 } from '../definitions/google-analytics-embed-api';
 import type { DateRange } from './date-range';
 
+export class RequestTimeout extends Error {
+  constructor(message: string) {
+    super(message);
+  }
+}
+
 export type ReportData = [
   string,
   number,
@@ -41,6 +47,7 @@ export const getDataReport = (
   gaQueryFilter?: string
 ): Promise<DataReportResponse> => {
   return new Promise(function (resolve, reject) {
+    let requestTimeout;
     const data = new (getGapi().analytics.report.Data)({
       query: {
         ids: `ga:${gaViewId}`,
@@ -56,12 +63,15 @@ export const getDataReport = (
     });
     data
       .once('success', function (response) {
+        clearTimeout(requestTimeout)
         resolve(response);
       })
       .once('error', function (response) {
         reject(response);
       })
       .execute();
+
+    requestTimeout = setTimeout(() => reject(new RequestTimeout('GAPI failed to respond within 1 second')), 1000);
   });
 };
 
