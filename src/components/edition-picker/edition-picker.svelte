@@ -102,7 +102,7 @@
   {:else if publishedEditions.length === 0}
     <div>
       <h3 data-testid="no-published-editions">
-        Cannot find any published editions
+        No live Editions currently exist for this hub
       </h3>
     </div>
   {:else}
