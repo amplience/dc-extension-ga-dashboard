@@ -59,6 +59,9 @@ export default {
       __STANDALONE__: () => process.env.STANDALONE,
       __DOCS_BASE_URL__: () => process.env.DOCS_BASE_URL,
       __LOCATION_HREF__: () => process.env.LOCATION_HREF,
+      __BREAKDOWN_CHART_TITLE__: () => process.env.BREAKDOWN_CHART_TITLE,
+      __BREAKDOWN_CHART_DIMENSION__: () =>
+        process.env.BREAKDOWN_CHART_DIMENSION,
       __GOOGLE_ANALYTICS_CLIENT_ID__: () =>
         process.env.GOOGLE_ANALYTICS_CLIENT_ID || '',
       __GOOGLE_ANALYTICS_VIEW_ID__: () =>

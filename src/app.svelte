@@ -67,7 +67,7 @@
     padding-top: 0px;
     background-color: #f2f2f2;
   }
-  :global(*) {
+  :global(*:not(text)) {
     font: 400 13px 'Roboto', sans-serif;
     box-sizing: border-box;
   }
@@ -103,11 +103,11 @@
     grid-row-gap: 16px;
     grid-auto-rows: auto;
     grid-template-rows: 1fr;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     grid-template-areas:
-      'overview breakdown'
-      'top-content-report top-content-report'
-      'top-editions-report top-editions-report';
+      'overview overview breakdown'
+      'top-content-report top-content-report top-content-report'
+      'top-editions-report top-editions-report top-editions-report';
     align-items: flex-start;
   }
 
@@ -140,7 +140,7 @@
             chartType={ChartType.LINE} />
           <DataChart
             className="breakdown"
-            title="Breakdown"
+            title={$breakdownChart.title}
             dimensions={$breakdownChart.dimension}
             chartType={ChartType.BAR} />
           {#if $contentItemIdMapping}

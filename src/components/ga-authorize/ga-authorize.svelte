@@ -25,7 +25,6 @@
     display: flex;
     flex-direction: row;
     width: 100%;
-    background-color: white;
   }
 
   .ga-authorize {
@@ -34,10 +33,14 @@
     align-items: center;
     padding: 120px 0 120px 0;
   }
+
+  .auth-button {
+    justify-content: center;
+  }
 </style>
 
 <div>
   <div class="ga-authorize">
-    <div id="auth-button" />
+    <div id="auth-button" class="auth-button" />
   </div>
 </div>

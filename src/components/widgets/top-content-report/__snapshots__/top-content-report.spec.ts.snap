@@ -91,6 +91,7 @@ exports[`TopContentReport should render the TopContentReport component 1`] = `
       <section
         class="widget-body svelte-4p1s5s"
       >
+         
         <div
           class="no-data-container svelte-1kq81j9"
         >

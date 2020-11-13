@@ -16,12 +16,14 @@ exports[`ReportTable should render the ReportTable component in a loading state 
       class="spinner dot-2 svelte-wkqaim"
     />
   </div>
+   
   
 </div>
 `;
 
 exports[`ReportTable should render the ReportTable component in a no data state 1`] = `
 <div>
+   
   <div
     class="no-data-container svelte-1kq81j9"
   >
@@ -35,6 +37,7 @@ exports[`ReportTable should render the ReportTable component in a no data state 
 
 exports[`ReportTable should render the ReportTable component with data 1`] = `
 <div>
+   
   <div
     class="data-table svelte-2e8um5"
   >
@@ -90,6 +93,7 @@ exports[`ReportTable should render the ReportTable component with data 1`] = `
 
 exports[`ReportTable should render the ReportTable component with data and a custom component 1`] = `
 <div>
+   
   <div
     class="data-table svelte-2e8um5"
   >
