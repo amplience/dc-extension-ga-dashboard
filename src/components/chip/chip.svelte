@@ -27,14 +27,14 @@
     text-overflow: ellipsis;
   }
 
-  span.active {
+  div.active {
     background-color: #039be5;
     color: #fff;
   }
-  span.clickable {
+  div.clickable {
     cursor: pointer;
   }
-  span.clickable:hover {
+  div.clickable:hover {
     background-color: #badff9;
   }
   span.cross {
@@ -50,13 +50,8 @@
 </style>
 
 {#if removeable}
-  <div>
-    <span
-      data-testid="chip"
-      on:click={onChipClick}
-      class={active ? 'active label' : 'label'}>
-      {label}
-    </span>
+  <div data-testid="chip" on:click={onChipClick} class={active ? 'active' : ''}>
+    <span class="label"> {label} </span>
     <span
       data-testid="remove-chip-button"
       class="cross"
@@ -65,12 +60,10 @@
     </span>
   </div>
 {:else}
-  <div>
-    <span
-      data-testid="chip"
-      on:click={onChipClick}
-      class={active ? 'active clickable' : 'clickable'}>
-      {label}
-    </span>
+  <div
+    data-testid="chip"
+    on:click={onChipClick}
+    class={active ? 'active clickable' : 'clickable'}>
+    <span> {label} </span>
   </div>
 {/if}
