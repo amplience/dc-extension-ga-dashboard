@@ -87,16 +87,13 @@
   .selected-edition {
     display: flex;
     align-items: center;
+    cursor: pointer;
   }
 
   .edition-filter {
     display: flex;
     align-items: center;
     margin-right: 12px;
-  }
-
-  .select-filter {
-    cursor: pointer;
   }
 
   section :global(.widget-header [slot='title'] h3) {
@@ -144,32 +141,27 @@
   <Overlay onClick={onCancelClick} />
 {/if}
 <section bind:this={sectionElement}>
-  {#if $selectedEdition}
-    <div class="selected-edition">
-      <div class="edition-filter">
-        <div class="icon-wrapper active">
-          <Icon icon={FilterIcon} width="20px" height="20px" />
-        </div>
-        <div>Edition</div>
+  <div class="selected-edition">
+    <div
+      class="edition-filter"
+      data-testid="display-modal-button"
+      on:click={showModal}>
+      <div class={$selectedEdition ? 'active icon-wrapper' : ''}>
+        <Icon icon={FilterIcon} width="20px" height="20px" />
       </div>
+      <div>
+        {#if $selectedEdition}Edition{:else}No filters applied{/if}
+      </div>
+    </div>
+    {#if $selectedEdition}
       <Chip
         label={generateEditionLabel($selectedEdition)}
         removeable={true}
-        on:close={resetFilter} />
-    </div>
-  {:else}
-    <div
-      data-testid="display-modal-button"
-      class="select-filter"
-      on:click={showModal}>
-      <div class="edition-filter">
-        <div class="icon-wrapper">
-          <Icon icon={FilterIcon} width="20px" height="20px" />
-        </div>
-        <div>No filters applied</div>
-      </div>
-    </div>
-  {/if}
+        on:close={resetFilter}
+        on:click={showModal}
+        clickable={true} />
+    {/if}
+  </div>
   {#if isModalVisible}
     <div class="modal-popup" style={modalPositionStyle}>
       <Widget>

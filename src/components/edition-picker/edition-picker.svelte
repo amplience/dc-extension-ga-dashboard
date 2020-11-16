@@ -28,6 +28,9 @@
     if ($hub) {
       loadEditions();
     }
+    if (selectedEdition) {
+      selectValue = selectedEdition.id;
+    }
   });
 
   async function loadEditions() {
@@ -45,6 +48,14 @@
     publishedEditions = results.filter(
       (edition) => edition.publishingStatus === 'PUBLISHED'
     );
+
+    if (
+      selectedEdition &&
+      !publishedEditions.find((edition) => edition.id === selectedEdition.id)
+    ) {
+      publishedEditions.push(selectedEdition);
+    }
+
     loaded = true;
   }
 </script>
@@ -119,8 +130,9 @@
         menu$class="select-width">
         {#each publishedEditions as edition}
           <Option
+            data-wibble={selectValue + ' ' + edition.id}
             value={edition.id}
-            selected={selectedEdition ? selectedEdition.id === edition.id : false}>
+            selected={selectValue === edition.id || false}>
             {edition.event.name}
             /
             {edition.name}
