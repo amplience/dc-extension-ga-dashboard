@@ -33,6 +33,27 @@ const getGapi = (): GoogleAnalyticsEmbedAPI => {
   return get(gapi) as GoogleAnalyticsEmbedAPI;
 };
 
+export const buildDataReportQuery = (
+  gaViewId: string,
+  dimension: string,
+  limit: number,
+  dateRange: DateRange,
+  gaQueryFilter: string = undefined,
+  cacheBust: number = undefined
+): Query => {
+  return {
+    ids: `ga:${gaViewId}`,
+    metrics: 'ga:totalEvents,ga:uniqueEvents,ga:eventValue,ga:avgEventValue',
+    dimensions: `ga:${dimension}`,
+    sort: '-ga:totalEvents',
+    'max-results': limit,
+    'start-date': dateRange.from,
+    'end-date': dateRange.to,
+    filters: gaQueryFilter,
+    z: cacheBust,
+  };
+};
+
 export const getDataReport = (
   gaViewId: string,
   dimension: string,
@@ -40,22 +61,16 @@ export const getDataReport = (
   dateRange: DateRange,
   gaQueryFilter?: string
 ): Promise<DataReportResponse> => {
+  const query = buildDataReportQuery(
+    gaViewId,
+    dimension,
+    limit,
+    dateRange,
+    gaQueryFilter,
+    new Date().valueOf()
+  );
   return new Promise(function (resolve, reject) {
-    const data = new (getGapi().analytics.report.Data)({
-      query: {
-        ids: `ga:${gaViewId}`,
-        metrics:
-          'ga:totalEvents,ga:uniqueEvents,ga:eventValue,ga:avgEventValue',
-        dimensions: `ga:${dimension}`,
-        sort: '-ga:totalEvents',
-        'max-results': limit,
-        'start-date': dateRange.from,
-        'end-date': dateRange.to,
-        filter: gaQueryFilter,
-        z: new Date().valueOf(), // cache-bust
-      },
-    });
-    data
+    new (getGapi().analytics.report.Data)({ query })
       .once('success', function (response) {
         resolve(response);
       })
