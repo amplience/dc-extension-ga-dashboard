@@ -68,7 +68,7 @@
     font-size: 15px;
   }
 
-  * :global(select, .select-width) {
+  .container :global(select, .select-width) {
     min-width: 600px !important;
   }
 
@@ -81,6 +81,10 @@
 
   .container :global(.mdc-select__selected-text) {
     padding-bottom: 0;
+    max-width: 715px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
   }
 
   .container :global(.mdc-line-ripple) {
@@ -98,7 +102,7 @@
   {:else if publishedEditions.length === 0}
     <div>
       <h3 data-testid="no-published-editions">
-        Cannot find any published editions
+        No live Editions currently exist for this hub
       </h3>
     </div>
   {:else}

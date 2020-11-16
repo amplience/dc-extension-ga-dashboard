@@ -39,6 +39,27 @@ const getGapi = (): GoogleAnalyticsEmbedAPI => {
   return get(gapi) as GoogleAnalyticsEmbedAPI;
 };
 
+export const buildDataReportQuery = (
+  gaViewId: string,
+  dimension: string,
+  limit: number,
+  dateRange: DateRange,
+  gaQueryFilter: string = undefined,
+  cacheBust: number = undefined
+): Query => {
+  return {
+    ids: `ga:${gaViewId}`,
+    metrics: 'ga:totalEvents,ga:uniqueEvents,ga:eventValue,ga:avgEventValue',
+    dimensions: `ga:${dimension}`,
+    sort: '-ga:totalEvents',
+    'max-results': limit,
+    'start-date': dateRange.from,
+    'end-date': dateRange.to,
+    filters: gaQueryFilter,
+    z: cacheBust,
+  };
+};
+
 export const getDataReport = (
   gaViewId: string,
   dimension: string,
@@ -46,32 +67,29 @@ export const getDataReport = (
   dateRange: DateRange,
   gaQueryFilter?: string
 ): Promise<DataReportResponse> => {
+  const query = buildDataReportQuery(
+    gaViewId,
+    dimension,
+    limit,
+    dateRange,
+    gaQueryFilter,
+    new Date().valueOf()
+  );
   return new Promise(function (resolve, reject) {
-    let requestTimeout;
-    const data = new (getGapi().analytics.report.Data)({
-      query: {
-        ids: `ga:${gaViewId}`,
-        metrics:
-          'ga:totalEvents,ga:uniqueEvents,ga:eventValue,ga:avgEventValue',
-        dimensions: `ga:${dimension}`,
-        sort: '-ga:totalEvents',
-        'max-results': limit,
-        'start-date': dateRange.from,
-        'end-date': dateRange.to,
-        filter: gaQueryFilter,
-      },
-    });
-    data
+    const requestTimeout = setTimeout(
+      () =>
+        reject(new RequestTimeout('GAPI failed to respond within 1 second')),
+      1000
+    );
+    new (getGapi().analytics.report.Data)({ query })
       .once('success', function (response) {
-        clearTimeout(requestTimeout)
+        clearTimeout(requestTimeout);
         resolve(response);
       })
       .once('error', function (response) {
         reject(response);
       })
       .execute();
-
-    requestTimeout = setTimeout(() => reject(new RequestTimeout('GAPI failed to respond within 1 second')), 1000);
   });
 };
 
@@ -121,7 +139,10 @@ export const insertDataChart = (
 ): Promise<void> => {
   return new Promise(function (resolve, reject) {
     const chart = new (getGapi().analytics.googleCharts.DataChart)({
-      query,
+      query: {
+        ...query,
+        z: new Date().valueOf(), // cache-bust
+      },
       chart: {
         type: type,
         container: containerId,
