@@ -1,10 +1,6 @@
 <script lang="ts">
   import { dateRange } from '../../../stores/date-range';
-  import {
-    ChartType,
-    insertDataChart,
-    RequestTimeout,
-  } from '../../../stores/gapi';
+  import { ChartType, insertDataChart } from '../../../stores/gapi';
   import { gaViewId } from '../../../stores/google-analytics';
   import Loader from '../../loader/loader.svelte';
   import WidgetBody from '../../widget/widget-body/widget-body.svelte';
@@ -52,7 +48,8 @@
   }
 
   $: (async () => {
-    const loadChart = async () => {
+    try {
+      loading = true;
       await insertDataChart(
         {
           ids: $gaViewId,
@@ -66,16 +63,8 @@
         chartType,
         chartOptions
       );
-    };
-    try {
-      loading = true;
-      await loadChart();
     } catch (e) {
-      if (!(e instanceof RequestTimeout)) {
-        console.error(`Unable to load chart data: ${e?.error?.message}`);
-        return;
-      }
-      await loadChart();
+      console.error(`Unable to load chart data: ${e?.error?.message}`);
     } finally {
       loading = false;
     }
