@@ -14,6 +14,10 @@ Array [
     "ga-chart-breakdown",
     "BAR",
     Object {
+      "chartArea": Object {
+        "left": 50,
+        "right": 20,
+      },
       "colors": Array [
         "#058dc7",
         "#aadff3",
@@ -84,6 +88,10 @@ Array [
     "ga-chart-breakdown",
     "BAR",
     Object {
+      "chartArea": Object {
+        "left": 50,
+        "right": 20,
+      },
       "colors": Array [
         "#058dc7",
         "#aadff3",
@@ -103,6 +111,10 @@ Array [
     "ga-chart-breakdown",
     "BAR",
     Object {
+      "chartArea": Object {
+        "left": 50,
+        "right": 20,
+      },
       "colors": Array [
         "#058dc7",
         "#aadff3",
@@ -127,6 +139,10 @@ Array [
     "ga-chart-breakdown",
     "BAR",
     Object {
+      "chartArea": Object {
+        "left": 50,
+        "right": 20,
+      },
       "colors": Array [
         "#058dc7",
         "#aadff3",
@@ -146,6 +162,10 @@ Array [
     "ga-chart-breakdown",
     "BAR",
     Object {
+      "chartArea": Object {
+        "left": 50,
+        "right": 20,
+      },
       "colors": Array [
         "#058dc7",
         "#aadff3",

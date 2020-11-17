@@ -135,6 +135,10 @@ export const insertDataChart = (
         type: type,
         container: containerId,
         options: {
+          chartArea: {
+            left: 50,
+            right: 20,
+          },
           fontSize: 12,
           fontName: 'Roboto',
           width: '100%',
@@ -142,6 +146,7 @@ export const insertDataChart = (
             startup: true,
           },
           vAxis: {
+            textPosition: 'out',
             textStyle: {
               color: '#999',
             },
