@@ -24,6 +24,10 @@
     chartOptions = {
       orientation: 'horizontal',
       colors: ['#058dc7', '#aadff3'],
+      chartArea: {
+        left: 50,
+        right: 20,
+      },
     };
   }
   if (chartType === ChartType.LINE) {
