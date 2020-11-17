@@ -73,6 +73,7 @@ export default {
       'process.env.NODE_ENV': JSON.stringify(
         production ? 'production' : 'development'
       ),
+      __GOOGLE_ANALYTICS_TIMEOUT__: () => process.env.GOOGLE_ANALYTICS_TIMEOUT,
     }),
     svelte({
       // enable run-time checks when not in production
