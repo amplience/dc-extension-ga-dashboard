@@ -9,7 +9,10 @@ import {
 } from '../../../stores/google-analytics';
 import { selectedEdition } from '../../../stores/selected-edition';
 import { Edition } from 'dc-management-sdk-js';
+import { backOff } from 'exponential-backoff';
 
+jest.mock('exponential-backoff');
+(backOff as jest.Mock).mockImplementation((fn) => fn());
 jest.mock('../../../stores/gapi');
 
 describe('DataChart', () => {
