@@ -4,8 +4,6 @@ import { tick } from 'svelte';
 import { dateRange } from '../../stores/date-range';
 import { formatDateAsISOString } from '../../utils/date-format';
 
-// jest.mock('svelte-flatpickr');
-
 describe('DateRangePicker', () => {
   it('should render a DateRangePicker inputs with the given date range', async () => {
     dateRange.set({
