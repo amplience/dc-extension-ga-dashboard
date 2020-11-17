@@ -13,8 +13,8 @@
     padding: 0 14px 14px 14px;
   }
 
-  .data-table-slot.scrollable > :global(.data-table-body) {
-    min-height: 200px;
+  :global(.data-table-slot.secondary .data-table-row:last-child) {
+    border-bottom: none;
   }
 </style>
 

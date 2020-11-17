@@ -1,20 +1,20 @@
 <script lang="ts">
   import type { ReportData } from '../../../stores/gapi';
-  import { ChartType } from '../../../stores/gapi';
-  import { breakdownChart } from '../../../stores/google-analytics';
   import { reportTableExpandedRows } from '../../../stores/report-table-expanded-rows';
 
   import { Body, Cell, DataTable, Head, Row } from '../../data-table';
   import ExpandableRow from '../../data-table/expandable-row/expandable-row.svelte';
   import Loader from '../../loader/loader.svelte';
   import NoDataPlaceholder from '../../no-data-placeholder/no-data-placeholder.svelte';
-  import DataChart from '../data-chart/data-chart.svelte';
+  import BreakdownTable from './breakdown-table/breakdown-table.svelte';
+  import type { GetBreakdownData } from './breakdown-table/get-breakdown-data';
   import type { TableConfig } from './table-config.interface';
 
   export let data: ReportData[];
   export let config: TableConfig;
   export let loading = false;
-  export let dimension;
+  export let getBreakdownData: GetBreakdownData = undefined;
+  export let breakdownTableConfig: TableConfig = undefined;
 
   const onExpandedRowClick = (
     event: Event & { detail: { expanded: boolean; id: string } }
@@ -42,9 +42,6 @@
     justify-content: flex-end;
     margin: 8px 0;
   }
-  div[slot='expandable-content'] {
-    margin: 0 28px;
-  }
   div[slot='expandable-content'] :global(.title h2) {
     font-size: 1.2em;
   }
@@ -65,33 +62,48 @@
       </Row>
     </Head>
     <Body>
-      {#each data as cells, rowIndex}
-        <ExpandableRow
-          let:expanded
-          expanded={getExpandedRowStateFor(cells[0])}
-          id={cells[0]}
-          on:click={onExpandedRowClick}>
-          {#each config.columns as column, columnIndex}
-            <Cell width={column.width} align={column.align}>
-              {#if column.component}
-                <svelte:component
-                  this={column.component}
-                  value={cells[columnIndex]}
-                  index={rowIndex}
-                  {expanded} />
-              {:else}{cells[columnIndex]}{/if}
-            </Cell>
-          {/each}
-          <div slot="expandable-content">
-            <DataChart
-              className={'breakdown' + cells[0]}
-              title="Breakdown"
-              dimensions={$breakdownChart.dimension}
-              chartType={ChartType.BAR}
-              additionalFilters={[`ga:${dimension}==${cells[0]}`]} />
-          </div>
-        </ExpandableRow>
-      {/each}
+      {#if getBreakdownData && breakdownTableConfig}
+        {#each data as cells, rowIndex}
+          <ExpandableRow
+            let:expanded
+            expanded={getExpandedRowStateFor(cells[0])}
+            id={cells[0]}
+            on:click={onExpandedRowClick}>
+            {#each config.columns as column, columnIndex}
+              <Cell width={column.width} align={column.align}>
+                {#if column.component}
+                  <svelte:component
+                    this={column.component}
+                    value={cells[columnIndex]}
+                    index={rowIndex}
+                    {expanded} />
+                {:else}{cells[columnIndex]}{/if}
+              </Cell>
+            {/each}
+            <div slot="expandable-content">
+              <BreakdownTable
+                id={cells[0]}
+                {getBreakdownData}
+                config={breakdownTableConfig} />
+            </div>
+          </ExpandableRow>
+        {/each}
+      {:else}
+        {#each data as cells, rowIndex}
+          <Row>
+            {#each config.columns as column, columnIndex}
+              <Cell width={column.width} align={column.align}>
+                {#if column.component}
+                  <svelte:component
+                    this={column.component}
+                    value={cells[columnIndex]}
+                    index={rowIndex} />
+                {:else}{cells[columnIndex]}{/if}
+              </Cell>
+            {/each}
+          </Row>
+        {/each}
+      {/if}
     </Body>
   </DataTable>
 {:else if !loading}

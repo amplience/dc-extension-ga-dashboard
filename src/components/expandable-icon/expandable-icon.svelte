@@ -7,6 +7,9 @@
 </script>
 
 <style>
+  div {
+    margin: auto 0;
+  }
   div,
   div > :global(svg) {
     fill: #333;

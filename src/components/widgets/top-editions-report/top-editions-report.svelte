@@ -24,7 +24,7 @@
         $editionIdMapping,
         $topEditionReportShowCount,
         $dateRange,
-        $gaQueryFilter.join(',')
+        $gaQueryFilter
       );
 
       reportData = processReportData(data);
@@ -62,7 +62,7 @@
       </div>
     </WidgetHeader>
     <WidgetBody>
-      <ReportTable data={reportData} dimension={$editionIdMapping} {config} {loading} />
+      <ReportTable data={reportData} {config} {loading} />
     </WidgetBody>
   </Widget>
 </section>

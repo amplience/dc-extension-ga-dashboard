@@ -39,11 +39,11 @@ exports[`ReportTable should render the ReportTable component with data 1`] = `
 <div>
    
   <div
-    class="data-table svelte-2e8um5"
+    class="data-table svelte-840wbb"
   >
     <div
       class="data-table-slot 
-    scrollable svelte-2e8um5"
+    scrollable svelte-840wbb"
     >
       <div
         class="data-table-head svelte-1nivie3"
@@ -84,6 +84,7 @@ exports[`ReportTable should render the ReportTable component with data 1`] = `
            
         </div>
         
+        
       </div>
     </div>
   </div>
@@ -95,11 +96,11 @@ exports[`ReportTable should render the ReportTable component with data and a cus
 <div>
    
   <div
-    class="data-table svelte-2e8um5"
+    class="data-table svelte-840wbb"
   >
     <div
       class="data-table-slot 
-    scrollable svelte-2e8um5"
+    scrollable svelte-840wbb"
     >
       <div
         class="data-table-head svelte-1nivie3"
@@ -145,6 +146,7 @@ exports[`ReportTable should render the ReportTable component with data and a cus
           </div>
            
         </div>
+        
         
       </div>
     </div>

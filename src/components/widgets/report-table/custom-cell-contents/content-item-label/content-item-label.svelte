@@ -4,8 +4,6 @@
 
   export let value: string;
   export let index: number;
-  export let expanded: boolean;
 </script>
 
-<QueryLabel index={index + 1} expandable={true} {expanded} />
 <ContentItemName contentItemId={value} />

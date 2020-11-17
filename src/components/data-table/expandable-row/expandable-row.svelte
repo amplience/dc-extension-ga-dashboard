@@ -1,5 +1,6 @@
 <script lang="ts">
   import { createEventDispatcher } from 'svelte';
+  import ExpandableIcon from '../../expandable-icon/expandable-icon.svelte';
 
   export let id: string = undefined;
   export let expanded: boolean = false;
@@ -47,6 +48,7 @@
 
 <div class="data-table-expandable-row {expanded ? 'expanded' : ''}">
   <div class="row-content" on:click={onClick} data-testid="row-content">
+    <ExpandableIcon {expanded} />
     <slot {expanded} />
   </div>
   <div class="expandable-content">

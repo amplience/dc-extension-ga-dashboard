@@ -3,7 +3,7 @@
 exports[`ExpandableIcon should render the ExpandableIcon component in a collapsed state 1`] = `
 <div>
   <div
-    class="svelte-t93ore"
+    class="svelte-cy4end"
   >
     <div
       class=" svelte-zpbvvv"
@@ -20,7 +20,7 @@ exports[`ExpandableIcon should render the ExpandableIcon component in a collapse
 exports[`ExpandableIcon should render the ExpandableIcon component in a expanded state 1`] = `
 <div>
   <div
-    class="svelte-t93ore"
+    class="svelte-cy4end"
   >
     <div
       class=" svelte-zpbvvv"

@@ -3,6 +3,7 @@
   import { getDataReport, processReportData } from '../../../stores/gapi';
   import type { ReportData } from '../../../stores/gapi';
   import {
+    breakdownChart,
     contentItemIdMapping,
     gaViewId,
   } from '../../../stores/google-analytics';
@@ -15,9 +16,33 @@
   import { SIZES } from '../widgets-config';
   import config from './table-config';
   import { gaQueryFilter } from '../../../stores/ga-query-filters';
+  import breakdownTableConfig from './breakdown-table-config';
+  import type { GetBreakdownData } from '../report-table/breakdown-table/get-breakdown-data';
 
   let reportData: ReportData[];
   let loading = true;
+
+  $: {
+    if ($breakdownChart) {
+      breakdownTableConfig.columns[0].title = $breakdownChart.title;
+    }
+  }
+
+  const getBreakdownData: GetBreakdownData = async (
+    id: string
+  ): Promise<ReportData[]> => {
+    const filter = `${
+      $gaQueryFilter ? $gaQueryFilter + ';' : ''
+    }ga:${$contentItemIdMapping}==${id}`;
+    const data = await getDataReport(
+      $gaViewId,
+      $breakdownChart.dimension,
+      $topContentReportShowCount,
+      $dateRange,
+      filter
+    );
+    return processReportData(data);
+  };
 
   $: (async () => {
     try {
@@ -27,7 +52,7 @@
         $contentItemIdMapping,
         $topContentReportShowCount,
         $dateRange,
-        $gaQueryFilter.join(',')
+        $gaQueryFilter
       );
 
       reportData = processReportData(data);
@@ -65,7 +90,12 @@
       </div>
     </WidgetHeader>
     <WidgetBody>
-      <ReportTable data={reportData} dimension={$contentItemIdMapping} {config} {loading} />
+      <ReportTable
+        data={reportData}
+        {config}
+        {loading}
+        {getBreakdownData}
+        {breakdownTableConfig} />
     </WidgetBody>
   </Widget>
 </section>

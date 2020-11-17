@@ -95,7 +95,7 @@ To use the application the following permissions must be enabled:
     "currencyCode": "GBP"
   },
   "breakdownChart": {
-    "dimension": "ga:deviceCategory"
+    "dimension": "deviceCategory"
   }
 }
 ```

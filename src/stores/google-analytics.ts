@@ -22,7 +22,7 @@ export function setGaConfig(config: ExtensionConfiguration): void {
   slotIdMapping.set(config?.mappings?.slotId);
   breakdownChart.set(
     config?.breakdownChart || {
-      dimension: 'ga:deviceCategory',
+      dimension: 'deviceCategory',
       title: 'Device Breakdown',
     }
   );

@@ -3,15 +3,29 @@
 exports[`ExpandableRow should render the DataTable ExpandableRow and expand the row on click 1`] = `
 <div>
   <div
-    class="data-table-expandable-row expanded svelte-ro6k9j"
+    class="data-table-expandable-row expanded svelte-34uld6"
   >
     <div
-      class="row-content svelte-ro6k9j"
+      class="row-content svelte-34uld6"
       data-testid="row-content"
-    />
+    >
+      <div
+        class="svelte-cy4end"
+      >
+        <div
+          class=" svelte-zpbvvv"
+          style="--icon-width: 24px; --icon-height: 24px;"
+        >
+          <object
+            src="ic-contractable.svg/"
+          />
+        </div>
+      </div>
+       
+    </div>
      
     <div
-      class="expandable-content svelte-ro6k9j"
+      class="expandable-content svelte-34uld6"
     />
   </div>
 </div>
@@ -20,15 +34,29 @@ exports[`ExpandableRow should render the DataTable ExpandableRow and expand the 
 exports[`ExpandableRow should render the DataTable ExpandableRow component 1`] = `
 <div>
   <div
-    class="data-table-expandable-row  svelte-ro6k9j"
+    class="data-table-expandable-row  svelte-34uld6"
   >
     <div
-      class="row-content svelte-ro6k9j"
+      class="row-content svelte-34uld6"
       data-testid="row-content"
-    />
+    >
+      <div
+        class="svelte-cy4end"
+      >
+        <div
+          class=" svelte-zpbvvv"
+          style="--icon-width: 24px; --icon-height: 24px;"
+        >
+          <object
+            src="ic-expandable.svg/"
+          />
+        </div>
+      </div>
+       
+    </div>
      
     <div
-      class="expandable-content svelte-ro6k9j"
+      class="expandable-content svelte-34uld6"
     />
   </div>
 </div>

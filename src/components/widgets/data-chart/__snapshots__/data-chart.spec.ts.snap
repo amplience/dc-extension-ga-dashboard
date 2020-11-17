@@ -6,7 +6,7 @@ Array [
     Object {
       "dimensions": "ga:deviceCategory",
       "end-date": "2020-11-02",
-      "filters": null,
+      "filters": undefined,
       "ids": "ga:1234567890",
       "metrics": "ga:totalEvents,ga:uniqueEvents",
       "start-date": "2020-11-01",
@@ -76,7 +76,7 @@ Array [
     Object {
       "dimensions": "ga:deviceCategory",
       "end-date": "2020-11-02",
-      "filters": null,
+      "filters": undefined,
       "ids": "ga:1234567890",
       "metrics": "ga:totalEvents,ga:uniqueEvents",
       "start-date": "2020-11-01",
@@ -95,7 +95,7 @@ Array [
     Object {
       "dimensions": "ga:deviceCategory",
       "end-date": "2020-01-02",
-      "filters": null,
+      "filters": undefined,
       "ids": "ga:1234567890",
       "metrics": "ga:totalEvents,ga:uniqueEvents",
       "start-date": "2020-01-01",
@@ -119,7 +119,7 @@ Array [
     Object {
       "dimensions": "ga:deviceCategory",
       "end-date": "2020-11-02",
-      "filters": null,
+      "filters": undefined,
       "ids": "ga:1234567890",
       "metrics": "ga:totalEvents,ga:uniqueEvents",
       "start-date": "2020-11-01",
@@ -162,7 +162,7 @@ Array [
     Object {
       "dimensions": "ga:date",
       "end-date": "2020-11-02",
-      "filters": null,
+      "filters": undefined,
       "ids": "ga:1234567890",
       "metrics": "ga:totalEvents,ga:uniqueEvents",
       "start-date": "2020-11-01",
@@ -255,7 +255,7 @@ Array [
     Object {
       "dimensions": "ga:date",
       "end-date": "2020-11-02",
-      "filters": null,
+      "filters": undefined,
       "ids": "ga:1234567890",
       "metrics": "ga:totalEvents,ga:uniqueEvents",
       "start-date": "2020-11-01",
@@ -297,7 +297,7 @@ Array [
     Object {
       "dimensions": "ga:date",
       "end-date": "2020-01-02",
-      "filters": null,
+      "filters": undefined,
       "ids": "ga:1234567890",
       "metrics": "ga:totalEvents,ga:uniqueEvents",
       "start-date": "2020-01-01",
@@ -344,7 +344,7 @@ Array [
     Object {
       "dimensions": "ga:date",
       "end-date": "2020-11-02",
-      "filters": null,
+      "filters": undefined,
       "ids": "ga:1234567890",
       "metrics": "ga:totalEvents,ga:uniqueEvents",
       "start-date": "2020-11-01",

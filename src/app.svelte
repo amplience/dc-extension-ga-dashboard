@@ -141,7 +141,7 @@
           <DataChart
             className="breakdown"
             title={$breakdownChart.title}
-            dimensions={$breakdownChart.dimension}
+            dimensions={'ga:' + $breakdownChart.dimension}
             chartType={ChartType.BAR} />
           {#if $contentItemIdMapping}
             <TopContentReport />
