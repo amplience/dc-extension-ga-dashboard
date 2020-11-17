@@ -7,6 +7,12 @@ import type {
 } from '../definitions/google-analytics-embed-api';
 import type { DateRange } from './date-range';
 
+export class RequestTimeout extends Error {
+  constructor(message: string) {
+    super(message);
+  }
+}
+
 export type ReportData = [
   string,
   number,
@@ -16,6 +22,8 @@ export type ReportData = [
   number,
   number
 ];
+
+const TIMEOUT_MS = Number('__GOOGLE_ANALYTICS_TIMEOUT__') || 2000;
 
 const gapi = writable<GoogleAnalyticsEmbedAPI>(null);
 
@@ -70,11 +78,22 @@ export const getDataReport = (
     new Date().valueOf()
   );
   return new Promise(function (resolve, reject) {
+    const requestTimeout = setTimeout(
+      () =>
+        reject(
+          new RequestTimeout(
+            `GAPI failed to respond within ${TIMEOUT_MS}ms second`
+          )
+        ),
+      TIMEOUT_MS
+    );
     new (getGapi().analytics.report.Data)({ query })
       .once('success', function (response) {
+        clearTimeout(requestTimeout);
         resolve(response);
       })
       .once('error', function (response) {
+        clearTimeout(requestTimeout);
         reject(response);
       })
       .execute();
@@ -126,6 +145,15 @@ export const insertDataChart = (
   options: Record<string, unknown>
 ): Promise<void> => {
   return new Promise(function (resolve, reject) {
+    const requestTimeout = setTimeout(
+      () =>
+        reject(
+          new RequestTimeout(
+            `GAPI failed to respond within ${TIMEOUT_MS}ms second`
+          )
+        ),
+      TIMEOUT_MS
+    );
     const chart = new (getGapi().analytics.googleCharts.DataChart)({
       query: {
         ...query,
@@ -163,9 +191,11 @@ export const insertDataChart = (
 
     chart
       .once('success', (response) => {
+        clearTimeout(requestTimeout);
         resolve(response);
       })
       .once('error', (response) => {
+        clearTimeout(requestTimeout);
         reject(response);
       })
       .execute();

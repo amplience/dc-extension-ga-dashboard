@@ -2,7 +2,11 @@ import { render } from '@testing-library/svelte';
 import DataChart from './data-chart.svelte';
 import { tick } from 'svelte';
 import { dateRange } from '../../../stores/date-range';
-import { ChartType, insertDataChart } from '../../../stores/gapi';
+import {
+  ChartType,
+  insertDataChart,
+  RequestTimeout,
+} from '../../../stores/gapi';
 import {
   editionIdMapping,
   setGaConfig,
@@ -40,6 +44,7 @@ describe('DataChart', () => {
       const { container } = render(DataChart, dataChartOptions);
       await tick();
 
+      expect(insertDataChart).toHaveBeenCalledTimes(1);
       expect((insertDataChart as jest.Mock).mock.calls).toMatchSnapshot();
       expect(container.firstChild).toMatchSnapshot();
     });
@@ -63,6 +68,21 @@ describe('DataChart', () => {
       selectedEdition.set(new Edition({ id: 'editionId' }));
       await tick();
 
+      expect(insertDataChart).toHaveBeenCalledTimes(2);
+      expect((insertDataChart as jest.Mock).mock.calls).toMatchSnapshot();
+    });
+
+    it('should retry when we get a timeout error', async () => {
+      editionIdMapping.set('dimension2');
+      (insertDataChart as jest.Mock).mockImplementation(() =>
+        Promise.reject(new RequestTimeout('GAPI request timeout'))
+      );
+      render(DataChart, dataChartOptions);
+      await tick();
+      await tick();
+      (insertDataChart as jest.Mock).mockImplementation(() =>
+        Promise.resolve([])
+      );
       expect(insertDataChart).toHaveBeenCalledTimes(2);
       expect((insertDataChart as jest.Mock).mock.calls).toMatchSnapshot();
     });
@@ -78,7 +98,7 @@ describe('DataChart', () => {
     it('should render the DataChart component', async () => {
       const { container } = render(DataChart, dataChartOptions);
       await tick();
-
+      expect(insertDataChart).toHaveBeenCalledTimes(1);
       expect((insertDataChart as jest.Mock).mock.calls).toMatchSnapshot();
       expect(container.firstChild).toMatchSnapshot();
     });
@@ -102,6 +122,21 @@ describe('DataChart', () => {
       selectedEdition.set(new Edition({ id: 'editionId' }));
       await tick();
 
+      expect(insertDataChart).toHaveBeenCalledTimes(2);
+      expect((insertDataChart as jest.Mock).mock.calls).toMatchSnapshot();
+    });
+
+    it('should retry when we get a timeout error', async () => {
+      editionIdMapping.set('dimension2');
+      (insertDataChart as jest.Mock).mockImplementation(() =>
+        Promise.reject(new RequestTimeout('GAPI request timeout'))
+      );
+      render(DataChart, dataChartOptions);
+      await tick();
+      await tick();
+      (insertDataChart as jest.Mock).mockImplementation(() =>
+        Promise.resolve([])
+      );
       expect(insertDataChart).toHaveBeenCalledTimes(2);
       expect((insertDataChart as jest.Mock).mock.calls).toMatchSnapshot();
     });

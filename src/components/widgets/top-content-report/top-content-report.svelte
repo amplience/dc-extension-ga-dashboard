@@ -1,6 +1,10 @@
 <script lang="ts">
   import { dateRange } from '../../../stores/date-range';
-  import { getDataReport, processReportData } from '../../../stores/gapi';
+  import {
+    getDataReport,
+    processReportData,
+    RequestTimeout,
+  } from '../../../stores/gapi';
   import type { ReportData } from '../../../stores/gapi';
   import {
     contentItemIdMapping,
@@ -17,11 +21,11 @@
   import { gaQueryFilter } from '../../../stores/ga-query-filters';
 
   let reportData: ReportData[];
+
   let loading = true;
 
   $: (async () => {
-    try {
-      loading = true;
+    const loadReport = async () => {
       const data = await getDataReport(
         $gaViewId,
         $contentItemIdMapping,
@@ -30,10 +34,19 @@
         $gaQueryFilter
       );
 
-      reportData = processReportData(data);
+      return processReportData(data);
+    };
+
+    loading = true;
+    try {
+      reportData = await loadReport();
     } catch (e) {
-      console.error(`Unable to get report data: ${e?.error?.message}`);
-      reportData = [];
+      if (!(e instanceof RequestTimeout)) {
+        console.error(`Unable to get report data: ${e?.error?.message}`);
+        reportData = [];
+        return;
+      }
+      reportData = await loadReport();
     } finally {
       loading = false;
     }
