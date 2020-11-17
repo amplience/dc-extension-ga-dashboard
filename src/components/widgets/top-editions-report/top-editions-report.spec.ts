@@ -6,10 +6,14 @@ import {
   processReportData,
   RequestTimeout,
 } from '../../../stores/gapi';
+import { dateRange } from '../../../stores/date-range';
 
 jest.mock('../../../stores/gapi');
 
 describe('TopContentReport', () => {
+  beforeEach(() => {
+    dateRange.set({ from: '2020-11-01', to: '2020-11-02' });
+  });
   afterEach(() => {
     jest.clearAllMocks();
   });

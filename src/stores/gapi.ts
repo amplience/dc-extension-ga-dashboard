@@ -93,6 +93,7 @@ export const getDataReport = (
         resolve(response);
       })
       .once('error', function (response) {
+        clearTimeout(requestTimeout);
         reject(response);
       })
       .execute();
@@ -189,6 +190,7 @@ export const insertDataChart = (
         resolve(response);
       })
       .once('error', (response) => {
+        clearTimeout(requestTimeout);
         reject(response);
       })
       .execute();
