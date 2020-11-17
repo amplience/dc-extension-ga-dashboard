@@ -37,7 +37,7 @@ Additional environments vars
 | BREAKDOWN_CHART_TITLE          | Breakdown chart title                                                            | Breakdown chart                      |
 | BREAKDOWN_CHART_DIMENSION      | Dimension for the chart                                                          | ga:deviceCategory                    |
 | GOOGLE_ANALYTICS_CLIENT_ID     | Google Analytics Client ID                                                       | abc123.apps.googleusercontent.com    |
-| GOOGLE_ANALYTICS_VIEW_ID       | Google Analytics View ID                                                         | 1234567890                           |
+| GOOGLE_ANALYTICS_VIEW_ID       | Google Analytics View ID                                                         | ga:1234567890                        |
 | GOOGLE_ANALYTICS_LOCALE        | Google Analytics View ID                                                         | en-GB                                |
 | GOOGLE_ANALYTICS_CURRENCY_CODE | Google Analytics View ID                                                         | GBP                                  |
 | GOOGLE_ANALYTICS_TIMEOUT       | Timeout used to determine how long we should wait before retrying a gapi request | 2000                                 |
@@ -54,7 +54,7 @@ LOCATION_HREF=http://localhost:3000
 BREAKDOWN_CHART_TITLE=Device Breakdown
 BREAKDOWN_CHART_DIMENSION=ga:deviceCategory
 GOOGLE_ANALYTICS_CLIENT_ID=abc123.apps.googleusercontent.com
-GOOGLE_ANALYTICS_VIEW_ID=1234567890
+GOOGLE_ANALYTICS_VIEW_ID=ga:1234567890
 GOOGLE_ANALYTICS_LOCALE=en-GB
 GOOGLE_ANALYTICS_CURRENCY_CODE=GBP
 GOOGLE_ANALYTICS_TIMEOUT=2000
@@ -86,11 +86,11 @@ To use the application the following permissions must be enabled:
 ```json
 {
   "googleAnalyticsClientId": "abc123.apps.googleusercontent.com",
-  "googleAnalyticsViewId": "1234567890",
+  "googleAnalyticsViewId": "ga:1234567890",
   "mappings": {
-    "contentItemId": "dimension1",
-    "editionId": "dimension2",
-    "slotId": "dimension3"
+    "contentItemId": "ga:dimension1",
+    "editionId": "ga:dimension2",
+    "slotId": "ga:dimension3"
   },
   "localization": {
     "locale": "en-GB",

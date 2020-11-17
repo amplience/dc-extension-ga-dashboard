@@ -50,9 +50,9 @@ export const buildDataReportQuery = (
   cacheBust: number = undefined
 ): Query => {
   return {
-    ids: `ga:${gaViewId}`,
+    ids: gaViewId,
     metrics: 'ga:totalEvents,ga:uniqueEvents,ga:eventValue,ga:avgEventValue',
-    dimensions: `ga:${dimension}`,
+    dimensions: dimension,
     sort: '-ga:totalEvents',
     'max-results': limit,
     'start-date': dateRange.from,

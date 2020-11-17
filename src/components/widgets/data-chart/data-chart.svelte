@@ -55,7 +55,7 @@
     const loadChart = async () => {
       await insertDataChart(
         {
-          ids: `ga:${$gaViewId}`,
+          ids: $gaViewId,
           metrics: 'ga:totalEvents,ga:uniqueEvents',
           dimensions,
           'start-date': $dateRange.from,
