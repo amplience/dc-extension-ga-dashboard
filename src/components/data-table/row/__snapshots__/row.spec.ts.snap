@@ -3,10 +3,10 @@
 exports[`Row should render the expandable row 1`] = `
 <div>
   <div
-    class="data-table-row expandable  svelte-5z2pxy"
+    class="data-table-row expandable  svelte-qyj5n8"
   >
     <div
-      class="row-content svelte-5z2pxy"
+      class="row-content svelte-qyj5n8"
       data-testid="row-content"
     >
       <div
@@ -26,7 +26,7 @@ exports[`Row should render the expandable row 1`] = `
     </div>
      
     <div
-      class="expandable-content svelte-5z2pxy"
+      class="expandable-content svelte-qyj5n8"
       data-testid="expandable-content"
     />
   </div>
@@ -36,10 +36,10 @@ exports[`Row should render the expandable row 1`] = `
 exports[`Row should render the expanded expandable row 1`] = `
 <div>
   <div
-    class="data-table-row expandable expanded svelte-5z2pxy"
+    class="data-table-row expandable expanded svelte-qyj5n8"
   >
     <div
-      class="row-content svelte-5z2pxy"
+      class="row-content svelte-qyj5n8"
       data-testid="row-content"
     >
       <div
@@ -59,7 +59,7 @@ exports[`Row should render the expanded expandable row 1`] = `
     </div>
      
     <div
-      class="expandable-content svelte-5z2pxy"
+      class="expandable-content svelte-qyj5n8"
       data-testid="expandable-content"
     />
   </div>
@@ -69,10 +69,10 @@ exports[`Row should render the expanded expandable row 1`] = `
 exports[`Row should render the non-expandable row by default 1`] = `
 <div>
   <div
-    class="data-table-row   svelte-5z2pxy"
+    class="data-table-row   svelte-qyj5n8"
   >
     <div
-      class="row-content svelte-5z2pxy"
+      class="row-content svelte-qyj5n8"
       data-testid="row-content"
     >
        

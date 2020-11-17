@@ -16,14 +16,12 @@ exports[`ReportTable should render the ReportTable component in a loading state 
       class="spinner dot-2 svelte-wkqaim"
     />
   </div>
-   
   
 </div>
 `;
 
 exports[`ReportTable should render the ReportTable component in a no data state 1`] = `
 <div>
-   
   <div
     class="no-data-container svelte-1kq81j9"
   >
@@ -37,7 +35,6 @@ exports[`ReportTable should render the ReportTable component in a no data state 
 
 exports[`ReportTable should render the ReportTable component with data 1`] = `
 <div>
-   
   <div
     class="data-table svelte-1gunyt0"
   >
@@ -49,10 +46,10 @@ exports[`ReportTable should render the ReportTable component with data 1`] = `
         class="data-table-head svelte-1nivie3"
       >
         <div
-          class="data-table-row   svelte-5z2pxy"
+          class="data-table-row   svelte-qyj5n8"
         >
           <div
-            class="row-content svelte-5z2pxy"
+            class="row-content svelte-qyj5n8"
             data-testid="row-content"
           >
              
@@ -76,10 +73,10 @@ exports[`ReportTable should render the ReportTable component with data 1`] = `
         class="data-table-body"
       >
         <div
-          class="data-table-row   svelte-5z2pxy"
+          class="data-table-row   svelte-qyj5n8"
         >
           <div
-            class="row-content svelte-5z2pxy"
+            class="row-content svelte-qyj5n8"
             data-testid="row-content"
           >
              
@@ -108,7 +105,6 @@ exports[`ReportTable should render the ReportTable component with data 1`] = `
 
 exports[`ReportTable should render the ReportTable component with data and a custom component 1`] = `
 <div>
-   
   <div
     class="data-table svelte-1gunyt0"
   >
@@ -120,10 +116,10 @@ exports[`ReportTable should render the ReportTable component with data and a cus
         class="data-table-head svelte-1nivie3"
       >
         <div
-          class="data-table-row   svelte-5z2pxy"
+          class="data-table-row   svelte-qyj5n8"
         >
           <div
-            class="row-content svelte-5z2pxy"
+            class="row-content svelte-qyj5n8"
             data-testid="row-content"
           >
              
@@ -147,10 +143,10 @@ exports[`ReportTable should render the ReportTable component with data and a cus
         class="data-table-body"
       >
         <div
-          class="data-table-row   svelte-5z2pxy"
+          class="data-table-row   svelte-qyj5n8"
         >
           <div
-            class="row-content svelte-5z2pxy"
+            class="row-content svelte-qyj5n8"
             data-testid="row-content"
           >
              

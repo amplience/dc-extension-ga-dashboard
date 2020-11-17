@@ -38,7 +38,7 @@
   ): Promise<ReportData[]> => {
     const filter = `${
       $gaQueryFilter ? $gaQueryFilter + ';' : ''
-    }ga:${$contentItemIdMapping}==${id}`;
+    }${$contentItemIdMapping}==${id}`;
     const data = await getDataReport(
       $gaViewId,
       $breakdownChart.dimension,

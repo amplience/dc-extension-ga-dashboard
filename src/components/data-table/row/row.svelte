@@ -31,7 +31,7 @@
     justify-content: center;
   }
 
- .row-content {
+  .row-content {
     display: flex;
     width: 100%;
     min-height: 39px;

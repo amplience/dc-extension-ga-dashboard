@@ -7,23 +7,22 @@ describe('Row', () => {
 
     try {
       getByTestId(container, 'expandable-icon');
-      fail('should not be able to get the expandable icon')
+      fail('should not be able to get the expandable icon');
     } catch (err) {
       // noop
     }
 
     try {
       getByTestId(container, 'expandable-content');
-      fail('should not be able to get the expandable content')
+      fail('should not be able to get the expandable content');
     } catch (err) {
       // noop
     }
     expect(container.firstChild).toMatchSnapshot();
   });
 
-
   it('should render the expandable row', () => {
-    const { container } = render(Row, {expandable: true});
+    const { container } = render(Row, { expandable: true });
 
     expect(getByTestId(container, 'expandable-icon')).toBeDefined();
     expect(getByTestId(container, 'expandable-content')).toBeDefined();
@@ -31,9 +30,8 @@ describe('Row', () => {
     expect(container.firstChild).toMatchSnapshot();
   });
 
-
   it('should render the expanded expandable row', () => {
-    const { container } = render(Row, {expandable: true, expanded: true});
+    const { container } = render(Row, { expandable: true, expanded: true });
 
     expect(getByTestId(container, 'expandable-icon')).toBeDefined();
     expect(getByTestId(container, 'expandable-content')).toBeDefined();

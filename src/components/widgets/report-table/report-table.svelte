@@ -47,8 +47,7 @@
 
 {#if loading}
   <Loader />
-{/if}
-{#if data && data.length > 0}
+{:else if data && data.length > 0}
   <DataTable>
     <Head>
       <Row>
@@ -88,6 +87,6 @@
       {/each}
     </Body>
   </DataTable>
-{:else if !loading}
+{:else}
   <NoDataPlaceholder />
 {/if}

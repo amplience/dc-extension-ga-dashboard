@@ -30,6 +30,15 @@
   .loader {
     min-height: 50px;
   }
+  :global(.data-table-slot.secondary
+      .data-table-row
+      .data-table-cell:first-child) {
+    padding-left: 56px;
+  }
+
+  :global(.data-table-slot.secondary) {
+    margin-bottom: 7px;
+  }
 </style>
 
 {#if loading}

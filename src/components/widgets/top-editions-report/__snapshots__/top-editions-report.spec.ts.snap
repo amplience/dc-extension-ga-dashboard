@@ -105,7 +105,6 @@ exports[`TopContentReport should render the TopContentReport component 1`] = `
             class="spinner dot-2 svelte-wkqaim"
           />
         </div>
-         
         
       </section>
     </article>
@@ -123,7 +122,7 @@ Array [
       "from": "2020-11-01",
       "to": "2020-11-02",
     },
-    null,
+    undefined,
   ],
   Array [
     null,
@@ -133,7 +132,7 @@ Array [
       "from": "2020-11-01",
       "to": "2020-11-02",
     },
-    null,
+    undefined,
   ],
 ]
 `;
@@ -243,7 +242,6 @@ exports[`TopContentReport should retry getting report data when we get a timeout
             class="spinner dot-2 svelte-wkqaim"
           />
         </div>
-         
         
       </section>
     </article>
