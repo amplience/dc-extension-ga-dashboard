@@ -6,4 +6,5 @@
   export let index: number;
 </script>
 
+<QueryLabel index={index + 1} />
 <ContentItemName contentItemId={value} />

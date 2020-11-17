@@ -16,13 +16,45 @@ exports[`Chip should render a Chip 1`] = `
 </div>
 `;
 
+exports[`Chip should render a clickable Chip 1`] = `
+<div>
+  <div
+    class="svelte-1gdb3z"
+  >
+    <span
+      class="clickable svelte-1gdb3z"
+      data-testid="chip"
+    >
+      test-label
+    </span>
+  </div>
+  
+</div>
+`;
+
 exports[`Chip should render an active Chip 1`] = `
 <div>
   <div
     class="svelte-1gdb3z"
   >
     <span
-      class="active clickable svelte-1gdb3z"
+      class="active svelte-1gdb3z"
+      data-testid="chip"
+    >
+      test-label
+    </span>
+  </div>
+  
+</div>
+`;
+
+exports[`Chip should render an clickable active Chip 1`] = `
+<div>
+  <div
+    class="svelte-1gdb3z"
+  >
+    <span
+      class="active svelte-1gdb3z"
       data-testid="chip"
     >
       test-label

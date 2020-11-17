@@ -18,6 +18,6 @@
   }
 </style>
 
-<div>
+<div data-testid="expandable-icon">
   <Icon icon={expanded ? ContractableIcon : ExpandableIcon} />
 </div>

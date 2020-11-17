@@ -389,6 +389,7 @@
       <div class="chips">
         {#each dateRangeChips as chip}
           <Chip
+            clickable={true}
             on:click={() => onChipClick(chip)}
             label={chip.label}
             active={chip === activeChip} />

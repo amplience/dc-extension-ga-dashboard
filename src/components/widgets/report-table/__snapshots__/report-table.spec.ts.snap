@@ -39,29 +39,36 @@ exports[`ReportTable should render the ReportTable component with data 1`] = `
 <div>
    
   <div
-    class="data-table svelte-840wbb"
+    class="data-table svelte-1gunyt0"
   >
     <div
       class="data-table-slot 
-    scrollable svelte-840wbb"
+    scrollable svelte-1gunyt0"
     >
       <div
         class="data-table-head svelte-1nivie3"
       >
         <div
-          class="data-table-row svelte-hige1l"
+          class="data-table-row   svelte-5z2pxy"
         >
           <div
-            class="data-table-cell svelte-1x8v3rk"
-            style="
+            class="row-content svelte-5z2pxy"
+            data-testid="row-content"
+          >
+             
+            <div
+              class="data-table-cell svelte-1x8v3rk"
+              style="
   max-width:10%;
   justify-content:flex-end;
   color:#999;"
-          >
-            column-title
-             
+            >
+              column-title
+               
+            </div>
+            
           </div>
-          
+           
         </div>
       </div>
        
@@ -69,21 +76,28 @@ exports[`ReportTable should render the ReportTable component with data 1`] = `
         class="data-table-body"
       >
         <div
-          class="data-table-row svelte-hige1l"
+          class="data-table-row   svelte-5z2pxy"
         >
           <div
-            class="data-table-cell svelte-1x8v3rk"
-            style="
+            class="row-content svelte-5z2pxy"
+            data-testid="row-content"
+          >
+             
+            <div
+              class="data-table-cell svelte-1x8v3rk"
+              style="
   max-width:10%;
   justify-content:flex-end;
   color:#333;"
-          >
-            cell-value
-            
+            >
+              cell-value
+              
+            </div>
+             
+             
           </div>
            
         </div>
-        
         
       </div>
     </div>
@@ -96,29 +110,36 @@ exports[`ReportTable should render the ReportTable component with data and a cus
 <div>
    
   <div
-    class="data-table svelte-840wbb"
+    class="data-table svelte-1gunyt0"
   >
     <div
       class="data-table-slot 
-    scrollable svelte-840wbb"
+    scrollable svelte-1gunyt0"
     >
       <div
         class="data-table-head svelte-1nivie3"
       >
         <div
-          class="data-table-row svelte-hige1l"
+          class="data-table-row   svelte-5z2pxy"
         >
           <div
-            class="data-table-cell svelte-1x8v3rk"
-            style="
+            class="row-content svelte-5z2pxy"
+            data-testid="row-content"
+          >
+             
+            <div
+              class="data-table-cell svelte-1x8v3rk"
+              style="
   max-width:10%;
   justify-content:flex-end;
   color:#999;"
-          >
-            column-title
-             
+            >
+              column-title
+               
+            </div>
+            
           </div>
-          
+           
         </div>
       </div>
        
@@ -126,27 +147,34 @@ exports[`ReportTable should render the ReportTable component with data and a cus
         class="data-table-body"
       >
         <div
-          class="data-table-row svelte-hige1l"
+          class="data-table-row   svelte-5z2pxy"
         >
           <div
-            class="data-table-cell svelte-1x8v3rk"
-            style="
+            class="row-content svelte-5z2pxy"
+            data-testid="row-content"
+          >
+             
+            <div
+              class="data-table-cell svelte-1x8v3rk"
+              style="
   max-width:10%;
   justify-content:flex-end;
   color:#333;"
-          >
-            <div>
-              custom cell: 
-              0
-               
-              custom-cell-value
+            >
+              <div>
+                custom cell: 
+                0
+                 
+                custom-cell-value
+              </div>
+              
+              
             </div>
-            
-            
+             
+             
           </div>
            
         </div>
-        
         
       </div>
     </div>

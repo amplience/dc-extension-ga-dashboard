@@ -39,15 +39,6 @@
 {/if}
 {#if data && data.length > 0}
   <DataTable secondary={true}>
-    <Head>
-      <Row>
-        {#each config.columns as column}
-          <Cell width={column.width} align={column.align} color={'#999'}>
-            {column.title}
-          </Cell>
-        {/each}
-      </Row>
-    </Head>
     <Body>
       {#each data as cells, rowIndex}
         <Row>

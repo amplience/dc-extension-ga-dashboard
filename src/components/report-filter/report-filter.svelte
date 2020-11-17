@@ -153,6 +153,7 @@
         <div>Edition</div>
       </div>
       <Chip
+        clickable={true}
         label={generateEditionLabel($selectedEdition)}
         removeable={true}
         on:close={resetFilter} />

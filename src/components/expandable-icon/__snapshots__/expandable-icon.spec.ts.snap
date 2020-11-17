@@ -4,6 +4,7 @@ exports[`ExpandableIcon should render the ExpandableIcon component in a collapse
 <div>
   <div
     class="svelte-cy4end"
+    data-testid="expandable-icon"
   >
     <div
       class=" svelte-zpbvvv"
@@ -21,6 +22,7 @@ exports[`ExpandableIcon should render the ExpandableIcon component in a expanded
 <div>
   <div
     class="svelte-cy4end"
+    data-testid="expandable-icon"
   >
     <div
       class=" svelte-zpbvvv"

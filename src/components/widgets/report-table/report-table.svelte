@@ -1,9 +1,7 @@
 <script lang="ts">
   import type { ReportData } from '../../../stores/gapi';
   import { reportTableExpandedRows } from '../../../stores/report-table-expanded-rows';
-
   import { Body, Cell, DataTable, Head, Row } from '../../data-table';
-  import ExpandableRow from '../../data-table/expandable-row/expandable-row.svelte';
   import Loader from '../../loader/loader.svelte';
   import NoDataPlaceholder from '../../no-data-placeholder/no-data-placeholder.svelte';
   import BreakdownTable from './breakdown-table/breakdown-table.svelte';
@@ -62,48 +60,32 @@
       </Row>
     </Head>
     <Body>
-      {#if getBreakdownData && breakdownTableConfig}
-        {#each data as cells, rowIndex}
-          <ExpandableRow
-            let:expanded
-            expanded={getExpandedRowStateFor(cells[0])}
-            id={cells[0]}
-            on:click={onExpandedRowClick}>
-            {#each config.columns as column, columnIndex}
-              <Cell width={column.width} align={column.align}>
-                {#if column.component}
-                  <svelte:component
-                    this={column.component}
-                    value={cells[columnIndex]}
-                    index={rowIndex}
-                    {expanded} />
-                {:else}{cells[columnIndex]}{/if}
-              </Cell>
-            {/each}
-            <div slot="expandable-content">
-              <BreakdownTable
-                id={cells[0]}
-                {getBreakdownData}
-                config={breakdownTableConfig} />
-            </div>
-          </ExpandableRow>
-        {/each}
-      {:else}
-        {#each data as cells, rowIndex}
-          <Row>
-            {#each config.columns as column, columnIndex}
-              <Cell width={column.width} align={column.align}>
-                {#if column.component}
-                  <svelte:component
-                    this={column.component}
-                    value={cells[columnIndex]}
-                    index={rowIndex} />
-                {:else}{cells[columnIndex]}{/if}
-              </Cell>
-            {/each}
-          </Row>
-        {/each}
-      {/if}
+      {#each data as cells, rowIndex}
+        <Row
+          let:expanded
+          expandable={getBreakdownData !== undefined && breakdownTableConfig !== undefined}
+          expanded={getExpandedRowStateFor(cells[0])}
+          id={cells[0]}
+          on:click={onExpandedRowClick}>
+          {#each config.columns as column, columnIndex}
+            <Cell width={column.width} align={column.align}>
+              {#if column.component}
+                <svelte:component
+                  this={column.component}
+                  value={cells[columnIndex]}
+                  index={rowIndex}
+                  {expanded} />
+              {:else}{cells[columnIndex]}{/if}
+            </Cell>
+          {/each}
+          <div slot="expandable-content">
+            <BreakdownTable
+              id={cells[0]}
+              {getBreakdownData}
+              config={breakdownTableConfig} />
+          </div>
+        </Row>
+      {/each}
     </Body>
   </DataTable>
 {:else if !loading}
