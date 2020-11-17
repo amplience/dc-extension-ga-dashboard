@@ -103,17 +103,17 @@ exports[`ReportFilter component should render the ReportFilter component with a 
       </div>
        
       <div
-        class="svelte-1gdb3z"
+        class=" svelte-bktgns"
+        data-testid="chip"
       >
         <span
-          class="label svelte-1gdb3z"
-          data-testid="chip"
+          class="label svelte-bktgns"
         >
           Test Event / Test Edition
         </span>
          
         <span
-          class="cross svelte-1gdb3z"
+          class="cross svelte-bktgns"
           data-testid="remove-chip-button"
         >
           <div

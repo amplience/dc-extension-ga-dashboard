@@ -14,6 +14,10 @@ Array [
     "ga-chart-breakdown",
     "BAR",
     Object {
+      "chartArea": Object {
+        "left": 50,
+        "right": 20,
+      },
       "colors": Array [
         "#058dc7",
         "#aadff3",
@@ -59,6 +63,20 @@ exports[`DataChart breakdown chart should render the DataChart component 2`] = `
         <section
           class="ga-chart svelte-1vmaiqo"
         >
+          <div
+            class="spinner-container svelte-wkqaim"
+            style="--z-index: 1;"
+          >
+            <div
+              class="spinner dot-0 svelte-wkqaim"
+            />
+            <div
+              class="spinner dot-1 svelte-wkqaim"
+            />
+            <div
+              class="spinner dot-2 svelte-wkqaim"
+            />
+          </div>
            
           <div
             id="ga-chart-breakdown"
@@ -68,6 +86,57 @@ exports[`DataChart breakdown chart should render the DataChart component 2`] = `
     </article>
   </section>
 </div>
+`;
+
+exports[`DataChart breakdown chart should retry when we get a timeout error 1`] = `
+Array [
+  Array [
+    Object {
+      "dimensions": "ga:deviceCategory",
+      "end-date": "2020-11-02",
+      "filters": null,
+      "ids": "ga:1234567890",
+      "metrics": "ga:totalEvents,ga:uniqueEvents",
+      "start-date": "2020-11-01",
+    },
+    "ga-chart-breakdown",
+    "BAR",
+    Object {
+      "chartArea": Object {
+        "left": 50,
+        "right": 20,
+      },
+      "colors": Array [
+        "#058dc7",
+        "#aadff3",
+      ],
+      "orientation": "horizontal",
+    },
+  ],
+  Array [
+    Object {
+      "dimensions": "ga:deviceCategory",
+      "end-date": "2020-11-02",
+      "filters": null,
+      "ids": "ga:1234567890",
+      "metrics": "ga:totalEvents,ga:uniqueEvents",
+      "start-date": "2020-11-01",
+    },
+    "ga-chart-breakdown",
+    "BAR",
+    Object {
+      "chartArea": Object {
+        "left": 50,
+        "right": 20,
+      },
+      "colors": Array [
+        "#058dc7",
+        "#aadff3",
+      ],
+      "orientation": "horizontal",
+    },
+  ],
+]
 `;
 
 exports[`DataChart breakdown chart should update the chart when the dateRange changes 1`] = `
@@ -84,6 +153,10 @@ Array [
     "ga-chart-breakdown",
     "BAR",
     Object {
+      "chartArea": Object {
+        "left": 50,
+        "right": 20,
+      },
       "colors": Array [
         "#058dc7",
         "#aadff3",
@@ -103,6 +176,10 @@ Array [
     "ga-chart-breakdown",
     "BAR",
     Object {
+      "chartArea": Object {
+        "left": 50,
+        "right": 20,
+      },
       "colors": Array [
         "#058dc7",
         "#aadff3",
@@ -127,6 +204,10 @@ Array [
     "ga-chart-breakdown",
     "BAR",
     Object {
+      "chartArea": Object {
+        "left": 50,
+        "right": 20,
+      },
       "colors": Array [
         "#058dc7",
         "#aadff3",
@@ -146,6 +227,10 @@ Array [
     "ga-chart-breakdown",
     "BAR",
     Object {
+      "chartArea": Object {
+        "left": 50,
+        "right": 20,
+      },
       "colors": Array [
         "#058dc7",
         "#aadff3",
@@ -238,6 +323,20 @@ exports[`DataChart overview chart should render the DataChart component 2`] = `
         <section
           class="ga-chart svelte-1vmaiqo"
         >
+          <div
+            class="spinner-container svelte-wkqaim"
+            style="--z-index: 1;"
+          >
+            <div
+              class="spinner dot-0 svelte-wkqaim"
+            />
+            <div
+              class="spinner dot-1 svelte-wkqaim"
+            />
+            <div
+              class="spinner dot-2 svelte-wkqaim"
+            />
+          </div>
            
           <div
             id="ga-chart-overview"
@@ -247,6 +346,95 @@ exports[`DataChart overview chart should render the DataChart component 2`] = `
     </article>
   </section>
 </div>
+`;
+
+exports[`DataChart overview chart should retry when we get a timeout error 1`] = `
+Array [
+  Array [
+    Object {
+      "dimensions": "ga:date",
+      "end-date": "2020-11-02",
+      "filters": null,
+      "ids": "ga:1234567890",
+      "metrics": "ga:totalEvents,ga:uniqueEvents",
+      "start-date": "2020-11-01",
+    },
+    "ga-chart-overview",
+    "LINE",
+    Object {
+      "hAxis": Object {
+        "gridlines": Object {
+          "units": Object {
+            "days": Object {
+              "format": Array [
+                "dd MMM",
+              ],
+            },
+          },
+        },
+        "minorGridlines": Object {
+          "units": Object {
+            "hours": Object {
+              "format": Array [
+                "",
+              ],
+            },
+            "minutes": Object {
+              "format": Array [
+                "",
+              ],
+            },
+          },
+        },
+        "textStyle": Object {
+          "color": "#999",
+        },
+      },
+    },
+  ],
+  Array [
+    Object {
+      "dimensions": "ga:date",
+      "end-date": "2020-11-02",
+      "filters": null,
+      "ids": "ga:1234567890",
+      "metrics": "ga:totalEvents,ga:uniqueEvents",
+      "start-date": "2020-11-01",
+    },
+    "ga-chart-overview",
+    "LINE",
+    Object {
+      "hAxis": Object {
+        "gridlines": Object {
+          "units": Object {
+            "days": Object {
+              "format": Array [
+                "dd MMM",
+              ],
+            },
+          },
+        },
+        "minorGridlines": Object {
+          "units": Object {
+            "hours": Object {
+              "format": Array [
+                "",
+              ],
+            },
+            "minutes": Object {
+              "format": Array [
+                "",
+              ],
+            },
+          },
+        },
+        "textStyle": Object {
+          "color": "#999",
+        },
+      },
+    },
+  ],
+]
 `;
 
 exports[`DataChart overview chart should update the chart when the dateRange changes 1`] = `

@@ -14,10 +14,10 @@ describe('gapi', () => {
         )
       ).toMatchInlineSnapshot(`
         Object {
-          "dimensions": "ga:ga:dimension1",
+          "dimensions": "ga:dimension1",
           "end-date": "2020-12-31",
           "filters": "ga:dimension1=123",
-          "ids": "ga:ga:123",
+          "ids": "ga:123",
           "max-results": 20,
           "metrics": "ga:totalEvents,ga:uniqueEvents,ga:eventValue,ga:avgEventValue",
           "sort": "-ga:totalEvents",
@@ -39,10 +39,10 @@ describe('gapi', () => {
         )
       ).toMatchInlineSnapshot(`
         Object {
-          "dimensions": "ga:ga:dimension1",
+          "dimensions": "ga:dimension1",
           "end-date": "2020-12-31",
           "filters": undefined,
-          "ids": "ga:ga:123",
+          "ids": "ga:123",
           "max-results": 20,
           "metrics": "ga:totalEvents,ga:uniqueEvents,ga:eventValue,ga:avgEventValue",
           "sort": "-ga:totalEvents",

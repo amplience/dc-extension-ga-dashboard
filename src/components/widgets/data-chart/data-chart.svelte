@@ -1,6 +1,10 @@
 <script lang="ts">
   import { dateRange } from '../../../stores/date-range';
-  import { ChartType, insertDataChart } from '../../../stores/gapi';
+  import {
+    ChartType,
+    insertDataChart,
+    RequestTimeout,
+  } from '../../../stores/gapi';
   import { gaViewId } from '../../../stores/google-analytics';
   import Loader from '../../loader/loader.svelte';
   import WidgetBody from '../../widget/widget-body/widget-body.svelte';
@@ -20,6 +24,10 @@
     chartOptions = {
       orientation: 'horizontal',
       colors: ['#058dc7', '#aadff3'],
+      chartArea: {
+        left: 50,
+        right: 20,
+      },
     };
   }
   if (chartType === ChartType.LINE) {
@@ -44,11 +52,10 @@
   }
 
   $: (async () => {
-    try {
-      loading = true;
+    const loadChart = async () => {
       await insertDataChart(
         {
-          ids: `ga:${$gaViewId}`,
+          ids: $gaViewId,
           metrics: 'ga:totalEvents,ga:uniqueEvents',
           dimensions,
           'start-date': $dateRange.from,
@@ -59,8 +66,16 @@
         chartType,
         chartOptions
       );
+    };
+    try {
+      loading = true;
+      await loadChart();
     } catch (e) {
-      console.error(`Unable to load chart data: ${e?.error?.message}`);
+      if (!(e instanceof RequestTimeout)) {
+        console.error(`Unable to load chart data: ${e?.error?.message}`);
+        return;
+      }
+      await loadChart();
     } finally {
       loading = false;
     }
