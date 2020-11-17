@@ -19,6 +19,10 @@ import { selectedEdition } from '../../../stores/selected-edition';
 import { Edition } from 'dc-management-sdk-js';
 import { managementSdkService } from '../../../stores/dynamic-content';
 import type { ManagementSdkService } from '../../../services/management-sdk/management-sdk.service';
+import { backOff } from 'exponential-backoff';
+
+jest.mock('exponential-backoff');
+(backOff as jest.Mock).mockImplementation((fn) => fn());
 
 jest.mock('../../../stores/gapi', function () {
   return {
@@ -74,19 +78,5 @@ describe('TopContentReport', () => {
 
     expect((getDataReport as jest.Mock).mock.calls).toMatchSnapshot();
     expect(getDataReport as jest.Mock).toBeCalledTimes(3);
-  });
-
-  it('should retry getting report data when we get a timeout back', async () => {
-    (getDataReport as jest.Mock).mockImplementation(() =>
-      Promise.reject(new RequestTimeout('GAPI request timeout'))
-    );
-    const { container } = render(TopContentReport, {});
-
-    await tick();
-    await tick();
-
-    expect((getDataReport as jest.Mock).mock.calls).toMatchSnapshot();
-    expect(getDataReport as jest.Mock).toBeCalledTimes(4);
-    expect(container.firstChild).toMatchSnapshot();
   });
 });

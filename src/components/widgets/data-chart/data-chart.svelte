@@ -11,6 +11,7 @@
   import WidgetHeader from '../../widget/widget-header/widget-header.svelte';
   import Widget from '../../widget/widget.svelte';
   import { gaQueryFilter } from '../../../stores/ga-query-filters';
+  import { backOff } from 'exponential-backoff';
 
   export let className = '';
   export let title;
@@ -52,30 +53,23 @@
   }
 
   $: (async () => {
-    const loadChart = async () => {
-      await insertDataChart(
-        {
-          ids: $gaViewId,
-          metrics: 'ga:totalEvents,ga:uniqueEvents',
-          dimensions,
-          'start-date': $dateRange.from,
-          'end-date': $dateRange.to,
-          filters: $gaQueryFilter,
-        },
-        containerId,
-        chartType,
-        chartOptions
-      );
-    };
     try {
       loading = true;
-      await loadChart();
-    } catch (e) {
-      if (!(e instanceof RequestTimeout)) {
-        console.error(`Unable to load chart data: ${e?.error?.message}`);
-        return;
-      }
-      await loadChart();
+      await backOff(() =>
+        insertDataChart(
+          {
+            ids: $gaViewId,
+            metrics: 'ga:totalEvents,ga:uniqueEvents',
+            dimensions,
+            'start-date': $dateRange.from,
+            'end-date': $dateRange.to,
+            filters: $gaQueryFilter,
+          },
+          containerId,
+          chartType,
+          chartOptions
+        )
+      );
     } finally {
       loading = false;
     }

@@ -20,18 +20,12 @@
   import { SIZES } from '../widgets-config';
   import config from './table-config';
   import { gaQueryFilter } from '../../../stores/ga-query-filters';
-  import breakdownTableConfig from './breakdown-table-config';
   import type { GetBreakdownData } from '../report-table/breakdown-table/get-breakdown-data';
+  import { backOff } from 'exponential-backoff';
 
   let reportData: ReportData[];
 
   let loading = true;
-
-  $: {
-    if ($breakdownChart) {
-      breakdownTableConfig.columns[0].title = $breakdownChart.title;
-    }
-  }
 
   const getBreakdownData: GetBreakdownData = async (
     id: string
@@ -64,14 +58,7 @@
 
     loading = true;
     try {
-      reportData = await loadReport();
-    } catch (e) {
-      if (!(e instanceof RequestTimeout)) {
-        console.error(`Unable to get report data: ${e?.error?.message}`);
-        reportData = [];
-        return;
-      }
-      reportData = await loadReport();
+      reportData = await backOff(() => loadReport());
     } finally {
       loading = false;
     }
@@ -103,12 +90,7 @@
       </div>
     </WidgetHeader>
     <WidgetBody>
-      <ReportTable
-        data={reportData}
-        {config}
-        {loading}
-        {getBreakdownData}
-        {breakdownTableConfig} />
+      <ReportTable data={reportData} {config} {loading} {getBreakdownData} />
     </WidgetBody>
   </Widget>
 </section>

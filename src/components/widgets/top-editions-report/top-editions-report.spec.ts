@@ -7,6 +7,10 @@ import {
   RequestTimeout,
 } from '../../../stores/gapi';
 import { dateRange } from '../../../stores/date-range';
+import { backOff } from 'exponential-backoff';
+
+jest.mock('exponential-backoff');
+(backOff as jest.Mock).mockImplementation((fn) => fn());
 
 jest.mock('../../../stores/gapi');
 
@@ -29,20 +33,6 @@ describe('TopContentReport', () => {
     const { container } = render(TopContentReport, {});
 
     await tick();
-    expect(container.firstChild).toMatchSnapshot();
-  });
-
-  it('should retry getting report data when we get a timeout back', async () => {
-    (getDataReport as jest.Mock).mockImplementation(() =>
-      Promise.reject(new RequestTimeout('GAPI request timeout'))
-    );
-    const { container } = render(TopContentReport, {});
-
-    await tick();
-    await tick();
-
-    expect((getDataReport as jest.Mock).mock.calls).toMatchSnapshot();
-    expect(getDataReport as jest.Mock).toBeCalledTimes(2);
     expect(container.firstChild).toMatchSnapshot();
   });
 });

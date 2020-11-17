@@ -1,12 +1,14 @@
 <script lang="ts">
   import type { ReportData } from '../../../../stores/gapi';
-  import { Body, Cell, DataTable, Head, Row } from '../../../data-table';
+  import { Body, Cell, DataTable, Row } from '../../../data-table';
   import Loader from '../../../loader/loader.svelte';
   import NoDataPlaceholder from '../../../no-data-placeholder/no-data-placeholder.svelte';
+  import ChipLabel from '../custom-cell-contents/chip-label/chip-label.svelte';
+  import CurrencyLabel from '../custom-cell-contents/currency-label/currency-label.svelte';
   import type { TableConfig } from '../table-config.interface';
   import type { GetBreakdownData } from './get-breakdown-data';
+  import { backOff } from 'exponential-backoff';
 
-  export let config: TableConfig;
   export let id: string;
   export let getBreakdownData: GetBreakdownData;
 
@@ -16,7 +18,7 @@
   $: (async () => {
     try {
       loading = true;
-      data = await getBreakdownData(id);
+      data = await backOff(() => getBreakdownData(id));
     } catch (e) {
       console.error(`Unable to get report data: ${e?.error?.message}`);
       data = [];
@@ -51,16 +53,19 @@
     <Body>
       {#each data as cells, rowIndex}
         <Row>
-          {#each config.columns as column, columnIndex}
-            <Cell width={column.width} align={column.align}>
-              {#if column.component}
-                <svelte:component
-                  this={column.component}
-                  value={cells[columnIndex]}
-                  index={rowIndex} />
-              {:else}{cells[columnIndex]}{/if}
-            </Cell>
-          {/each}
+          <Cell width="40%">
+            <ChipLabel value={cells[0]} />
+          </Cell>
+          <Cell width="10%" align="flex-end">{cells[2]}% ({cells[1]})</Cell>
+          <Cell width="10%">&nbsp;</Cell>
+          <Cell width="10%" align="flex-end">{cells[4]}% ({cells[3]})</Cell>
+          <Cell width="10%">&nbsp;</Cell>
+          <Cell width="10%" align="flex-end">
+            <CurrencyLabel value={cells[5]} />
+          </Cell>
+          <Cell width="10%" align="flex-end">
+            <CurrencyLabel value={cells[6]} />
+          </Cell>
         </Row>
       {/each}
     </Body>

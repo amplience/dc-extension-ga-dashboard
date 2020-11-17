@@ -13,6 +13,10 @@ import {
 } from '../../../stores/google-analytics';
 import { selectedEdition } from '../../../stores/selected-edition';
 import { Edition } from 'dc-management-sdk-js';
+import { backOff } from 'exponential-backoff';
+
+jest.mock('exponential-backoff');
+(backOff as jest.Mock).mockImplementation((fn) => fn());
 
 jest.mock('../../../stores/gapi');
 
@@ -71,21 +75,6 @@ describe('DataChart', () => {
       expect(insertDataChart).toHaveBeenCalledTimes(2);
       expect((insertDataChart as jest.Mock).mock.calls).toMatchSnapshot();
     });
-
-    it('should retry when we get a timeout error', async () => {
-      editionIdMapping.set('dimension2');
-      (insertDataChart as jest.Mock).mockImplementation(() =>
-        Promise.reject(new RequestTimeout('GAPI request timeout'))
-      );
-      render(DataChart, dataChartOptions);
-      await tick();
-      await tick();
-      (insertDataChart as jest.Mock).mockImplementation(() =>
-        Promise.resolve([])
-      );
-      expect(insertDataChart).toHaveBeenCalledTimes(2);
-      expect((insertDataChart as jest.Mock).mock.calls).toMatchSnapshot();
-    });
   });
 
   describe('breakdown chart', () => {
@@ -122,21 +111,6 @@ describe('DataChart', () => {
       selectedEdition.set(new Edition({ id: 'editionId' }));
       await tick();
 
-      expect(insertDataChart).toHaveBeenCalledTimes(2);
-      expect((insertDataChart as jest.Mock).mock.calls).toMatchSnapshot();
-    });
-
-    it('should retry when we get a timeout error', async () => {
-      editionIdMapping.set('dimension2');
-      (insertDataChart as jest.Mock).mockImplementation(() =>
-        Promise.reject(new RequestTimeout('GAPI request timeout'))
-      );
-      render(DataChart, dataChartOptions);
-      await tick();
-      await tick();
-      (insertDataChart as jest.Mock).mockImplementation(() =>
-        Promise.resolve([])
-      );
       expect(insertDataChart).toHaveBeenCalledTimes(2);
       expect((insertDataChart as jest.Mock).mock.calls).toMatchSnapshot();
     });

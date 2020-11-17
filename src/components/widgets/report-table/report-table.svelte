@@ -12,7 +12,6 @@
   export let config: TableConfig;
   export let loading = false;
   export let getBreakdownData: GetBreakdownData = undefined;
-  export let breakdownTableConfig: TableConfig = undefined;
 
   const onExpandedRowClick = (
     event: Event & { detail: { expanded: boolean; id: string } }
@@ -62,7 +61,7 @@
       {#each data as cells, rowIndex}
         <Row
           let:expanded
-          expandable={getBreakdownData !== undefined && breakdownTableConfig !== undefined}
+          expandable={getBreakdownData !== undefined}
           expanded={getExpandedRowStateFor(cells[0])}
           id={cells[0]}
           on:click={onExpandedRowClick}>
@@ -78,10 +77,7 @@
             </Cell>
           {/each}
           <div slot="expandable-content">
-            <BreakdownTable
-              id={cells[0]}
-              {getBreakdownData}
-              config={breakdownTableConfig} />
+            <BreakdownTable id={cells[0]} {getBreakdownData} />
           </div>
         </Row>
       {/each}
