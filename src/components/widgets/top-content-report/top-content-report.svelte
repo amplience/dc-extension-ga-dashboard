@@ -1,10 +1,6 @@
 <script lang="ts">
   import { dateRange } from '../../../stores/date-range';
-  import {
-    getDataReport,
-    processReportData,
-    RequestTimeout,
-  } from '../../../stores/gapi';
+  import { getDataReport, processReportData } from '../../../stores/gapi';
   import type { ReportData } from '../../../stores/gapi';
   import {
     breakdownChart,
@@ -23,8 +19,7 @@
   import type { GetBreakdownData } from '../report-table/breakdown-table/get-breakdown-data';
   import { backOff } from 'exponential-backoff';
 
-  let reportData: ReportData[];
-
+  let reportData: ReportData[] = [];
   let loading = true;
 
   const getBreakdownData: GetBreakdownData = async (
@@ -44,21 +39,18 @@
   };
 
   $: (async () => {
-    const loadReport = async () => {
-      const data = await getDataReport(
-        $gaViewId,
-        $contentItemIdMapping,
-        $topContentReportShowCount,
-        $dateRange,
-        $gaQueryFilter
-      );
-
-      return processReportData(data);
-    };
-
-    loading = true;
     try {
-      reportData = await backOff(() => loadReport());
+      loading = true;
+      reportData = await backOff(async () => {
+        const data = await getDataReport(
+          $gaViewId,
+          $contentItemIdMapping,
+          $topContentReportShowCount,
+          $dateRange,
+          $gaQueryFilter
+        );
+        return processReportData(data);
+      });
     } finally {
       loading = false;
     }

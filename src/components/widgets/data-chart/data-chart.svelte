@@ -1,10 +1,6 @@
 <script lang="ts">
   import { dateRange } from '../../../stores/date-range';
-  import {
-    ChartType,
-    insertDataChart,
-    RequestTimeout,
-  } from '../../../stores/gapi';
+  import { ChartType, insertDataChart } from '../../../stores/gapi';
   import { gaViewId } from '../../../stores/google-analytics';
   import Loader from '../../loader/loader.svelte';
   import WidgetBody from '../../widget/widget-body/widget-body.svelte';

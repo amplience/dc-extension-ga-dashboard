@@ -1,3 +1,4 @@
+import type { HtmlTag } from 'svelte/internal';
 import { get, writable } from 'svelte/store';
 import type {
   DataReportResponse,
@@ -23,7 +24,7 @@ export type ReportData = [
   number
 ];
 
-const TIMEOUT_MS = Number('__GOOGLE_ANALYTICS_TIMEOUT__') || 2000;
+const TIMEOUT_MS = Number('__GOOGLE_ANALYTICS_TIMEOUT__') || 5000;
 
 const gapi = writable<GoogleAnalyticsEmbedAPI>(null);
 
@@ -58,7 +59,6 @@ export const buildDataReportQuery = (
     'start-date': dateRange.from,
     'end-date': dateRange.to,
     filters: gaQueryFilter,
-    z: cacheBust,
   };
 };
 
@@ -146,8 +146,22 @@ export const insertDataChart = (
 ): Promise<void> => {
   return new Promise(function (resolve, reject) {
     let timedOut = false;
+    // 1. get the container
+    const containerElement = document.getElementById(containerId);
+
+    // 2. remove all child elements from the dom (calling .remove() for each element is async, innerHTML is synchronous)
+    containerElement.innerHTML = '';
+
+    // 3. create a new div element and add to the container
+    const chartElement = document.createElement('div');
+
+    // 4. give the child container to the gapi sdk to use
+    containerElement.appendChild(chartElement);
+
     const requestTimeout = setTimeout(() => {
       timedOut = true;
+      // 5b) gapi error - remove child element
+      chartElement.remove();
       reject(
         new RequestTimeout(
           `GAPI failed to respond within ${TIMEOUT_MS}ms second`
@@ -155,13 +169,10 @@ export const insertDataChart = (
       );
     }, TIMEOUT_MS);
     const chart = new (getGapi().analytics.googleCharts.DataChart)({
-      query: {
-        ...query,
-        z: new Date().valueOf(), // cache-bust
-      },
+      query: query,
       chart: {
         type: type,
-        container: containerId,
+        container: chartElement,
         options: {
           chartArea: {
             left: 50,
@@ -194,6 +205,7 @@ export const insertDataChart = (
         if (timedOut) {
           return;
         }
+        // 5a) gapi success - renders the chart
         clearTimeout(requestTimeout);
         resolve(response);
       })
@@ -201,6 +213,8 @@ export const insertDataChart = (
         if (timedOut) {
           return;
         }
+        // 5b) gapi error - remove child element
+        chartElement.remove();
         clearTimeout(requestTimeout);
         reject(response);
       })

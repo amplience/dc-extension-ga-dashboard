@@ -40,7 +40,7 @@ Additional environments vars
 | GOOGLE_ANALYTICS_VIEW_ID       | Google Analytics View ID                                                         | ga:1234567890                        |
 | GOOGLE_ANALYTICS_LOCALE        | Google Analytics View ID                                                         | en-GB                                |
 | GOOGLE_ANALYTICS_CURRENCY_CODE | Google Analytics View ID                                                         | GBP                                  |
-| GOOGLE_ANALYTICS_TIMEOUT       | Timeout used to determine how long we should wait before retrying a gapi request | 2000                                 |
+| GOOGLE_ANALYTICS_TIMEOUT       | Timeout used to determine how long we should wait before retrying a gapi request | 5000                                 |
 
 Example `.env` file
 
@@ -57,7 +57,7 @@ GOOGLE_ANALYTICS_CLIENT_ID=abc123.apps.googleusercontent.com
 GOOGLE_ANALYTICS_VIEW_ID=ga:1234567890
 GOOGLE_ANALYTICS_LOCALE=en-GB
 GOOGLE_ANALYTICS_CURRENCY_CODE=GBP
-GOOGLE_ANALYTICS_TIMEOUT=2000
+GOOGLE_ANALYTICS_TIMEOUT=5000
 ```
 
 ...then start [Rollup](https://rollupjs.org):

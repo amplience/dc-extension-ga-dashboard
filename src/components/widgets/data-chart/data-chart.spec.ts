@@ -2,11 +2,7 @@ import { render } from '@testing-library/svelte';
 import DataChart from './data-chart.svelte';
 import { tick } from 'svelte';
 import { dateRange } from '../../../stores/date-range';
-import {
-  ChartType,
-  insertDataChart,
-  RequestTimeout,
-} from '../../../stores/gapi';
+import { ChartType, insertDataChart } from '../../../stores/gapi';
 import {
   editionIdMapping,
   setGaConfig,
@@ -48,7 +44,6 @@ describe('DataChart', () => {
       const { container } = render(DataChart, dataChartOptions);
       await tick();
 
-      expect(insertDataChart).toHaveBeenCalledTimes(1);
       expect((insertDataChart as jest.Mock).mock.calls).toMatchSnapshot();
       expect(container.firstChild).toMatchSnapshot();
     });
@@ -87,7 +82,7 @@ describe('DataChart', () => {
     it('should render the DataChart component', async () => {
       const { container } = render(DataChart, dataChartOptions);
       await tick();
-      expect(insertDataChart).toHaveBeenCalledTimes(1);
+
       expect((insertDataChart as jest.Mock).mock.calls).toMatchSnapshot();
       expect(container.firstChild).toMatchSnapshot();
     });
