@@ -1,6 +1,7 @@
 import { tick } from 'svelte';
 import {
   fireEvent,
+  getAllByDisplayValue,
   getByTestId,
   getByText,
   render,
@@ -66,11 +67,13 @@ describe('TopContentReport', () => {
 
     await tick();
     await tick();
+    await tick();
 
     expect(container.firstChild).toMatchSnapshot();
 
     fireEvent.click(getByText(container, 'dimension'));
 
+    await tick();
     await tick();
     await tick();
 

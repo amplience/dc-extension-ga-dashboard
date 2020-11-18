@@ -1,6 +1,5 @@
 <script lang="ts">
   import type { ReportData } from '../../../stores/gapi';
-  import { reportTableExpandedRows } from '../../../stores/report-table-expanded-rows';
   import { Body, Cell, DataTable, Head, Row } from '../../data-table';
   import Loader from '../../loader/loader.svelte';
   import NoDataPlaceholder from '../../no-data-placeholder/no-data-placeholder.svelte';
@@ -12,25 +11,6 @@
   export let config: TableConfig;
   export let loading = false;
   export let getBreakdownData: GetBreakdownData = undefined;
-
-  const onExpandedRowClick = (
-    event: Event & { detail: { expanded: boolean; id: string } }
-  ) => {
-    const state = new Set($reportTableExpandedRows[config.id]);
-    if (event.detail.expanded) {
-      state.add(event.detail.id);
-    } else {
-      state.delete(event.detail.id);
-    }
-    $reportTableExpandedRows[config.id] = [...new Set(state)];
-  };
-
-  const getExpandedRowStateFor = (rowId: string): boolean => {
-    if ($reportTableExpandedRows[config.id]?.indexOf(rowId) > -1) {
-      return true;
-    }
-    return false;
-  };
 </script>
 
 <style>
@@ -62,9 +42,7 @@
         <Row
           let:expanded
           expandable={getBreakdownData !== undefined}
-          expanded={getExpandedRowStateFor(cells[0])}
-          id={cells[0]}
-          on:click={onExpandedRowClick}>
+          id="{cells[0]}}">
           {#each config.columns as column, columnIndex}
             <Cell width={column.width} align={column.align}>
               {#if column.component}

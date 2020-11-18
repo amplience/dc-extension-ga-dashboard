@@ -226,12 +226,12 @@ exports[`TopContentReport should render the TopContentReport component 1`] = `
                       class="query-label svelte-1ylxfod"
                     />
                      
-                    
                     <span
-                      data-testid="loading-1"
+                      data-testid="error"
                     >
                       dimension
                     </span>
+                    
                     
                     
                   </div>
@@ -710,25 +710,116 @@ exports[`TopContentReport should render the TopContentReport component 2`] = `
                     class="svelte-t5plmn"
                     slot="expandable-content"
                   >
+                     
                     <div
-                      class="loader svelte-yqs0su"
+                      class="data-table svelte-1gunyt0"
                     >
                       <div
-                        class="spinner-container svelte-wkqaim"
-                        style="--z-index: 10;"
+                        class="data-table-slot secondary
+    scrollable svelte-1gunyt0"
                       >
                         <div
-                          class="spinner dot-0 svelte-wkqaim"
-                        />
-                        <div
-                          class="spinner dot-1 svelte-wkqaim"
-                        />
-                        <div
-                          class="spinner dot-2 svelte-wkqaim"
-                        />
+                          class="data-table-body"
+                        >
+                          <div
+                            class="data-table-row   svelte-qyj5n8"
+                          >
+                            <div
+                              class="row-content svelte-qyj5n8"
+                              data-testid="row-content"
+                            >
+                               
+                              <div
+                                class="data-table-cell svelte-1x8v3rk"
+                                style="
+  max-width:40%;
+  justify-content:flex-start;
+  color:#333;"
+                              >
+                                <div
+                                  class="clickable svelte-bktgns"
+                                  data-testid="chip"
+                                >
+                                  <span>
+                                    dimension
+                                  </span>
+                                </div>
+                                
+                              </div>
+                               
+                              <div
+                                class="data-table-cell svelte-1x8v3rk"
+                                style="
+  max-width:10%;
+  justify-content:flex-end;
+  color:#333;"
+                              >
+                                100
+                                % (
+                                1
+                                )
+                              </div>
+                               
+                              <div
+                                class="data-table-cell svelte-1x8v3rk"
+                                style="
+  max-width:10%;
+  justify-content:flex-start;
+  color:#333;"
+                              />
+                               
+                              <div
+                                class="data-table-cell svelte-1x8v3rk"
+                                style="
+  max-width:10%;
+  justify-content:flex-end;
+  color:#333;"
+                              >
+                                100
+                                % (
+                                1
+                                )
+                              </div>
+                               
+                              <div
+                                class="data-table-cell svelte-1x8v3rk"
+                                style="
+  max-width:10%;
+  justify-content:flex-start;
+  color:#333;"
+                              />
+                               
+                              <div
+                                class="data-table-cell svelte-1x8v3rk"
+                                style="
+  max-width:10%;
+  justify-content:flex-end;
+  color:#333;"
+                              >
+                                <div>
+                                  £1.00
+                                </div>
+                              </div>
+                               
+                              <div
+                                class="data-table-cell svelte-1x8v3rk"
+                                style="
+  max-width:10%;
+  justify-content:flex-end;
+  color:#333;"
+                              >
+                                <div>
+                                  £1.00
+                                </div>
+                              </div>
+                               
+                            </div>
+                             
+                          </div>
+                          
+                        </div>
                       </div>
                     </div>
-                     
                     
                   </div>
                 </div>
