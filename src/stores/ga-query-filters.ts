@@ -18,8 +18,8 @@ export const gaQueryFilter = derived(
 );
 
 export function constructFilter(
-  customFilter: string,
-  queryFilter: string
+  queryFilter: string,
+  customFilter: string
 ): string {
   if (customFilter) {
     return queryFilter ? `${queryFilter};${customFilter}` : customFilter;

@@ -35,7 +35,7 @@
         $contentItemIdMapping,
         $topContentReportShowCount,
         $dateRange,
-        constructFilter($contentItemFilter, $gaQueryFilter)
+        constructFilter($gaQueryFilter, $contentItemFilter)
       );
 
       return processReportData(data);

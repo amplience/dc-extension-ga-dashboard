@@ -32,7 +32,7 @@
         $editionIdMapping,
         $topEditionReportShowCount,
         $dateRange,
-        constructFilter($editionFilter, $gaQueryFilter)
+        constructFilter($gaQueryFilter, $editionFilter)
       );
 
       return processReportData(data);
