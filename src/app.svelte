@@ -14,7 +14,7 @@
   import { hub, managementSdkService } from './stores/dynamic-content';
   import { gapiAuthorized } from './stores/gapi-authorized';
   import {
-    breakdownChart,
+    breakdown,
     contentItemIdMapping,
     editionIdMapping,
     gaClientId,
@@ -140,8 +140,8 @@
             chartType={ChartType.LINE} />
           <DataChart
             className="breakdown"
-            title={$breakdownChart.title}
-            dimensions={$breakdownChart.dimension}
+            title={$breakdown.title}
+            dimensions={$breakdown.dimension}
             chartType={ChartType.BAR} />
           {#if $contentItemIdMapping}
             <TopContentReport />

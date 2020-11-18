@@ -4,7 +4,7 @@ import TopEditionsReport from './top-editions-report.svelte';
 import { getDataReport } from '../../../stores/gapi';
 import { dateRange } from '../../../stores/date-range';
 import {
-  breakdownChart,
+  breakdown,
   contentItemIdMapping,
   editionIdMapping,
   gaViewId,
@@ -29,7 +29,7 @@ jest.mock('../../../stores/gapi', function () {
 describe('TopEditionsReport', () => {
   beforeEach(() => {
     dateRange.set({ from: '2020-11-01', to: '2020-11-02' });
-    breakdownChart.set({
+    breakdown.set({
       title: 'BREAKDOWN_CHART_TITLE',
       dimension: 'BREAKDOWN_CHART_DIMENSION',
     });

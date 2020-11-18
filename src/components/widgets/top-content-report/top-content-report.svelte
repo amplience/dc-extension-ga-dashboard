@@ -3,7 +3,7 @@
   import { getDataReport, processReportData } from '../../../stores/gapi';
   import type { ReportData } from '../../../stores/gapi';
   import {
-    breakdownChart,
+    breakdown,
     contentItemIdMapping,
     gaViewId,
   } from '../../../stores/google-analytics';
@@ -30,7 +30,7 @@
     }${$contentItemIdMapping}==${id}`;
     const data = await getDataReport(
       $gaViewId,
-      $breakdownChart.dimension,
+      $breakdown.dimension,
       100,
       $dateRange,
       filter
