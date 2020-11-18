@@ -31,7 +31,7 @@
     const data = await getDataReport(
       $gaViewId,
       $breakdownChart.dimension,
-      $topContentReportShowCount,
+      100,
       $dateRange,
       filter
     );

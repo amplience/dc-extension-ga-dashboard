@@ -860,7 +860,7 @@ Array [
   Array [
     "GA_VIEW_ID",
     "BREAKDOWN_CHART_DIMENSION",
-    "5",
+    100,
     Object {
       "from": "2020-01-01",
       "to": "2020-12-31",

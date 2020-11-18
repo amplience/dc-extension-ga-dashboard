@@ -1,13 +1,7 @@
 import { tick } from 'svelte';
-import {
-  fireEvent,
-  getAllByDisplayValue,
-  getByTestId,
-  getByText,
-  render,
-} from '@testing-library/svelte';
+import { fireEvent, getByText, render } from '@testing-library/svelte';
 import TopContentReport from './top-content-report.svelte';
-import { getDataReport, RequestTimeout } from '../../../stores/gapi';
+import { getDataReport } from '../../../stores/gapi';
 import { dateRange } from '../../../stores/date-range';
 import {
   breakdownChart,

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`TopContentReport should render the TopContentReport component 1`] = `
+exports[`TopEditionsReport should render the TopEditionsReport component 1`] = `
 <div>
   <section
     class="top-editions-report svelte-3d73gc"
@@ -92,15 +92,780 @@ exports[`TopContentReport should render the TopContentReport component 1`] = `
         class="widget-body svelte-4p1s5s"
       >
         <div
-          class="no-data-container svelte-1kq81j9"
+          class="data-table svelte-1gunyt0"
         >
-          <p>
-            No data for the selected date range
-          </p>
+          <div
+            class="data-table-slot 
+    scrollable svelte-1gunyt0"
+          >
+            <div
+              class="data-table-head svelte-1nivie3"
+            >
+              <div
+                class="data-table-row   svelte-qyj5n8"
+              >
+                <div
+                  class="row-content svelte-qyj5n8"
+                  data-testid="row-content"
+                >
+                   
+                  <div
+                    class="data-table-cell svelte-1x8v3rk"
+                    style="
+  max-width:40%;
+  justify-content:flex-start;
+  color:#999;"
+                  >
+                    Edition
+                     
+                  </div>
+                  <div
+                    class="data-table-cell svelte-1x8v3rk"
+                    style="
+  max-width:10%;
+  justify-content:flex-end;
+  color:#999;"
+                  >
+                    Total events
+                     
+                  </div>
+                  <div
+                    class="data-table-cell svelte-1x8v3rk"
+                    style="
+  max-width:10%;
+  justify-content:flex-start;
+  color:#999;"
+                  >
+                    % Total events
+                     
+                  </div>
+                  <div
+                    class="data-table-cell svelte-1x8v3rk"
+                    style="
+  max-width:10%;
+  justify-content:flex-end;
+  color:#999;"
+                  >
+                    Unique events
+                     
+                  </div>
+                  <div
+                    class="data-table-cell svelte-1x8v3rk"
+                    style="
+  max-width:10%;
+  justify-content:flex-start;
+  color:#999;"
+                  >
+                    % Unique events
+                     
+                  </div>
+                  <div
+                    class="data-table-cell svelte-1x8v3rk"
+                    style="
+  max-width:10%;
+  justify-content:flex-end;
+  color:#999;"
+                  >
+                    Event value
+                     
+                  </div>
+                  <div
+                    class="data-table-cell svelte-1x8v3rk"
+                    style="
+  max-width:10%;
+  justify-content:flex-end;
+  color:#999;"
+                  >
+                    Avg event value
+                     
+                  </div>
+                  
+                </div>
+                 
+              </div>
+            </div>
+             
+            <div
+              class="data-table-body"
+            >
+              <div
+                class="data-table-row expandable  svelte-qyj5n8"
+              >
+                <div
+                  class="row-content svelte-qyj5n8"
+                  data-testid="row-content"
+                >
+                  <div
+                    class="svelte-cy4end"
+                    data-testid="expandable-icon"
+                  >
+                    <div
+                      class=" svelte-zpbvvv"
+                      style="--icon-width: 24px; --icon-height: 24px;"
+                    >
+                      <object
+                        src="ic-expandable.svg/"
+                      />
+                    </div>
+                  </div>
+                   
+                  <div
+                    class="data-table-cell svelte-1x8v3rk"
+                    style="
+  max-width:40%;
+  justify-content:flex-start;
+  color:#333;"
+                  >
+                    <span
+                      class="query-index svelte-1ylxfod"
+                    >
+                      1
+                    </span>
+                     
+                    <div
+                      class="query-label svelte-1ylxfod"
+                    />
+                     
+                    <span
+                      data-testid="error"
+                    >
+                      dimension
+                    </span>
+                    
+                    
+                    
+                  </div>
+                  <div
+                    class="data-table-cell svelte-1x8v3rk"
+                    style="
+  max-width:10%;
+  justify-content:flex-end;
+  color:#333;"
+                  >
+                    1
+                    
+                  </div>
+                  <div
+                    class="data-table-cell svelte-1x8v3rk"
+                    style="
+  max-width:10%;
+  justify-content:flex-start;
+  color:#333;"
+                  >
+                    <div
+                      class="svelte-1av7bio"
+                    >
+                      <div
+                        class="percent-bar svelte-1av7bio"
+                      >
+                        <div
+                          class="percent-bar-marker svelte-1av7bio"
+                          style="width: 100%;"
+                        />
+                         
+                        <div
+                          class="percent-value svelte-1av7bio"
+                        >
+                          100
+                          %
+                        </div>
+                      </div>
+                    </div>
+                    
+                    
+                  </div>
+                  <div
+                    class="data-table-cell svelte-1x8v3rk"
+                    style="
+  max-width:10%;
+  justify-content:flex-end;
+  color:#333;"
+                  >
+                    1
+                    
+                  </div>
+                  <div
+                    class="data-table-cell svelte-1x8v3rk"
+                    style="
+  max-width:10%;
+  justify-content:flex-start;
+  color:#333;"
+                  >
+                    <div
+                      class="svelte-1av7bio"
+                    >
+                      <div
+                        class="percent-bar svelte-1av7bio"
+                      >
+                        <div
+                          class="percent-bar-marker svelte-1av7bio"
+                          style="width: 100%;"
+                        />
+                         
+                        <div
+                          class="percent-value svelte-1av7bio"
+                        >
+                          100
+                          %
+                        </div>
+                      </div>
+                    </div>
+                    
+                    
+                  </div>
+                  <div
+                    class="data-table-cell svelte-1x8v3rk"
+                    style="
+  max-width:10%;
+  justify-content:flex-end;
+  color:#333;"
+                  >
+                    <div>
+                      £1.00
+                    </div>
+                    
+                    
+                  </div>
+                  <div
+                    class="data-table-cell svelte-1x8v3rk"
+                    style="
+  max-width:10%;
+  justify-content:flex-end;
+  color:#333;"
+                  >
+                    <div>
+                      £1.00
+                    </div>
+                    
+                    
+                  </div>
+                   
+                   
+                </div>
+                 
+                <div
+                  class="expandable-content svelte-qyj5n8"
+                  data-testid="expandable-content"
+                />
+              </div>
+              
+            </div>
+          </div>
         </div>
         
       </section>
     </article>
   </section>
 </div>
+`;
+
+exports[`TopEditionsReport should render the TopEditionsReport component 2`] = `
+<div>
+  <section
+    class="top-editions-report svelte-3d73gc"
+  >
+    <article
+      class="svelte-pntwh0"
+    >
+       
+      <section
+        class="widget-header svelte-1kld2ef"
+      >
+        <div
+          class="title svelte-1kld2ef"
+        >
+          <h2
+            class="svelte-1kld2ef"
+          >
+            Top editions
+          </h2>
+           
+           
+        </div>
+         
+        <div
+          class="actions svelte-1kld2ef"
+        >
+          <div
+            slot="actions"
+          >
+            <div
+              class="select top-editions-report-sizes-select svelte-c7jdhd"
+            >
+              <span>
+                Show
+              </span>
+               
+              <div
+                class="
+    mdc-select
+    smui-select
+    
+    
+    smui-select--standard
+    
+    
+  "
+              >
+                 
+                <i
+                  class="mdc-select__dropdown-icon"
+                />
+                 
+                <input
+                  id="SMUI-select-0"
+                  type="hidden"
+                  value="5"
+                />
+                 
+                <div
+                  aria-haspopup="listbox"
+                  aria-labelledby="SMUI-select-0-smui-label SMUI-select-0-smui-selected-text"
+                  aria-required="false"
+                  class="mdc-select__selected-text"
+                  id="SMUI-select-0-smui-selected-text"
+                  role="button"
+                  tabindex="0"
+                >
+                  5
+                </div>
+                 
+                 
+                 
+                <div
+                  class="
+    mdc-line-ripple
+    
+    
+  "
+                />
+                
+                 
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+       
+      <section
+        class="widget-body svelte-4p1s5s"
+      >
+        <div
+          class="data-table svelte-1gunyt0"
+        >
+          <div
+            class="data-table-slot 
+    scrollable svelte-1gunyt0"
+          >
+            <div
+              class="data-table-head svelte-1nivie3"
+            >
+              <div
+                class="data-table-row   svelte-qyj5n8"
+              >
+                <div
+                  class="row-content svelte-qyj5n8"
+                  data-testid="row-content"
+                >
+                   
+                  <div
+                    class="data-table-cell svelte-1x8v3rk"
+                    style="
+  max-width:40%;
+  justify-content:flex-start;
+  color:#999;"
+                  >
+                    Edition
+                     
+                  </div>
+                  <div
+                    class="data-table-cell svelte-1x8v3rk"
+                    style="
+  max-width:10%;
+  justify-content:flex-end;
+  color:#999;"
+                  >
+                    Total events
+                     
+                  </div>
+                  <div
+                    class="data-table-cell svelte-1x8v3rk"
+                    style="
+  max-width:10%;
+  justify-content:flex-start;
+  color:#999;"
+                  >
+                    % Total events
+                     
+                  </div>
+                  <div
+                    class="data-table-cell svelte-1x8v3rk"
+                    style="
+  max-width:10%;
+  justify-content:flex-end;
+  color:#999;"
+                  >
+                    Unique events
+                     
+                  </div>
+                  <div
+                    class="data-table-cell svelte-1x8v3rk"
+                    style="
+  max-width:10%;
+  justify-content:flex-start;
+  color:#999;"
+                  >
+                    % Unique events
+                     
+                  </div>
+                  <div
+                    class="data-table-cell svelte-1x8v3rk"
+                    style="
+  max-width:10%;
+  justify-content:flex-end;
+  color:#999;"
+                  >
+                    Event value
+                     
+                  </div>
+                  <div
+                    class="data-table-cell svelte-1x8v3rk"
+                    style="
+  max-width:10%;
+  justify-content:flex-end;
+  color:#999;"
+                  >
+                    Avg event value
+                     
+                  </div>
+                  
+                </div>
+                 
+              </div>
+            </div>
+             
+            <div
+              class="data-table-body"
+            >
+              <div
+                class="data-table-row expandable expanded svelte-qyj5n8"
+              >
+                <div
+                  class="row-content svelte-qyj5n8"
+                  data-testid="row-content"
+                >
+                  <div
+                    class="svelte-cy4end"
+                    data-testid="expandable-icon"
+                  >
+                    <div
+                      class=" svelte-zpbvvv"
+                      style="--icon-width: 24px; --icon-height: 24px;"
+                    >
+                      <object
+                        src="ic-contractable.svg/"
+                      />
+                    </div>
+                  </div>
+                   
+                  <div
+                    class="data-table-cell svelte-1x8v3rk"
+                    style="
+  max-width:40%;
+  justify-content:flex-start;
+  color:#333;"
+                  >
+                    <span
+                      class="query-index svelte-1ylxfod"
+                    >
+                      1
+                    </span>
+                     
+                    <div
+                      class="query-label svelte-1ylxfod"
+                    />
+                     
+                    <span
+                      data-testid="error"
+                    >
+                      dimension
+                    </span>
+                    
+                    
+                    
+                  </div>
+                  <div
+                    class="data-table-cell svelte-1x8v3rk"
+                    style="
+  max-width:10%;
+  justify-content:flex-end;
+  color:#333;"
+                  >
+                    1
+                    
+                  </div>
+                  <div
+                    class="data-table-cell svelte-1x8v3rk"
+                    style="
+  max-width:10%;
+  justify-content:flex-start;
+  color:#333;"
+                  >
+                    <div
+                      class="svelte-1av7bio"
+                    >
+                      <div
+                        class="percent-bar svelte-1av7bio"
+                      >
+                        <div
+                          class="percent-bar-marker svelte-1av7bio"
+                          style="width: 100%;"
+                        />
+                         
+                        <div
+                          class="percent-value svelte-1av7bio"
+                        >
+                          100
+                          %
+                        </div>
+                      </div>
+                    </div>
+                    
+                    
+                  </div>
+                  <div
+                    class="data-table-cell svelte-1x8v3rk"
+                    style="
+  max-width:10%;
+  justify-content:flex-end;
+  color:#333;"
+                  >
+                    1
+                    
+                  </div>
+                  <div
+                    class="data-table-cell svelte-1x8v3rk"
+                    style="
+  max-width:10%;
+  justify-content:flex-start;
+  color:#333;"
+                  >
+                    <div
+                      class="svelte-1av7bio"
+                    >
+                      <div
+                        class="percent-bar svelte-1av7bio"
+                      >
+                        <div
+                          class="percent-bar-marker svelte-1av7bio"
+                          style="width: 100%;"
+                        />
+                         
+                        <div
+                          class="percent-value svelte-1av7bio"
+                        >
+                          100
+                          %
+                        </div>
+                      </div>
+                    </div>
+                    
+                    
+                  </div>
+                  <div
+                    class="data-table-cell svelte-1x8v3rk"
+                    style="
+  max-width:10%;
+  justify-content:flex-end;
+  color:#333;"
+                  >
+                    <div>
+                      £1.00
+                    </div>
+                    
+                    
+                  </div>
+                  <div
+                    class="data-table-cell svelte-1x8v3rk"
+                    style="
+  max-width:10%;
+  justify-content:flex-end;
+  color:#333;"
+                  >
+                    <div>
+                      £1.00
+                    </div>
+                    
+                    
+                  </div>
+                   
+                   
+                </div>
+                 
+                <div
+                  class="expandable-content svelte-qyj5n8"
+                  data-testid="expandable-content"
+                >
+                  <div
+                    class="svelte-t5plmn"
+                    slot="expandable-content"
+                  >
+                     
+                    <div
+                      class="data-table svelte-1gunyt0"
+                    >
+                      <div
+                        class="data-table-slot secondary
+    scrollable svelte-1gunyt0"
+                      >
+                        <div
+                          class="data-table-body"
+                        >
+                          <div
+                            class="data-table-row   svelte-qyj5n8"
+                          >
+                            <div
+                              class="row-content svelte-qyj5n8"
+                              data-testid="row-content"
+                            >
+                               
+                              <div
+                                class="data-table-cell svelte-1x8v3rk"
+                                style="
+  max-width:40%;
+  justify-content:flex-start;
+  color:#333;"
+                              >
+                                <div
+                                  class="clickable svelte-bktgns"
+                                  data-testid="chip"
+                                >
+                                  <span>
+                                    dimension
+                                  </span>
+                                </div>
+                                
+                              </div>
+                               
+                              <div
+                                class="data-table-cell svelte-1x8v3rk"
+                                style="
+  max-width:10%;
+  justify-content:flex-end;
+  color:#333;"
+                              >
+                                100
+                                % (
+                                1
+                                )
+                              </div>
+                               
+                              <div
+                                class="data-table-cell svelte-1x8v3rk"
+                                style="
+  max-width:10%;
+  justify-content:flex-start;
+  color:#333;"
+                              />
+                               
+                              <div
+                                class="data-table-cell svelte-1x8v3rk"
+                                style="
+  max-width:10%;
+  justify-content:flex-end;
+  color:#333;"
+                              >
+                                100
+                                % (
+                                1
+                                )
+                              </div>
+                               
+                              <div
+                                class="data-table-cell svelte-1x8v3rk"
+                                style="
+  max-width:10%;
+  justify-content:flex-start;
+  color:#333;"
+                              />
+                               
+                              <div
+                                class="data-table-cell svelte-1x8v3rk"
+                                style="
+  max-width:10%;
+  justify-content:flex-end;
+  color:#333;"
+                              >
+                                <div>
+                                  £1.00
+                                </div>
+                              </div>
+                               
+                              <div
+                                class="data-table-cell svelte-1x8v3rk"
+                                style="
+  max-width:10%;
+  justify-content:flex-end;
+  color:#333;"
+                              >
+                                <div>
+                                  £1.00
+                                </div>
+                              </div>
+                               
+                            </div>
+                             
+                          </div>
+                          
+                        </div>
+                      </div>
+                    </div>
+                    
+                  </div>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+        
+      </section>
+    </article>
+  </section>
+</div>
+`;
+
+exports[`TopEditionsReport should render the TopEditionsReport component 3`] = `
+Array [
+  Array [
+    "GA_VIEW_ID",
+    "EDITION_ID_MAPPING",
+    5,
+    Object {
+      "from": "2020-01-01",
+      "to": "2020-12-31",
+    },
+    "ga:EDITION_ID_MAPPING==EDITION_ID",
+  ],
+  Array [
+    "GA_VIEW_ID",
+    "EDITION_ID_MAPPING",
+    "5",
+    Object {
+      "from": "2020-01-01",
+      "to": "2020-12-31",
+    },
+    "ga:EDITION_ID_MAPPING==EDITION_ID",
+  ],
+  Array [
+    "GA_VIEW_ID",
+    "BREAKDOWN_CHART_DIMENSION",
+    100,
+    Object {
+      "from": "2020-01-01",
+      "to": "2020-12-31",
+    },
+    "ga:EDITION_ID_MAPPING==EDITION_ID;EDITION_ID_MAPPING==dimension",
+  ],
+]
 `;
