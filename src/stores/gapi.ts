@@ -24,7 +24,7 @@ export type ReportData = [
   number
 ];
 
-const TIMEOUT_MS = Number('__GOOGLE_ANALYTICS_TIMEOUT__') || 5000;
+const TIMEOUT_MS = Number('__GOOGLE_ANALYTICS_TIMEOUT__') || 30000;
 
 const gapi = writable<GoogleAnalyticsEmbedAPI>(null);
 
