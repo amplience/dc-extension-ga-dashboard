@@ -60,7 +60,7 @@ describe('DataChart', () => {
     });
 
     it('should update the chart when the selectedEdition changes', async () => {
-      editionIdMapping.set('dimension2');
+      editionIdMapping.set('ga:dimension2');
       render(DataChart, dataChartOptions);
       await tick();
 
@@ -99,7 +99,7 @@ describe('DataChart', () => {
     });
 
     it('should update the chart when the selectedEdition changes', async () => {
-      editionIdMapping.set('dimension2');
+      editionIdMapping.set('ga:dimension2');
       render(DataChart, dataChartOptions);
       await tick();
 

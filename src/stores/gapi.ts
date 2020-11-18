@@ -168,6 +168,7 @@ export const insertDataChart = (
         )
       );
     }, TIMEOUT_MS);
+
     const chart = new (getGapi().analytics.googleCharts.DataChart)({
       query: query,
       chart: {

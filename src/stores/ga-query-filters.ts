@@ -6,7 +6,7 @@ export const gaQueryFilter = derived(
   [selectedEdition, editionIdMapping],
   ([$selectedEdition, $editionIdMapping]) => {
     if ($selectedEdition) {
-      return 'ga:' + $editionIdMapping + '==' + $selectedEdition.id;
+      return $editionIdMapping + '==' + $selectedEdition.id;
     }
     return undefined;
   }

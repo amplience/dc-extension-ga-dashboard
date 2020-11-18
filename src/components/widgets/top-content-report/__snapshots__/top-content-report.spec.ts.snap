@@ -845,7 +845,7 @@ Array [
       "from": "2020-01-01",
       "to": "2020-12-31",
     },
-    "ga:EDITION_ID_MAPPING==EDITION_ID",
+    "EDITION_ID_MAPPING==EDITION_ID",
   ],
   Array [
     "GA_VIEW_ID",
@@ -855,7 +855,7 @@ Array [
       "from": "2020-01-01",
       "to": "2020-12-31",
     },
-    "ga:EDITION_ID_MAPPING==EDITION_ID",
+    "EDITION_ID_MAPPING==EDITION_ID",
   ],
   Array [
     "GA_VIEW_ID",
@@ -865,7 +865,7 @@ Array [
       "from": "2020-01-01",
       "to": "2020-12-31",
     },
-    "ga:EDITION_ID_MAPPING==EDITION_ID;CONTENT_ID_MAPPING==dimension",
+    "EDITION_ID_MAPPING==EDITION_ID;CONTENT_ID_MAPPING==dimension",
   ],
 ]
 `;
