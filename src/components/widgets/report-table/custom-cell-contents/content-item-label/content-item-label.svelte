@@ -4,6 +4,7 @@
 
   export let value: string;
   export let index: number;
+  export let expanded: boolean;
 </script>
 
 <QueryLabel index={index + 1} />
