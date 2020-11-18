@@ -6,6 +6,8 @@ import type {
 
 export const gaViewId = writable<string>(null);
 export const gaClientId = writable<string>(null);
+export const gaClientEmail = writable<string>(null);
+export const gaApiKey = writable<string>(null);
 export const contentItemIdMapping = writable<string>(null);
 export const editionIdMapping = writable<string>(null);
 export const slotIdMapping = writable<string>(null);
@@ -15,7 +17,9 @@ export const breakdownChartTitle = writable<BreakdownChartConfiguration>(null);
 
 export function setGaConfig(config: ExtensionConfiguration): void {
   gaViewId.set(config?.googleAnalyticsViewId || '');
-  gaClientId.set(config?.googleAnalyticsClientId || '');
+  gaClientId.set(config?.googleAnalyticsClientId);
+  gaClientEmail.set(config?.googleAnalyticsClientEmail);
+  gaApiKey.set(config?.googleAnalyticsKey || '');
 
   contentItemIdMapping.set(config?.mappings?.contentItemId);
   editionIdMapping.set(config?.mappings?.editionId);

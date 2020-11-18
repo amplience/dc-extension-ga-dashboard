@@ -1,4 +1,3 @@
-import type { HtmlTag } from 'svelte/internal';
 import { get, writable } from 'svelte/store';
 import type {
   DataReportResponse,
@@ -47,8 +46,7 @@ export const buildDataReportQuery = (
   dimension: string,
   limit: number,
   dateRange: DateRange,
-  gaQueryFilter: string = undefined,
-  cacheBust: number = undefined
+  gaQueryFilter: string = undefined
 ): Query => {
   return {
     ids: gaViewId,
@@ -74,8 +72,7 @@ export const getDataReport = (
     dimension,
     limit,
     dateRange,
-    gaQueryFilter,
-    new Date().valueOf()
+    gaQueryFilter
   );
   return new Promise(function (resolve, reject) {
     const requestTimeout = setTimeout(

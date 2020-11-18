@@ -9,8 +9,7 @@ describe('gapi', () => {
           'ga:dimension1',
           20,
           { from: '2020-01-01', to: '2020-12-31' },
-          'ga:dimension1=123',
-          123456
+          'ga:dimension1=123'
         )
       ).toMatchInlineSnapshot(`
         Object {
@@ -33,7 +32,6 @@ describe('gapi', () => {
           'ga:dimension1',
           20,
           { from: '2020-01-01', to: '2020-12-31' },
-          undefined,
           undefined
         )
       ).toMatchInlineSnapshot(`

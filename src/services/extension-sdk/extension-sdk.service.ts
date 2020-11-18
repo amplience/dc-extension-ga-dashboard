@@ -11,7 +11,9 @@ export interface BreakdownChartConfiguration {
 }
 export interface ExtensionConfiguration {
   googleAnalyticsClientId: string;
+  googleAnalyticsClientEmail?: string;
   googleAnalyticsViewId: string;
+  googleAnalyticsKey?: string;
   breakdownChart?: BreakdownChartConfiguration;
   mappings: {
     contentItemId: string;
@@ -34,12 +36,14 @@ async function standaloneClient(): Promise<SdkExtensionConfiguration> {
       hubId: '__HUB_ID__',
       locationHref: '__LOCATION_HREF__',
       installation: {
+        googleAnalyticsKey: '__GOOGLE_ANALYTICS_KEY__',
         googleAnalyticsClientId: '__GOOGLE_ANALYTICS_CLIENT_ID__',
+        googleAnalyticsClientEmail: '__GOOGLE_ANALYTICS_CLIENT_EMAIL__',
         googleAnalyticsViewId: '__GOOGLE_ANALYTICS_VIEW_ID__',
         mappings: {
-          contentItemId: 'dimension1',
-          editionId: 'dimension2',
-          slotId: 'dimension3',
+          contentItemId: 'ga:dimension1',
+          editionId: 'ga:dimension2',
+          slotId: 'ga:dimension3',
         },
         localization: {
           locale: '__GOOGLE_ANALYTICS_LOCALE__',

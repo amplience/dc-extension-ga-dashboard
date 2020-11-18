@@ -62,6 +62,9 @@ export default {
       __BREAKDOWN_CHART_TITLE__: () => process.env.BREAKDOWN_CHART_TITLE,
       __BREAKDOWN_CHART_DIMENSION__: () =>
         process.env.BREAKDOWN_CHART_DIMENSION,
+      __GOOGLE_ANALYTICS_KEY__: () => process.env.GOOGLE_ANALYTICS_KEY || '',
+      __GOOGLE_ANALYTICS_CLIENT_EMAIL__: () =>
+        process.env.GOOGLE_ANALYTICS_CLIENT_EMAIL || '',
       __GOOGLE_ANALYTICS_CLIENT_ID__: () =>
         process.env.GOOGLE_ANALYTICS_CLIENT_ID || '',
       __GOOGLE_ANALYTICS_VIEW_ID__: () =>

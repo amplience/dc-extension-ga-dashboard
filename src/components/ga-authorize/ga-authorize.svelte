@@ -2,13 +2,32 @@
   import { afterUpdate } from 'svelte';
   import gapi from '../../stores/gapi';
   import { gapiAuthorized } from '../../stores/gapi-authorized';
-  import { gaClientId } from '../../stores/google-analytics';
+  import {
+    gaApiKey,
+    gaClientEmail,
+    gaClientId,
+  } from '../../stores/google-analytics';
+  import { getToken } from './get-access-token.service';
 
-  afterUpdate(() => {
+  afterUpdate(async () => {
     if (!$gapi) {
       return;
     }
 
+    if ($gaApiKey && $gaClientEmail) {
+      try {
+        const token = await getToken($gaApiKey, $gaClientEmail);
+        $gapi.analytics.auth.authorize({
+          serverAuth: token,
+        });
+        $gapiAuthorized = true;
+        return;
+      } catch (e) {
+        console.error(
+          'Unable to retrieve gapi token using supplied client api key and email'
+        );
+      }
+    }
     $gapi.analytics.auth.authorize({
       container: 'auth-button',
       clientid: $gaClientId,
