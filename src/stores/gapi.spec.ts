@@ -22,7 +22,6 @@ describe('gapi', () => {
           "metrics": "ga:totalEvents,ga:uniqueEvents,ga:eventValue,ga:avgEventValue",
           "sort": "-ga:totalEvents",
           "start-date": "2020-01-01",
-          "z": 123456,
         }
       `);
     });
@@ -47,7 +46,6 @@ describe('gapi', () => {
           "metrics": "ga:totalEvents,ga:uniqueEvents,ga:eventValue,ga:avgEventValue",
           "sort": "-ga:totalEvents",
           "start-date": "2020-01-01",
-          "z": undefined,
         }
       `);
     });

@@ -23,6 +23,7 @@ describe('TopContentReport', () => {
     const { container } = render(TopContentReport, {});
 
     await tick();
+    await tick();
     expect(container.firstChild).toMatchSnapshot();
   });
 });

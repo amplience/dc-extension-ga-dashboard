@@ -7,7 +7,7 @@
   import WidgetHeader from '../../widget/widget-header/widget-header.svelte';
   import Widget from '../../widget/widget.svelte';
   import { gaQueryFilter } from '../../../stores/ga-query-filters';
-  import { backOff } from "exponential-backoff";
+  import { backOff } from 'exponential-backoff';
 
   export let className = '';
   export let title;
