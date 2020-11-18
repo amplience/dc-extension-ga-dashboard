@@ -18,7 +18,11 @@
   import ReportTable from '../report-table/report-table.svelte';
   import { SIZES } from '../widgets-config';
   import config from './table-config';
-  import { gaQueryFilter } from '../../../stores/ga-query-filters';
+  import {
+    contentItemFilter,
+    constructFilter,
+    gaQueryFilter,
+  } from '../../../stores/ga-query-filters';
 
   let reportData: ReportData[];
 
@@ -31,7 +35,7 @@
         $contentItemIdMapping,
         $topContentReportShowCount,
         $dateRange,
-        $gaQueryFilter
+        constructFilter($contentItemFilter, $gaQueryFilter)
       );
 
       return processReportData(data);

@@ -14,9 +14,9 @@ describe('DateRangePicker', () => {
 
     await tick();
     const fromInput = screen.getByPlaceholderText('Pick a start date');
-    expect((fromInput as HTMLInputElement).value).toEqual('1/1/2020');
+    expect((fromInput as HTMLInputElement).value).toEqual('01/01/2020');
     const toInput = screen.getByPlaceholderText('Pick an end date');
-    expect((toInput as HTMLInputElement).value).toEqual('1/1/2020');
+    expect((toInput as HTMLInputElement).value).toEqual('01/01/2020');
     expect(container.firstChild).toMatchSnapshot();
   });
 

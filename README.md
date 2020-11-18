@@ -99,6 +99,11 @@ To use the application the following permissions must be enabled:
   "breakdownChart": {
     "title": "Breakdown chart title",
     "dimension": "ga:deviceCategory"
+  },
+  "filters": {
+    "contentItemFilter": "ga:content-item-filter",
+    "editionFilter": "ga:edition-filter",
+    "slotFilter": "ga:slot-filter"
   }
 }
 ```
