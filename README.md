@@ -99,8 +99,17 @@ To use the application the following permissions must be enabled:
   "breakdownChart": {
     "title": "Breakdown chart title",
     "dimension": "ga:deviceCategory"
+  },
+  "filters": {
+    "contentItemFilter": "ga:eventCategory==StoreContent",
+    "editionFilter": "ga:eventCategory==StoreContent",
+    "slotFilter": "ga:eventCategory==StoreContent"
   }
 }
 ```
 
+#### Dimensions
 The dimensions provided should map to the fields in which have been set up in the Google analytics dashboard for the fields outlined above.
+
+#### Filters
+For each report, Top Content, Top Editions, Top Slots, it is possible to specify optional fields that are used to additionally filter the reports, for example to set up a fiter to show only data for an event category called 'Banners', set a filter of 'ga:eventCategory==Banners'
