@@ -13,6 +13,7 @@ import { backOff } from 'exponential-backoff';
 
 jest.mock('exponential-backoff');
 (backOff as jest.Mock).mockImplementation((fn) => fn());
+
 jest.mock('../../../stores/gapi');
 
 describe('DataChart', () => {

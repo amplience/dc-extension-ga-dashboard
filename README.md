@@ -96,7 +96,7 @@ To use the application the following permissions must be enabled:
     "locale": "en-GB",
     "currencyCode": "GBP"
   },
-  "breakdownChart": {
+  "breakdown": {
     "title": "Breakdown chart title",
     "dimension": "ga:deviceCategory"
   },

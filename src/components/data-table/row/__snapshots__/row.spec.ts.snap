@@ -1,9 +1,83 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Row should render the DataTable Row component 1`] = `
+exports[`Row should render the expandable row 1`] = `
 <div>
   <div
-    class="data-table-row svelte-hige1l"
-  />
+    class="data-table-row expandable  svelte-qyj5n8"
+  >
+    <div
+      class="row-content svelte-qyj5n8"
+      data-testid="row-content"
+    >
+      <div
+        class="svelte-cy4end"
+        data-testid="expandable-icon"
+      >
+        <div
+          class=" svelte-zpbvvv"
+          style="--icon-width: 24px; --icon-height: 24px;"
+        >
+          <object
+            src="ic-expandable.svg/"
+          />
+        </div>
+      </div>
+       
+    </div>
+     
+    <div
+      class="expandable-content svelte-qyj5n8"
+      data-testid="expandable-content"
+    />
+  </div>
+</div>
+`;
+
+exports[`Row should render the expanded expandable row 1`] = `
+<div>
+  <div
+    class="data-table-row expandable expanded svelte-qyj5n8"
+  >
+    <div
+      class="row-content svelte-qyj5n8"
+      data-testid="row-content"
+    >
+      <div
+        class="svelte-cy4end"
+        data-testid="expandable-icon"
+      >
+        <div
+          class=" svelte-zpbvvv"
+          style="--icon-width: 24px; --icon-height: 24px;"
+        >
+          <object
+            src="ic-contractable.svg/"
+          />
+        </div>
+      </div>
+       
+    </div>
+     
+    <div
+      class="expandable-content svelte-qyj5n8"
+      data-testid="expandable-content"
+    />
+  </div>
+</div>
+`;
+
+exports[`Row should render the non-expandable row by default 1`] = `
+<div>
+  <div
+    class="data-table-row   svelte-qyj5n8"
+  >
+    <div
+      class="row-content svelte-qyj5n8"
+      data-testid="row-content"
+    >
+       
+    </div>
+     
+  </div>
 </div>
 `;

@@ -3,6 +3,7 @@
   import { getDataReport, processReportData } from '../../../stores/gapi';
   import type { ReportData } from '../../../stores/gapi';
   import {
+    breakdown,
     contentItemIdMapping,
     gaViewId,
   } from '../../../stores/google-analytics';
@@ -20,9 +21,26 @@
     gaQueryFilter,
   } from '../../../stores/ga-query-filters';
   import { backOff } from 'exponential-backoff';
+  import type { GetBreakdownData } from '../report-table/breakdown-table/get-breakdown-data';
 
   let reportData: ReportData[] = [];
   let loading = true;
+
+  const getBreakdownData: GetBreakdownData = async (
+    id: string
+  ): Promise<ReportData[]> => {
+    const filter = `${
+      $gaQueryFilter ? $gaQueryFilter + ';' : ''
+    }${$contentItemIdMapping}==${id}`;
+    const data = await getDataReport(
+      $gaViewId,
+      $breakdown.dimension,
+      100,
+      $dateRange,
+      filter
+    );
+    return processReportData(data);
+  };
 
   $: (async () => {
     try {
@@ -68,7 +86,7 @@
       </div>
     </WidgetHeader>
     <WidgetBody>
-      <ReportTable data={reportData} {config} {loading} />
+      <ReportTable data={reportData} {config} {loading} {getBreakdownData} />
     </WidgetBody>
   </Widget>
 </section>

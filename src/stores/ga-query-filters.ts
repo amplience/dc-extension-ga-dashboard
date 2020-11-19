@@ -13,7 +13,7 @@ export const gaQueryFilter = derived(
     if ($selectedEdition) {
       return $editionIdMapping + '==' + $selectedEdition.id;
     }
-    return null;
+    return undefined;
   }
 );
 
