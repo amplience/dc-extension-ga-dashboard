@@ -17,7 +17,7 @@
   import config from './table-config';
   import {
     editionFilter,
-    constructFilter,
+    joinFilters,
     gaQueryFilter,
   } from '../../../stores/ga-query-filters';
   import { backOff } from 'exponential-backoff';
@@ -29,15 +29,12 @@
   const getBreakdownData: GetBreakdownData = async (
     id: string
   ): Promise<ReportData[]> => {
-    const filter = `${
-      $gaQueryFilter ? $gaQueryFilter + ';' : ''
-    }${$editionIdMapping}==${id}`;
     const data = await getDataReport(
       $gaViewId,
       $breakdown.dimension,
       100,
       $dateRange,
-      filter
+      joinFilters($gaQueryFilter, $editionFilter, `${$editionIdMapping}==${id}`)
     );
     return processReportData(data);
   };
@@ -51,7 +48,7 @@
           $editionIdMapping,
           $topEditionReportShowCount,
           $dateRange,
-          constructFilter($gaQueryFilter, $editionFilter)
+          joinFilters($gaQueryFilter, $editionFilter)
         );
         return processReportData(data);
       });

@@ -18,7 +18,6 @@
     contentItemIdMapping,
     editionIdMapping,
     gaClientId,
-    setGaConfig,
     slotIdMapping,
   } from './stores/google-analytics';
   import { connection } from './stores/message-channel';
@@ -27,11 +26,7 @@
   import { ManagementSdkService } from './services/management-sdk/management-sdk.service';
   import HttpClientInFlightCache from './services/management-sdk/http-client-in-flight-cache';
   import TopSlotsReport from './components/widgets/top-slots-report/top-slots-report.svelte';
-  import {
-    contentItemFilter,
-    editionFilter,
-    slotFilter,
-  } from './stores/ga-query-filters';
+  import { initialiseStores } from './services/stores/initialise';
 
   connection.set(
     createConnection({
@@ -45,25 +40,17 @@
     await initGapi();
     const extensionsSdk = await getExtensionClient();
     $sdkExtensionConfiguration = extensionsSdk;
-    setGaConfig(extensionsSdk.params.installation as ExtensionConfiguration);
+
+    initialiseStores(
+      extensionsSdk.params.installation as ExtensionConfiguration
+    );
+
     $managementSdkService = new ManagementSdkService(
       new HttpClientInFlightCache(extensionsSdk.client, 5000)
     );
     $hub = await $managementSdkService.client.hubs.get(
       extensionsSdk.params.hubId
     );
-    $locale =
-      (extensionsSdk.params.installation as ExtensionConfiguration)
-        ?.localization?.locale || $locale;
-    $currencyCode =
-      (extensionsSdk.params.installation as ExtensionConfiguration)
-        ?.localization?.currencyCode || $currencyCode;
-    $contentItemFilter = (extensionsSdk.params
-      .installation as ExtensionConfiguration)?.filters?.contentItemFilter;
-    $editionFilter = (extensionsSdk.params
-      .installation as ExtensionConfiguration)?.filters?.editionFilter;
-    $slotFilter = (extensionsSdk.params.installation as ExtensionConfiguration)
-      ?.filters?.editionFilter;
   });
 
   function setParentHeight(height: number): void {

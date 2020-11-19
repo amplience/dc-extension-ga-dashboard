@@ -17,13 +17,7 @@ export const gaQueryFilter = derived(
   }
 );
 
-export function constructFilter(
-  queryFilter: string,
-  customFilter: string
-): string {
-  if (customFilter) {
-    return queryFilter ? `${queryFilter};${customFilter}` : customFilter;
-  }
-
-  return queryFilter;
-}
+export const joinFilters = (...filters: string[]): string | null =>
+  filters
+    .filter((filter) => typeof filter === 'string' && filter.length > 0)
+    .join(';') || null;
