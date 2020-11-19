@@ -20,6 +20,7 @@
     background-color: hsl(0, 0%, 95%);
     padding: 4px 8px;
     border-radius: 12px;
+    margin-right: 12px;
   }
 
   span.label {

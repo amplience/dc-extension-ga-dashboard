@@ -9,7 +9,10 @@ import {
 } from '../../../stores/google-analytics';
 import { selectedEdition } from '../../../stores/selected-edition';
 import { Edition } from 'dc-management-sdk-js';
+import { backOff } from 'exponential-backoff';
 
+jest.mock('exponential-backoff');
+(backOff as jest.Mock).mockImplementation((fn) => fn());
 jest.mock('../../../stores/gapi');
 
 describe('DataChart', () => {
@@ -17,12 +20,12 @@ describe('DataChart', () => {
     selectedEdition.set(null);
     dateRange.set({ from: '2020-11-01', to: '2020-11-02' });
     setGaConfig({
-      googleAnalyticsViewId: '1234567890',
+      googleAnalyticsViewId: 'ga:1234567890',
       googleAnalyticsClientId: '1234567890',
       mappings: {
-        contentItemId: 'dimension1',
-        editionId: 'dimension2',
-        slotId: 'dimension3',
+        contentItemId: 'ga:dimension1',
+        editionId: 'ga:dimension2',
+        slotId: 'ga:dimension3',
       },
     });
   });
@@ -56,7 +59,7 @@ describe('DataChart', () => {
     });
 
     it('should update the chart when the selectedEdition changes', async () => {
-      editionIdMapping.set('dimension2');
+      editionIdMapping.set('ga:dimension2');
       render(DataChart, dataChartOptions);
       await tick();
 
@@ -95,7 +98,7 @@ describe('DataChart', () => {
     });
 
     it('should update the chart when the selectedEdition changes', async () => {
-      editionIdMapping.set('dimension2');
+      editionIdMapping.set('ga:dimension2');
       render(DataChart, dataChartOptions);
       await tick();
 

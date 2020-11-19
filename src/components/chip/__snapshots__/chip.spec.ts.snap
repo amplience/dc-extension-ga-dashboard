@@ -3,7 +3,7 @@
 exports[`Chip should render a Chip 1`] = `
 <div>
   <div
-    class="clickable svelte-bktgns"
+    class="clickable svelte-197mspp"
     data-testid="chip"
   >
     <span>
@@ -17,7 +17,7 @@ exports[`Chip should render a Chip 1`] = `
 exports[`Chip should render an active Chip 1`] = `
 <div>
   <div
-    class="active clickable svelte-bktgns"
+    class="active clickable svelte-197mspp"
     data-testid="chip"
   >
     <span>

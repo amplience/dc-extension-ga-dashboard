@@ -15,25 +15,24 @@
   import { SIZES } from '../widgets-config';
   import config from './table-config';
   import { gaQueryFilter } from '../../../stores/ga-query-filters';
+  import { backOff } from 'exponential-backoff';
 
-  let reportData: ReportData[];
+  let reportData: ReportData[] = [];
   let loading = true;
 
   $: (async () => {
     try {
       loading = true;
-      const data = await getDataReport(
-        $gaViewId,
-        $contentItemIdMapping,
-        $topContentReportShowCount,
-        $dateRange,
-        $gaQueryFilter
-      );
-
-      reportData = processReportData(data);
-    } catch (e) {
-      console.error(`Unable to get report data: ${e?.error?.message}`);
-      reportData = [];
+      reportData = await backOff(async () => {
+        const data = await getDataReport(
+          $gaViewId,
+          $contentItemIdMapping,
+          $topContentReportShowCount,
+          $dateRange,
+          $gaQueryFilter
+        );
+        return processReportData(data);
+      });
     } finally {
       loading = false;
     }

@@ -1,3 +1,4 @@
+import type { HtmlTag } from 'svelte/internal';
 import { get, writable } from 'svelte/store';
 import type {
   DataReportResponse,
@@ -6,6 +7,12 @@ import type {
   Query,
 } from '../definitions/google-analytics-embed-api';
 import type { DateRange } from './date-range';
+
+export class RequestTimeout extends Error {
+  constructor(message: string) {
+    super(message);
+  }
+}
 
 export type ReportData = [
   string,
@@ -16,6 +23,8 @@ export type ReportData = [
   number,
   number
 ];
+
+const TIMEOUT_MS = Number('__GOOGLE_ANALYTICS_TIMEOUT__') || 30000;
 
 const gapi = writable<GoogleAnalyticsEmbedAPI>(null);
 
@@ -42,15 +51,14 @@ export const buildDataReportQuery = (
   cacheBust: number = undefined
 ): Query => {
   return {
-    ids: `ga:${gaViewId}`,
+    ids: gaViewId,
     metrics: 'ga:totalEvents,ga:uniqueEvents,ga:eventValue,ga:avgEventValue',
-    dimensions: `ga:${dimension}`,
+    dimensions: dimension,
     sort: '-ga:totalEvents',
     'max-results': limit,
     'start-date': dateRange.from,
     'end-date': dateRange.to,
     filters: gaQueryFilter,
-    z: cacheBust,
   };
 };
 
@@ -70,11 +78,22 @@ export const getDataReport = (
     new Date().valueOf()
   );
   return new Promise(function (resolve, reject) {
+    const requestTimeout = setTimeout(
+      () =>
+        reject(
+          new RequestTimeout(
+            `GAPI failed to respond within ${TIMEOUT_MS}ms second`
+          )
+        ),
+      TIMEOUT_MS
+    );
     new (getGapi().analytics.report.Data)({ query })
       .once('success', function (response) {
+        clearTimeout(requestTimeout);
         resolve(response);
       })
       .once('error', function (response) {
+        clearTimeout(requestTimeout);
         reject(response);
       })
       .execute();
@@ -126,15 +145,40 @@ export const insertDataChart = (
   options: Record<string, unknown>
 ): Promise<void> => {
   return new Promise(function (resolve, reject) {
+    let timedOut = false;
+    // 1. get the container
+    const containerElement = document.getElementById(containerId);
+
+    // 2. remove all child elements from the dom (calling .remove() for each element is async, innerHTML is synchronous)
+    containerElement.innerHTML = '';
+
+    // 3. create a new div element and add to the container
+    const chartElement = document.createElement('div');
+
+    // 4. give the child container to the gapi sdk to use
+    containerElement.appendChild(chartElement);
+
+    const requestTimeout = setTimeout(() => {
+      timedOut = true;
+      // 5b) gapi error - remove child element
+      chartElement.remove();
+      reject(
+        new RequestTimeout(
+          `GAPI failed to respond within ${TIMEOUT_MS}ms second`
+        )
+      );
+    }, TIMEOUT_MS);
+
     const chart = new (getGapi().analytics.googleCharts.DataChart)({
-      query: {
-        ...query,
-        z: new Date().valueOf(), // cache-bust
-      },
+      query: query,
       chart: {
         type: type,
-        container: containerId,
+        container: chartElement,
         options: {
+          chartArea: {
+            left: 50,
+            right: 20,
+          },
           fontSize: 12,
           fontName: 'Roboto',
           width: '100%',
@@ -142,6 +186,7 @@ export const insertDataChart = (
             startup: true,
           },
           vAxis: {
+            textPosition: 'out',
             textStyle: {
               color: '#999',
             },
@@ -158,9 +203,20 @@ export const insertDataChart = (
 
     chart
       .once('success', (response) => {
+        if (timedOut) {
+          return;
+        }
+        // 5a) gapi success - renders the chart
+        clearTimeout(requestTimeout);
         resolve(response);
       })
       .once('error', (response) => {
+        if (timedOut) {
+          return;
+        }
+        // 5b) gapi error - remove child element
+        chartElement.remove();
+        clearTimeout(requestTimeout);
         reject(response);
       })
       .execute();
