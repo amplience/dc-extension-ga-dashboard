@@ -14,7 +14,7 @@
   import { hub, managementSdkService } from './stores/dynamic-content';
   import { gapiAuthorized } from './stores/gapi-authorized';
   import {
-    breakdownChart,
+    breakdown,
     contentItemIdMapping,
     editionIdMapping,
     gaClientId,
@@ -27,6 +27,11 @@
   import { ManagementSdkService } from './services/management-sdk/management-sdk.service';
   import HttpClientInFlightCache from './services/management-sdk/http-client-in-flight-cache';
   import TopSlotsReport from './components/widgets/top-slots-report/top-slots-report.svelte';
+  import {
+    contentItemFilter,
+    editionFilter,
+    slotFilter,
+  } from './stores/ga-query-filters';
 
   connection.set(
     createConnection({
@@ -53,6 +58,12 @@
     $currencyCode =
       (extensionsSdk.params.installation as ExtensionConfiguration)
         ?.localization?.currencyCode || $currencyCode;
+    $contentItemFilter = (extensionsSdk.params
+      .installation as ExtensionConfiguration)?.filters?.contentItemFilter;
+    $editionFilter = (extensionsSdk.params
+      .installation as ExtensionConfiguration)?.filters?.editionFilter;
+    $slotFilter = (extensionsSdk.params.installation as ExtensionConfiguration)
+      ?.filters?.editionFilter;
   });
 
   function setParentHeight(height: number): void {
@@ -147,8 +158,8 @@
             chartType={ChartType.LINE} />
           <DataChart
             className="breakdown"
-            title={$breakdownChart.title}
-            dimensions={$breakdownChart.dimension}
+            title={$breakdown.title}
+            dimensions={$breakdown.dimension}
             chartType={ChartType.BAR} />
           {#if $contentItemIdMapping}
             <TopContentReport />

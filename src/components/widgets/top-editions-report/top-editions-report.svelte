@@ -2,7 +2,11 @@
   import { dateRange } from '../../../stores/date-range';
   import { getDataReport, processReportData } from '../../../stores/gapi';
   import type { ReportData } from '../../../stores/gapi';
-  import { editionIdMapping, gaViewId } from '../../../stores/google-analytics';
+  import {
+    breakdown,
+    editionIdMapping,
+    gaViewId,
+  } from '../../../stores/google-analytics';
   import { topEditionReportShowCount } from '../../../stores/widget-settings';
   import Select from '../../select/select.svelte';
   import WidgetBody from '../../widget/widget-body/widget-body.svelte';
@@ -11,11 +15,32 @@
   import ReportTable from '../report-table/report-table.svelte';
   import { SIZES } from '../widgets-config';
   import config from './table-config';
-  import { gaQueryFilter } from '../../../stores/ga-query-filters';
+  import {
+    editionFilter,
+    constructFilter,
+    gaQueryFilter,
+  } from '../../../stores/ga-query-filters';
   import { backOff } from 'exponential-backoff';
+  import type { GetBreakdownData } from '../report-table/breakdown-table/get-breakdown-data';
 
   let reportData: ReportData[];
   let loading = true;
+
+  const getBreakdownData: GetBreakdownData = async (
+    id: string
+  ): Promise<ReportData[]> => {
+    const filter = `${
+      $gaQueryFilter ? $gaQueryFilter + ';' : ''
+    }${$editionIdMapping}==${id}`;
+    const data = await getDataReport(
+      $gaViewId,
+      $breakdown.dimension,
+      100,
+      $dateRange,
+      filter
+    );
+    return processReportData(data);
+  };
 
   $: (async () => {
     try {
@@ -26,7 +51,7 @@
           $editionIdMapping,
           $topEditionReportShowCount,
           $dateRange,
-          $gaQueryFilter
+          constructFilter($gaQueryFilter, $editionFilter)
         );
         return processReportData(data);
       });
@@ -61,7 +86,7 @@
       </div>
     </WidgetHeader>
     <WidgetBody>
-      <ReportTable data={reportData} {config} {loading} />
+      <ReportTable data={reportData} {config} {loading} {getBreakdownData} />
     </WidgetBody>
   </Widget>
 </section>

@@ -13,24 +13,4 @@ describe('QueryLabel', () => {
 
     expect(container.firstChild).toMatchSnapshot();
   });
-
-  it('should render an expanded QueryLabel component', () => {
-    const { container } = render(QueryLabel, {
-      index: 1,
-      expandable: true,
-      expanded: true,
-    });
-
-    expect(container.firstChild).toMatchSnapshot();
-  });
-
-  it('should render a collapsed QueryLabel component', () => {
-    const { container } = render(QueryLabel, {
-      index: 1,
-      expandable: true,
-      expanded: false,
-    });
-
-    expect(container.firstChild).toMatchSnapshot();
-  });
 });

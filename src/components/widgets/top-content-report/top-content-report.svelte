@@ -3,6 +3,7 @@
   import { getDataReport, processReportData } from '../../../stores/gapi';
   import type { ReportData } from '../../../stores/gapi';
   import {
+    breakdown,
     contentItemIdMapping,
     gaViewId,
   } from '../../../stores/google-analytics';
@@ -14,11 +15,32 @@
   import ReportTable from '../report-table/report-table.svelte';
   import { SIZES } from '../widgets-config';
   import config from './table-config';
-  import { gaQueryFilter } from '../../../stores/ga-query-filters';
+  import {
+    contentItemFilter,
+    constructFilter,
+    gaQueryFilter,
+  } from '../../../stores/ga-query-filters';
   import { backOff } from 'exponential-backoff';
+  import type { GetBreakdownData } from '../report-table/breakdown-table/get-breakdown-data';
 
   let reportData: ReportData[] = [];
   let loading = true;
+
+  const getBreakdownData: GetBreakdownData = async (
+    id: string
+  ): Promise<ReportData[]> => {
+    const filter = `${
+      $gaQueryFilter ? $gaQueryFilter + ';' : ''
+    }${$contentItemIdMapping}==${id}`;
+    const data = await getDataReport(
+      $gaViewId,
+      $breakdown.dimension,
+      100,
+      $dateRange,
+      filter
+    );
+    return processReportData(data);
+  };
 
   $: (async () => {
     try {
@@ -29,7 +51,7 @@
           $contentItemIdMapping,
           $topContentReportShowCount,
           $dateRange,
-          $gaQueryFilter
+          constructFilter($gaQueryFilter, $contentItemFilter)
         );
         return processReportData(data);
       });
@@ -64,7 +86,7 @@
       </div>
     </WidgetHeader>
     <WidgetBody>
-      <ReportTable data={reportData} {config} {loading} />
+      <ReportTable data={reportData} {config} {loading} {getBreakdownData} />
     </WidgetBody>
   </Widget>
 </section>

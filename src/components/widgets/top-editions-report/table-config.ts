@@ -1,19 +1,10 @@
 import CurrencyLabel from '../report-table/custom-cell-contents/currency-label/currency-label.svelte';
 import PercentageLabel from '../report-table/custom-cell-contents/percent-label/percent-label.svelte';
 import EditionLabel from '../report-table/custom-cell-contents/edition-label/edition-label.svelte';
-
-export interface TableConfigColumn {
-  title: string;
-  width?: string;
-  align?: string;
-  component?: unknown;
-}
-
-export interface TableConfig {
-  columns: TableConfigColumn[];
-}
+import type { TableConfig } from '../report-table/table-config.interface';
 
 const config: TableConfig = {
+  id: 'top-editions-report',
   columns: [
     {
       title: 'Edition',
