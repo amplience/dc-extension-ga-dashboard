@@ -5,6 +5,7 @@
   export let label: string;
   export let active: boolean = false;
   export let removeable: boolean = false;
+  export let clickable: boolean = false;
 
   const dispatch = createEventDispatcher();
 
@@ -51,7 +52,10 @@
 </style>
 
 {#if removeable}
-  <div data-testid="chip" on:click={onChipClick} class={active ? 'active' : ''}>
+  <div
+    data-testid="chip"
+    on:click={onChipClick}
+    class={`${active ? 'active ' : ''}${clickable ? 'clickable' : ''}`}>
     <span class="label"> {label} </span>
     <span
       data-testid="remove-chip-button"
