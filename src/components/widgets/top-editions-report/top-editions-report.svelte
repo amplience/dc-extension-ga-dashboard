@@ -15,7 +15,11 @@
   import ReportTable from '../report-table/report-table.svelte';
   import { SIZES } from '../widgets-config';
   import config from './table-config';
-  import { gaQueryFilter } from '../../../stores/ga-query-filters';
+  import {
+    editionFilter,
+    constructFilter,
+    gaQueryFilter,
+  } from '../../../stores/ga-query-filters';
   import { backOff } from 'exponential-backoff';
   import type { GetBreakdownData } from '../report-table/breakdown-table/get-breakdown-data';
 
@@ -47,7 +51,7 @@
           $editionIdMapping,
           $topEditionReportShowCount,
           $dateRange,
-          $gaQueryFilter
+          constructFilter($gaQueryFilter, $editionFilter)
         );
         return processReportData(data);
       });

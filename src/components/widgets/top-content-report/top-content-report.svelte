@@ -15,9 +15,13 @@
   import ReportTable from '../report-table/report-table.svelte';
   import { SIZES } from '../widgets-config';
   import config from './table-config';
-  import { gaQueryFilter } from '../../../stores/ga-query-filters';
-  import type { GetBreakdownData } from '../report-table/breakdown-table/get-breakdown-data';
+  import {
+    contentItemFilter,
+    constructFilter,
+    gaQueryFilter,
+  } from '../../../stores/ga-query-filters';
   import { backOff } from 'exponential-backoff';
+  import type { GetBreakdownData } from '../report-table/breakdown-table/get-breakdown-data';
 
   let reportData: ReportData[] = [];
   let loading = true;
@@ -47,7 +51,7 @@
           $contentItemIdMapping,
           $topContentReportShowCount,
           $dateRange,
-          $gaQueryFilter
+          constructFilter($gaQueryFilter, $contentItemFilter)
         );
         return processReportData(data);
       });

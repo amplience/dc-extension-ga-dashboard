@@ -22,6 +22,11 @@ export interface ExtensionConfiguration {
     locale: string;
     currencyCode: string;
   };
+  filters?: {
+    contentItemFilter: string;
+    editionFilter: string;
+    slotFilter: string;
+  };
 }
 
 function isStandalone(): string {
