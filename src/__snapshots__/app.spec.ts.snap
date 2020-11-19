@@ -3,10 +3,10 @@
 exports[`App should render the App component 1`] = `
 <div>
   <main
-    class="svelte-1979cas"
+    class="svelte-d8bwzx"
   >
     <div
-      class="top-bar svelte-1979cas"
+      class="top-bar svelte-d8bwzx"
     >
       <section
         class="top-bar svelte-1y25f5"
@@ -113,10 +113,10 @@ exports[`App should render the App component 1`] = `
     </div>
      
     <div
-      class="scroll-area svelte-1979cas"
+      class="scroll-area svelte-d8bwzx"
     >
       <section
-        class="container svelte-1979cas"
+        class="container svelte-d8bwzx"
       >
         <div
           class="spinner-container svelte-wkqaim"
