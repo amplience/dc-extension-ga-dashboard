@@ -2,7 +2,11 @@ import { render } from '@testing-library/svelte';
 import DataChart from './data-chart.svelte';
 import { tick } from 'svelte';
 import { dateRange } from '../../../stores/date-range';
-import { ChartType, insertDataChart } from '../../../stores/gapi';
+import {
+  ChartType,
+  insertDataChart,
+  RequestTimeout,
+} from '../../../stores/gapi';
 import {
   editionIdMapping,
   setGaConfig,

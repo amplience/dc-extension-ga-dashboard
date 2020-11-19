@@ -11,11 +11,13 @@ import { tick } from 'svelte';
 import { get } from 'svelte/store';
 import { dateRange, NOW } from '../../stores/date-range';
 import { hub } from '../../stores/dynamic-content';
+import { selectedContentItems } from '../../stores/selected-content-items';
 import { selectedEdition } from '../../stores/selected-edition';
+import { selectedRepository } from '../../stores/selected-repository';
 import { formatDateAsISOString } from '../../utils/date-format';
 import ReportFilter from './report-filter.svelte';
 
-describe('ReportFilter component', () => {
+describe('ReportFilter component - Editions', () => {
   beforeEach(() => {
     hub.set(null);
     selectedEdition.set(null);
@@ -132,6 +134,24 @@ describe('ReportFilter component', () => {
     expect(container.firstChild).toMatchSnapshot();
   });
 });
+
+describe('ReportFilter component - ContentItems', () => {
+  beforeEach(() => {
+    hub.set(null);
+    selectedRepository.set(null);
+    selectedContentItems.set([]);
+  });
+  it('should render the no hub state for the repository picker', async () => {
+    const { container } = render(ReportFilter, {});
+    const displayModalButton = getByTestId(container, 'display-modal-button');
+    await fireEvent.click(displayModalButton);
+    const contentRadio = getByTestId(container, 'content-radio');
+    await fireEvent.change(contentRadio, { target: { checked: true } });
+
+    expect(container.firstChild).toMatchSnapshot();
+  });
+});
+
 async function renderAndSelectEdition(publishedEdition: Edition) {
   const mockFindByDate = jest.fn().mockResolvedValue({
     getItems: () => {
