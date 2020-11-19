@@ -126,7 +126,7 @@
   div.icon-wrapper {
     height: 30px;
     width: 30px;
-    padding: 6px;
+    padding: 5px;
     background-color: hsl(0, 0%, 90%);
     border-radius: 4px;
     margin-right: 8px;
@@ -146,7 +146,7 @@
       class="edition-filter"
       data-testid="display-modal-button"
       on:click={showModal}>
-      <div class={$selectedEdition ? 'active icon-wrapper' : ''}>
+      <div class={`icon-wrapper ${$selectedEdition ? 'active ' : ''}`}>
         <Icon icon={FilterIcon} width="20px" height="20px" />
       </div>
       <div>

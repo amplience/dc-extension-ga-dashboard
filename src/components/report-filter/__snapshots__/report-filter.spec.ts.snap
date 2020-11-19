@@ -9,17 +9,17 @@ exports[`ReportFilter component should render initial state when a selectedEditi
   />
    
   <section
-    class="svelte-1ipsz6k"
+    class="svelte-gq3h23"
   >
     <div
-      class="selected-edition svelte-1ipsz6k"
+      class="selected-edition svelte-gq3h23"
     >
       <div
-        class="edition-filter svelte-1ipsz6k"
+        class="edition-filter svelte-gq3h23"
         data-testid="display-modal-button"
       >
         <div
-          class=" svelte-1ipsz6k"
+          class="icon-wrapper  svelte-gq3h23"
         >
           <div
             class=" svelte-zpbvvv"
@@ -39,7 +39,7 @@ exports[`ReportFilter component should render initial state when a selectedEditi
     </div>
      
     <div
-      class="modal-popup svelte-1ipsz6k"
+      class="modal-popup svelte-gq3h23"
       style="top: NaNpx;left: undefinedpx"
     >
       <article
@@ -96,7 +96,7 @@ exports[`ReportFilter component should render initial state when a selectedEditi
                   for="SMUI-form-field-4"
                 >
                   <span
-                    class="svelte-1ipsz6k"
+                    class="svelte-gq3h23"
                     slot="label"
                   >
                     Edition
@@ -156,17 +156,17 @@ exports[`ReportFilter component should render the ReportFilter component no sele
 <div>
    
   <section
-    class="svelte-1ipsz6k"
+    class="svelte-gq3h23"
   >
     <div
-      class="selected-edition svelte-1ipsz6k"
+      class="selected-edition svelte-gq3h23"
     >
       <div
-        class="edition-filter svelte-1ipsz6k"
+        class="edition-filter svelte-gq3h23"
         data-testid="display-modal-button"
       >
         <div
-          class=" svelte-1ipsz6k"
+          class="icon-wrapper  svelte-gq3h23"
         >
           <div
             class=" svelte-zpbvvv"
@@ -193,17 +193,17 @@ exports[`ReportFilter component should render the ReportFilter component with a 
 <div>
    
   <section
-    class="svelte-1ipsz6k"
+    class="svelte-gq3h23"
   >
     <div
-      class="selected-edition svelte-1ipsz6k"
+      class="selected-edition svelte-gq3h23"
     >
       <div
-        class="edition-filter svelte-1ipsz6k"
+        class="edition-filter svelte-gq3h23"
         data-testid="display-modal-button"
       >
         <div
-          class="active icon-wrapper svelte-1ipsz6k"
+          class="icon-wrapper active  svelte-gq3h23"
         >
           <div
             class=" svelte-zpbvvv"
