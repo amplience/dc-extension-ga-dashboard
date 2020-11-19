@@ -130,7 +130,6 @@
         menu$class="select-width">
         {#each publishedEditions as edition}
           <Option
-            data-wibble={selectValue + ' ' + edition.id}
             value={edition.id}
             selected={selectValue === edition.id || false}>
             {edition.event.name}
