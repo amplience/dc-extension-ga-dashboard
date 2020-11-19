@@ -4,30 +4,29 @@
   import { gapiAuthorized } from '../../stores/gapi-authorized';
   import {
     gaApiKey,
+    gaAuthByToken,
     gaClientEmail,
     gaClientId,
   } from '../../stores/google-analytics';
-  import { getToken } from './get-access-token.service';
+  import { refreshToken } from '../../services/gapi-token/gapi-token.service';
 
   afterUpdate(async () => {
     if (!$gapi) {
       return;
     }
 
-    if ($gaApiKey && $gaClientEmail) {
-      try {
-        const token = await getToken($gaApiKey, $gaClientEmail);
-        $gapi.analytics.auth.authorize({
-          serverAuth: token,
-        });
+    try {
+      if ($gaAuthByToken) {
+        await refreshToken($gapi, $gaApiKey, $gaClientEmail);
         $gapiAuthorized = true;
         return;
-      } catch (e) {
-        console.error(
-          'Unable to retrieve gapi token using supplied client api key and email'
-        );
       }
+    } catch (e) {
+      console.error(
+        'Unable to retrieve gapi token using supplied client api key and email'
+      );
     }
+
     $gapi.analytics.auth.authorize({
       container: 'auth-button',
       clientid: $gaClientId,

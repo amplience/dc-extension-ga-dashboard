@@ -189,7 +189,7 @@ export interface GoogleAnalyticsEmbedAPI {
     setApiKey: (arg0: any) => any;
     setApiVersions: (arg0: any) => any;
     getToken: (arg0: any) => any;
-    setToken: (arg0: any, arg1: any) => any;
+    setToken: (arg0: any) => any;
     AuthType: {
       S3: string;
       NONE: string;

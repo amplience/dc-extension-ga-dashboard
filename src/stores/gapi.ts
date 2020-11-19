@@ -1,4 +1,8 @@
 import { get, writable } from 'svelte/store';
+import {
+  isValidToken,
+  refreshToken,
+} from '../services/gapi-token/gapi-token.service';
 import type {
   DataReportResponse,
   DataReportRow,
@@ -6,6 +10,7 @@ import type {
   Query,
 } from '../definitions/google-analytics-embed-api';
 import type { DateRange } from './date-range';
+import { gaApiKey, gaAuthByToken, gaClientEmail } from './google-analytics';
 
 export class RequestTimeout extends Error {
   constructor(message: string) {
@@ -41,6 +46,13 @@ const getGapi = (): GoogleAnalyticsEmbedAPI => {
   return get(gapi) as GoogleAnalyticsEmbedAPI;
 };
 
+async function checkAuth(): Promise<void> {
+  const gapi = getGapi();
+  if (get(gaAuthByToken) && !isValidToken(gapi.client.getToken('token'))) {
+    await refreshToken(gapi, get(gaApiKey), get(gaClientEmail));
+  }
+}
+
 export const buildDataReportQuery = (
   gaViewId: string,
   dimension: string,
@@ -60,7 +72,7 @@ export const buildDataReportQuery = (
   };
 };
 
-export const getDataReport = (
+export const getDataReport = async (
   gaViewId: string,
   dimension: string,
   limit: number,
@@ -74,6 +86,7 @@ export const getDataReport = (
     dateRange,
     gaQueryFilter
   );
+  await checkAuth();
   return new Promise(function (resolve, reject) {
     const requestTimeout = setTimeout(
       () =>
@@ -135,12 +148,13 @@ export enum ChartType {
   LINE = 'LINE',
   BAR = 'BAR',
 }
-export const insertDataChart = (
+export const insertDataChart = async (
   query: Query,
   containerId: string,
   type: ChartType,
   options: Record<string, unknown>
 ): Promise<void> => {
+  await checkAuth();
   return new Promise(function (resolve, reject) {
     let timedOut = false;
     // 1. get the container

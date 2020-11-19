@@ -1,4 +1,4 @@
-import { writable } from 'svelte/store';
+import { derived, writable } from 'svelte/store';
 import type {
   BreakdownChartConfiguration,
   ExtensionConfiguration,
@@ -8,6 +8,12 @@ export const gaViewId = writable<string>(null);
 export const gaClientId = writable<string>(null);
 export const gaClientEmail = writable<string>(null);
 export const gaApiKey = writable<string>(null);
+export const gaAuthByToken = derived(
+  [gaClientEmail, gaApiKey],
+  ([$gaClientEmail, $gaApiKey]) => {
+    return $gaClientEmail && $gaApiKey;
+  }
+);
 export const contentItemIdMapping = writable<string>(null);
 export const editionIdMapping = writable<string>(null);
 export const slotIdMapping = writable<string>(null);
