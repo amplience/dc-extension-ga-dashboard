@@ -26,8 +26,9 @@
     removeSelectedContentItem,
     selectedContentItems,
   } from '../../stores/selected-content-items';
+  import { gaQueryFilter } from '../../stores/ga-query-filters';
 
-  let noFilterSelected = true;
+  let filterSelected: boolean;
   let isModalVisible = false;
   let sectionElement: HTMLElement;
   let modalPositionStyle = ``;
@@ -47,7 +48,6 @@
     uncomittedEdition = $selectedEdition;
     uncommitedRepository = $selectedRepository;
     uncomittedContentItems = $selectedContentItems;
-
     setSelectedTab();
   };
 
@@ -73,6 +73,7 @@
 
   const onApplyClick = () => {
     isModalVisible = false;
+    resetFilter();
 
     switch (selected) {
       case 'Edition':
@@ -122,14 +123,6 @@
       selected = 'Edition';
     }
   };
-
-  const hasSelectedFilter = (edition: Edition, contentItems: ContentItem[]) =>
-    edition === null && contentItems.length == 0;
-
-  $: noFilterSelected = hasSelectedFilter(
-    uncomittedEdition,
-    uncomittedContentItems
-  );
 </script>
 
 <style>
@@ -211,6 +204,10 @@
     display: flex;
     flex-direction: column;
   }
+
+  div.content-chooser h3 {
+    font-size: 15px;
+  }
 </style>
 
 {#if isModalVisible}
@@ -222,13 +219,13 @@
       class="filter-selector"
       data-testid="display-modal-button"
       on:click={showModal}>
-      <div class={`icon-wrapper ${$selectedEdition ? 'active ' : ''}`}>
+      <div class={`icon-wrapper ${$gaQueryFilter ? 'active ' : ''}`}>
         <Icon icon={FilterIcon} width="20px" height="20px" />
       </div>
       <div>
         {#if $selectedEdition}
           Edition
-        {:else if $selectedRepository}
+        {:else if $selectedRepository && $selectedContentItems.length > 0}
           {$selectedRepository.name}
         {:else}No filters applied{/if}
       </div>
@@ -273,7 +270,9 @@
           </div>
           <div slot="actions">
             <Button primary={false} onClick={onCancelClick}>Cancel</Button>
-            <Button disabled={noFilterSelected} onClick={onApplyClick}>
+            <Button
+              disabled={uncomittedContentItems.length === 0 && uncomittedEdition === null}
+              onClick={onApplyClick}>
               Apply
             </Button>
           </div>
@@ -285,6 +284,7 @@
               selectedEdition={uncomittedEdition ? uncomittedEdition : null} />
           {:else if selected === 'Content'}
             <div class="content-chooser">
+              <h3>Select content items (max 5 from single repository)</h3>
               <RepositoryPicker
                 on:change={onRepositorySelected}
                 selectedRepository={uncommitedRepository ? uncommitedRepository : null}

@@ -104,11 +104,9 @@
     </div>
   {:else}
     <div>
-      <h3>Repository</h3>
-    </div>
-
-    <div>
       <Select
+        enhanced
+        label="Repository"
         bind:value={selectValue}
         class="select-width"
         menu$class="select-width"

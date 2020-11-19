@@ -20,11 +20,6 @@
   $: loadContentItems(selectedRepository);
 
   const handleCheckedValues = (values: string[]) => {
-    if (values.length > MAX_SELECTED) {
-      values.pop();
-      return;
-    }
-
     const selectedItems = contentItems.filter((contentItem) =>
       values.includes(contentItem.id)
     );
@@ -60,6 +55,9 @@
       )
     );
 
+  const isLimitReached = (selectedList: string[], id: string) =>
+    selectedList.length === MAX_SELECTED && !selectedList.includes(id);
+
   onMount(() => {
     if (selectedContentItems) {
       checkedValues = selectedContentItems.map((contentItem) => contentItem.id);
@@ -89,14 +87,14 @@
       </h3>
     </div>
   {:else if contentItems}
-    <div>
-      <h3>select content items (max 5 from single repository)</h3>
-    </div>
-    <List class="demo-list" checklist>
+    <List checklist>
       {#each contentItems as contentItem}
         <Item>
           <Graphic>
-            <Checkbox bind:group={checkedValues} value={contentItem.id} />
+            <Checkbox
+              bind:group={checkedValues}
+              value={contentItem.id}
+              disabled={isLimitReached(checkedValues, contentItem.id)} />
           </Graphic>
           <Label>
             {contentItem.label}

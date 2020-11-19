@@ -9,17 +9,17 @@ exports[`ReportFilter component - ContentItems should render the no hub state fo
   />
    
   <section
-    class="svelte-1qh5yjz"
+    class="svelte-1utpps4"
   >
     <div
-      class="report-filter svelte-1qh5yjz"
+      class="report-filter svelte-1utpps4"
     >
       <div
-        class="filter-selector svelte-1qh5yjz"
+        class="filter-selector svelte-1utpps4"
         data-testid="display-modal-button"
       >
         <div
-          class="icon-wrapper  svelte-1qh5yjz"
+          class="icon-wrapper  svelte-1utpps4"
         >
           <div
             class=" svelte-zpbvvv"
@@ -37,12 +37,12 @@ exports[`ReportFilter component - ContentItems should render the no hub state fo
       </div>
        
       <div
-        class="filter-chips svelte-1qh5yjz"
+        class="filter-chips svelte-1utpps4"
       />
     </div>
      
     <div
-      class="modal-popup svelte-1qh5yjz"
+      class="modal-popup svelte-1utpps4"
       style="top: NaNpx;left: undefinedpx"
     >
       <article
@@ -99,7 +99,7 @@ exports[`ReportFilter component - ContentItems should render the no hub state fo
                   for="SMUI-form-field-10"
                 >
                   <span
-                    class="svelte-1qh5yjz"
+                    class="svelte-1utpps4"
                     slot="label"
                   >
                     Edition
@@ -143,7 +143,7 @@ exports[`ReportFilter component - ContentItems should render the no hub state fo
                   for="SMUI-form-field-11"
                 >
                   <span
-                    class="svelte-1qh5yjz"
+                    class="svelte-1utpps4"
                     slot="label"
                   >
                     Content
@@ -208,17 +208,17 @@ exports[`ReportFilter component - Editions should render initial state when a se
   />
    
   <section
-    class="svelte-1qh5yjz"
+    class="svelte-1utpps4"
   >
     <div
-      class="report-filter svelte-1qh5yjz"
+      class="report-filter svelte-1utpps4"
     >
       <div
-        class="filter-selector svelte-1qh5yjz"
+        class="filter-selector svelte-1utpps4"
         data-testid="display-modal-button"
       >
         <div
-          class="icon-wrapper  svelte-1qh5yjz"
+          class="icon-wrapper  svelte-1utpps4"
         >
           <div
             class=" svelte-zpbvvv"
@@ -236,12 +236,12 @@ exports[`ReportFilter component - Editions should render initial state when a se
       </div>
        
       <div
-        class="filter-chips svelte-1qh5yjz"
+        class="filter-chips svelte-1utpps4"
       />
     </div>
      
     <div
-      class="modal-popup svelte-1qh5yjz"
+      class="modal-popup svelte-1utpps4"
       style="top: NaNpx;left: undefinedpx"
     >
       <article
@@ -298,7 +298,7 @@ exports[`ReportFilter component - Editions should render initial state when a se
                   for="SMUI-form-field-8"
                 >
                   <span
-                    class="svelte-1qh5yjz"
+                    class="svelte-1utpps4"
                     slot="label"
                   >
                     Edition
@@ -342,7 +342,7 @@ exports[`ReportFilter component - Editions should render initial state when a se
                   for="SMUI-form-field-9"
                 >
                   <span
-                    class="svelte-1qh5yjz"
+                    class="svelte-1utpps4"
                     slot="label"
                   >
                     Content
@@ -402,17 +402,17 @@ exports[`ReportFilter component - Editions should render the ReportFilter compon
 <div>
    
   <section
-    class="svelte-1qh5yjz"
+    class="svelte-1utpps4"
   >
     <div
-      class="report-filter svelte-1qh5yjz"
+      class="report-filter svelte-1utpps4"
     >
       <div
-        class="filter-selector svelte-1qh5yjz"
+        class="filter-selector svelte-1utpps4"
         data-testid="display-modal-button"
       >
         <div
-          class="icon-wrapper  svelte-1qh5yjz"
+          class="icon-wrapper  svelte-1utpps4"
         >
           <div
             class=" svelte-zpbvvv"
@@ -430,7 +430,7 @@ exports[`ReportFilter component - Editions should render the ReportFilter compon
       </div>
        
       <div
-        class="filter-chips svelte-1qh5yjz"
+        class="filter-chips svelte-1utpps4"
       />
     </div>
      
@@ -442,17 +442,17 @@ exports[`ReportFilter component - Editions should render the ReportFilter compon
 <div>
    
   <section
-    class="svelte-1qh5yjz"
+    class="svelte-1utpps4"
   >
     <div
-      class="report-filter svelte-1qh5yjz"
+      class="report-filter svelte-1utpps4"
     >
       <div
-        class="filter-selector svelte-1qh5yjz"
+        class="filter-selector svelte-1utpps4"
         data-testid="display-modal-button"
       >
         <div
-          class="icon-wrapper active  svelte-1qh5yjz"
+          class="icon-wrapper active  svelte-1utpps4"
         >
           <div
             class=" svelte-zpbvvv"
@@ -470,7 +470,7 @@ exports[`ReportFilter component - Editions should render the ReportFilter compon
       </div>
        
       <div
-        class="filter-chips svelte-1qh5yjz"
+        class="filter-chips svelte-1utpps4"
       >
         <div
           class="clickable svelte-197mspp"

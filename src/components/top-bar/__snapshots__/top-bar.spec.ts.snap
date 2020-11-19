@@ -10,17 +10,17 @@ exports[`TopBar should render the top bar 1`] = `
     >
        
       <section
-        class="svelte-1qh5yjz"
+        class="svelte-1utpps4"
       >
         <div
-          class="report-filter svelte-1qh5yjz"
+          class="report-filter svelte-1utpps4"
         >
           <div
-            class="filter-selector svelte-1qh5yjz"
+            class="filter-selector svelte-1utpps4"
             data-testid="display-modal-button"
           >
             <div
-              class="icon-wrapper  svelte-1qh5yjz"
+              class="icon-wrapper  svelte-1utpps4"
             >
               <div
                 class=" svelte-zpbvvv"
@@ -38,7 +38,7 @@ exports[`TopBar should render the top bar 1`] = `
           </div>
            
           <div
-            class="filter-chips svelte-1qh5yjz"
+            class="filter-chips svelte-1utpps4"
           />
         </div>
          

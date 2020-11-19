@@ -11,6 +11,7 @@
       (typeInfo) => typeInfo.contentTypeUri === schema
     );
     contentTypeLabel = hubContentTypeId;
+    // go get type
   };
 
   onMount(() => {
