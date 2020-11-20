@@ -1,15 +1,24 @@
 import CurrencyLabel from '../report-table/custom-cell-contents/currency-label/currency-label.svelte';
 import PercentageLabel from '../report-table/custom-cell-contents/percent-label/percent-label.svelte';
-import EditionLabel from '../report-table/custom-cell-contents/edition-label/edition-label.svelte';
-import type { TableConfig } from '../report-table/table-config.interface';
+import ContentItemLabel from '../report-table/custom-cell-contents/content-item-label/content-item-label.svelte';
+
+export interface TableConfigColumn {
+  title: string;
+  width?: string;
+  align?: string;
+  component?: unknown;
+}
+
+export interface TableConfig {
+  columns: TableConfigColumn[];
+}
 
 const config: TableConfig = {
-  id: 'top-editions-report',
   columns: [
     {
-      title: 'Edition',
+      title: 'Slot',
       width: '40%',
-      component: EditionLabel,
+      component: ContentItemLabel,
     },
     {
       title: 'Total events',

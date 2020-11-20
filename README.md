@@ -103,14 +103,17 @@ To use the application the following permissions must be enabled:
     "locale": "en-GB",
     "currencyCode": "GBP"
   },
-  "breakdownChart": {
+  "breakdown": {
     "title": "Breakdown chart title",
     "dimension": "ga:deviceCategory"
+  },
+  "filters": {
+    "contentItemFilter": "ga:eventCategory==StoreContent",
+    "editionFilter": "ga:eventCategory==StoreContent",
+    "slotFilter": "ga:eventCategory==StoreContent"
   }
 }
 ```
-
-The dimensions provided should map to the fields in which have been set up in the Google analytics dashboard for the fields outlined above.
 
 ### Google Analytics Service Account Authorization
 
@@ -122,3 +125,11 @@ By default the dashboard will allow users to login to their Google account to vi
 1. From the json file copy the "private_key" and add it to the installation params as "googleAnalyticsKey"
 1. Do the same for "client_email" adding it as "googleAnalyticsClientEmail"
 1. Give the email "Read & Analyse" permission to your Analytics site
+
+#### Dimensions
+
+The dimensions provided should map to the fields in which have been set up in the Google analytics dashboard for the fields outlined above.
+
+#### Filters
+
+For each report, Top Content, Top Editions, Top Slots, it is possible to specify optional fields that are used to additionally filter the reports, for example to set up a fiter to show only data for an event category called 'Banners', set a filter of 'ga:eventCategory==Banners'

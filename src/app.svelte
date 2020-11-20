@@ -14,17 +14,19 @@
   import { hub, managementSdkService } from './stores/dynamic-content';
   import { gapiAuthorized } from './stores/gapi-authorized';
   import {
-    breakdownChart,
+    breakdown,
     contentItemIdMapping,
     editionIdMapping,
     gaClientId,
-    setGaConfig,
+    slotIdMapping,
   } from './stores/google-analytics';
   import { connection } from './stores/message-channel';
   import { currencyCode, locale } from './stores/localization';
   import { sdkExtensionConfiguration } from './stores/sdk-extension-configuration';
   import { ManagementSdkService } from './services/management-sdk/management-sdk.service';
   import HttpClientInFlightCache from './services/management-sdk/http-client-in-flight-cache';
+  import TopSlotsReport from './components/widgets/top-slots-report/top-slots-report.svelte';
+  import { initialiseStores } from './services/stores/initialise';
 
   connection.set(
     createConnection({
@@ -38,19 +40,17 @@
     await initGapi();
     const extensionsSdk = await getExtensionClient();
     $sdkExtensionConfiguration = extensionsSdk;
-    setGaConfig(extensionsSdk.params.installation as ExtensionConfiguration);
+
+    initialiseStores(
+      extensionsSdk.params.installation as ExtensionConfiguration
+    );
+
     $managementSdkService = new ManagementSdkService(
       new HttpClientInFlightCache(extensionsSdk.client, 5000)
     );
     $hub = await $managementSdkService.client.hubs.get(
       extensionsSdk.params.hubId
     );
-    $locale =
-      (extensionsSdk.params.installation as ExtensionConfiguration)
-        ?.localization?.locale || $locale;
-    $currencyCode =
-      (extensionsSdk.params.installation as ExtensionConfiguration)
-        ?.localization?.currencyCode || $currencyCode;
   });
 
   function setParentHeight(height: number): void {
@@ -80,6 +80,10 @@
     grid-area: top-editions-report;
   }
 
+  .widgets-container :global(section.top-slots-report) {
+    grid-area: top-slots-report;
+  }
+
   .widgets-container :global(section.overview) {
     grid-area: overview;
   }
@@ -107,7 +111,8 @@
     grid-template-areas:
       'overview overview breakdown'
       'top-content-report top-content-report top-content-report'
-      'top-editions-report top-editions-report top-editions-report';
+      'top-editions-report top-editions-report top-editions-report'
+      'top-slots-report top-slots-report top-slots-report';
     align-items: flex-start;
   }
 
@@ -140,14 +145,17 @@
             chartType={ChartType.LINE} />
           <DataChart
             className="breakdown"
-            title={$breakdownChart.title}
-            dimensions={$breakdownChart.dimension}
+            title={$breakdown.title}
+            dimensions={$breakdown.dimension}
             chartType={ChartType.BAR} />
           {#if $contentItemIdMapping}
             <TopContentReport />
           {/if}
           {#if $editionIdMapping}
             <TopEditionsReport />
+          {/if}
+          {#if $slotIdMapping}
+            <TopSlotsReport />
           {/if}
         </section>
       {:else}

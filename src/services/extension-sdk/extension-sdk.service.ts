@@ -5,7 +5,7 @@ export type SdkExtensionConfiguration = SDK<
   Params & { hubId: string; locationHref: string }
 >;
 
-export interface BreakdownChartConfiguration {
+export interface BreakdownConfiguration {
   title: string;
   dimension: string;
 }
@@ -14,7 +14,7 @@ export interface ExtensionConfiguration {
   googleAnalyticsClientEmail?: string;
   googleAnalyticsViewId: string;
   googleAnalyticsKey?: string;
-  breakdownChart?: BreakdownChartConfiguration;
+  breakdown?: BreakdownConfiguration;
   mappings: {
     contentItemId: string;
     editionId: string;
@@ -23,6 +23,11 @@ export interface ExtensionConfiguration {
   localization?: {
     locale: string;
     currencyCode: string;
+  };
+  filters?: {
+    contentItemFilter: string;
+    editionFilter: string;
+    slotFilter: string;
   };
 }
 
@@ -49,7 +54,7 @@ async function standaloneClient(): Promise<SdkExtensionConfiguration> {
           locale: '__GOOGLE_ANALYTICS_LOCALE__',
           currencyCode: '__GOOGLE_ANALYTICS_CURRENCY_CODE__',
         },
-        breakdownChart: {
+        breakdown: {
           title: '__BREAKDOWN_CHART_TITLE__',
           dimension: '__BREAKDOWN_CHART_DIMENSION__',
         },

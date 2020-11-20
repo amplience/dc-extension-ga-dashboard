@@ -8,7 +8,6 @@ exports[`QueryLabel should render a QueryLabel component 1`] = `
     1
   </span>
    
-   
   <div
     class="query-label svelte-1ylxfod"
   />
@@ -17,61 +16,6 @@ exports[`QueryLabel should render a QueryLabel component 1`] = `
 
 exports[`QueryLabel should render a QueryLabel component without a row number 1`] = `
 <div>
-   
-   
-  <div
-    class="query-label svelte-1ylxfod"
-  />
-</div>
-`;
-
-exports[`QueryLabel should render a collapsed QueryLabel component 1`] = `
-<div>
-  <span
-    class="query-index svelte-1ylxfod"
-  >
-    1
-  </span>
-   
-  <div
-    class="svelte-t93ore"
-  >
-    <div
-      class=" svelte-zpbvvv"
-      style="--icon-width: 24px; --icon-height: 24px;"
-    >
-      <object
-        src="ic-expandable.svg/"
-      />
-    </div>
-  </div>
-   
-  <div
-    class="query-label svelte-1ylxfod"
-  />
-</div>
-`;
-
-exports[`QueryLabel should render an expanded QueryLabel component 1`] = `
-<div>
-  <span
-    class="query-index svelte-1ylxfod"
-  >
-    1
-  </span>
-   
-  <div
-    class="svelte-t93ore"
-  >
-    <div
-      class=" svelte-zpbvvv"
-      style="--icon-width: 24px; --icon-height: 24px;"
-    >
-      <object
-        src="ic-contractable.svg/"
-      />
-    </div>
-  </div>
    
   <div
     class="query-label svelte-1ylxfod"
