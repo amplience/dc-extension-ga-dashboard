@@ -77,7 +77,7 @@
     <label>Dimension2 (EditionId)</label>
     <input type="text" bind:value={dimension2} />
 
-    <label>Dimension1 (SlotId)</label>
+    <label>Dimension3 (SlotId)</label>
     <input type="text" bind:value={dimension3} />
   </form>
   <button on:click={submit}>Submit</button>
