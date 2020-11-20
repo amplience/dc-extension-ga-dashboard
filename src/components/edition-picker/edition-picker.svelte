@@ -2,6 +2,7 @@
   import Select, { Option } from '@smui/select';
   import type { Edition } from 'dc-management-sdk-js';
   import { createEventDispatcher, onMount } from 'svelte';
+  import { MAX_NUM_EDITIONS } from '../../config';
   import { hub } from '../../stores/dynamic-content';
   import Loader from '../loader/loader.svelte';
 
@@ -48,6 +49,8 @@
     publishedEditions = results.filter(
       (edition) => edition.publishingStatus === 'PUBLISHED'
     );
+
+    publishedEditions = publishedEditions.slice(0, MAX_NUM_EDITIONS);
 
     if (
       selectedEdition &&
