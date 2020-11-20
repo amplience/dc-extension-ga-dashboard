@@ -28,6 +28,7 @@ function getSignedJWS(key: string, email: string) {
     exp: secondsSinceEpoch() + 3600,
     iat: secondsSinceEpoch(),
   });
+
   return rs.KJUR.jws.JWS.sign(null, header, claim, key);
 }
 
@@ -65,7 +66,6 @@ export async function refreshToken(
   email: string
 ): Promise<void> {
   if (inFlightPromise) {
-    console.log('inFlightPromise');
     // if a token request is already in flight wait for it's response
     // to avoid gapi calls with an invalid token
     await inFlightPromise;
