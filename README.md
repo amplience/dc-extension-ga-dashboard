@@ -26,21 +26,24 @@ npm run test
 
 Additional environments vars
 
-| Environment Var                | Description                                                                      | Example                              |
-| ------------------------------ | -------------------------------------------------------------------------------- | ------------------------------------ |
-| API_URL                        | DC API URL                                                                       | https://api.amplience.net/v2/content |
-| AUTH_URL                       | Amplience Auth URL                                                               | https://auth.adis.ws                 |
-| HUB_ID                         | Hub ID                                                                           | abcdef...                            |
-| CLIENT_ID                      | Client ID for the Hub                                                            | abcdef...                            |
-| CLIENT_SECRET                  | Client Secret                                                                    | abdde...                             |
-| LOCATION_HREF                  | Location href of parent                                                          | http://localhost:3000                |
-| BREAKDOWN_CHART_TITLE          | Breakdown chart title                                                            | Breakdown chart                      |
-| BREAKDOWN_CHART_DIMENSION      | Dimension for the chart                                                          | ga:deviceCategory                    |
-| GOOGLE_ANALYTICS_CLIENT_ID     | Google Analytics Client ID                                                       | abc123.apps.googleusercontent.com    |
-| GOOGLE_ANALYTICS_VIEW_ID       | Google Analytics View ID                                                         | ga:1234567890                        |
-| GOOGLE_ANALYTICS_LOCALE        | Google Analytics View ID                                                         | en-GB                                |
-| GOOGLE_ANALYTICS_CURRENCY_CODE | Google Analytics View ID                                                         | GBP                                  |
-| GOOGLE_ANALYTICS_TIMEOUT       | Timeout used to determine how long we should wait before retrying a gapi request | 30000                                |
+| Environment Var                   | Description                                                   | Example                                  |
+| --------------------------------- | ------------------------------------------------------------- | ---------------------------------------- |
+| API_URL                           | DC API URL                                                    | https://api.amplience.net/v2/content     |
+| AUTH_URL                          | Amplience Auth URL                                            | https://auth.adis.ws                     |
+| HUB_ID                            | Hub ID                                                        | abcdef...                                |
+| CLIENT_ID                         | Client ID for the Hub                                         | abcdef...                                |
+| CLIENT_SECRET                     | Client Secret                                                 | abdde...                                 |
+| LOCATION_HREF                     | Location href of parent                                       | http://localhost:3000                    |
+| BREAKDOWN_CHART_TITLE             | Breakdown chart title                                         | Breakdown chart                          |
+| BREAKDOWN_CHART_DIMENSION         | Dimension for the chart                                       | ga:deviceCategory                        |
+| GOOGLE_ANALYTICS_KEY              | Google Analytics Service Account private key                  |                                          |
+| GOOGLE_ANALYTICS_CLIENT_EMAIL     | Google Analytics Client Email                                 | abc123@abc123.apps.googleusercontent.com |
+| GOOGLE_ANALYTICS_CLIENT_ID        | Google Analytics Client ID                                    | abc123.apps.googleusercontent.com        |
+| GOOGLE_ANALYTICS_VIEW_ID          | Google Analytics View ID                                      | ga:1234567890                            |
+| GOOGLE_ANALYTICS_LOCALE           | Google Analytics View ID                                      | en-GB                                    |
+| GOOGLE_ANALYTICS_CURRENCY_CODE    | Google Analytics View ID                                      | GBP                                      |
+| GOOGLE_ANALYTICS_TIMEOUT          | How long we should wait before retrying a gapi request        | 30000                                    |
+| GOOGLE_ANALYTICS_TOKEN_EXPIRES_IN | Used to manually set gapi token expires in value (in seconds) | 3600                                     |
 
 Example `.env` file
 
@@ -53,6 +56,8 @@ AUTH_URL=https://auth.adis.ws
 LOCATION_HREF=http://localhost:3000
 BREAKDOWN_CHART_TITLE=Device Breakdown
 BREAKDOWN_CHART_DIMENSION=ga:deviceCategory
+GOOGLE_ANALYTICS_KEY=<service_account_private_key>
+GOOGLE_ANALYTICS_CLIENT_EMAIL=abc123@abc123.apps.googleusercontent.com
 GOOGLE_ANALYTICS_CLIENT_ID=abc123.apps.googleusercontent.com
 GOOGLE_ANALYTICS_VIEW_ID=ga:1234567890
 GOOGLE_ANALYTICS_LOCALE=en-GB
@@ -85,6 +90,8 @@ To use the application the following permissions must be enabled:
 
 ```json
 {
+  "googleAnalyticsKey": "<service_account_private_key>",
+  "googleAnalyticsClientEmail": "abc123@abc123.apps.googleusercontent.com",
   "googleAnalyticsClientId": "abc123.apps.googleusercontent.com",
   "googleAnalyticsViewId": "ga:1234567890",
   "mappings": {
@@ -104,3 +111,14 @@ To use the application the following permissions must be enabled:
 ```
 
 The dimensions provided should map to the fields in which have been set up in the Google analytics dashboard for the fields outlined above.
+
+### Google Analytics Service Account Authorization
+
+By default the dashboard will allow users to login to their Google account to view analytics data on the dashboard. To avoid this a Service Account can be created allowing the dashboard to authorize using a private key and client email.
+
+1. Create a Google APIs [Service account](https://console.cloud.google.com/iam-admin/serviceaccounts)
+1. In the Service account edit screen in the 'Keys' section add a key
+1. Securely store the generate json file
+1. From the json file copy the "private_key" and add it to the installation params as "googleAnalyticsKey"
+1. Do the same for "client_email" adding it as "googleAnalyticsClientEmail"
+1. Give the email "Read & Analyse" permission to your Analytics site
