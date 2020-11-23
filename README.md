@@ -17,9 +17,10 @@ npm run build
 ```
 ### Build Configuration
 
-| Environment Var  | Description                           | Default |
-| ---------------- | ------------------------------------- | ------- |
-| MAX_NUM_EDITIONS | Maximum number of editions to display | 20      |
+| Environment Var                        | Description                           | Default |
+| -------------------------------------- | ------------------------------------- | ------- |
+| MAX_NUM_EDITIONS                       | Maximum number of editions to display | 20      |
+| MAX_NUMBER_OF_SELECTABLE_CONTENT_ITEMS | Maximum number of content item        | 5       |
 
 
 ## Running tests

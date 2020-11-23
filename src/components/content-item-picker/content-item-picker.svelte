@@ -3,10 +3,10 @@
   import List, { Graphic, Item, Label } from '@smui/list';
   import type { ContentItem } from 'dc-management-sdk-js';
   import type { ContentRepository } from 'dc-management-sdk-js/build/main/lib/model/ContentRepository';
+  import { MAX_NUMBER_OF_SELECTABLE_CONTENT_ITEMS } from '../../config';
   import ContentTypeLabel from '../content-type-label/content-type-label.svelte';
   import Loader from '../loader/loader.svelte';
 
-  const MAX_SELECTED = 5 as const;
   let loaded = false;
   let contentItems: ContentItem[] = [];
   let checkedValues: string[] = [];
@@ -79,7 +79,7 @@
 
   const isLimitReached = (selectedList: string[], id: string) =>
     Array.isArray(selectedList) &&
-    selectedList.length === MAX_SELECTED &&
+    selectedList.length === MAX_NUMBER_OF_SELECTABLE_CONTENT_ITEMS &&
     !selectedList.includes(id);
 </script>
 
