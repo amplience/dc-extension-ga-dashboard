@@ -15,6 +15,12 @@ To create an optimised version of the app:
 ```bash
 npm run build
 ```
+### Build Configuration
+
+| Environment Var  | Description                           | Default |
+| ---------------- | ------------------------------------- | ------- |
+| MAX_NUM_EDITIONS | Maximum number of editions to display | 20      |
+
 
 ## Running tests
 
@@ -41,6 +47,7 @@ Additional environments vars
 | GOOGLE_ANALYTICS_LOCALE        | Google Analytics View ID                                                         | en-GB                                |
 | GOOGLE_ANALYTICS_CURRENCY_CODE | Google Analytics View ID                                                         | GBP                                  |
 | GOOGLE_ANALYTICS_TIMEOUT       | Timeout used to determine how long we should wait before retrying a gapi request | 30000                                |
+
 
 Example `.env` file
 
@@ -96,7 +103,7 @@ To use the application the following permissions must be enabled:
     "locale": "en-GB",
     "currencyCode": "GBP"
   },
-  "breakdownChart": {
+  "breakdown": {
     "title": "Breakdown chart title",
     "dimension": "ga:deviceCategory"
   },

@@ -3,11 +3,11 @@
 exports[`DataTable should render the DataTable Body component 1`] = `
 <div>
   <div
-    class="data-table svelte-2e8um5"
+    class="data-table svelte-1gunyt0"
   >
     <div
       class="data-table-slot 
-    scrollable svelte-2e8um5"
+    scrollable svelte-1gunyt0"
     />
   </div>
 </div>

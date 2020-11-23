@@ -58,7 +58,7 @@
   <div
     data-testid="chip"
     on:click={onChipClick}
-    class={`${active ? 'active ' : ''}${clickable ? 'clickable' : ''}`}>
+    class={active ? 'active' : '' + clickable ? 'clickable' : ''}>
     <span class="label"> {label} </span>
     <span
       data-testid="remove-chip-button"
@@ -71,7 +71,7 @@
   <div
     data-testid="chip"
     on:click={onChipClick}
-    class={active ? 'active clickable' : 'clickable'}>
+    class={active ? 'active' : '' + clickable ? 'clickable' : ''}>
     <span> {label} </span>
   </div>
 {/if}

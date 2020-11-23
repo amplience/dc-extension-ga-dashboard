@@ -8,14 +8,12 @@
     width: 100%;
   }
 
-  .data-table-slot.secondary {
-    margin: 0 14px 0 14px;
-    padding: 0 14px 14px 14px;
+  .data-table-slot.secondary :global(.data-table-row) {
+    border-bottom: none;
   }
 
-  .data-table-slot.scrollable > :global(.data-table-body) {
-    min-height: 200px;
-    overflow: auto;
+  :global(.data-table-slot.secondary .data-table-row:last-child) {
+    border-bottom: none;
   }
 </style>
 

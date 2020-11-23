@@ -2,28 +2,23 @@ import { render } from '@testing-library/svelte';
 import DataChart from './data-chart.svelte';
 import { tick } from 'svelte';
 import { dateRange } from '../../../stores/date-range';
-import {
-  ChartType,
-  insertDataChart,
-  RequestTimeout,
-} from '../../../stores/gapi';
-import {
-  editionIdMapping,
-  setGaConfig,
-} from '../../../stores/google-analytics';
+import { ChartType, insertDataChart } from '../../../stores/gapi';
+import { editionIdMapping } from '../../../stores/google-analytics';
 import { selectedEdition } from '../../../stores/selected-edition';
 import { Edition } from 'dc-management-sdk-js';
 import { backOff } from 'exponential-backoff';
+import { initialiseStores } from '../../../services/stores/initialise';
 
 jest.mock('exponential-backoff');
 (backOff as jest.Mock).mockImplementation((fn) => fn());
+
 jest.mock('../../../stores/gapi');
 
 describe('DataChart', () => {
   beforeEach(() => {
     selectedEdition.set(null);
     dateRange.set({ from: '2020-11-01', to: '2020-11-02' });
-    setGaConfig({
+    initialiseStores({
       googleAnalyticsViewId: 'ga:1234567890',
       googleAnalyticsClientId: '1234567890',
       mappings: {

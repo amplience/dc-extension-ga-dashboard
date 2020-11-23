@@ -7,6 +7,9 @@
 </script>
 
 <style>
+  div {
+    margin: auto 0;
+  }
   div,
   div > :global(svg) {
     fill: #333;
@@ -15,6 +18,6 @@
   }
 </style>
 
-<div>
+<div data-testid="expandable-icon">
   <Icon icon={expanded ? ContractableIcon : ExpandableIcon} />
 </div>

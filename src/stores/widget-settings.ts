@@ -10,3 +10,8 @@ export const topEditionReportShowCount = persistedWritable<number>(
   'topEditionReportShowCount',
   SIZES.get(DEFAULT_SIZE)
 );
+
+export const topSlotReportShowCount = persistedWritable<number>(
+  'topSlotReportShowCount',
+  SIZES.get(DEFAULT_SIZE)
+);

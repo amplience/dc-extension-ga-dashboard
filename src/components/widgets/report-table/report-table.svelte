@@ -1,14 +1,16 @@
 <script lang="ts">
   import type { ReportData } from '../../../stores/gapi';
-
   import { Body, Cell, DataTable, Head, Row } from '../../data-table';
   import Loader from '../../loader/loader.svelte';
   import NoDataPlaceholder from '../../no-data-placeholder/no-data-placeholder.svelte';
-  import type { TableConfig } from '../top-editions-report/table-config';
+  import BreakdownTable from './breakdown-table/breakdown-table.svelte';
+  import type { GetBreakdownData } from './breakdown-table/get-breakdown-data';
+  import type { TableConfig } from './table-config.interface';
 
   export let data: ReportData[];
   export let config: TableConfig;
   export let loading = false;
+  export let getBreakdownData: GetBreakdownData = undefined;
 </script>
 
 <style>
@@ -17,12 +19,14 @@
     justify-content: flex-end;
     margin: 8px 0;
   }
+  div[slot='expandable-content'] :global(.title h2) {
+    font-size: 1.2em;
+  }
 </style>
 
 {#if loading}
   <Loader zIndex={1} />
-{/if}
-{#if data && data.length > 0}
+{:else if data && data.length > 0}
   <DataTable>
     <Head>
       <Row>
@@ -35,21 +39,28 @@
     </Head>
     <Body>
       {#each data as cells, rowIndex}
-        <Row>
+        <Row
+          let:expanded
+          expandable={getBreakdownData !== undefined}
+          id="{cells[0]}}">
           {#each config.columns as column, columnIndex}
             <Cell width={column.width} align={column.align}>
               {#if column.component}
                 <svelte:component
                   this={column.component}
                   value={cells[columnIndex]}
-                  index={rowIndex} />
+                  index={rowIndex}
+                  {expanded} />
               {:else}{cells[columnIndex]}{/if}
             </Cell>
           {/each}
+          <div slot="expandable-content">
+            <BreakdownTable id={cells[0]} {getBreakdownData} />
+          </div>
         </Row>
       {/each}
     </Body>
   </DataTable>
-{:else if !loading}
+{:else}
   <NoDataPlaceholder />
 {/if}

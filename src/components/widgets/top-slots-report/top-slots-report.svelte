@@ -3,11 +3,11 @@
   import { getDataReport, processReportData } from '../../../stores/gapi';
   import type { ReportData } from '../../../stores/gapi';
   import {
-    breakdown,
-    editionIdMapping,
+    slotIdMapping,
     gaViewId,
+    breakdown,
   } from '../../../stores/google-analytics';
-  import { topEditionReportShowCount } from '../../../stores/widget-settings';
+  import { topSlotReportShowCount } from '../../../stores/widget-settings';
   import Select from '../../select/select.svelte';
   import WidgetBody from '../../widget/widget-body/widget-body.svelte';
   import WidgetHeader from '../../widget/widget-header/widget-header.svelte';
@@ -16,9 +16,9 @@
   import { SIZES } from '../widgets-config';
   import config from './table-config';
   import {
-    editionFilter,
-    joinFilters,
     gaQueryFilter,
+    joinFilters,
+    slotFilter,
   } from '../../../stores/ga-query-filters';
   import { backOff } from 'exponential-backoff';
   import type { GetBreakdownData } from '../report-table/breakdown-table/get-breakdown-data';
@@ -34,7 +34,7 @@
       $breakdown.dimension,
       100,
       $dateRange,
-      joinFilters($gaQueryFilter, $editionFilter, `${$editionIdMapping}==${id}`)
+      joinFilters($gaQueryFilter, $slotFilter, `${$slotIdMapping}==${id}`)
     );
     return processReportData(data);
   };
@@ -45,10 +45,10 @@
       reportData = await backOff(async () => {
         const data = await getDataReport(
           $gaViewId,
-          $editionIdMapping,
-          $topEditionReportShowCount,
+          $slotIdMapping,
+          $topSlotReportShowCount,
           $dateRange,
-          joinFilters($gaQueryFilter, $editionFilter)
+          joinFilters($gaQueryFilter, $slotFilter)
         );
         return processReportData(data);
       });
@@ -63,19 +63,19 @@
     overflow: hidden;
   }
 
-  section :global(.top-editions-report-sizes-select > .smui-select) {
+  section :global(.top-slots-report-sizes-select > .smui-select) {
     width: 40px;
   }
 </style>
 
-<section class="top-editions-report">
+<section class="top-slots-report">
   <Widget>
-    <WidgetHeader title="Top editions">
+    <WidgetHeader title="Top slots">
       <div slot="actions">
         <Select
-          className="top-editions-report-sizes-select"
+          className="top-slots-report-sizes-select"
           label="Show"
-          bind:selectedOption={$topEditionReportShowCount}
+          bind:selectedOption={$topSlotReportShowCount}
           options={Array.from(SIZES.keys()).map((size) => ({
             key: size,
             value: size,
