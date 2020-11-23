@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`getReportData should return report data when gapi request guard resolves 1`] = `
+Array [
+  Array [
+    Object {
+      "query": Object {
+        "dimensions": "ga:test-dimension",
+        "end-date": "2020-01-01",
+        "filters": undefined,
+        "ids": "ga:test-id",
+        "max-results": 100,
+        "metrics": "ga:totalEvents,ga:uniqueEvents,ga:eventValue,ga:avgEventValue",
+        "sort": "-ga:totalEvents",
+        "start-date": "2020-01-01",
+      },
+    },
+  ],
+]
+`;

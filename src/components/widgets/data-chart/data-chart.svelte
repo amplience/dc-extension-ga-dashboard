@@ -1,6 +1,5 @@
 <script lang="ts">
   import { dateRange } from '../../../stores/date-range';
-  import { ChartType, insertDataChart } from '../../../stores/gapi';
   import { gaViewId } from '../../../stores/google-analytics';
   import Loader from '../../loader/loader.svelte';
   import WidgetBody from '../../widget/widget-body/widget-body.svelte';
@@ -8,6 +7,11 @@
   import Widget from '../../widget/widget.svelte';
   import { gaQueryFilter } from '../../../stores/ga-query-filters';
   import { backOff } from 'exponential-backoff';
+  import {
+    ChartType,
+    insertDataChart,
+  } from '../../../services/gapi/insert-data-chart.service';
+  import gapi from '../../../stores/gapi';
 
   export let className = '';
   export let title;
@@ -53,6 +57,9 @@
       loading = true;
       await backOff(() =>
         insertDataChart(
+          $gapi,
+          containerId,
+          chartType,
           {
             ids: $gaViewId,
             metrics: 'ga:totalEvents,ga:uniqueEvents',
@@ -61,8 +68,6 @@
             'end-date': $dateRange.to,
             filters: $gaQueryFilter,
           },
-          containerId,
-          chartType,
           chartOptions
         )
       );

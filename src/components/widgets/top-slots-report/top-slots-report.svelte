@@ -1,7 +1,6 @@
 <script lang="ts">
   import { dateRange } from '../../../stores/date-range';
-  import { getDataReport, processReportData } from '../../../stores/gapi';
-  import type { ReportData } from '../../../stores/gapi';
+  import gapi from '../../../stores/gapi';
   import {
     slotIdMapping,
     gaViewId,
@@ -22,6 +21,8 @@
   } from '../../../stores/ga-query-filters';
   import { backOff } from 'exponential-backoff';
   import type { GetBreakdownData } from '../report-table/breakdown-table/get-breakdown-data';
+  import { getReportData } from '../../../services/gapi/get-report-data.service';
+  import type { ReportData } from '../../../services/gapi/get-report-data.service';
 
   let reportData: ReportData[];
   let loading = true;
@@ -29,28 +30,32 @@
   const getBreakdownData: GetBreakdownData = async (
     id: string
   ): Promise<ReportData[]> => {
-    const data = await getDataReport(
-      $gaViewId,
-      $breakdown.dimension,
-      100,
-      $dateRange,
-      joinFilters($gaQueryFilter, $slotFilter, `${$slotIdMapping}==${id}`)
-    );
-    return processReportData(data);
+    const params = {
+      gaViewId: $gaViewId,
+      dimension: $breakdown.dimension,
+      limit: 100,
+      dateRange: $dateRange,
+      gaQueryFilter: joinFilters(
+        $gaQueryFilter,
+        $slotFilter,
+        `${$slotIdMapping}==${id}`
+      ),
+    };
+    return getReportData($gapi, params);
   };
 
   $: (async () => {
     try {
       loading = true;
       reportData = await backOff(async () => {
-        const data = await getDataReport(
-          $gaViewId,
-          $slotIdMapping,
-          $topSlotReportShowCount,
-          $dateRange,
-          joinFilters($gaQueryFilter, $slotFilter)
-        );
-        return processReportData(data);
+        const params = {
+          gaViewId: $gaViewId,
+          dimension: $slotIdMapping,
+          limit: $topSlotReportShowCount,
+          dateRange: $dateRange,
+          gaQueryFilter: joinFilters($gaQueryFilter, $slotFilter),
+        };
+        return getReportData($gapi, params);
       });
     } finally {
       loading = false;
