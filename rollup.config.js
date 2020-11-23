@@ -70,6 +70,7 @@ export default {
         process.env.GOOGLE_ANALYTICS_LOCALE || '',
       __GOOGLE_ANALYTICS_CURRENCY_CODE__: () =>
         process.env.GOOGLE_ANALYTICS_CURRENCY_CODE || '',
+      __MAX_NUM_EDITIONS__: () => process.env.MAX_NUM_EDITIONS,
       'process.env.NODE_ENV': JSON.stringify(
         production ? 'production' : 'development'
       ),
