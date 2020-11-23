@@ -1,224 +1,20 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ReportFilter component - ContentItems should render the no hub state for the repository picker 1`] = `
-<div>
-  <div
-    class="svelte-1k192f9"
-    data-testid="overlay"
-    style="z-index: 2"
-  />
-   
-  <section
-    class="svelte-1utpps4"
-  >
-    <div
-      class="report-filter svelte-1utpps4"
-    >
-      <div
-        class="filter-selector svelte-1utpps4"
-        data-testid="display-modal-button"
-      >
-        <div
-          class="icon-wrapper  svelte-1utpps4"
-        >
-          <div
-            class=" svelte-zpbvvv"
-            style="--icon-width: 20px; --icon-height: 20px;"
-          >
-            <object
-              src="ic-filter.svg/"
-            />
-          </div>
-        </div>
-         
-        <div>
-          No filters applied
-        </div>
-      </div>
-       
-      <div
-        class="filter-chips svelte-1utpps4"
-      />
-    </div>
-     
-    <div
-      class="modal-popup svelte-1utpps4"
-      style="top: NaNpx;left: undefinedpx"
-    >
-      <article
-        class="svelte-pntwh0"
-      >
-         
-        <section
-          class="widget-header svelte-1kld2ef"
-        >
-          <div
-            class="title svelte-1kld2ef"
-          >
-             
-             
-            <div
-              slot="title"
-            >
-              <h3>
-                Filter by
-              </h3>
-               
-              <div
-                class="
-    mdc-form-field
-    
-    
-  "
-              >
-                <div
-                  class="mdc-radio"
-                >
-                  <input
-                    class="mdc-radio__native-control "
-                    id="SMUI-form-field-10"
-                    type="radio"
-                    value="Edition"
-                  />
-                   
-                  <div
-                    class="mdc-radio__background"
-                  >
-                    <div
-                      class="mdc-radio__outer-circle"
-                    />
-                     
-                    <div
-                      class="mdc-radio__inner-circle"
-                    />
-                  </div>
-                </div>
-                 
-                 
-                <label
-                  for="SMUI-form-field-10"
-                >
-                  <span
-                    class="svelte-1utpps4"
-                    slot="label"
-                  >
-                    Edition
-                  </span>
-                </label>
-              </div>
-               
-              <div
-                class="
-    mdc-form-field
-    
-    
-  "
-              >
-                <div
-                  class="mdc-radio"
-                  data-testid="content-radio"
-                >
-                  <input
-                    class="mdc-radio__native-control "
-                    id="SMUI-form-field-11"
-                    type="radio"
-                    value="Content"
-                  />
-                   
-                  <div
-                    class="mdc-radio__background"
-                  >
-                    <div
-                      class="mdc-radio__outer-circle"
-                    />
-                     
-                    <div
-                      class="mdc-radio__inner-circle"
-                    />
-                  </div>
-                </div>
-                 
-                 
-                <label
-                  for="SMUI-form-field-11"
-                >
-                  <span
-                    class="svelte-1utpps4"
-                    slot="label"
-                  >
-                    Content
-                  </span>
-                </label>
-              </div>
-            </div>
-          </div>
-           
-          <div
-            class="actions svelte-1kld2ef"
-          >
-            <div
-              slot="actions"
-            >
-              <button
-                class=" svelte-th9g9"
-                data-testid="button"
-              >
-                Cancel
-              </button>
-               
-              <button
-                class="primary svelte-th9g9"
-                data-testid="button"
-                disabled=""
-              >
-                Apply
-              </button>
-            </div>
-          </div>
-        </section>
-         
-        <section
-          class="widget-body svelte-4p1s5s"
-        >
-          <div
-            class="container svelte-4axnnt"
-          >
-            <div>
-              <h3
-                class="svelte-4axnnt"
-              >
-                Unable to load editions
-              </h3>
-            </div>
-          </div>
-          
-        </section>
-      </article>
-    </div>
-  </section>
-</div>
-`;
-
 exports[`ReportFilter component - Editions should render initial state when a selectedEdition has been removed 1`] = `
 <div>
-  <div
-    class="svelte-1k192f9"
-    data-testid="overlay"
-    style="z-index: 2"
-  />
    
   <section
-    class="svelte-1utpps4"
+    class="svelte-9o07k"
   >
     <div
-      class="report-filter svelte-1utpps4"
+      class="report-filter svelte-9o07k"
     >
       <div
-        class="filter-selector svelte-1utpps4"
+        class="filter-selector svelte-9o07k"
         data-testid="display-modal-button"
       >
         <div
-          class="icon-wrapper  svelte-1utpps4"
+          class="icon-wrapper  svelte-9o07k"
         >
           <div
             class=" svelte-zpbvvv"
@@ -236,164 +32,10 @@ exports[`ReportFilter component - Editions should render initial state when a se
       </div>
        
       <div
-        class="filter-chips svelte-1utpps4"
+        class="filter-chips svelte-9o07k"
       />
     </div>
      
-    <div
-      class="modal-popup svelte-1utpps4"
-      style="top: NaNpx;left: undefinedpx"
-    >
-      <article
-        class="svelte-pntwh0"
-      >
-         
-        <section
-          class="widget-header svelte-1kld2ef"
-        >
-          <div
-            class="title svelte-1kld2ef"
-          >
-             
-             
-            <div
-              slot="title"
-            >
-              <h3>
-                Filter by
-              </h3>
-               
-              <div
-                class="
-    mdc-form-field
-    
-    
-  "
-              >
-                <div
-                  class="mdc-radio"
-                >
-                  <input
-                    class="mdc-radio__native-control "
-                    id="SMUI-form-field-8"
-                    type="radio"
-                    value="Edition"
-                  />
-                   
-                  <div
-                    class="mdc-radio__background"
-                  >
-                    <div
-                      class="mdc-radio__outer-circle"
-                    />
-                     
-                    <div
-                      class="mdc-radio__inner-circle"
-                    />
-                  </div>
-                </div>
-                 
-                 
-                <label
-                  for="SMUI-form-field-8"
-                >
-                  <span
-                    class="svelte-1utpps4"
-                    slot="label"
-                  >
-                    Edition
-                  </span>
-                </label>
-              </div>
-               
-              <div
-                class="
-    mdc-form-field
-    
-    
-  "
-              >
-                <div
-                  class="mdc-radio"
-                  data-testid="content-radio"
-                >
-                  <input
-                    class="mdc-radio__native-control "
-                    id="SMUI-form-field-9"
-                    type="radio"
-                    value="Content"
-                  />
-                   
-                  <div
-                    class="mdc-radio__background"
-                  >
-                    <div
-                      class="mdc-radio__outer-circle"
-                    />
-                     
-                    <div
-                      class="mdc-radio__inner-circle"
-                    />
-                  </div>
-                </div>
-                 
-                 
-                <label
-                  for="SMUI-form-field-9"
-                >
-                  <span
-                    class="svelte-1utpps4"
-                    slot="label"
-                  >
-                    Content
-                  </span>
-                </label>
-              </div>
-            </div>
-          </div>
-           
-          <div
-            class="actions svelte-1kld2ef"
-          >
-            <div
-              slot="actions"
-            >
-              <button
-                class=" svelte-th9g9"
-                data-testid="button"
-              >
-                Cancel
-              </button>
-               
-              <button
-                class="primary svelte-th9g9"
-                data-testid="button"
-                disabled=""
-              >
-                Apply
-              </button>
-            </div>
-          </div>
-        </section>
-         
-        <section
-          class="widget-body svelte-4p1s5s"
-        >
-          <div
-            class="container svelte-4axnnt"
-          >
-            <div>
-              <h3
-                class="svelte-4axnnt"
-              >
-                Unable to load editions
-              </h3>
-            </div>
-          </div>
-          
-        </section>
-      </article>
-    </div>
   </section>
 </div>
 `;
@@ -402,17 +44,17 @@ exports[`ReportFilter component - Editions should render the ReportFilter compon
 <div>
    
   <section
-    class="svelte-1utpps4"
+    class="svelte-9o07k"
   >
     <div
-      class="report-filter svelte-1utpps4"
+      class="report-filter svelte-9o07k"
     >
       <div
-        class="filter-selector svelte-1utpps4"
+        class="filter-selector svelte-9o07k"
         data-testid="display-modal-button"
       >
         <div
-          class="icon-wrapper  svelte-1utpps4"
+          class="icon-wrapper  svelte-9o07k"
         >
           <div
             class=" svelte-zpbvvv"
@@ -430,7 +72,7 @@ exports[`ReportFilter component - Editions should render the ReportFilter compon
       </div>
        
       <div
-        class="filter-chips svelte-1utpps4"
+        class="filter-chips svelte-9o07k"
       />
     </div>
      
@@ -442,17 +84,17 @@ exports[`ReportFilter component - Editions should render the ReportFilter compon
 <div>
    
   <section
-    class="svelte-1utpps4"
+    class="svelte-9o07k"
   >
     <div
-      class="report-filter svelte-1utpps4"
+      class="report-filter svelte-9o07k"
     >
       <div
-        class="filter-selector svelte-1utpps4"
+        class="filter-selector svelte-9o07k"
         data-testid="display-modal-button"
       >
         <div
-          class="icon-wrapper active  svelte-1utpps4"
+          class="icon-wrapper active  svelte-9o07k"
         >
           <div
             class=" svelte-zpbvvv"
@@ -470,7 +112,7 @@ exports[`ReportFilter component - Editions should render the ReportFilter compon
       </div>
        
       <div
-        class="filter-chips svelte-1utpps4"
+        class="filter-chips svelte-9o07k"
       >
         <div
           class="clickable svelte-197mspp"

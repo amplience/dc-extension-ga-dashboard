@@ -1,6 +1,6 @@
 <script lang="ts">
   import { dateRange, INITIAL_DATE_RANGE, NOW } from '../../stores/date-range';
-  import { createEventDispatcher, onMount } from 'svelte';
+  import { createEventDispatcher, onDestroy, onMount } from 'svelte';
   import WidgetHeader from '../widget/widget-header/widget-header.svelte';
   import WidgetBody from '../widget/widget-body/widget-body.svelte';
   import Widget from '../widget/widget.svelte';
@@ -28,14 +28,13 @@
   } from '../../stores/selected-content-items';
   import { gaQueryFilter } from '../../stores/ga-query-filters';
 
-  let filterSelected: boolean;
   let isModalVisible = false;
   let sectionElement: HTMLElement;
   let modalPositionStyle = ``;
-  let selected = 'Edition';
+  export let selected: 'Edition' | 'Content';
   let uncomittedEdition: Edition = null;
   let uncommitedRepository: ContentRepository = null;
-  let uncomittedContentItems: ContentItem[] = [];
+  let uncomittedContentItems: ContentItem[] = $selectedContentItems;
 
   const showModal = () => {
     const targetBound = sectionElement.getBoundingClientRect();
@@ -48,33 +47,41 @@
     uncomittedEdition = $selectedEdition;
     uncommitedRepository = $selectedRepository;
     uncomittedContentItems = $selectedContentItems;
-    setSelectedTab();
+    initialiseSelectedTab();
   };
 
   const applyEditionFilter = () => {
+    $selectedContentItems = [];
+    $selectedRepository = null;
+
     $selectedEdition = uncomittedEdition;
     const updatedDateRange = {
-      to: formatDateAsISOString(new Date(NOW)),
-      from: formatDateAsISOString(new Date($selectedEdition.start)),
+      ...INITIAL_DATE_RANGE,
     };
-    if ($selectedEdition.activeEndDate) {
-      updatedDateRange.to = formatDateAsISOString(
-        new Date($selectedEdition.end)
+    if (uncomittedEdition) {
+      updatedDateRange.to = formatDateAsISOString(new Date(NOW));
+      updatedDateRange.from = formatDateAsISOString(
+        new Date(uncomittedEdition.start)
       );
+      if (uncomittedEdition.activeEndDate) {
+        updatedDateRange.to = formatDateAsISOString(
+          new Date(uncomittedEdition.end)
+        );
+      }
     }
 
     $dateRange = updatedDateRange;
   };
 
   const applyContentFilter = () => {
+    $selectedEdition = null;
+    $dateRange = INITIAL_DATE_RANGE;
     $selectedRepository = uncommitedRepository;
     $selectedContentItems = uncomittedContentItems;
   };
 
   const onApplyClick = () => {
     isModalVisible = false;
-    resetFilter();
-
     switch (selected) {
       case 'Edition':
         applyEditionFilter();
@@ -93,36 +100,39 @@
     isModalVisible = false;
   };
 
-  const onEditionSelected = (event) => {
-    uncomittedEdition = event.detail;
-  };
-
-  const onRepositorySelected = (event) => {
-    uncommitedRepository = event.detail;
-  };
-
-  const onContentItemsSelected = (event) => {
-    uncomittedContentItems = event.detail;
-  };
-
   const generateEditionLabel = (edition) => {
     return `${edition.event.name} / ${edition.name}`;
   };
 
   const resetFilter = () => {
     $selectedEdition = null;
+    $dateRange = INITIAL_DATE_RANGE;
     $selectedRepository = null;
     $selectedContentItems = [];
-    $dateRange = INITIAL_DATE_RANGE;
   };
 
-  const setSelectedTab = () => {
+  const initialiseSelectedTab = () => {
+    if (selected !== undefined) {
+      return;
+    }
     if (uncomittedContentItems.length > 0) {
       selected = 'Content';
     } else {
       selected = 'Edition';
     }
   };
+
+  let unsubsribeSelectedContentItems = () => {};
+  onMount(() => {
+    unsubsribeSelectedContentItems = selectedContentItems.subscribe(
+      (updatedSelectedContentItems) => {
+        uncomittedContentItems = updatedSelectedContentItems;
+      }
+    );
+  });
+  onDestroy(() => {
+    unsubsribeSelectedContentItems();
+  });
 </script>
 
 <style>
@@ -130,14 +140,14 @@
     background-color: #fff;
     padding: 5px;
     position: relative;
-    z-index: 3;
+    z-index: 23;
   }
 
   .modal-popup {
     background-color: #fff;
     position: fixed;
     width: 750px;
-    z-index: 1;
+    z-index: 20;
     --webkit-box-shadow: 0 3px 13px rgba(0, 0, 0, 0.2);
     box-shadow: 0 3px 13px rgba(0, 0, 0, 0.2);
   }
@@ -177,7 +187,7 @@
 
   section :global(.widget-body) {
     margin: 0px 18px 50px;
-    min-height: unset;
+    min-height: 200px;
   }
   section :global(.widget-header [slot='actions'] button) {
     margin-right: 8px;
@@ -270,29 +280,21 @@
           </div>
           <div slot="actions">
             <Button primary={false} onClick={onCancelClick}>Cancel</Button>
-            <Button
-              disabled={uncomittedContentItems.length === 0 && uncomittedEdition === null}
-              onClick={onApplyClick}>
-              Apply
-            </Button>
+            <Button onClick={onApplyClick}>Apply</Button>
           </div>
         </WidgetHeader>
         <WidgetBody>
           {#if selected === 'Edition'}
-            <EditionPicker
-              on:change={onEditionSelected}
-              selectedEdition={uncomittedEdition ? uncomittedEdition : null} />
+            <EditionPicker bind:selectedEdition={uncomittedEdition} />
           {:else if selected === 'Content'}
             <div class="content-chooser">
               <h3>Select content items (max 5 from single repository)</h3>
               <RepositoryPicker
-                on:change={onRepositorySelected}
-                selectedRepository={uncommitedRepository ? uncommitedRepository : null}
-                selectedContentItems={uncomittedContentItems ? uncomittedContentItems : null} />
+                bind:selectedRepository={uncommitedRepository}
+                bind:selectedContentItems={uncomittedContentItems} />
               <ContentItemPicker
-                on:change={onContentItemsSelected}
-                selectedRepository={uncommitedRepository ? uncommitedRepository : null}
-                selectedContentItems={uncomittedContentItems} />
+                bind:selectedRepository={uncommitedRepository}
+                bind:selectedContentItems={uncomittedContentItems} />
             </div>
           {/if}
         </WidgetBody>

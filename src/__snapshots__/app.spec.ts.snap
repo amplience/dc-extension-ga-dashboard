@@ -16,17 +16,17 @@ exports[`App should render the App component 1`] = `
         >
            
           <section
-            class="svelte-1utpps4"
+            class="svelte-9o07k"
           >
             <div
-              class="report-filter svelte-1utpps4"
+              class="report-filter svelte-9o07k"
             >
               <div
-                class="filter-selector svelte-1utpps4"
+                class="filter-selector svelte-9o07k"
                 data-testid="display-modal-button"
               >
                 <div
-                  class="icon-wrapper  svelte-1utpps4"
+                  class="icon-wrapper  svelte-9o07k"
                 >
                   <div
                     class=" svelte-zpbvvv"
@@ -44,7 +44,7 @@ exports[`App should render the App component 1`] = `
               </div>
                
               <div
-                class="filter-chips svelte-1utpps4"
+                class="filter-chips svelte-9o07k"
               />
             </div>
              

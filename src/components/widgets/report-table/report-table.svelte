@@ -20,7 +20,7 @@
 </style>
 
 {#if loading}
-  <Loader />
+  <Loader zIndex={1} />
 {/if}
 {#if data && data.length > 0}
   <DataTable>

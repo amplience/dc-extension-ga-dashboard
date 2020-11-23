@@ -1,7 +1,7 @@
 <script lang="ts">
   import Select, { Option } from '@smui/select';
   import type { ContentItem, ContentRepository } from 'dc-management-sdk-js';
-  import { createEventDispatcher, onMount } from 'svelte';
+  import { onMount } from 'svelte';
   import { hub } from '../../stores/dynamic-content';
   import Loader from '../loader/loader.svelte';
 
@@ -11,28 +11,42 @@
   let loaded = false;
   let repositories: ContentRepository[] = [];
 
-  const dispatch = createEventDispatcher();
-
   $: selectValue = handleSelectValue(selectValue);
+
   const handleSelectValue = (option: string) => {
     if (loaded) {
-      const repository: ContentRepository = repositories.find(
+      const currentlySelected = repositories.find(
         (repository) => repository.id === option
       );
-      dispatch('change', repository);
+
+      if (
+        currentlySelected !== selectedRepository ||
+        (currentlySelected &&
+          selectedRepository &&
+          currentlySelected?.id !== selectedRepository?.id)
+      ) {
+        selectedRepository = currentlySelected;
+      }
     }
 
     return option;
   };
 
-  onMount(() => {
+  onMount(async () => {
     if ($hub) {
       loadRepositories();
     }
   });
 
   const loadRepositories = async () => {
-    repositories = (await $hub.related.contentRepositories.list()).getItems();
+    repositories = (await $hub.related.contentRepositories.list({ size: 100 }))
+      .getItems()
+      .filter(
+        (repository) =>
+          !repository.features?.find(
+            (feature) => feature.toLowerCase() === 'slots'
+          )
+      );
     if (!selectValue && repositories.length) {
       selectValue = repositories[0].id;
     }
@@ -95,7 +109,7 @@
       <h3>Unable to load repositories</h3>
     </div>
   {:else if !loaded}
-    <Loader zIndex={11} />
+    <Loader zIndex={31} />
   {:else if repositories.length === 0}
     <div>
       <h3 data-testid="no-repositories">
@@ -110,7 +124,7 @@
         bind:value={selectValue}
         class="select-width"
         menu$class="select-width"
-        disabled={repositories.length < 2 || selectedContentItems.length > 0}>
+        disabled={repositories.length <= 1 || selectedContentItems.length > 0}>
         {#each repositories as repository}
           <Option
             value={repository.id}

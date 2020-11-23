@@ -10,7 +10,10 @@
   const dispatch = createEventDispatcher();
 
   const onChipClick = () => dispatch('click');
-  const onCloseClick = () => dispatch('close');
+  const onCloseClick = (event: Event) => {
+    event.cancelBubble = true;
+    dispatch('close');
+  };
 </script>
 
 <style>

@@ -1,26 +1,29 @@
 <script lang="ts">
   import Select, { Option } from '@smui/select';
   import type { Edition } from 'dc-management-sdk-js';
-  import { createEventDispatcher, onMount } from 'svelte';
+  import { onMount } from 'svelte';
   import { hub } from '../../stores/dynamic-content';
   import Loader from '../loader/loader.svelte';
 
   export let selectedEdition;
-  let selectValue;
+  let selectValue = null;
   let loaded = false;
   let publishedEditions: Edition[] = [];
 
-  const dispatch = createEventDispatcher();
+  const NONE_VALUE = 'NONE';
 
   $: selectValue = handleSelectValue(selectValue);
   function handleSelectValue(option: string) {
     if (loaded) {
-      const edition: Edition = publishedEditions.find(
-        (publishedEdition) => publishedEdition.id === option
-      );
-      dispatch('change', edition);
-    }
+      let edition: Edition = null;
+      if (option !== NONE_VALUE) {
+        edition = publishedEditions.find(
+          (publishedEdition) => publishedEdition.id === option
+        );
+      }
 
+      selectedEdition = edition;
+    }
     return option;
   }
 
@@ -28,8 +31,11 @@
     if ($hub) {
       loadEditions();
     }
+
     if (selectedEdition) {
       selectValue = selectedEdition.id;
+    } else {
+      selectValue = NONE_VALUE;
     }
   });
 
@@ -109,7 +115,7 @@
       <h3>Unable to load editions</h3>
     </div>
   {:else if !loaded}
-    <Loader zIndex={11} />
+    <Loader zIndex={31} />
   {:else if publishedEditions.length === 0}
     <div>
       <h3 data-testid="no-published-editions">
@@ -128,6 +134,9 @@
         label="Recent edition"
         class="select-width"
         menu$class="select-width">
+        <Option value={NONE_VALUE} selected={selectValue === NONE_VALUE}>
+          None
+        </Option>
         {#each publishedEditions as edition}
           <Option
             value={edition.id}
