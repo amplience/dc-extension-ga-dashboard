@@ -71,6 +71,8 @@ export default {
       __GOOGLE_ANALYTICS_CURRENCY_CODE__: () =>
         process.env.GOOGLE_ANALYTICS_CURRENCY_CODE || '',
       __MAX_NUM_EDITIONS__: () => process.env.MAX_NUM_EDITIONS,
+      __MAX_NUMBER_OF_SELECTABLE_CONTENT_ITEMS__: () =>
+        process.env.MAX_NUMBER_OF_SELECTABLE_CONTENT_ITEMS,
       'process.env.NODE_ENV': JSON.stringify(
         production ? 'production' : 'development'
       ),

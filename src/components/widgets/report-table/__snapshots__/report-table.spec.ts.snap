@@ -4,7 +4,7 @@ exports[`ReportTable should render the ReportTable component in a loading state 
 <div>
   <div
     class="spinner-container svelte-wkqaim"
-    style="--z-index: 10;"
+    style="--z-index: 1;"
   >
     <div
       class="spinner dot-0 svelte-wkqaim"

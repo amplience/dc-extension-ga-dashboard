@@ -25,7 +25,7 @@
 </style>
 
 {#if loading}
-  <Loader />
+  <Loader zIndex={1} />
 {:else if data && data.length > 0}
   <DataTable>
     <Head>
