@@ -1,4 +1,5 @@
 import { get } from 'svelte/store';
+import { GOOGLE_ANALYTICS_TIMEOUT } from '../../config';
 import type { GoogleAnalyticsEmbedAPI } from '../../definitions/google-analytics-embed-api';
 import {
   gaApiKey,
@@ -6,8 +7,6 @@ import {
   gaClientEmail,
 } from '../../stores/google-analytics';
 import { isValidToken, refreshToken } from '../gapi-token/gapi-token.service';
-
-const TIMEOUT_MS = Number('__GOOGLE_ANALYTICS_TIMEOUT__') || 30000;
 
 async function checkAuth(gapi): Promise<void> {
   if (get(gaAuthByToken) && !isValidToken(gapi.client.getToken('token'))) {
@@ -31,10 +30,10 @@ export const gapiRequestGuard = async <T>(
     const timeout = setTimeout(() => {
       reject(
         new RequestTimeout(
-          `GAPI failed to respond within ${TIMEOUT_MS}ms second`
+          `GAPI failed to respond within ${GOOGLE_ANALYTICS_TIMEOUT}ms`
         )
       );
-    }, TIMEOUT_MS);
+    }, GOOGLE_ANALYTICS_TIMEOUT);
     gapiFn()
       .then((response) => {
         clearTimeout(timeout);

@@ -1,6 +1,6 @@
 <script lang="ts">
   import { dateRange } from '../../../stores/date-range';
-  import type { ReportData } from '../../../stores/gapi';
+  import type { ReportData } from '../../../services/gapi/get-report-data.service';
   import gapi from '../../../stores/gapi';
   import {
     breakdown,

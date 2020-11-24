@@ -92,6 +92,118 @@ exports[`TopEditionsReport should render the TopEditionsReport component 1`] = `
         class="widget-body svelte-4p1s5s"
       >
         <div
+          class="spinner-container svelte-wkqaim"
+          style="--z-index: 10;"
+        >
+          <div
+            class="spinner dot-0 svelte-wkqaim"
+          />
+          <div
+            class="spinner dot-1 svelte-wkqaim"
+          />
+          <div
+            class="spinner dot-2 svelte-wkqaim"
+          />
+        </div>
+        
+      </section>
+    </article>
+  </section>
+</div>
+`;
+
+exports[`TopEditionsReport should render the TopEditionsReport component 2`] = `
+<div>
+  <section
+    class="top-editions-report svelte-3d73gc"
+  >
+    <article
+      class="svelte-pntwh0"
+    >
+       
+      <section
+        class="widget-header svelte-1kld2ef"
+      >
+        <div
+          class="title svelte-1kld2ef"
+        >
+          <h2
+            class="svelte-1kld2ef"
+          >
+            Top editions
+          </h2>
+           
+           
+        </div>
+         
+        <div
+          class="actions svelte-1kld2ef"
+        >
+          <div
+            slot="actions"
+          >
+            <div
+              class="select top-editions-report-sizes-select svelte-c7jdhd"
+            >
+              <span>
+                Show
+              </span>
+               
+              <div
+                class="
+    mdc-select
+    smui-select
+    
+    
+    smui-select--standard
+    
+    
+  "
+              >
+                 
+                <i
+                  class="mdc-select__dropdown-icon"
+                />
+                 
+                <input
+                  id="SMUI-select-0"
+                  type="hidden"
+                  value="5"
+                />
+                 
+                <div
+                  aria-haspopup="listbox"
+                  aria-labelledby="SMUI-select-0-smui-label SMUI-select-0-smui-selected-text"
+                  aria-required="false"
+                  class="mdc-select__selected-text"
+                  id="SMUI-select-0-smui-selected-text"
+                  role="button"
+                  tabindex="0"
+                >
+                  5
+                </div>
+                 
+                 
+                 
+                <div
+                  class="
+    mdc-line-ripple
+    
+    
+  "
+                />
+                
+                 
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+       
+      <section
+        class="widget-body svelte-4p1s5s"
+      >
+        <div
           class="data-table svelte-1gunyt0"
         >
           <div
@@ -226,12 +338,12 @@ exports[`TopEditionsReport should render the TopEditionsReport component 1`] = `
                       class="query-label svelte-1ylxfod"
                     />
                      
+                    
                     <span
-                      data-testid="error"
+                      data-testid="loading-1"
                     >
                       dimension
                     </span>
-                    
                     
                     
                   </div>
@@ -359,7 +471,7 @@ exports[`TopEditionsReport should render the TopEditionsReport component 1`] = `
 </div>
 `;
 
-exports[`TopEditionsReport should render the TopEditionsReport component 2`] = `
+exports[`TopEditionsReport should render the TopEditionsReport component 3`] = `
 <div>
   <section
     class="top-editions-report svelte-3d73gc"
@@ -835,37 +947,46 @@ exports[`TopEditionsReport should render the TopEditionsReport component 2`] = `
 </div>
 `;
 
-exports[`TopEditionsReport should render the TopEditionsReport component 3`] = `
+exports[`TopEditionsReport should render the TopEditionsReport component 4`] = `
 Array [
   Array [
-    "GA_VIEW_ID",
-    "EDITION_ID_MAPPING",
-    5,
+    Object {},
     Object {
-      "from": "2020-01-01",
-      "to": "2020-12-31",
+      "dateRange": Object {
+        "from": "2020-01-01",
+        "to": "2020-12-31",
+      },
+      "dimension": "EDITION_ID_MAPPING",
+      "gaQueryFilter": "EDITION_ID_MAPPING==EDITION_ID",
+      "gaViewId": "GA_VIEW_ID",
+      "limit": 5,
     },
-    "EDITION_ID_MAPPING==EDITION_ID",
   ],
   Array [
-    "GA_VIEW_ID",
-    "EDITION_ID_MAPPING",
-    "5",
+    Object {},
     Object {
-      "from": "2020-01-01",
-      "to": "2020-12-31",
+      "dateRange": Object {
+        "from": "2020-01-01",
+        "to": "2020-12-31",
+      },
+      "dimension": "EDITION_ID_MAPPING",
+      "gaQueryFilter": "EDITION_ID_MAPPING==EDITION_ID",
+      "gaViewId": "GA_VIEW_ID",
+      "limit": "5",
     },
-    "EDITION_ID_MAPPING==EDITION_ID",
   ],
   Array [
-    "GA_VIEW_ID",
-    "BREAKDOWN_CHART_DIMENSION",
-    100,
+    Object {},
     Object {
-      "from": "2020-01-01",
-      "to": "2020-12-31",
+      "dateRange": Object {
+        "from": "2020-01-01",
+        "to": "2020-12-31",
+      },
+      "dimension": "BREAKDOWN_CHART_DIMENSION",
+      "gaQueryFilter": "EDITION_ID_MAPPING==EDITION_ID;EDITION_ID_MAPPING==dimension",
+      "gaViewId": "GA_VIEW_ID",
+      "limit": 100,
     },
-    "EDITION_ID_MAPPING==EDITION_ID;EDITION_ID_MAPPING==dimension",
   ],
 ]
 `;

@@ -1,11 +1,10 @@
 <script lang="ts">
-  import type { ReportData } from '../../../../stores/gapi';
+  import type { ReportData } from '../../../../services/gapi/get-report-data.service';
   import { Body, Cell, DataTable, Row } from '../../../data-table';
   import Loader from '../../../loader/loader.svelte';
   import NoDataPlaceholder from '../../../no-data-placeholder/no-data-placeholder.svelte';
   import ChipLabel from '../custom-cell-contents/chip-label/chip-label.svelte';
   import CurrencyLabel from '../custom-cell-contents/currency-label/currency-label.svelte';
-  import type { TableConfig } from '../table-config.interface';
   import type { GetBreakdownData } from './get-breakdown-data';
   import { backOff } from 'exponential-backoff';
 

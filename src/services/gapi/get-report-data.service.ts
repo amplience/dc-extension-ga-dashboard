@@ -70,7 +70,8 @@ export const getReportData = async (
     'end-date': queryParams.dateRange.to,
     filters: queryParams.gaQueryFilter,
   };
-  return gapiRequestGuard(gapi, () => {
+
+  const request = (): Promise<ReportData[]> => {
     return new Promise((resolve, reject) => {
       new gapi.analytics.report.Data({ query })
         .once('success', (response: DataReportResponse) =>
@@ -79,5 +80,7 @@ export const getReportData = async (
         .once('error', reject)
         .execute();
     });
-  });
+  };
+
+  return gapiRequestGuard(gapi, request);
 };

@@ -1,5 +1,6 @@
 <script lang="ts">
-  import type { ReportData } from '../../../stores/gapi';
+  import type { ReportData } from '../../../services/gapi/get-report-data.service';
+
   import { Body, Cell, DataTable, Head, Row } from '../../data-table';
   import Loader from '../../loader/loader.svelte';
   import NoDataPlaceholder from '../../no-data-placeholder/no-data-placeholder.svelte';

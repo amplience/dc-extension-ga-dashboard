@@ -23,7 +23,7 @@ export const insertDataChart = (
   // 4. give the child container to the gapi sdk to use
   containerElement.appendChild(chartElement);
 
-  return gapiRequestGuard<void>(gapi, () => {
+  const request = (): Promise<void> => {
     return new Promise((resolve, reject) => {
       const chart = new gapi.analytics.googleCharts.DataChart({
         query: query,
@@ -58,7 +58,9 @@ export const insertDataChart = (
       });
       chart.once('success', resolve).once('error', reject).execute();
     });
-  }).catch((e) => {
+  };
+
+  return gapiRequestGuard<void>(gapi, request).catch((e) => {
     // gapi error - remove child element
     chartElement.remove();
     throw e;

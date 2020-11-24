@@ -1,4 +1,5 @@
 import rs from 'jsrsasign';
+import { GOOGLE_ANALYTICS_TOKEN_EXPIRES_IN } from '../../config';
 import type { GoogleAnalyticsEmbedAPI } from '../../definitions/google-analytics-embed-api';
 
 export interface GapiToken {
@@ -11,7 +12,7 @@ export interface GapiToken {
 const TOKEN_URL = 'https://oauth2.googleapis.com/token';
 const SCOPE = 'https://www.googleapis.com/auth/analytics.readonly';
 const GRANT_TYPE = 'urn:ietf:params:oauth:grant-type:jwt-bearer';
-const EXPIRES_IN = Number('__GOOGLE_ANALYTICS_TOKEN_EXPIRES_IN__') || undefined;
+const EXPIRES_IN = GOOGLE_ANALYTICS_TOKEN_EXPIRES_IN || undefined;
 
 let inFlightPromise;
 
