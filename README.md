@@ -15,6 +15,12 @@ To create an optimised version of the app:
 ```bash
 npm run build
 ```
+### Build Configuration
+
+| Environment Var  | Description                           | Default |
+| ---------------- | ------------------------------------- | ------- |
+| MAX_NUM_EDITIONS | Maximum number of editions to display | 20      |
+
 
 ## Running tests
 
@@ -44,6 +50,7 @@ Additional environments vars
 | GOOGLE_ANALYTICS_CURRENCY_CODE    | Google Analytics View ID                                      | GBP                                      |
 | GOOGLE_ANALYTICS_TIMEOUT          | How long we should wait before retrying a gapi request        | 30000                                    |
 | GOOGLE_ANALYTICS_TOKEN_EXPIRES_IN | Used to manually set gapi token expires in value (in seconds) | 3600                                     |
+
 
 Example `.env` file
 
