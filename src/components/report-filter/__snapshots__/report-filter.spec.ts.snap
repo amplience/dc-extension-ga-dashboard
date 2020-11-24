@@ -1,25 +1,20 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ReportFilter component should render initial state when a selectedEdition has been removed 1`] = `
+exports[`ReportFilter component - Editions should render initial state when a selectedEdition has been removed 1`] = `
 <div>
-  <div
-    class="svelte-1k192f9"
-    data-testid="overlay"
-    style="z-index: 2"
-  />
    
   <section
-    class="svelte-gq3h23"
+    class="svelte-9o07k"
   >
     <div
-      class="selected-edition svelte-gq3h23"
+      class="report-filter svelte-9o07k"
     >
       <div
-        class="edition-filter svelte-gq3h23"
+        class="filter-selector svelte-9o07k"
         data-testid="display-modal-button"
       >
         <div
-          class="icon-wrapper  svelte-gq3h23"
+          class="icon-wrapper  svelte-9o07k"
         >
           <div
             class=" svelte-zpbvvv"
@@ -36,137 +31,30 @@ exports[`ReportFilter component should render initial state when a selectedEditi
         </div>
       </div>
        
+      <div
+        class="filter-chips svelte-9o07k"
+      />
     </div>
      
-    <div
-      class="modal-popup svelte-gq3h23"
-      style="top: NaNpx;left: undefinedpx"
-    >
-      <article
-        class="svelte-pntwh0"
-      >
-         
-        <section
-          class="widget-header svelte-1kld2ef"
-        >
-          <div
-            class="title svelte-1kld2ef"
-          >
-             
-             
-            <div
-              slot="title"
-            >
-              <h3>
-                Filter by
-              </h3>
-               
-              <div
-                class="
-    mdc-form-field
-    
-    
-  "
-              >
-                <div
-                  class="mdc-radio"
-                >
-                  <input
-                    class="mdc-radio__native-control "
-                    id="SMUI-form-field-4"
-                    type="radio"
-                    value="Edition"
-                  />
-                   
-                  <div
-                    class="mdc-radio__background"
-                  >
-                    <div
-                      class="mdc-radio__outer-circle"
-                    />
-                     
-                    <div
-                      class="mdc-radio__inner-circle"
-                    />
-                  </div>
-                </div>
-                 
-                 
-                <label
-                  for="SMUI-form-field-4"
-                >
-                  <span
-                    class="svelte-gq3h23"
-                    slot="label"
-                  >
-                    Edition
-                  </span>
-                </label>
-              </div>
-            </div>
-          </div>
-           
-          <div
-            class="actions svelte-1kld2ef"
-          >
-            <div
-              slot="actions"
-            >
-              <button
-                class=" svelte-th9g9"
-                data-testid="button"
-              >
-                Cancel
-              </button>
-               
-              <button
-                class="primary svelte-th9g9"
-                data-testid="button"
-                disabled=""
-              >
-                Apply
-              </button>
-            </div>
-          </div>
-        </section>
-         
-        <section
-          class="widget-body svelte-4p1s5s"
-        >
-          <div
-            class="container svelte-4axnnt"
-          >
-            <div>
-              <h3
-                class="svelte-4axnnt"
-              >
-                Unable to load editions
-              </h3>
-            </div>
-          </div>
-          
-        </section>
-      </article>
-    </div>
   </section>
 </div>
 `;
 
-exports[`ReportFilter component should render the ReportFilter component no selectedEdition 1`] = `
+exports[`ReportFilter component - Editions should render the ReportFilter component no selectedEdition 1`] = `
 <div>
    
   <section
-    class="svelte-gq3h23"
+    class="svelte-9o07k"
   >
     <div
-      class="selected-edition svelte-gq3h23"
+      class="report-filter svelte-9o07k"
     >
       <div
-        class="edition-filter svelte-gq3h23"
+        class="filter-selector svelte-9o07k"
         data-testid="display-modal-button"
       >
         <div
-          class="icon-wrapper  svelte-gq3h23"
+          class="icon-wrapper  svelte-9o07k"
         >
           <div
             class=" svelte-zpbvvv"
@@ -183,27 +71,30 @@ exports[`ReportFilter component should render the ReportFilter component no sele
         </div>
       </div>
        
+      <div
+        class="filter-chips svelte-9o07k"
+      />
     </div>
      
   </section>
 </div>
 `;
 
-exports[`ReportFilter component should render the ReportFilter component with a selectedEdition 1`] = `
+exports[`ReportFilter component - Editions should render the ReportFilter component with a selectedEdition 1`] = `
 <div>
    
   <section
-    class="svelte-gq3h23"
+    class="svelte-9o07k"
   >
     <div
-      class="selected-edition svelte-gq3h23"
+      class="report-filter svelte-9o07k"
     >
       <div
-        class="edition-filter svelte-gq3h23"
+        class="filter-selector svelte-9o07k"
         data-testid="display-modal-button"
       >
         <div
-          class="icon-wrapper active  svelte-gq3h23"
+          class="icon-wrapper active  svelte-9o07k"
         >
           <div
             class=" svelte-zpbvvv"
@@ -221,30 +112,34 @@ exports[`ReportFilter component should render the ReportFilter component with a 
       </div>
        
       <div
-        class="clickable svelte-197mspp"
-        data-testid="chip"
+        class="filter-chips svelte-9o07k"
       >
-        <span
-          class="label svelte-197mspp"
+        <div
+          class="clickable svelte-197mspp"
+          data-testid="chip"
         >
-          Test Event / Test Edition
-        </span>
-         
-        <span
-          class="cross svelte-197mspp"
-          data-testid="remove-chip-button"
-        >
-          <div
-            class=" svelte-zpbvvv"
-            style="--icon-width: 12px; --icon-height: 12px;"
+          <span
+            class="label svelte-197mspp"
           >
-            <object
-              src="ic-delete.svg/"
-            />
-          </div>
-        </span>
+            Test Event / Test Edition
+          </span>
+           
+          <span
+            class="cross svelte-197mspp"
+            data-testid="remove-chip-button"
+          >
+            <div
+              class=" svelte-zpbvvv"
+              style="--icon-width: 12px; --icon-height: 12px;"
+            >
+              <object
+                src="ic-delete.svg/"
+              />
+            </div>
+          </span>
+        </div>
+        
       </div>
-      
     </div>
      
   </section>

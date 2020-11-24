@@ -1,24 +1,35 @@
 import {
   fireEvent,
+  getAllByRole,
   getByLabelText,
   getByRole,
   getByTestId,
   getByText,
   render,
 } from '@testing-library/svelte';
-import { Edition, Hub } from 'dc-management-sdk-js';
+import {
+  ContentItem,
+  ContentRepository,
+  ContentType,
+  Edition,
+  Hub,
+} from 'dc-management-sdk-js';
 import { tick } from 'svelte';
 import { get } from 'svelte/store';
 import { dateRange, NOW } from '../../stores/date-range';
 import { hub } from '../../stores/dynamic-content';
+import { selectedContentItems } from '../../stores/selected-content-items';
 import { selectedEdition } from '../../stores/selected-edition';
+import { selectedRepository } from '../../stores/selected-repository';
 import { formatDateAsISOString } from '../../utils/date-format';
 import ReportFilter from './report-filter.svelte';
 
-describe('ReportFilter component', () => {
+describe('ReportFilter component - Editions', () => {
   beforeEach(() => {
     hub.set(null);
     selectedEdition.set(null);
+    selectedContentItems.set([]);
+    selectedRepository.set(null);
   });
   it('should render the ReportFilter component no selectedEdition', () => {
     const { container } = render(ReportFilter, {});
@@ -132,6 +143,91 @@ describe('ReportFilter component', () => {
     expect(container.firstChild).toMatchSnapshot();
   });
 });
+
+describe('ReportFilter component - ContentItems', () => {
+  beforeEach(() => {
+    hub.set(null);
+    selectedRepository.set(null);
+    selectedContentItems.set([]);
+  });
+  it('should render the no hub state for the repository picker', async () => {
+    const contentRepo = new ContentRepository({
+      id: 'CONTENT_REPOSITORY_ID',
+      name: 'Content Repository',
+      contentTypes: [
+        {
+          hubContentTypeId: 'CONTENT_TYPE_ID',
+          contentTypeUri: 'http://example.com/schema.json',
+        },
+      ],
+    });
+    const contentItem = new ContentItem({
+      id: 'CONTENT_ITEM_ID',
+      label: 'Content Item',
+      body: {
+        _meta: {
+          schema: 'http://example.com/schema.json',
+        },
+      },
+    });
+    contentRepo.related.contentItems.list = jest.fn().mockResolvedValue({
+      getItems: () => [contentItem],
+    });
+    const mockHub = new Hub({
+      id: 'HUB_ID',
+    });
+    mockHub.related.contentRepositories.list = jest.fn().mockResolvedValue({
+      getItems: () => {
+        return [
+          new ContentRepository({
+            id: 'CONTENT_REPOSITORY_ID',
+            name: 'Content Repository',
+          }),
+        ];
+      },
+    });
+
+    mockHub.related.contentRepositories.list = jest.fn().mockResolvedValue({
+      getItems: () => {
+        return [contentRepo];
+      },
+    });
+
+    mockHub.related.contentTypes.get = jest.fn().mockResolvedValue(
+      new ContentType({
+        id: 'CONTENT_TYPE_ID',
+        settings: {
+          label: 'Content Type',
+        },
+      })
+    );
+    hub.set(mockHub);
+
+    const { container } = render(ReportFilter, { selected: 'Content' });
+    const displayModalButton = getByTestId(container, 'display-modal-button');
+    await fireEvent.click(displayModalButton);
+    await tick();
+    await tick();
+    expect(getByLabelText(container, 'Repository')).toBeDefined();
+    await tick();
+    await tick();
+
+    await tick();
+    await tick();
+
+    expect(getByLabelText(container, 'Content Item')).toBeDefined();
+
+    fireEvent.click(getByText(container, 'Content Item')); // buggy
+    await tick();
+
+    fireEvent.click(getByText(container, 'Apply'));
+    await tick();
+
+    expect(get(selectedRepository)).toEqual(contentRepo);
+    // expect(get(selectedContentItems)).toEqual([contentItem]);
+  });
+});
+
 async function renderAndSelectEdition(publishedEdition: Edition) {
   const mockFindByDate = jest.fn().mockResolvedValue({
     getItems: () => {
@@ -157,7 +253,7 @@ async function renderAndSelectEdition(publishedEdition: Edition) {
   expect(getByText(container, 'Select a recent edition...')).toBeDefined();
   fireEvent.click(getByLabelText(container, 'Recent edition'));
   await tick();
-  fireEvent.click(getByRole(container, 'option'));
+  fireEvent.click(getAllByRole(container, 'option')[1]);
   await tick();
   fireEvent.click(getByText(container, 'Apply'));
   await tick();

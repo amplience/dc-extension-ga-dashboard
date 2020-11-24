@@ -1,6 +1,6 @@
 <script lang="ts">
   import { dateRange, INITIAL_DATE_RANGE, NOW } from '../../stores/date-range';
-  import { createEventDispatcher, onMount } from 'svelte';
+  import { createEventDispatcher, onDestroy, onMount } from 'svelte';
   import WidgetHeader from '../widget/widget-header/widget-header.svelte';
   import WidgetBody from '../widget/widget-body/widget-body.svelte';
   import Widget from '../widget/widget.svelte';
@@ -8,19 +8,33 @@
   import Radio from '@smui/radio';
   import FormField from '@smui/form-field';
   import EditionPicker from '../edition-picker/edition-picker.svelte';
-  import type { Edition } from 'dc-management-sdk-js';
+  import type {
+    ContentItem,
+    ContentRepository,
+    Edition,
+  } from 'dc-management-sdk-js';
   import { selectedEdition } from '../../stores/selected-edition';
   import Chip from '../chip/chip.svelte';
   import Icon from '../icon/icon.svelte';
   import FilterIcon from '../../assets/icons/ic-filter.svg';
   import { formatDateAsISOString } from '../../utils/date-format';
   import Overlay from '../overlay/overlay.svelte';
+  import ContentItemPicker from '../content-item-picker/content-item-picker.svelte';
+  import RepositoryPicker from '../repository-picker/repository-picker.svelte';
+  import { selectedRepository } from '../../stores/selected-repository';
+  import {
+    removeSelectedContentItem,
+    selectedContentItems,
+  } from '../../stores/selected-content-items';
+  import { gaQueryFilter } from '../../stores/ga-query-filters';
 
   let isModalVisible = false;
   let sectionElement: HTMLElement;
   let modalPositionStyle = ``;
-  let selected = 'Edition';
+  export let selected: 'Edition' | 'Content';
   let uncomittedEdition: Edition = null;
+  let uncommitedRepository: ContentRepository = null;
+  let uncomittedContentItems: ContentItem[] = $selectedContentItems;
 
   const showModal = () => {
     const targetBound = sectionElement.getBoundingClientRect();
@@ -31,30 +45,59 @@
 
     isModalVisible = true;
     uncomittedEdition = $selectedEdition;
+    uncommitedRepository = $selectedRepository;
+    uncomittedContentItems = $selectedContentItems;
+    initialiseSelectedTab();
   };
 
-  const onApplyClick = () => {
-    isModalVisible = false;
+  const applyEditionFilter = () => {
+    $selectedContentItems = [];
+    $selectedRepository = null;
+
     $selectedEdition = uncomittedEdition;
     const updatedDateRange = {
-      to: formatDateAsISOString(new Date(NOW)),
-      from: formatDateAsISOString(new Date($selectedEdition.start)),
+      ...INITIAL_DATE_RANGE,
     };
-    if ($selectedEdition.activeEndDate) {
-      updatedDateRange.to = formatDateAsISOString(
-        new Date($selectedEdition.end)
+    if (uncomittedEdition) {
+      updatedDateRange.to = formatDateAsISOString(new Date(NOW));
+      updatedDateRange.from = formatDateAsISOString(
+        new Date(uncomittedEdition.start)
       );
+      if (uncomittedEdition.activeEndDate) {
+        updatedDateRange.to = formatDateAsISOString(
+          new Date(uncomittedEdition.end)
+        );
+      }
     }
 
     $dateRange = updatedDateRange;
   };
 
-  const onCancelClick = () => {
-    isModalVisible = false;
+  const applyContentFilter = () => {
+    $selectedEdition = null;
+    $dateRange = INITIAL_DATE_RANGE;
+    $selectedRepository = uncommitedRepository;
+    $selectedContentItems = uncomittedContentItems;
   };
 
-  const onEditionSelected = (event) => {
-    uncomittedEdition = event.detail;
+  const onApplyClick = () => {
+    isModalVisible = false;
+    switch (selected) {
+      case 'Edition':
+        applyEditionFilter();
+        break;
+
+      case 'Content':
+        applyContentFilter();
+        break;
+
+      default:
+        break;
+    }
+  };
+
+  const onCancelClick = () => {
+    isModalVisible = false;
   };
 
   const generateEditionLabel = (edition) => {
@@ -64,7 +107,32 @@
   const resetFilter = () => {
     $selectedEdition = null;
     $dateRange = INITIAL_DATE_RANGE;
+    $selectedRepository = null;
+    $selectedContentItems = [];
   };
+
+  const initialiseSelectedTab = () => {
+    if (selected !== undefined) {
+      return;
+    }
+    if (uncomittedContentItems.length > 0) {
+      selected = 'Content';
+    } else {
+      selected = 'Edition';
+    }
+  };
+
+  let unsubsribeSelectedContentItems = () => {};
+  onMount(() => {
+    unsubsribeSelectedContentItems = selectedContentItems.subscribe(
+      (updatedSelectedContentItems) => {
+        uncomittedContentItems = updatedSelectedContentItems;
+      }
+    );
+  });
+  onDestroy(() => {
+    unsubsribeSelectedContentItems();
+  });
 </script>
 
 <style>
@@ -72,28 +140,34 @@
     background-color: #fff;
     padding: 5px;
     position: relative;
-    z-index: 3;
+    z-index: 23;
   }
 
   .modal-popup {
     background-color: #fff;
     position: fixed;
     width: 750px;
-    z-index: 1;
+    z-index: 20;
     --webkit-box-shadow: 0 3px 13px rgba(0, 0, 0, 0.2);
     box-shadow: 0 3px 13px rgba(0, 0, 0, 0.2);
   }
 
-  .selected-edition {
+  .report-filter {
     display: flex;
     align-items: center;
-    cursor: pointer;
+    flex-direction: row;
   }
 
-  .edition-filter {
+  .filter-selector {
     display: flex;
     align-items: center;
     margin-right: 12px;
+    cursor: pointer;
+  }
+
+  .filter-chips {
+    display: flex;
+    align-items: center;
   }
 
   section :global(.widget-header [slot='title'] h3) {
@@ -113,7 +187,7 @@
 
   section :global(.widget-body) {
     margin: 0px 18px 50px;
-    min-height: unset;
+    min-height: 200px;
   }
   section :global(.widget-header [slot='actions'] button) {
     margin-right: 8px;
@@ -135,32 +209,56 @@
   div.icon-wrapper.active :global(svg) {
     fill: #039be5;
   }
+
+  div.content-chooser {
+    display: flex;
+    flex-direction: column;
+  }
+
+  div.content-chooser h3 {
+    font-size: 15px;
+  }
 </style>
 
 {#if isModalVisible}
   <Overlay onClick={onCancelClick} />
 {/if}
 <section bind:this={sectionElement}>
-  <div class="selected-edition">
+  <div class="report-filter">
     <div
-      class="edition-filter"
+      class="filter-selector"
       data-testid="display-modal-button"
       on:click={showModal}>
-      <div class={`icon-wrapper ${$selectedEdition ? 'active ' : ''}`}>
+      <div class={`icon-wrapper ${$gaQueryFilter ? 'active ' : ''}`}>
         <Icon icon={FilterIcon} width="20px" height="20px" />
       </div>
       <div>
-        {#if $selectedEdition}Edition{:else}No filters applied{/if}
+        {#if $selectedEdition}
+          Edition
+        {:else if $selectedRepository && $selectedContentItems.length > 0}
+          {$selectedRepository.name}
+        {:else}No filters applied{/if}
       </div>
     </div>
-    {#if $selectedEdition}
-      <Chip
-        label={generateEditionLabel($selectedEdition)}
-        removeable={true}
-        on:close={resetFilter}
-        on:click={showModal}
-        clickable={true} />
-    {/if}
+    <div class="filter-chips">
+      {#if $selectedEdition}
+        <Chip
+          label={generateEditionLabel($selectedEdition)}
+          removeable={true}
+          on:close={resetFilter}
+          on:click={showModal}
+          clickable={true} />
+      {:else if $selectedContentItems.length > 0}
+        {#each $selectedContentItems as contentItem}
+          <Chip
+            label={contentItem.label}
+            removeable={true}
+            on:close={() => removeSelectedContentItem(contentItem)}
+            on:click={showModal}
+            clickable={true} />
+        {/each}
+      {/if}
+    </div>
   </div>
   {#if isModalVisible}
     <div class="modal-popup" style={modalPositionStyle}>
@@ -172,19 +270,32 @@
               <Radio bind:group={selected} value="Edition" />
               <span slot="label">Edition</span>
             </FormField>
+            <FormField>
+              <Radio
+                data-testid="content-radio"
+                bind:group={selected}
+                value="Content" />
+              <span slot="label">Content</span>
+            </FormField>
           </div>
           <div slot="actions">
             <Button primary={false} onClick={onCancelClick}>Cancel</Button>
-            <Button disabled={uncomittedEdition == null} onClick={onApplyClick}>
-              Apply
-            </Button>
+            <Button onClick={onApplyClick}>Apply</Button>
           </div>
         </WidgetHeader>
         <WidgetBody>
           {#if selected === 'Edition'}
-            <EditionPicker
-              on:change={onEditionSelected}
-              selectedEdition={uncomittedEdition ? uncomittedEdition : null} />
+            <EditionPicker bind:selectedEdition={uncomittedEdition} />
+          {:else if selected === 'Content'}
+            <div class="content-chooser">
+              <h3>Select content items (max 5 from single repository)</h3>
+              <RepositoryPicker
+                bind:selectedRepository={uncommitedRepository}
+                bind:selectedContentItems={uncomittedContentItems} />
+              <ContentItemPicker
+                bind:selectedRepository={uncommitedRepository}
+                bind:selectedContentItems={uncomittedContentItems} />
+            </div>
           {/if}
         </WidgetBody>
       </Widget>

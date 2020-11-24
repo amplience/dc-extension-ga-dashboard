@@ -93,7 +93,7 @@ exports[`TopSlotsReport should render the TopSlotsReport component 1`] = `
       >
         <div
           class="spinner-container svelte-wkqaim"
-          style="--z-index: 10;"
+          style="--z-index: 1;"
         >
           <div
             class="spinner dot-0 svelte-wkqaim"
