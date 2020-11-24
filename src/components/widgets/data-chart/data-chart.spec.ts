@@ -4,10 +4,14 @@ import { tick } from 'svelte';
 import { dateRange } from '../../../stores/date-range';
 import { ChartType, insertDataChart } from '../../../stores/gapi';
 import { editionIdMapping } from '../../../stores/google-analytics';
-import { selectedEdition } from '../../../stores/selected-edition';
+import { selectedEdition } from '../../../stores/filter/selected-edition';
 import { Edition } from 'dc-management-sdk-js';
 import { backOff } from 'exponential-backoff';
 import { initialiseStores } from '../../../services/stores/initialise';
+import {
+  FILTERS,
+  selectedFilter,
+} from '../../../stores/filter/selected-filter';
 
 jest.mock('exponential-backoff');
 (backOff as jest.Mock).mockImplementation((fn) => fn());
@@ -16,6 +20,7 @@ jest.mock('../../../stores/gapi');
 
 describe('DataChart', () => {
   beforeEach(() => {
+    selectedFilter.set(null);
     selectedEdition.set(null);
     dateRange.set({ from: '2020-11-01', to: '2020-11-02' });
     initialiseStores({
@@ -61,7 +66,7 @@ describe('DataChart', () => {
       editionIdMapping.set('ga:dimension2');
       render(DataChart, dataChartOptions);
       await tick();
-
+      selectedFilter.set(FILTERS.EDITION);
       selectedEdition.set(new Edition({ id: 'editionId' }));
       await tick();
 
@@ -101,6 +106,7 @@ describe('DataChart', () => {
       render(DataChart, dataChartOptions);
       await tick();
 
+      selectedFilter.set(FILTERS.EDITION);
       selectedEdition.set(new Edition({ id: 'editionId' }));
       await tick();
 

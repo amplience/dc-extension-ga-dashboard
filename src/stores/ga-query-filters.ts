@@ -1,8 +1,14 @@
 import { derived } from 'svelte/store';
-import { contentItemIdMapping, editionIdMapping } from './google-analytics';
-import { selectedContentItems } from './selected-content-items';
-import { selectedEdition } from './selected-edition';
+import {
+  contentItemIdMapping,
+  editionIdMapping,
+  slotIdMapping,
+} from './google-analytics';
 import { writable } from 'svelte/store';
+import { selectedEdition } from './filter/selected-edition';
+import { selectedContentItems } from './filter/selected-content-items';
+import { selectedSlots } from './filter/selected-slots';
+import { FILTERS, selectedFilter } from './filter/selected-filter';
 
 export const contentItemFilter = writable<string>(null);
 export const editionFilter = writable<string>(null);
@@ -10,23 +16,36 @@ export const slotFilter = writable<string>(null);
 
 export const gaQueryFilter = derived(
   [
+    selectedFilter,
     selectedEdition,
     editionIdMapping,
     selectedContentItems,
     contentItemIdMapping,
+    selectedSlots,
+    slotIdMapping,
   ],
   ([
+    $selectedFilter,
     $selectedEdition,
     $editionIdMapping,
     $selectedContentItems,
     $contentItemIdMapping,
+    $selectedSlots,
+    $slotIdMapping,
   ]) => {
-    if ($selectedEdition) {
-      return $editionIdMapping + '==' + $selectedEdition.id;
-    } else if ($selectedContentItems.length > 0) {
-      return $selectedContentItems
-        .map((contentItem) => $contentItemIdMapping + '==' + contentItem.id)
-        .join(',');
+    if ($selectedFilter) {
+      const handlers: Record<FILTERS, () => string> = {
+        EDITION: () => $editionIdMapping + '==' + $selectedEdition?.id,
+        CONTENT: () =>
+          $selectedContentItems
+            .map((contentItem) => $contentItemIdMapping + '==' + contentItem.id)
+            .join(','),
+        SLOT: () =>
+          $selectedSlots
+            .map((contentItem) => $slotIdMapping + '==' + contentItem.id)
+            .join(','),
+      };
+      return handlers[$selectedFilter]();
     }
     return undefined;
   }
