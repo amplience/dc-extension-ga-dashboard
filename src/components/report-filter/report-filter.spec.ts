@@ -228,6 +228,8 @@ describe('ReportFilter component - ContentItems', () => {
     await tick();
 
     expect(get(selectedContentRepository)).toEqual(contentRepo);
+
+    // this should work, but the content item (smui list) component is buggy and doesn't respond to click events in test
     // expect(get(selectedContentItems)).toEqual([contentItem]);
   });
 });

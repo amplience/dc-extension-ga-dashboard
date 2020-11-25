@@ -35,14 +35,14 @@ export const gaQueryFilter = derived(
   ]) => {
     if ($selectedFilter) {
       const handlers: Record<FILTERS, () => string> = {
-        EDITION: () => $editionIdMapping + '==' + $selectedEdition?.id,
+        EDITION: () => `${$editionIdMapping}==${$selectedEdition?.id}`,
         CONTENT: () =>
           $selectedContentItems
-            .map((contentItem) => $contentItemIdMapping + '==' + contentItem.id)
+            .map((contentItem) => `${$contentItemIdMapping}==${contentItem.id}`)
             .join(','),
         SLOT: () =>
           $selectedSlots
-            .map((contentItem) => $slotIdMapping + '==' + contentItem.id)
+            .map((contentItem) => `${$slotIdMapping}==${contentItem.id}`)
             .join(','),
       };
       return handlers[$selectedFilter]();
