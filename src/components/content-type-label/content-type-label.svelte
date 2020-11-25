@@ -8,12 +8,15 @@
   let contentTypeLabel: string = null;
 
   const resolveContentType = async () => {
-    const { hubContentTypeId } = repository.contentTypes.find(
-      (typeInfo) => typeInfo.contentTypeUri === schema
+    const contentType = repository.contentTypes.find(
+      (typeInfo) =>
+        typeInfo.contentTypeUri.toLowerCase() === schema.toLowerCase()
     );
-
-    contentTypeLabel = (await $hub.related.contentTypes.get(hubContentTypeId))
-      .settings.label;
+    if (contentType) {
+      contentTypeLabel = (
+        await $hub.related.contentTypes.get(contentType.hubContentTypeId)
+      ).settings.label;
+    }
   };
 
   onMount(() => {

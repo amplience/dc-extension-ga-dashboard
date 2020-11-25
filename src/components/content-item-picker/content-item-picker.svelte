@@ -3,18 +3,19 @@
   import List, { Graphic, Item, Label } from '@smui/list';
   import type { ContentItem } from 'dc-management-sdk-js';
   import type { ContentRepository } from 'dc-management-sdk-js/build/main/lib/model/ContentRepository';
-  import { MAX_NUMBER_OF_SELECTABLE_CONTENT_ITEMS } from '../../config';
   import ContentTypeLabel from '../content-type-label/content-type-label.svelte';
   import Loader from '../loader/loader.svelte';
 
   let loaded = false;
   let contentItems: ContentItem[] = [];
   let checkedValues: string[] = [];
-  export let selectedRepository: ContentRepository;
+
+  export let maxNumberOfSelectableItems = 5;
+  export let selectedContentRepository: ContentRepository;
   export let selectedContentItems: ContentItem[] = [];
 
   $: handleCheckedValues(checkedValues);
-  $: loadContentItems(selectedRepository);
+  $: loadContentItems(selectedContentRepository);
   $: updatedSelectedContentItems(selectedContentItems);
 
   const updatedSelectedContentItems = (selectedContentItems: ContentItem[]) => {
@@ -79,7 +80,7 @@
 
   const isLimitReached = (selectedList: string[], id: string) =>
     Array.isArray(selectedList) &&
-    selectedList.length === MAX_NUMBER_OF_SELECTABLE_CONTENT_ITEMS &&
+    selectedList.length === maxNumberOfSelectableItems &&
     !selectedList.includes(id);
 </script>
 
@@ -119,7 +120,7 @@
             {contentItem.label}
             <br />
             <ContentTypeLabel
-              repository={selectedRepository}
+              repository={selectedContentRepository}
               schema={contentItem.body._meta.schema} />
           </Label>
         </Item>

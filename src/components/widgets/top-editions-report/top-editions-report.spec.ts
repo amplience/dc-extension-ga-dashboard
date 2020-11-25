@@ -9,12 +9,16 @@ import {
   editionIdMapping,
   gaViewId,
 } from '../../../stores/google-analytics';
-import { selectedEdition } from '../../../stores/selected-edition';
+import { selectedEdition } from '../../../stores/filter/selected-edition';
 import { Edition } from 'dc-management-sdk-js';
 import { managementSdkService } from '../../../stores/dynamic-content';
 import type { ManagementSdkService } from '../../../services/management-sdk/management-sdk.service';
 import { backOff } from 'exponential-backoff';
 import { topEditionReportShowCount } from '../../../stores/widget-settings';
+import {
+  FILTERS,
+  selectedFilter,
+} from '../../../stores/filter/selected-filter';
 
 jest.mock('exponential-backoff');
 (backOff as jest.Mock).mockImplementation((fn) => fn());
@@ -37,6 +41,7 @@ describe('TopEditionsReport', () => {
     contentItemIdMapping.set('CONTENT_ID_MAPPING');
     topEditionReportShowCount.set(5);
     dateRange.set({ from: '2020-01-01', to: '2020-12-31' });
+    selectedFilter.set(FILTERS.EDITION);
     selectedEdition.set(new Edition({ id: 'EDITION_ID' }));
     editionIdMapping.set('EDITION_ID_MAPPING');
     managementSdkService.set(({

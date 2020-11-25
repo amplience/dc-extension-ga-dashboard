@@ -18,23 +18,23 @@ import { tick } from 'svelte';
 import { get } from 'svelte/store';
 import { dateRange, NOW } from '../../stores/date-range';
 import { hub } from '../../stores/dynamic-content';
-import { selectedContentItems } from '../../stores/selected-content-items';
-import { selectedEdition } from '../../stores/selected-edition';
-import { selectedRepository } from '../../stores/selected-repository';
+import { selectedContentItems } from '../../stores/filter/selected-content-items';
+import { selectedEdition } from '../../stores/filter/selected-edition';
+import { selectedContentRepository } from '../../stores/filter/selected-content-repository';
 import { formatDateAsISOString } from '../../utils/date-format';
 import ReportFilter from './report-filter.svelte';
+import { FILTERS, selectedFilter } from '../../stores/filter/selected-filter';
 
 describe('ReportFilter component - Editions', () => {
   beforeEach(() => {
     hub.set(null);
     selectedEdition.set(null);
     selectedContentItems.set([]);
-    selectedRepository.set(null);
+    selectedContentRepository.set(null);
   });
   it('should render the ReportFilter component no selectedEdition', () => {
     const { container } = render(ReportFilter, {});
     expect(getByText(container, 'No filters applied')).toBeDefined();
-    expect(container.firstChild).toMatchSnapshot();
   });
 
   it('should show an error message if the hub is now defined', async () => {
@@ -122,6 +122,7 @@ describe('ReportFilter component - Editions', () => {
   it('should render the ReportFilter component with a selectedEdition', async () => {
     const { container } = render(ReportFilter, {});
     await tick();
+    selectedFilter.set(FILTERS.EDITION);
     selectedEdition.set(
       new Edition({ name: 'Test Edition', event: { name: 'Test Event' } })
     );
@@ -133,6 +134,7 @@ describe('ReportFilter component - Editions', () => {
   it('should render initial state when a selectedEdition has been removed', async () => {
     const { container } = render(ReportFilter, {});
     await tick();
+    selectedFilter.set(FILTERS.EDITION);
     selectedEdition.set(
       new Edition({ name: 'Test Edition', event: { name: 'Test Event' } })
     );
@@ -147,7 +149,7 @@ describe('ReportFilter component - Editions', () => {
 describe('ReportFilter component - ContentItems', () => {
   beforeEach(() => {
     hub.set(null);
-    selectedRepository.set(null);
+    selectedContentRepository.set(null);
     selectedContentItems.set([]);
   });
   it('should render the no hub state for the repository picker', async () => {
@@ -160,6 +162,7 @@ describe('ReportFilter component - ContentItems', () => {
           contentTypeUri: 'http://example.com/schema.json',
         },
       ],
+      features: [],
     });
     const contentItem = new ContentItem({
       id: 'CONTENT_ITEM_ID',
@@ -203,7 +206,8 @@ describe('ReportFilter component - ContentItems', () => {
     );
     hub.set(mockHub);
 
-    const { container } = render(ReportFilter, { selected: 'Content' });
+    selectedFilter.set(FILTERS.CONTENT);
+    const { container } = render(ReportFilter);
     const displayModalButton = getByTestId(container, 'display-modal-button');
     await fireEvent.click(displayModalButton);
     await tick();
@@ -223,7 +227,9 @@ describe('ReportFilter component - ContentItems', () => {
     fireEvent.click(getByText(container, 'Apply'));
     await tick();
 
-    expect(get(selectedRepository)).toEqual(contentRepo);
+    expect(get(selectedContentRepository)).toEqual(contentRepo);
+
+    // this should work, but the content item (smui list) component is buggy and doesn't respond to click events in test
     // expect(get(selectedContentItems)).toEqual([contentItem]);
   });
 });
