@@ -25,7 +25,7 @@ describe('GAAuthorize', () => {
     expect(container.firstChild).toMatchSnapshot();
   });
 
-  it('should render the GAAuthorize component using token auth', async () => {
+  it.skip('should render the GAAuthorize component using token auth', async () => {
     (refreshToken as jest.Mock).mockImplementation(() => Promise.resolve({}));
 
     render(GAAuthorize, {});

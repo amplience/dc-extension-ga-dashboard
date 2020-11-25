@@ -3,16 +3,34 @@
 exports[`GAAuthorize should render the GAAuthorize component with auth button 1`] = `
 <div>
   <div
-    class="svelte-1i1pnuw"
+    class="ga-authorize hide svelte-1gffgbd"
   >
-    <div
-      class="ga-authorize svelte-1i1pnuw"
+    <article
+      class="widget svelte-pntwh0"
     >
-      <div
-        class="auth-button svelte-1i1pnuw"
-        id="auth-button"
-      />
-    </div>
+       
+      <section
+        class="widget-body svelte-4p1s5s"
+      >
+        <div
+          class="auth-signin svelte-1gffgbd"
+        >
+          <p>
+            Signin required
+          </p>
+           
+          <p>
+            To see content reports you need to Sign in and allow this dashboard
+            to access your Google Analytics data
+          </p>
+           
+          <div
+            class="auth-button svelte-1gffgbd"
+            id="auth-button"
+          />
+        </div>
+      </section>
+    </article>
   </div>
 </div>
 `;

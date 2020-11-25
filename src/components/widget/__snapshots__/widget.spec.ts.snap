@@ -3,7 +3,7 @@
 exports[`Widget should render the Widget component 1`] = `
 <div>
   <article
-    class="svelte-pntwh0"
+    class="widget svelte-pntwh0"
   >
      
   </article>
@@ -13,20 +13,20 @@ exports[`Widget should render the Widget component 1`] = `
 exports[`Widget should render the Widget component with loading spinner 1`] = `
 <div>
   <article
-    class="svelte-pntwh0"
+    class="widget svelte-pntwh0"
   >
     <div
-      class="spinner-container svelte-wkqaim"
+      class="spinner-container svelte-12lddhy"
       style="--z-index: 10;"
     >
       <div
-        class="spinner dot-0 svelte-wkqaim"
+        class="spinner dot-0 svelte-12lddhy"
       />
       <div
-        class="spinner dot-1 svelte-wkqaim"
+        class="spinner dot-1 svelte-12lddhy"
       />
       <div
-        class="spinner dot-2 svelte-wkqaim"
+        class="spinner dot-2 svelte-12lddhy"
       />
     </div>
      

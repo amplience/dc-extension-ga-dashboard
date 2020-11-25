@@ -166,7 +166,9 @@ describe('gapi-token.service', () => {
       dateSpy.mockRestore();
       await expect(
         refreshToken(gapiMock, 'test-key', 'test@email')
-      ).rejects.toMatchInlineSnapshot(`[Error: Gapi token request failure]`);
+      ).rejects.toMatchInlineSnapshot(
+        `[Error: Unable to retrieve gapi token using supplied client api key and email]`
+      );
     });
   });
 
