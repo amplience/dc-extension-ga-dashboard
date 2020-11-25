@@ -7,6 +7,14 @@
   export let removeable: boolean = false;
   export let clickable: boolean = false;
 
+  $: chipClass = [
+    active ? 'active' : undefined,
+    clickable ? 'clickable' : undefined,
+    removeable ? 'removeable' : undefined,
+  ]
+    .filter((v) => !undefined)
+    .join(' ');
+
   const dispatch = createEventDispatcher();
 
   const onChipClick = () => dispatch('click');
@@ -21,7 +29,7 @@
     min-width: 0;
     display: flex;
     background-color: hsl(0, 0%, 95%);
-    padding: 4px 8px;
+    padding: 6px 8px;
     border-radius: 12px;
     margin-right: 12px;
   }
@@ -36,16 +44,22 @@
     background-color: #039be5;
     color: #fff;
   }
+
   div.clickable {
     cursor: pointer;
   }
+
+  div.removeable > span.label {
+    padding: 0 6px;
+  }
+
   div.clickable:hover {
     background-color: #badff9;
   }
   span.cross {
     cursor: pointer;
     font-weight: bold;
-    padding: 0 8px;
+    padding: 0 6px;
   }
 
   span.cross :global(div) {
@@ -54,24 +68,14 @@
   }
 </style>
 
-{#if removeable}
-  <div
-    data-testid="chip"
-    on:click={onChipClick}
-    class={active ? 'active' : '' + clickable ? 'clickable' : ''}>
-    <span class="label"> {label} </span>
+<div data-testid="chip" on:click={onChipClick} class={chipClass}>
+  <span class="label"> {label} </span>
+  {#if removeable}
     <span
       data-testid="remove-chip-button"
       class="cross"
       on:click={onCloseClick}>
       <Icon icon={DeleteIcon} width="12px" height="12px" />
     </span>
-  </div>
-{:else}
-  <div
-    data-testid="chip"
-    on:click={onChipClick}
-    class={active ? 'active' : '' + clickable ? 'clickable' : ''}>
-    <span> {label} </span>
-  </div>
-{/if}
+  {/if}
+</div>

@@ -256,7 +256,7 @@ async function renderAndSelectEdition(publishedEdition: Edition) {
   await tick();
   await tick();
   expect(mockFindByDate).toHaveBeenCalled();
-  expect(getByText(container, 'Select a recent edition...')).toBeDefined();
+  expect(getByText(container, 'Select a recent edition')).toBeDefined();
   fireEvent.click(getByLabelText(container, 'Recent edition'));
   await tick();
   fireEvent.click(getAllByRole(container, 'option')[1]);

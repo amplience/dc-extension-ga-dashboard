@@ -95,6 +95,19 @@
     max-height: 560px;
     overflow-y: scroll;
   }
+
+  .container :global(.mdc-list-item__graphic) {
+    margin-right: 24px;
+  }
+
+  div.label span.content-item-label {
+    font-size: 16px;
+  }
+
+  div.label span {
+    display: block;
+    padding-bottom: 4px;
+  }
 </style>
 
 <div class="container">
@@ -117,11 +130,12 @@
               disabled={isLimitReached(checkedValues, contentItem.id)} />
           </Graphic>
           <Label>
-            {contentItem.label}
-            <br />
-            <ContentTypeLabel
-              repository={selectedContentRepository}
-              schema={contentItem.body._meta.schema} />
+            <div class="label">
+              <span class="content-item-label">{contentItem.label}</span>
+              <ContentTypeLabel
+                repository={selectedContentRepository}
+                schema={contentItem.body._meta.schema} />
+            </div>
           </Label>
         </Item>
       {/each}

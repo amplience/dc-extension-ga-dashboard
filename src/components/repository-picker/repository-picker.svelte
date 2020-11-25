@@ -85,6 +85,7 @@
 
   .container {
     min-height: 50px;
+    padding-bottom: 12px;
   }
 
   .container :global(*) {

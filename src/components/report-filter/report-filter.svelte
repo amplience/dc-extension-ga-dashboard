@@ -236,11 +236,16 @@
   }
 
   section :global(.widget-body) {
-    margin: 0px 18px 50px;
+    margin: 12px 36px 16px;
     min-height: 150px;
   }
   section :global(.widget-header [slot='actions'] button) {
     margin-right: 8px;
+  }
+
+  section :global(.widget-header [slot='label']) {
+    margin-right: 16px;
+    font-size: 16px;
   }
 
   section div.selected-edition span {
@@ -266,7 +271,16 @@
   }
 
   div.content-chooser h3 {
+    font-size: 16px;
+  }
+
+  div.content-chooser h3 span {
     font-size: 15px;
+    color: #666;
+  }
+
+  span.selected-repository {
+    font-weight: bold;
   }
 </style>
 
@@ -286,9 +300,13 @@
         {#if $selectedFilter == FILTERS.EDITION && $selectedEdition}
           Edition
         {:else if $selectedFilter == FILTERS.CONTENT && $selectedContentRepository && $selectedContentItems.length > 0}
-          {$selectedContentRepository.name}
+          Repository
+          <span
+            class="selected-repository">{$selectedContentRepository.name}</span>
         {:else if $selectedFilter == FILTERS.SLOT && $selectedSlotsRepository && $selectedSlots.length > 0}
-          {$selectedSlotsRepository.name}
+          Repository
+          <span
+            class="selected-repository">{$selectedSlotsRepository.name}</span>
         {:else}No filters applied{/if}
       </div>
     </div>
@@ -358,7 +376,10 @@
             <EditionPicker bind:selectedEdition={uncomittedEdition} />
           {:else if currentlySelectedFilter === FILTERS.CONTENT}
             <div class="content-chooser">
-              <h3>Select content items (max 5 from single repository)</h3>
+              <h3>
+                Select content items
+                <span>(max 5 from single repository)</span>
+              </h3>
               <RepositoryPicker
                 bind:selectedContentRepository={uncommitedContentRepository}
                 bind:selectedContentItems={uncomittedContentItems} />
@@ -369,7 +390,7 @@
             </div>
           {:else if currentlySelectedFilter === FILTERS.SLOT}
             <div class="content-chooser">
-              <h3>Select slots (max 5 from single repository)</h3>
+              <h3>Select slots <span>(max 5 from single repository)</span></h3>
               <RepositoryPicker
                 repositoryFeature="slots"
                 bind:selectedContentRepository={uncommitedSlotsRepository}
