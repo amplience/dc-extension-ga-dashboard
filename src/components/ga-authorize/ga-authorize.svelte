@@ -49,18 +49,23 @@
       return;
     }
 
-    $gapi.analytics.auth.authorize({
-      container: 'auth-button',
-      clientid: $gaClientId,
-    });
-
-    $gapi.analytics.auth.on('success', function () {
-      $gapiAuthorized = true;
-    });
-
-    $gapi.analytics.auth.on('needsAuthorization', function () {
-      authorizing = false;
-    });
+    $gapi.analytics.auth
+      .authorize({
+        container: 'auth-button',
+        clientid: $gaClientId,
+      })
+      .on('success', async () => {
+        try {
+          await checkTokenAccess($gapi, $gaViewId);
+          $gapiAuthorized = true;
+        } catch {
+          gapiError = GapiError.MISSING_PERMISSIONS;
+          authorizing = false;
+        }
+      })
+      .on('needsAuthorization', () => {
+        authorizing = false;
+      });
   });
 </script>
 
