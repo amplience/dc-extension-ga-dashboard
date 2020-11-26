@@ -27,6 +27,7 @@
   import TopSlotsReport from './components/widgets/top-slots-report/top-slots-report.svelte';
   import { initialiseStores } from './services/stores/initialise';
   import { ChartType } from './services/gapi/insert-data-chart.service';
+  import NoContentReportsPlaceholder from './components/no-content-reports-placeholder/no-content-reports-placeholder.svelte';
 
   connection.set(
     createConnection({
@@ -140,27 +141,32 @@
       {#if !$gaClientId}
         <Loader />
       {:else if $gapiAuthorized}
-        <section class="widgets-container">
-          <DataChart
-            className="overview"
-            title="Overview"
-            dimensions="ga:date"
-            chartType={ChartType.LINE} />
-          <DataChart
-            className="breakdown"
-            title={$breakdown.title}
-            dimensions={$breakdown.dimension}
-            chartType={ChartType.BAR} />
-          {#if $contentItemIdMapping}
-            <TopContentReport />
-          {/if}
-          {#if $editionIdMapping}
-            <TopEditionsReport />
-          {/if}
-          {#if $slotIdMapping}
-            <TopSlotsReport />
-          {/if}
-        </section>
+        {#if !$contentItemIdMapping && !$editionIdMapping && !$slotIdMapping}
+          <NoContentReportsPlaceholder
+            message="No content reports are configured for this Dashboard" />
+        {:else}
+          <section class="widgets-container">
+            <DataChart
+              className="overview"
+              title="Overview"
+              dimensions="ga:date"
+              chartType={ChartType.LINE} />
+            <DataChart
+              className="breakdown"
+              title={$breakdown.title}
+              dimensions={$breakdown.dimension}
+              chartType={ChartType.BAR} />
+            {#if $contentItemIdMapping}
+              <TopContentReport />
+            {/if}
+            {#if $editionIdMapping}
+              <TopEditionsReport />
+            {/if}
+            {#if $slotIdMapping}
+              <TopSlotsReport />
+            {/if}
+          </section>
+        {/if}
       {:else}
         <GAAuthorize />
       {/if}

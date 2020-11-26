@@ -4,17 +4,17 @@ exports[`ReportFilter component - Editions should render initial state when a se
 <div>
    
   <section
-    class="svelte-13hqdzo"
+    class="svelte-mjn5ui"
   >
     <div
-      class="report-filter svelte-13hqdzo"
+      class="report-filter svelte-mjn5ui"
     >
       <div
-        class="filter-selector svelte-13hqdzo"
+        class="filter-selector svelte-mjn5ui"
         data-testid="display-modal-button"
       >
         <div
-          class="icon-wrapper  svelte-13hqdzo"
+          class="icon-wrapper  svelte-mjn5ui"
         >
           <div
             class=" svelte-zpbvvv"
@@ -26,17 +26,20 @@ exports[`ReportFilter component - Editions should render initial state when a se
           </div>
         </div>
          
-        <div>
+        <div
+          class="filter-chips svelte-mjn5ui"
+        >
           No filters applied
         </div>
       </div>
-       
-      <div
-        class="filter-chips svelte-13hqdzo"
-      />
     </div>
      
+    <div
+      class="filter-chips svelte-mjn5ui"
+    />
+     
   </section>
+  
 </div>
 `;
 
@@ -44,17 +47,17 @@ exports[`ReportFilter component - Editions should render the ReportFilter compon
 <div>
    
   <section
-    class="svelte-13hqdzo"
+    class="svelte-mjn5ui"
   >
     <div
-      class="report-filter svelte-13hqdzo"
+      class="report-filter svelte-mjn5ui"
     >
       <div
-        class="filter-selector svelte-13hqdzo"
+        class="filter-selector svelte-mjn5ui"
         data-testid="display-modal-button"
       >
         <div
-          class="icon-wrapper active  svelte-13hqdzo"
+          class="icon-wrapper active  svelte-mjn5ui"
         >
           <div
             class=" svelte-zpbvvv"
@@ -66,41 +69,44 @@ exports[`ReportFilter component - Editions should render the ReportFilter compon
           </div>
         </div>
          
-        <div>
-          Edition
-        </div>
-      </div>
-       
-      <div
-        class="filter-chips svelte-13hqdzo"
-      >
         <div
-          class=" clickable removeable svelte-dfh104"
-          data-testid="chip"
+          class="filter-chips svelte-mjn5ui"
         >
-          <span
-            class="label svelte-dfh104"
-          >
-            Test Event / Test Edition
-          </span>
-           
-          <span
-            class="cross svelte-dfh104"
-            data-testid="remove-chip-button"
-          >
-            <div
-              class=" svelte-zpbvvv"
-              style="--icon-width: 12px; --icon-height: 12px;"
-            >
-              <object
-                src="ic-delete.svg/"
-              />
-            </div>
-          </span>
+          Edition
         </div>
       </div>
     </div>
      
+    <div
+      class="filter-chips svelte-mjn5ui"
+    >
+      <div
+        class=" clickable removeable svelte-dfh104"
+        data-testid="chip"
+      >
+        <span
+          class="label svelte-dfh104"
+        >
+          Test Event / Test Edition
+        </span>
+         
+        <span
+          class="cross svelte-dfh104"
+          data-testid="remove-chip-button"
+        >
+          <div
+            class=" svelte-zpbvvv"
+            style="--icon-width: 12px; --icon-height: 12px;"
+          >
+            <object
+              src="ic-delete.svg/"
+            />
+          </div>
+        </span>
+      </div>
+    </div>
+     
   </section>
+  
 </div>
 `;

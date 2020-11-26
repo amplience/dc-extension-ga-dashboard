@@ -24,6 +24,12 @@ import { selectedContentRepository } from '../../stores/filter/selected-content-
 import { formatDateAsISOString } from '../../utils/date-format';
 import ReportFilter from './report-filter.svelte';
 import { FILTERS, selectedFilter } from '../../stores/filter/selected-filter';
+import {
+  breakdown,
+  contentItemIdMapping,
+  editionIdMapping,
+  slotIdMapping,
+} from './../../stores/google-analytics';
 
 describe('ReportFilter component - Editions', () => {
   beforeEach(() => {
@@ -31,12 +37,14 @@ describe('ReportFilter component - Editions', () => {
     selectedEdition.set(null);
     selectedContentItems.set([]);
     selectedContentRepository.set(null);
+    editionIdMapping.set('EDITION_ID_MAPPING');
+    contentItemIdMapping.set('CONTENT_ITEM_ID_MAPPING');
+    slotIdMapping.set('SLOT_ID_MAPPING');
   });
   it('should render the ReportFilter component no selectedEdition', () => {
     const { container } = render(ReportFilter, {});
     expect(getByText(container, 'No filters applied')).toBeDefined();
   });
-
   it('should show an error message if the hub is now defined', async () => {
     const { container } = render(ReportFilter, {});
     const displayModalButton = getByTestId(container, 'display-modal-button');
@@ -151,6 +159,9 @@ describe('ReportFilter component - ContentItems', () => {
     hub.set(null);
     selectedContentRepository.set(null);
     selectedContentItems.set([]);
+    editionIdMapping.set('EDITION_ID_MAPPING');
+    contentItemIdMapping.set('CONTENT_ITEM_ID_MAPPING');
+    slotIdMapping.set('SLOT_ID_MAPPING');
   });
   it('should render the no hub state for the repository picker', async () => {
     const contentRepo = new ContentRepository({

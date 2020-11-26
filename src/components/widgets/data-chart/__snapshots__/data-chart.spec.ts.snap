@@ -69,6 +69,7 @@ exports[`DataChart breakdown chart should render the DataChart component 2`] = `
             id="ga-chart-breakdown"
           />
         </section>
+        
       </section>
     </article>
   </section>
@@ -269,6 +270,7 @@ exports[`DataChart overview chart should render the DataChart component 2`] = `
             id="ga-chart-overview"
           />
         </section>
+        
       </section>
     </article>
   </section>

@@ -37,3 +37,41 @@ exports[`App should render the App component 1`] = `
   </main>
 </div>
 `;
+
+exports[`App should render the App component with a warning that no reports are setup 1`] = `
+<div>
+  <main
+    class="svelte-xyx9vj"
+  >
+     
+    <div
+      class="scroll-area svelte-xyx9vj"
+    >
+      <section
+        class="container svelte-xyx9vj"
+      >
+        <div
+          class="spinner-container svelte-12lddhy"
+          style="--z-index: 10;"
+        >
+          <div
+            class="spinner dot-0 svelte-12lddhy"
+          />
+          <div
+            class="spinner dot-1 svelte-12lddhy"
+          />
+          <div
+            class="spinner dot-2 svelte-12lddhy"
+          />
+        </div>
+      </section>
+    </div>
+    <iframe
+      aria-hidden="true"
+      src="about:blank"
+      style="display: block; position: absolute; top: 0; left: 0; width: 100%; height: 100%; overflow: hidden; border: 0; opacity: 0; pointer-events: none; z-index: -1;"
+      tabindex="-1"
+    />
+  </main>
+</div>
+`;

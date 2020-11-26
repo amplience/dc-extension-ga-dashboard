@@ -1,5 +1,23 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`TopBar should render empty top bar if no mappings set 1`] = `
+<div>
+  <section
+    class="top-bar svelte-1y25f5"
+  >
+    <div
+      class="container svelte-1y25f5"
+    >
+       
+      <div
+        class="no-filters svelte-mjn5ui"
+      />
+      
+    </div>
+  </section>
+</div>
+`;
+
 exports[`TopBar should render the top bar 1`] = `
 <div>
   <section
@@ -10,17 +28,17 @@ exports[`TopBar should render the top bar 1`] = `
     >
        
       <section
-        class="svelte-13hqdzo"
+        class="svelte-mjn5ui"
       >
         <div
-          class="report-filter svelte-13hqdzo"
+          class="report-filter svelte-mjn5ui"
         >
           <div
-            class="filter-selector svelte-13hqdzo"
+            class="filter-selector svelte-mjn5ui"
             data-testid="display-modal-button"
           >
             <div
-              class="icon-wrapper  svelte-13hqdzo"
+              class="icon-wrapper  svelte-mjn5ui"
             >
               <div
                 class=" svelte-zpbvvv"
@@ -32,17 +50,71 @@ exports[`TopBar should render the top bar 1`] = `
               </div>
             </div>
              
-            <div>
+            <div
+              class="filter-chips svelte-mjn5ui"
+            >
               No filters applied
             </div>
           </div>
-           
-          <div
-            class="filter-chips svelte-13hqdzo"
-          />
         </div>
          
+        <div
+          class="filter-chips svelte-mjn5ui"
+        />
+         
       </section>
+      
+    </div>
+  </section>
+</div>
+`;
+
+exports[`TopBar should render top bar if at least one mapping is set 1`] = `
+<div>
+  <section
+    class="top-bar svelte-1y25f5"
+  >
+    <div
+      class="container svelte-1y25f5"
+    >
+       
+      <section
+        class="svelte-mjn5ui"
+      >
+        <div
+          class="report-filter svelte-mjn5ui"
+        >
+          <div
+            class="filter-selector svelte-mjn5ui"
+            data-testid="display-modal-button"
+          >
+            <div
+              class="icon-wrapper  svelte-mjn5ui"
+            >
+              <div
+                class=" svelte-zpbvvv"
+                style="--icon-width: 20px; --icon-height: 20px;"
+              >
+                <object
+                  src="ic-filter.svg/"
+                />
+              </div>
+            </div>
+             
+            <div
+              class="filter-chips svelte-mjn5ui"
+            >
+              No filters applied
+            </div>
+          </div>
+        </div>
+         
+        <div
+          class="filter-chips svelte-mjn5ui"
+        />
+         
+      </section>
+      
     </div>
   </section>
 </div>
