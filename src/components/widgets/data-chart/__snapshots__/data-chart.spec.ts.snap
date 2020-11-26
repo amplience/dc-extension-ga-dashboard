@@ -3,6 +3,9 @@
 exports[`DataChart breakdown chart should render the DataChart component 1`] = `
 Array [
   Array [
+    Object {},
+    "ga-chart-breakdown",
+    "BAR",
     Object {
       "dimensions": "ga:deviceCategory",
       "end-date": "2020-11-02",
@@ -11,8 +14,6 @@ Array [
       "metrics": "ga:totalEvents,ga:uniqueEvents",
       "start-date": "2020-11-01",
     },
-    "ga-chart-breakdown",
-    "BAR",
     Object {
       "chartArea": Object {
         "left": 50,
@@ -34,7 +35,7 @@ exports[`DataChart breakdown chart should render the DataChart component 2`] = `
     class="breakdown svelte-1vmaiqo"
   >
     <article
-      class="svelte-pntwh0"
+      class="widget svelte-pntwh0"
     >
        
       <section
@@ -77,6 +78,9 @@ exports[`DataChart breakdown chart should render the DataChart component 2`] = `
 exports[`DataChart breakdown chart should update the chart when the dateRange changes 1`] = `
 Array [
   Array [
+    Object {},
+    "ga-chart-breakdown",
+    "BAR",
     Object {
       "dimensions": "ga:deviceCategory",
       "end-date": "2020-11-02",
@@ -85,8 +89,6 @@ Array [
       "metrics": "ga:totalEvents,ga:uniqueEvents",
       "start-date": "2020-11-01",
     },
-    "ga-chart-breakdown",
-    "BAR",
     Object {
       "chartArea": Object {
         "left": 50,
@@ -100,6 +102,9 @@ Array [
     },
   ],
   Array [
+    Object {},
+    "ga-chart-breakdown",
+    "BAR",
     Object {
       "dimensions": "ga:deviceCategory",
       "end-date": "2020-01-02",
@@ -108,8 +113,6 @@ Array [
       "metrics": "ga:totalEvents,ga:uniqueEvents",
       "start-date": "2020-01-01",
     },
-    "ga-chart-breakdown",
-    "BAR",
     Object {
       "chartArea": Object {
         "left": 50,
@@ -128,6 +131,9 @@ Array [
 exports[`DataChart breakdown chart should update the chart when the selectedEdition changes 1`] = `
 Array [
   Array [
+    Object {},
+    "ga-chart-breakdown",
+    "BAR",
     Object {
       "dimensions": "ga:deviceCategory",
       "end-date": "2020-11-02",
@@ -136,8 +142,6 @@ Array [
       "metrics": "ga:totalEvents,ga:uniqueEvents",
       "start-date": "2020-11-01",
     },
-    "ga-chart-breakdown",
-    "BAR",
     Object {
       "chartArea": Object {
         "left": 50,
@@ -151,6 +155,9 @@ Array [
     },
   ],
   Array [
+    Object {},
+    "ga-chart-breakdown",
+    "BAR",
     Object {
       "dimensions": "ga:deviceCategory",
       "end-date": "2020-11-02",
@@ -159,8 +166,6 @@ Array [
       "metrics": "ga:totalEvents,ga:uniqueEvents",
       "start-date": "2020-11-01",
     },
-    "ga-chart-breakdown",
-    "BAR",
     Object {
       "chartArea": Object {
         "left": 50,
@@ -179,6 +184,9 @@ Array [
 exports[`DataChart overview chart should render the DataChart component 1`] = `
 Array [
   Array [
+    Object {},
+    "ga-chart-overview",
+    "LINE",
     Object {
       "dimensions": "ga:date",
       "end-date": "2020-11-02",
@@ -187,8 +195,6 @@ Array [
       "metrics": "ga:totalEvents,ga:uniqueEvents",
       "start-date": "2020-11-01",
     },
-    "ga-chart-overview",
-    "LINE",
     Object {
       "hAxis": Object {
         "gridlines": Object {
@@ -229,7 +235,7 @@ exports[`DataChart overview chart should render the DataChart component 2`] = `
     class="overview svelte-1vmaiqo"
   >
     <article
-      class="svelte-pntwh0"
+      class="widget svelte-pntwh0"
     >
        
       <section
@@ -272,6 +278,9 @@ exports[`DataChart overview chart should render the DataChart component 2`] = `
 exports[`DataChart overview chart should update the chart when the dateRange changes 1`] = `
 Array [
   Array [
+    Object {},
+    "ga-chart-overview",
+    "LINE",
     Object {
       "dimensions": "ga:date",
       "end-date": "2020-11-02",
@@ -280,8 +289,6 @@ Array [
       "metrics": "ga:totalEvents,ga:uniqueEvents",
       "start-date": "2020-11-01",
     },
-    "ga-chart-overview",
-    "LINE",
     Object {
       "hAxis": Object {
         "gridlines": Object {
@@ -314,6 +321,9 @@ Array [
     },
   ],
   Array [
+    Object {},
+    "ga-chart-overview",
+    "LINE",
     Object {
       "dimensions": "ga:date",
       "end-date": "2020-01-02",
@@ -322,8 +332,6 @@ Array [
       "metrics": "ga:totalEvents,ga:uniqueEvents",
       "start-date": "2020-01-01",
     },
-    "ga-chart-overview",
-    "LINE",
     Object {
       "hAxis": Object {
         "gridlines": Object {
@@ -361,6 +369,9 @@ Array [
 exports[`DataChart overview chart should update the chart when the selectedEdition changes 1`] = `
 Array [
   Array [
+    Object {},
+    "ga-chart-overview",
+    "LINE",
     Object {
       "dimensions": "ga:date",
       "end-date": "2020-11-02",
@@ -369,8 +380,6 @@ Array [
       "metrics": "ga:totalEvents,ga:uniqueEvents",
       "start-date": "2020-11-01",
     },
-    "ga-chart-overview",
-    "LINE",
     Object {
       "hAxis": Object {
         "gridlines": Object {
@@ -403,6 +412,9 @@ Array [
     },
   ],
   Array [
+    Object {},
+    "ga-chart-overview",
+    "LINE",
     Object {
       "dimensions": "ga:date",
       "end-date": "2020-11-02",
@@ -411,8 +423,6 @@ Array [
       "metrics": "ga:totalEvents,ga:uniqueEvents",
       "start-date": "2020-11-01",
     },
-    "ga-chart-overview",
-    "LINE",
     Object {
       "hAxis": Object {
         "gridlines": Object {

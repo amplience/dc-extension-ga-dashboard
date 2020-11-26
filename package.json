@@ -32,6 +32,7 @@
     "@testing-library/svelte": "^3.0.0",
     "@tsconfig/svelte": "^1.0.10",
     "@types/jest": "^26.0.10",
+    "@types/jsrsasign": "^8.0.8",
     "@typescript-eslint/eslint-plugin": "^3.10.0",
     "@typescript-eslint/parser": "^3.10.0",
     "commitizen": "^4.2.0",
@@ -71,6 +72,7 @@
     "dc-extensions-sdk": "^1.2.0",
     "dc-management-sdk-js": "github:amplience/dc-management-sdk-js#master",
     "exponential-backoff": "^3.1.0",
+    "jsrsasign": "^10.0.5",
     "message-event-channel": "^1.1.0",
     "sirv-cli": "^1.0.6"
   },

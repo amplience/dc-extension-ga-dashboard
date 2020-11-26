@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`insertDataChart should create a temporary chart element and insert a chart when gapi request guard resolves 1`] = `
+Array [
+  Array [
+    Object {
+      "chart": Object {
+        "container": <div />,
+        "options": Object {
+          "animation": Object {
+            "startup": true,
+          },
+          "chartArea": Object {
+            "left": 50,
+            "right": 20,
+          },
+          "fontName": "Roboto",
+          "fontSize": 12,
+          "hAxis": Object {
+            "textStyle": Object {
+              "color": "#999",
+            },
+          },
+          "vAxis": Object {
+            "textPosition": "out",
+            "textStyle": Object {
+              "color": "#999",
+            },
+          },
+          "width": "100%",
+        },
+        "type": "LINE",
+      },
+      "query": Object {
+        "dimensions": "ga:test-dimension",
+        "end-date": "2020-01-02",
+        "filters": undefined,
+        "ids": "ga:test-id",
+        "metrics": "ga:test-metric",
+        "start-date": "2020-01-02",
+      },
+    },
+  ],
+]
+`;

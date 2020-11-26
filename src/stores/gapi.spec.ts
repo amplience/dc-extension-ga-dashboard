@@ -1,53 +1,42 @@
-import { buildDataReportQuery } from './gapi';
+import { get } from 'svelte/store';
+import gapi, { initGapi } from './gapi';
 
-describe('gapi', () => {
-  describe('buildDataReportQuery', () => {
-    it('should return a valid query with filter', () => {
-      expect(
-        buildDataReportQuery(
-          'ga:123',
-          'ga:dimension1',
-          20,
-          { from: '2020-01-01', to: '2020-12-31' },
-          'ga:dimension1=123',
-          123456
-        )
-      ).toMatchInlineSnapshot(`
+describe('gapi store', () => {
+  describe('initGapi()', () => {
+    let windowSpy;
+
+    beforeEach(() => {
+      windowSpy = jest.spyOn(window, 'window', 'get');
+      gapi.set(null);
+    });
+
+    afterEach(() => {
+      jest.clearAllMocks();
+    });
+
+    it.skip('should set the gapi store if there is a global gapi instance', async () => {
+      (windowSpy as jest.Mock).mockImplementation(() => ({
+        gapi: {
+          analytics: {
+            ready: (fn) => fn(),
+          },
+        },
+      }));
+      await initGapi();
+      expect(get(gapi)).toMatchInlineSnapshot(`
         Object {
-          "dimensions": "ga:dimension1",
-          "end-date": "2020-12-31",
-          "filters": "ga:dimension1=123",
-          "ids": "ga:123",
-          "max-results": 20,
-          "metrics": "ga:totalEvents,ga:uniqueEvents,ga:eventValue,ga:avgEventValue",
-          "sort": "-ga:totalEvents",
-          "start-date": "2020-01-01",
+          "analytics": Object {
+            "ready": [Function],
+          },
         }
       `);
     });
+    it('should thow an error when no global gapi instance exists', async () => {
+      (windowSpy as jest.Mock).mockImplementation(() => ({}));
 
-    it('should return a valid query without filter or cacheBust', () => {
-      expect(
-        buildDataReportQuery(
-          'ga:123',
-          'ga:dimension1',
-          20,
-          { from: '2020-01-01', to: '2020-12-31' },
-          undefined,
-          undefined
-        )
-      ).toMatchInlineSnapshot(`
-        Object {
-          "dimensions": "ga:dimension1",
-          "end-date": "2020-12-31",
-          "filters": undefined,
-          "ids": "ga:123",
-          "max-results": 20,
-          "metrics": "ga:totalEvents,ga:uniqueEvents,ga:eventValue,ga:avgEventValue",
-          "sort": "-ga:totalEvents",
-          "start-date": "2020-01-01",
-        }
-      `);
+      await expect(() => initGapi()).rejects.toMatchInlineSnapshot(
+        `[Error: Unable to initialize gapi: missing gapi instance]`
+      );
     });
   });
 });

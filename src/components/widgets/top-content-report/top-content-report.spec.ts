@@ -1,7 +1,6 @@
 import { tick } from 'svelte';
 import { fireEvent, getByText, render } from '@testing-library/svelte';
 import TopContentReport from './top-content-report.svelte';
-import { getDataReport } from '../../../stores/gapi';
 import { dateRange } from '../../../stores/date-range';
 import {
   breakdown,
@@ -15,6 +14,7 @@ import { Edition } from 'dc-management-sdk-js';
 import { managementSdkService } from '../../../stores/dynamic-content';
 import type { ManagementSdkService } from '../../../services/management-sdk/management-sdk.service';
 import { backOff } from 'exponential-backoff';
+import { getReportData } from '../../../services/gapi/get-report-data.service';
 import {
   FILTERS,
   selectedFilter,
@@ -23,12 +23,7 @@ import {
 jest.mock('exponential-backoff');
 (backOff as jest.Mock).mockImplementation((fn) => fn());
 
-jest.mock('../../../stores/gapi', function () {
-  return {
-    ...jest.requireActual('../../../stores/gapi'),
-    getDataReport: jest.fn(),
-  };
-});
+jest.mock('../../../services/gapi/get-report-data.service');
 
 describe('TopContentReport', () => {
   beforeEach(() => {
@@ -53,32 +48,31 @@ describe('TopContentReport', () => {
     jest.resetAllMocks();
   });
   it('should render the TopContentReport component', async () => {
-    (getDataReport as jest.Mock).mockImplementation(() =>
-      Promise.resolve({
-        rows: [['dimension', 1, 1, 1, 1]],
-        totalsForAllResults: {
-          'ga:totalEvents': 1,
-          'ga:uniqueEvents': 1,
-        },
-      })
+    (getReportData as jest.Mock).mockImplementation(() =>
+      Promise.resolve([['dimension', 1, 100, 1, 100, 1, 1]])
     );
     const { container } = render(TopContentReport, {});
 
-    await tick();
-    await tick();
-    await tick();
-
+    // loading state
     expect(container.firstChild).toMatchSnapshot();
 
+    await tick();
+    await tick();
+    await tick();
+
+    // loaded (not expanded)
+    expect(container.firstChild).toMatchSnapshot();
     fireEvent.click(getByText(container, 'dimension'));
 
     await tick();
     await tick();
     await tick();
+    await tick();
 
+    // loaded and expanded
     expect(container.firstChild).toMatchSnapshot();
 
-    expect((getDataReport as jest.Mock).mock.calls).toMatchSnapshot();
-    expect(getDataReport as jest.Mock).toBeCalledTimes(3);
+    expect((getReportData as jest.Mock).mock.calls).toMatchSnapshot();
+    expect(getReportData as jest.Mock).toBeCalledTimes(3);
   });
 });

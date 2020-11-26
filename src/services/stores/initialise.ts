@@ -7,6 +7,8 @@ import {
   breakdown,
   contentItemIdMapping,
   editionIdMapping,
+  gaApiKey,
+  gaClientEmail,
   gaClientId,
   gaViewId,
   slotIdMapping,
@@ -17,6 +19,8 @@ import type { ExtensionConfiguration } from '../extension-sdk/extension-sdk.serv
 export function initialiseStores(config: ExtensionConfiguration): void {
   gaViewId.set(config?.googleAnalyticsViewId || '');
   gaClientId.set(config?.googleAnalyticsClientId || '');
+  gaClientEmail.set(config?.googleAnalyticsClientEmail);
+  gaApiKey.set(config?.googleAnalyticsKey || '');
 
   contentItemIdMapping.set(config?.mappings?.contentItemId);
   editionIdMapping.set(config?.mappings?.editionId);

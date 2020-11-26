@@ -3,137 +3,27 @@
 exports[`App should render the App component 1`] = `
 <div>
   <main
-    class="svelte-d8bwzx"
+    class="svelte-xyx9vj"
   >
-    <div
-      class="top-bar svelte-d8bwzx"
-    >
-      <section
-        class="top-bar svelte-1y25f5"
-      >
-        <div
-          class="container svelte-1y25f5"
-        >
-           
-          <section
-            class="svelte-13hqdzo"
-          >
-            <div
-              class="report-filter svelte-13hqdzo"
-            >
-              <div
-                class="filter-selector svelte-13hqdzo"
-                data-testid="display-modal-button"
-              >
-                <div
-                  class="icon-wrapper  svelte-13hqdzo"
-                >
-                  <div
-                    class=" svelte-zpbvvv"
-                    style="--icon-width: 20px; --icon-height: 20px;"
-                  >
-                    <object
-                      src="ic-filter.svg/"
-                    />
-                  </div>
-                </div>
-                 
-                <div>
-                  No filters applied
-                </div>
-              </div>
-               
-              <div
-                class="filter-chips svelte-13hqdzo"
-              />
-            </div>
-             
-          </section>
-        </div>
-      </section>
-       
-      <section
-        class="date-range-bar svelte-e877a4"
-      >
-        <div
-          class="container svelte-e877a4"
-        >
-          <span
-            class="svelte-e877a4"
-          >
-            Date range
-          </span>
-           
-           
-          <section
-            class=" svelte-yh714l"
-          >
-            <div
-              class="date-range-inputs svelte-yh714l"
-              data-testid="date-range-inputs"
-            >
-              <div
-                class="date-selection svelte-yh714l"
-              >
-                <div
-                  class="calendar-icon svelte-zpbvvv"
-                  style="--icon-width: 24px; --icon-height: 24px;"
-                >
-                  <object
-                    src="ic-view-calendar.svg/"
-                  />
-                </div>
-                 
-                <input
-                  class="svelte-yh714l"
-                  placeholder="Pick a start date"
-                  readonly=""
-                />
-              </div>
-               
-              <div
-                class="date-selection svelte-yh714l"
-              >
-                <div
-                  class="calendar-icon svelte-zpbvvv"
-                  style="--icon-width: 24px; --icon-height: 24px;"
-                >
-                  <object
-                    src="ic-view-calendar.svg/"
-                  />
-                </div>
-                 
-                <input
-                  class="svelte-yh714l"
-                  placeholder="Pick an end date"
-                  readonly=""
-                />
-              </div>
-            </div>
-             
-          </section>
-        </div>
-      </section>
-    </div>
      
     <div
-      class="scroll-area svelte-d8bwzx"
+      class="scroll-area svelte-xyx9vj"
     >
       <section
-        class="container svelte-d8bwzx"
+        class="container svelte-xyx9vj"
       >
         <div
-          class="spinner-container svelte-wkqaim"
+          class="spinner-container svelte-12lddhy"
           style="--z-index: 10;"
         >
           <div
-            class="spinner dot-0 svelte-wkqaim"
+            class="spinner dot-0 svelte-12lddhy"
           />
           <div
-            class="spinner dot-1 svelte-wkqaim"
+            class="spinner dot-1 svelte-12lddhy"
           />
           <div
-            class="spinner dot-2 svelte-wkqaim"
+            class="spinner dot-2 svelte-12lddhy"
           />
         </div>
       </section>
