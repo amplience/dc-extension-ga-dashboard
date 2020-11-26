@@ -8,7 +8,7 @@ export const gaApiKey = writable<string>(null);
 export const gaAuthByToken = derived(
   [gaClientEmail, gaApiKey],
   ([$gaClientEmail, $gaApiKey]) => {
-    return $gaClientEmail && $gaApiKey;
+    return $gaClientEmail || $gaApiKey;
   }
 );
 

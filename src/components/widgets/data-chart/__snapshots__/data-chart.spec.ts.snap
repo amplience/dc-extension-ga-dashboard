@@ -35,7 +35,7 @@ exports[`DataChart breakdown chart should render the DataChart component 2`] = `
     class="breakdown svelte-1vmaiqo"
   >
     <article
-      class="svelte-pntwh0"
+      class="widget svelte-pntwh0"
     >
        
       <section
@@ -235,7 +235,7 @@ exports[`DataChart overview chart should render the DataChart component 2`] = `
     class="overview svelte-1vmaiqo"
   >
     <article
-      class="svelte-pntwh0"
+      class="widget svelte-pntwh0"
     >
        
       <section

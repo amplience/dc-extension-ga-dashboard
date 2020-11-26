@@ -1,6 +1,8 @@
 import rs from 'jsrsasign';
 import { GOOGLE_ANALYTICS_TOKEN_EXPIRES_IN } from '../../config';
 import type { GoogleAnalyticsEmbedAPI } from '../../definitions/google-analytics-embed-api';
+import { TokenPermissionsError } from './gapi-token-permission-error';
+import { TokenRequestError } from './gapi-token-request-error';
 
 export interface GapiToken {
   access_token: string;
@@ -73,10 +75,37 @@ export async function refreshToken(
     return;
   }
 
-  const token = await getToken(key, email);
-  gapi.client.setToken(token);
-  gapi.analytics.auth.authorize({
-    serverAuth: token,
+  try {
+    const token = await getToken(key, email);
+    gapi.client.setToken(token);
+    gapi.analytics.auth.authorize({
+      serverAuth: token,
+    });
+  } catch (e) {
+    throw new TokenRequestError(
+      'Unable to retrieve gapi token using supplied client api key and email'
+    );
+  }
+}
+
+export async function checkTokenAccess(
+  gapi: GoogleAnalyticsEmbedAPI,
+  viewId: string
+): Promise<void> {
+  return new Promise((resolve, reject) => {
+    const today = new Date().toISOString().split('T')[0];
+    const query = {
+      ids: viewId,
+      'start-date': today,
+      'end-date': today,
+      metrics: 'ga:totalEvents',
+    };
+    new gapi.analytics.report.Data({ query })
+      .once('success', resolve)
+      .once('error', () => {
+        reject(new TokenPermissionsError('Unable to access embed api'));
+      })
+      .execute();
   });
 }
 

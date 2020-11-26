@@ -99,6 +99,7 @@
     margin: 2.6rem auto;
     max-width: 1256px;
     position: relative;
+    height: 100%;
   }
 
   .widgets-container {
@@ -128,10 +129,12 @@
 </style>
 
 <main bind:offsetHeight>
-  <div class="top-bar">
-    <TopBar />
-    <DateRangeBar />
-  </div>
+  {#if $gapiAuthorized}
+    <div class="top-bar">
+      <TopBar />
+      <DateRangeBar />
+    </div>
+  {/if}
   <div class="scroll-area">
     <section class="container">
       {#if !$gaClientId}
