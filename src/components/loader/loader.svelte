@@ -14,7 +14,6 @@
     height: 100%;
     opacity: 0.8;
     transition: opacity 0.3s;
-    background-color: #fff;
   }
 
   .spinner {

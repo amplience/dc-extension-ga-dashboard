@@ -15,7 +15,7 @@
   }
 </style>
 
-<article>
+<article class="widget">
   {#if loading}
     <Loader />
   {/if}
