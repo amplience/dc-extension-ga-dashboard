@@ -4,17 +4,17 @@ exports[`ReportFilter component - Editions should render initial state when a se
 <div>
    
   <section
-    class="svelte-9o07k"
+    class="svelte-13hqdzo"
   >
     <div
-      class="report-filter svelte-9o07k"
+      class="report-filter svelte-13hqdzo"
     >
       <div
-        class="filter-selector svelte-9o07k"
+        class="filter-selector svelte-13hqdzo"
         data-testid="display-modal-button"
       >
         <div
-          class="icon-wrapper  svelte-9o07k"
+          class="icon-wrapper  svelte-13hqdzo"
         >
           <div
             class=" svelte-zpbvvv"
@@ -32,47 +32,7 @@ exports[`ReportFilter component - Editions should render initial state when a se
       </div>
        
       <div
-        class="filter-chips svelte-9o07k"
-      />
-    </div>
-     
-  </section>
-</div>
-`;
-
-exports[`ReportFilter component - Editions should render the ReportFilter component no selectedEdition 1`] = `
-<div>
-   
-  <section
-    class="svelte-9o07k"
-  >
-    <div
-      class="report-filter svelte-9o07k"
-    >
-      <div
-        class="filter-selector svelte-9o07k"
-        data-testid="display-modal-button"
-      >
-        <div
-          class="icon-wrapper  svelte-9o07k"
-        >
-          <div
-            class=" svelte-zpbvvv"
-            style="--icon-width: 20px; --icon-height: 20px;"
-          >
-            <object
-              src="ic-filter.svg/"
-            />
-          </div>
-        </div>
-         
-        <div>
-          No filters applied
-        </div>
-      </div>
-       
-      <div
-        class="filter-chips svelte-9o07k"
+        class="filter-chips svelte-13hqdzo"
       />
     </div>
      
@@ -84,17 +44,17 @@ exports[`ReportFilter component - Editions should render the ReportFilter compon
 <div>
    
   <section
-    class="svelte-9o07k"
+    class="svelte-13hqdzo"
   >
     <div
-      class="report-filter svelte-9o07k"
+      class="report-filter svelte-13hqdzo"
     >
       <div
-        class="filter-selector svelte-9o07k"
+        class="filter-selector svelte-13hqdzo"
         data-testid="display-modal-button"
       >
         <div
-          class="icon-wrapper active  svelte-9o07k"
+          class="icon-wrapper active  svelte-13hqdzo"
         >
           <div
             class=" svelte-zpbvvv"
@@ -112,20 +72,20 @@ exports[`ReportFilter component - Editions should render the ReportFilter compon
       </div>
        
       <div
-        class="filter-chips svelte-9o07k"
+        class="filter-chips svelte-13hqdzo"
       >
         <div
-          class="clickable svelte-197mspp"
+          class=" clickable removeable svelte-dfh104"
           data-testid="chip"
         >
           <span
-            class="label svelte-197mspp"
+            class="label svelte-dfh104"
           >
             Test Event / Test Edition
           </span>
            
           <span
-            class="cross svelte-197mspp"
+            class="cross svelte-dfh104"
             data-testid="remove-chip-button"
           >
             <div
@@ -138,7 +98,6 @@ exports[`ReportFilter component - Editions should render the ReportFilter compon
             </div>
           </span>
         </div>
-        
       </div>
     </div>
      

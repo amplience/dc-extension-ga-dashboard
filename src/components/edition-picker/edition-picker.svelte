@@ -52,18 +52,20 @@
         'withEvent'
       )
     ).getItems();
-    publishedEditions = results.filter(
-      (edition) => edition.publishingStatus === 'PUBLISHED'
-    );
 
-    publishedEditions = publishedEditions.slice(0, MAX_NUM_EDITIONS);
+    const editions = results
+      .filter((edition) => edition.publishingStatus === 'PUBLISHED')
+      .slice(0, MAX_NUM_EDITIONS);
 
     if (
       selectedEdition &&
-      !publishedEditions.find((edition) => edition.id === selectedEdition.id)
+      selectedEdition.id &&
+      !editions.find((edition) => edition.id === selectedEdition.id)
     ) {
-      publishedEditions.push(selectedEdition);
+      editions.push(selectedEdition);
     }
+
+    publishedEditions = editions;
 
     loaded = true;
   }
@@ -110,6 +112,10 @@
   .container :global(.mdc-line-ripple) {
     padding-top: 0;
   }
+
+  div.container h3 {
+    font-size: 16px;
+  }
 </style>
 
 <div class="container">
@@ -127,7 +133,7 @@
     </div>
   {:else}
     <div>
-      <h3>Select a recent edition...</h3>
+      <h3>Select a recent edition</h3>
     </div>
 
     <div>

@@ -3,10 +3,14 @@ import DataChart from './data-chart.svelte';
 import { tick } from 'svelte';
 import { dateRange } from '../../../stores/date-range';
 import { editionIdMapping } from '../../../stores/google-analytics';
-import { selectedEdition } from '../../../stores/selected-edition';
+import { selectedEdition } from '../../../stores/filter/selected-edition';
 import { Edition } from 'dc-management-sdk-js';
 import { backOff } from 'exponential-backoff';
 import { initialiseStores } from '../../../services/stores/initialise';
+import {
+  FILTERS,
+  selectedFilter,
+} from '../../../stores/filter/selected-filter';
 import {
   ChartType,
   insertDataChart,
@@ -22,6 +26,7 @@ jest.mock('../../../services/gapi/insert-data-chart.service');
 describe('DataChart', () => {
   beforeEach(() => {
     gapi.set({} as GoogleAnalyticsEmbedAPI);
+    selectedFilter.set(null);
     selectedEdition.set(null);
     dateRange.set({ from: '2020-11-01', to: '2020-11-02' });
     initialiseStores({
@@ -67,7 +72,7 @@ describe('DataChart', () => {
       editionIdMapping.set('ga:dimension2');
       render(DataChart, dataChartOptions);
       await tick();
-
+      selectedFilter.set(FILTERS.EDITION);
       selectedEdition.set(new Edition({ id: 'editionId' }));
       await tick();
 
@@ -107,6 +112,7 @@ describe('DataChart', () => {
       render(DataChart, dataChartOptions);
       await tick();
 
+      selectedFilter.set(FILTERS.EDITION);
       selectedEdition.set(new Edition({ id: 'editionId' }));
       await tick();
 

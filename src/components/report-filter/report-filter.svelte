@@ -13,7 +13,7 @@
     ContentRepository,
     Edition,
   } from 'dc-management-sdk-js';
-  import { selectedEdition } from '../../stores/selected-edition';
+  import { selectedEdition } from '../../stores/filter/selected-edition';
   import Chip from '../chip/chip.svelte';
   import Icon from '../icon/icon.svelte';
   import FilterIcon from '../../assets/icons/ic-filter.svg';
@@ -21,20 +21,29 @@
   import Overlay from '../overlay/overlay.svelte';
   import ContentItemPicker from '../content-item-picker/content-item-picker.svelte';
   import RepositoryPicker from '../repository-picker/repository-picker.svelte';
-  import { selectedRepository } from '../../stores/selected-repository';
-  import {
-    removeSelectedContentItem,
-    selectedContentItems,
-  } from '../../stores/selected-content-items';
+  import { selectedContentRepository } from '../../stores/filter/selected-content-repository';
+  import { selectedContentItems } from '../../stores/filter/selected-content-items';
   import { gaQueryFilter } from '../../stores/ga-query-filters';
+  import { selectedSlotsRepository } from '../../stores/filter/selected-slots-repository';
+  import { selectedSlots } from '../../stores/filter/selected-slots';
+  import { FILTERS, selectedFilter } from '../../stores/filter/selected-filter';
+  import { get } from 'svelte/store';
+  import type { Writable } from 'svelte/store';
+  import {
+    MAX_NUMBER_OF_SELECTABLE_CONTENT_ITEMS,
+    MAX_NUMBER_OF_SELECTABLE_SLOTS,
+  } from '../../config';
 
   let isModalVisible = false;
   let sectionElement: HTMLElement;
   let modalPositionStyle = ``;
-  export let selected: 'Edition' | 'Content';
+
+  let currentlySelectedFilter: FILTERS;
   let uncomittedEdition: Edition = null;
-  let uncommitedRepository: ContentRepository = null;
-  let uncomittedContentItems: ContentItem[] = $selectedContentItems;
+  let uncommitedContentRepository: ContentRepository = null;
+  let uncomittedContentItems: ContentItem[] = [];
+  let uncommitedSlotsRepository: ContentRepository = null;
+  let uncomittedSlots: ContentItem[] = [];
 
   const showModal = () => {
     const targetBound = sectionElement.getBoundingClientRect();
@@ -45,54 +54,72 @@
 
     isModalVisible = true;
     uncomittedEdition = $selectedEdition;
-    uncommitedRepository = $selectedRepository;
+    uncommitedContentRepository = $selectedContentRepository;
     uncomittedContentItems = $selectedContentItems;
-    initialiseSelectedTab();
+    uncommitedSlotsRepository = $selectedSlotsRepository;
+    uncomittedSlots = $selectedSlots;
+    currentlySelectedFilter = $selectedFilter || FILTERS.EDITION;
   };
 
-  const applyEditionFilter = () => {
-    $selectedContentItems = [];
-    $selectedRepository = null;
+  const applyEditionFilter = (): boolean => {
+    resetContentItemFilter();
+    resetSlotFilter();
 
     $selectedEdition = uncomittedEdition;
     const updatedDateRange = {
       ...INITIAL_DATE_RANGE,
     };
-    if (uncomittedEdition) {
+    if ($selectedEdition) {
       updatedDateRange.to = formatDateAsISOString(new Date(NOW));
       updatedDateRange.from = formatDateAsISOString(
-        new Date(uncomittedEdition.start)
+        new Date($selectedEdition.start)
       );
-      if (uncomittedEdition.activeEndDate) {
+      if ($selectedEdition.activeEndDate) {
         updatedDateRange.to = formatDateAsISOString(
-          new Date(uncomittedEdition.end)
+          new Date($selectedEdition.end)
         );
       }
     }
 
     $dateRange = updatedDateRange;
+    return $selectedEdition ? true : false;
   };
 
-  const applyContentFilter = () => {
-    $selectedEdition = null;
-    $dateRange = INITIAL_DATE_RANGE;
-    $selectedRepository = uncommitedRepository;
+  const applyContentFilter = (): boolean => {
+    resetDateRange();
+    resetEditionFilter();
+    resetSlotFilter();
+
+    $selectedContentRepository = uncommitedContentRepository;
     $selectedContentItems = uncomittedContentItems;
+
+    return $selectedContentItems.length > 0 ? true : false;
+  };
+
+  const applySlotFilter = (): boolean => {
+    resetDateRange();
+    resetEditionFilter();
+    resetContentItemFilter();
+
+    $selectedSlotsRepository = uncommitedSlotsRepository;
+    $selectedSlots = uncomittedSlots;
+
+    return $selectedSlots.length > 0 ? true : false;
   };
 
   const onApplyClick = () => {
     isModalVisible = false;
-    switch (selected) {
-      case 'Edition':
-        applyEditionFilter();
-        break;
 
-      case 'Content':
-        applyContentFilter();
-        break;
+    const applyFilters: Record<FILTERS, () => boolean> = {
+      EDITION: () => applyEditionFilter(),
+      CONTENT: () => applyContentFilter(),
+      SLOT: () => applySlotFilter(),
+    };
 
-      default:
-        break;
+    if (applyFilters[currentlySelectedFilter]()) {
+      $selectedFilter = currentlySelectedFilter;
+    } else {
+      $selectedFilter = null;
     }
   };
 
@@ -104,35 +131,58 @@
     return `${edition.event.name} / ${edition.name}`;
   };
 
-  const resetFilter = () => {
-    $selectedEdition = null;
-    $dateRange = INITIAL_DATE_RANGE;
-    $selectedRepository = null;
+  const resetDateRange = () => ($dateRange = INITIAL_DATE_RANGE);
+  const resetEditionFilter = () => ($selectedEdition = null);
+  const resetContentItemFilter = () => {
+    $selectedContentRepository = null;
     $selectedContentItems = [];
   };
-
-  const initialiseSelectedTab = () => {
-    if (selected !== undefined) {
-      return;
-    }
-    if (uncomittedContentItems.length > 0) {
-      selected = 'Content';
-    } else {
-      selected = 'Edition';
-    }
+  const resetSlotFilter = () => {
+    $selectedSlotsRepository = null;
+    $selectedSlots = [];
   };
 
-  let unsubsribeSelectedContentItems = () => {};
+  const resetFilter = () => {
+    $selectedFilter = null;
+    resetEditionFilter();
+    resetContentItemFilter();
+    resetSlotFilter();
+    resetDateRange();
+  };
+
+  const subscriptions: (() => void)[] = [];
   onMount(() => {
-    unsubsribeSelectedContentItems = selectedContentItems.subscribe(
-      (updatedSelectedContentItems) => {
+    subscriptions.push(
+      selectedContentItems.subscribe((updatedSelectedContentItems) => {
         uncomittedContentItems = updatedSelectedContentItems;
-      }
+      })
+    );
+
+    subscriptions.push(
+      selectedSlots.subscribe((updatedSelectedSlots) => {
+        uncomittedSlots = updatedSelectedSlots;
+      })
     );
   });
   onDestroy(() => {
-    unsubsribeSelectedContentItems();
+    subscriptions.forEach((subscription) => subscription());
   });
+
+  export const removeSelectedContentItem = (
+    contentItemStore: Writable<ContentItem[]>,
+    contentItem: ContentItem
+  ): void => {
+    contentItemStore.set(
+      get(contentItemStore).filter(
+        (storedContentItem: ContentItem) =>
+          storedContentItem.id !== contentItem.id
+      )
+    );
+
+    if (get(contentItemStore).length === 0) {
+      resetFilter();
+    }
+  };
 </script>
 
 <style>
@@ -186,11 +236,16 @@
   }
 
   section :global(.widget-body) {
-    margin: 0px 18px 50px;
-    min-height: 200px;
+    margin: 12px 36px 16px;
+    min-height: 150px;
   }
   section :global(.widget-header [slot='actions'] button) {
     margin-right: 8px;
+  }
+
+  section :global(.widget-header [slot='label']) {
+    margin-right: 16px;
+    font-size: 16px;
   }
 
   section div.selected-edition span {
@@ -216,7 +271,16 @@
   }
 
   div.content-chooser h3 {
+    font-size: 16px;
+  }
+
+  div.content-chooser h3 span {
     font-size: 15px;
+    color: #666;
+  }
+
+  span.selected-repository {
+    font-weight: bold;
   }
 </style>
 
@@ -233,27 +297,42 @@
         <Icon icon={FilterIcon} width="20px" height="20px" />
       </div>
       <div>
-        {#if $selectedEdition}
+        {#if $selectedFilter == FILTERS.EDITION && $selectedEdition}
           Edition
-        {:else if $selectedRepository && $selectedContentItems.length > 0}
-          {$selectedRepository.name}
+        {:else if $selectedFilter == FILTERS.CONTENT && $selectedContentRepository && $selectedContentItems.length > 0}
+          Repository
+          <span
+            class="selected-repository">{$selectedContentRepository.name}</span>
+        {:else if $selectedFilter == FILTERS.SLOT && $selectedSlotsRepository && $selectedSlots.length > 0}
+          Repository
+          <span
+            class="selected-repository">{$selectedSlotsRepository.name}</span>
         {:else}No filters applied{/if}
       </div>
     </div>
     <div class="filter-chips">
-      {#if $selectedEdition}
+      {#if $selectedFilter == FILTERS.EDITION && $selectedEdition}
         <Chip
           label={generateEditionLabel($selectedEdition)}
           removeable={true}
           on:close={resetFilter}
           on:click={showModal}
           clickable={true} />
-      {:else if $selectedContentItems.length > 0}
+      {:else if $selectedFilter == FILTERS.CONTENT && $selectedContentItems.length > 0}
         {#each $selectedContentItems as contentItem}
           <Chip
             label={contentItem.label}
             removeable={true}
-            on:close={() => removeSelectedContentItem(contentItem)}
+            on:close={() => removeSelectedContentItem(selectedContentItems, contentItem)}
+            on:click={showModal}
+            clickable={true} />
+        {/each}
+      {:else if $selectedFilter == FILTERS.SLOT && $selectedSlots.length > 0}
+        {#each $selectedSlots as contentItem}
+          <Chip
+            label={contentItem.label}
+            removeable={true}
+            on:close={() => removeSelectedContentItem(selectedSlots, contentItem)}
             on:click={showModal}
             clickable={true} />
         {/each}
@@ -267,15 +346,24 @@
           <div slot="title">
             <h3>Filter by</h3>
             <FormField>
-              <Radio bind:group={selected} value="Edition" />
+              <Radio
+                bind:group={currentlySelectedFilter}
+                value={FILTERS.EDITION} />
               <span slot="label">Edition</span>
             </FormField>
             <FormField>
               <Radio
                 data-testid="content-radio"
-                bind:group={selected}
-                value="Content" />
+                bind:group={currentlySelectedFilter}
+                value={FILTERS.CONTENT} />
               <span slot="label">Content</span>
+            </FormField>
+            <FormField>
+              <Radio
+                data-testid="content-radio"
+                bind:group={currentlySelectedFilter}
+                value={FILTERS.SLOT} />
+              <span slot="label">Slot</span>
             </FormField>
           </div>
           <div slot="actions">
@@ -284,17 +372,33 @@
           </div>
         </WidgetHeader>
         <WidgetBody>
-          {#if selected === 'Edition'}
+          {#if currentlySelectedFilter === FILTERS.EDITION}
             <EditionPicker bind:selectedEdition={uncomittedEdition} />
-          {:else if selected === 'Content'}
+          {:else if currentlySelectedFilter === FILTERS.CONTENT}
             <div class="content-chooser">
-              <h3>Select content items (max 5 from single repository)</h3>
+              <h3>
+                Select content items
+                <span>(max 5 from single repository)</span>
+              </h3>
               <RepositoryPicker
-                bind:selectedRepository={uncommitedRepository}
+                bind:selectedContentRepository={uncommitedContentRepository}
                 bind:selectedContentItems={uncomittedContentItems} />
               <ContentItemPicker
-                bind:selectedRepository={uncommitedRepository}
+                maxNumberOfSelectableItems={MAX_NUMBER_OF_SELECTABLE_CONTENT_ITEMS}
+                bind:selectedContentRepository={uncommitedContentRepository}
                 bind:selectedContentItems={uncomittedContentItems} />
+            </div>
+          {:else if currentlySelectedFilter === FILTERS.SLOT}
+            <div class="content-chooser">
+              <h3>Select slots <span>(max 5 from single repository)</span></h3>
+              <RepositoryPicker
+                repositoryFeature="slots"
+                bind:selectedContentRepository={uncommitedSlotsRepository}
+                bind:selectedContentItems={uncomittedSlots} />
+              <ContentItemPicker
+                maxNumberOfSelectableItems={MAX_NUMBER_OF_SELECTABLE_SLOTS}
+                bind:selectedContentRepository={uncommitedSlotsRepository}
+                bind:selectedContentItems={uncomittedSlots} />
             </div>
           {/if}
         </WidgetBody>

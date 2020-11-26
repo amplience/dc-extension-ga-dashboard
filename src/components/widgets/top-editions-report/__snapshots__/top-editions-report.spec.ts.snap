@@ -849,14 +849,16 @@ exports[`TopEditionsReport should render the TopEditionsReport component 3`] = `
   color:#333;"
                               >
                                 <div
-                                  class="clickable svelte-197mspp"
+                                  class="   svelte-dfh104"
                                   data-testid="chip"
                                 >
-                                  <span>
+                                  <span
+                                    class="label svelte-dfh104"
+                                  >
                                     dimension
                                   </span>
+                                   
                                 </div>
-                                
                               </div>
                                
                               <div

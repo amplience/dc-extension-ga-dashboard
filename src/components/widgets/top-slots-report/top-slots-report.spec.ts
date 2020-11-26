@@ -13,11 +13,11 @@ import {
   slotIdMapping,
 } from '../../../stores/google-analytics';
 import { topSlotReportShowCount } from '../../../stores/widget-settings';
-import { selectedEdition } from '../../../stores/selected-edition';
 import { managementSdkService } from '../../../stores/dynamic-content';
 import type { ManagementSdkService } from '../../../services/management-sdk/management-sdk.service';
 import type { GoogleAnalyticsEmbedAPI } from '../../../definitions/google-analytics-embed-api';
 import { Edition } from 'dc-management-sdk-js';
+import { selectedEdition } from '../../../stores/filter/selected-edition';
 
 jest.mock('exponential-backoff');
 (backOff as jest.Mock).mockImplementation((fn) => fn());

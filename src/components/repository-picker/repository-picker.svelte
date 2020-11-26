@@ -5,8 +5,10 @@
   import { hub } from '../../stores/dynamic-content';
   import Loader from '../loader/loader.svelte';
 
-  export let selectedRepository: ContentRepository;
+  export let repositoryFeature = null;
+  export let selectedContentRepository: ContentRepository;
   export let selectedContentItems: ContentItem[];
+
   let selectValue;
   let loaded = false;
   let repositories: ContentRepository[] = [];
@@ -20,12 +22,12 @@
       );
 
       if (
-        currentlySelected !== selectedRepository ||
+        currentlySelected !== selectedContentRepository ||
         (currentlySelected &&
-          selectedRepository &&
-          currentlySelected?.id !== selectedRepository?.id)
+          selectedContentRepository &&
+          currentlySelected?.id !== selectedContentRepository?.id)
       ) {
-        selectedRepository = currentlySelected;
+        selectedContentRepository = currentlySelected;
       }
     }
 
@@ -39,22 +41,32 @@
   });
 
   const loadRepositories = async () => {
-    repositories = (await $hub.related.contentRepositories.list({ size: 100 }))
-      .getItems()
-      .filter(
-        (repository) =>
-          !repository.features?.find(
-            (feature) => feature.toLowerCase() === 'slots'
-          )
-      );
-    if (!selectValue && repositories.length) {
-      selectValue = repositories[0].id;
+    loaded = false;
+    if (repositoryFeature === null) {
+      repositories = (
+        await $hub.related.contentRepositories.list({ size: 100 })
+      )
+        .getItems()
+        .filter((repository) => repository.features.length === 0);
+    } else {
+      repositories = (
+        await $hub.related.contentRepositories.findByFeature(
+          repositoryFeature,
+          { size: 100 }
+        )
+      ).getItems();
     }
-    if (selectedRepository) {
-      selectValue = selectedRepository.id;
-      selectedRepository = repositories.find(
-        (repository) => repository.id === selectedRepository.id
+
+    if (selectedContentRepository) {
+      selectValue = selectedContentRepository.id;
+      selectedContentRepository = repositories.find(
+        (repository) => repository.id === selectedContentRepository.id
       );
+    }
+
+    if (!selectValue && repositories.length > 0) {
+      selectValue = repositories[0].id;
+      selectedContentRepository = selectValue;
     }
     loaded = true;
   };
@@ -73,6 +85,7 @@
 
   .container {
     min-height: 50px;
+    padding-bottom: 12px;
   }
 
   .container :global(*) {

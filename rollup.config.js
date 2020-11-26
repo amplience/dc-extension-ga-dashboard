@@ -76,6 +76,8 @@ export default {
       __MAX_NUM_EDITIONS__: () => process.env.MAX_NUM_EDITIONS,
       __MAX_NUMBER_OF_SELECTABLE_CONTENT_ITEMS__: () =>
         process.env.MAX_NUMBER_OF_SELECTABLE_CONTENT_ITEMS,
+      __MAX_NUMBER_OF_SELECTABLE_SLOTS__: () =>
+        process.env.MAX_NUMBER_OF_SELECTABLE_SLOTS,
       'process.env.NODE_ENV': JSON.stringify(
         production ? 'production' : 'development'
       ),

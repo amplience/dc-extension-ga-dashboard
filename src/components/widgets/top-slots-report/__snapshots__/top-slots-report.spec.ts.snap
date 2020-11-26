@@ -849,14 +849,16 @@ exports[`TopSlotsReport should render the TopSlotsReport component 3`] = `
   color:#333;"
                               >
                                 <div
-                                  class="clickable svelte-197mspp"
+                                  class="   svelte-dfh104"
                                   data-testid="chip"
                                 >
-                                  <span>
+                                  <span
+                                    class="label svelte-dfh104"
+                                  >
                                     dimension
                                   </span>
+                                   
                                 </div>
-                                
                               </div>
                                
                               <div
@@ -957,7 +959,7 @@ Array [
         "to": "2020-12-31",
       },
       "dimension": "SLOT_ID_MAPPING",
-      "gaQueryFilter": "EDITION_ID_MAPPING==EDITION_ID",
+      "gaQueryFilter": null,
       "gaViewId": "GA_VIEW_ID",
       "limit": 5,
     },
@@ -970,7 +972,7 @@ Array [
         "to": "2020-12-31",
       },
       "dimension": "SLOT_ID_MAPPING",
-      "gaQueryFilter": "EDITION_ID_MAPPING==EDITION_ID",
+      "gaQueryFilter": null,
       "gaViewId": "GA_VIEW_ID",
       "limit": "5",
     },
@@ -983,7 +985,7 @@ Array [
         "to": "2020-12-31",
       },
       "dimension": "BREAKDOWN_CHART_DIMENSION",
-      "gaQueryFilter": "EDITION_ID_MAPPING==EDITION_ID;SLOT_ID_MAPPING==dimension",
+      "gaQueryFilter": "SLOT_ID_MAPPING==dimension",
       "gaViewId": "GA_VIEW_ID",
       "limit": 100,
     },
