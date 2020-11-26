@@ -6,6 +6,6 @@ export enum FILTERS {
   SLOT = 'SLOT',
 }
 export const selectedFilter = persistedWritable<FILTERS>(
-  'selectedEdition',
+  'selectedFilter',
   null
 );
