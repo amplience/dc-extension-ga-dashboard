@@ -38,6 +38,8 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    font-size: 12px;
+    font-weight: 300;
   }
 
   div.active {

@@ -3,11 +3,11 @@
 exports[`Chip should render a Chip 1`] = `
 <div>
   <div
-    class="   svelte-dfh104"
+    class="   svelte-qh5bld"
     data-testid="chip"
   >
     <span
-      class="label svelte-dfh104"
+      class="label svelte-qh5bld"
     >
       test-label
     </span>
@@ -19,11 +19,11 @@ exports[`Chip should render a Chip 1`] = `
 exports[`Chip should render a clickable Chip 1`] = `
 <div>
   <div
-    class=" clickable  svelte-dfh104"
+    class=" clickable  svelte-qh5bld"
     data-testid="chip"
   >
     <span
-      class="label svelte-dfh104"
+      class="label svelte-qh5bld"
     >
       test-label
     </span>
@@ -35,11 +35,11 @@ exports[`Chip should render a clickable Chip 1`] = `
 exports[`Chip should render an active Chip 1`] = `
 <div>
   <div
-    class="active   svelte-dfh104"
+    class="active   svelte-qh5bld"
     data-testid="chip"
   >
     <span
-      class="label svelte-dfh104"
+      class="label svelte-qh5bld"
     >
       test-label
     </span>
@@ -51,11 +51,11 @@ exports[`Chip should render an active Chip 1`] = `
 exports[`Chip should render an clickable active Chip 1`] = `
 <div>
   <div
-    class="active clickable  svelte-dfh104"
+    class="active clickable  svelte-qh5bld"
     data-testid="chip"
   >
     <span
-      class="label svelte-dfh104"
+      class="label svelte-qh5bld"
     >
       test-label
     </span>

@@ -245,7 +245,7 @@
 
   section :global(.widget-header [slot='label']) {
     margin-right: 16px;
-    font-size: 16px;
+    font-size: 14px;
   }
 
   section div.selected-edition span {
@@ -271,11 +271,12 @@
   }
 
   div.content-chooser h3 {
-    font-size: 16px;
+    font-size: 14px;
+    font-weight: 500;
   }
 
   div.content-chooser h3 span {
-    font-size: 15px;
+    font-size: 14px;
     color: #666;
   }
 
@@ -298,7 +299,7 @@
       </div>
       <div>
         {#if $selectedFilter == FILTERS.EDITION && $selectedEdition}
-          Edition
+          Event/edition
         {:else if $selectedFilter == FILTERS.CONTENT && $selectedContentRepository && $selectedContentItems.length > 0}
           Repository
           <span

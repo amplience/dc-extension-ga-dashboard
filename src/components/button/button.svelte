@@ -12,14 +12,14 @@
     display: inline-block;
     text-align: center;
     vertical-align: middle;
-    padding: 0 10px;
+    padding: 0 20px;
     margin: 0 8px;
     background-color: transparent;
     transition: 0.3s;
     color: #333333;
     height: 30px;
     line-height: 30px;
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 500;
     border-radius: 3px;
   }

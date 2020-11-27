@@ -167,18 +167,18 @@
   .date-range-inputs > div.date-selection {
     display: flex;
     align-items: center;
-    border-bottom: 3px solid #fff;
+    border-bottom: 2px solid #fff;
     cursor: pointer;
     width: 100%;
     padding-left: 12px;
   }
 
   .date-range-inputs > div.date-selection:focus-within {
-    border-bottom: 3px solid #42a5f5;
+    border-bottom: 2px solid #42a5f5;
   }
 
   .date-range-inputs > div.date-selection:focus-within :global(i) {
-    color: 3px solid #42a5f5;
+    color: 2px solid #42a5f5;
   }
 
   .date-range-inputs > div.date-selection > input {
