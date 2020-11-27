@@ -10,7 +10,7 @@ exports[`TopBar should render empty top bar if no mappings set 1`] = `
     >
        
       <div
-        class="no-filters svelte-mjn5ui"
+        class="no-filters svelte-112u3yn"
       />
       
     </div>
@@ -28,17 +28,17 @@ exports[`TopBar should render the top bar 1`] = `
     >
        
       <section
-        class="svelte-mjn5ui"
+        class="svelte-112u3yn"
       >
         <div
-          class="report-filter svelte-mjn5ui"
+          class="report-filter svelte-112u3yn"
         >
           <div
-            class="filter-selector svelte-mjn5ui"
+            class="filter-selector svelte-112u3yn"
             data-testid="display-modal-button"
           >
             <div
-              class="icon-wrapper  svelte-mjn5ui"
+              class="icon-wrapper  svelte-112u3yn"
             >
               <div
                 class=" svelte-zpbvvv"
@@ -50,18 +50,16 @@ exports[`TopBar should render the top bar 1`] = `
               </div>
             </div>
              
-            <div
-              class="filter-chips svelte-mjn5ui"
-            >
+            <div>
               No filters applied
             </div>
           </div>
+           
+          <div
+            class="filter-chips svelte-112u3yn"
+          />
+           
         </div>
-         
-        <div
-          class="filter-chips svelte-mjn5ui"
-        />
-         
       </section>
       
     </div>
@@ -79,17 +77,17 @@ exports[`TopBar should render top bar if at least one mapping is set 1`] = `
     >
        
       <section
-        class="svelte-mjn5ui"
+        class="svelte-112u3yn"
       >
         <div
-          class="report-filter svelte-mjn5ui"
+          class="report-filter svelte-112u3yn"
         >
           <div
-            class="filter-selector svelte-mjn5ui"
+            class="filter-selector svelte-112u3yn"
             data-testid="display-modal-button"
           >
             <div
-              class="icon-wrapper  svelte-mjn5ui"
+              class="icon-wrapper  svelte-112u3yn"
             >
               <div
                 class=" svelte-zpbvvv"
@@ -101,18 +99,16 @@ exports[`TopBar should render top bar if at least one mapping is set 1`] = `
               </div>
             </div>
              
-            <div
-              class="filter-chips svelte-mjn5ui"
-            >
+            <div>
               No filters applied
             </div>
           </div>
+           
+          <div
+            class="filter-chips svelte-112u3yn"
+          />
+           
         </div>
-         
-        <div
-          class="filter-chips svelte-mjn5ui"
-        />
-         
       </section>
       
     </div>
