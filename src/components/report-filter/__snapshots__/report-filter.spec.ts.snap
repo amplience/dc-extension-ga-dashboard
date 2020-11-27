@@ -4,17 +4,17 @@ exports[`ReportFilter component - Editions should render initial state when a se
 <div>
    
   <section
-    class="svelte-1n33o8p"
+    class="svelte-112u3yn"
   >
     <div
-      class="report-filter svelte-1n33o8p"
+      class="report-filter svelte-112u3yn"
     >
       <div
-        class="filter-selector svelte-1n33o8p"
+        class="filter-selector svelte-112u3yn"
         data-testid="display-modal-button"
       >
         <div
-          class="icon-wrapper  svelte-1n33o8p"
+          class="icon-wrapper  svelte-112u3yn"
         >
           <div
             class=" svelte-zpbvvv"
@@ -32,11 +32,12 @@ exports[`ReportFilter component - Editions should render initial state when a se
       </div>
        
       <div
-        class="filter-chips svelte-1n33o8p"
+        class="filter-chips svelte-112u3yn"
       />
+       
     </div>
-     
   </section>
+  
 </div>
 `;
 
@@ -44,17 +45,17 @@ exports[`ReportFilter component - Editions should render the ReportFilter compon
 <div>
    
   <section
-    class="svelte-1n33o8p"
+    class="svelte-112u3yn"
   >
     <div
-      class="report-filter svelte-1n33o8p"
+      class="report-filter svelte-112u3yn"
     >
       <div
-        class="filter-selector svelte-1n33o8p"
+        class="filter-selector svelte-112u3yn"
         data-testid="display-modal-button"
       >
         <div
-          class="icon-wrapper active  svelte-1n33o8p"
+          class="icon-wrapper active  svelte-112u3yn"
         >
           <div
             class=" svelte-zpbvvv"
@@ -72,7 +73,7 @@ exports[`ReportFilter component - Editions should render the ReportFilter compon
       </div>
        
       <div
-        class="filter-chips svelte-1n33o8p"
+        class="filter-chips svelte-112u3yn"
       >
         <div
           class=" clickable removeable svelte-qh5bld"
@@ -99,8 +100,9 @@ exports[`ReportFilter component - Editions should render the ReportFilter compon
           </span>
         </div>
       </div>
+       
     </div>
-     
   </section>
+  
 </div>
 `;

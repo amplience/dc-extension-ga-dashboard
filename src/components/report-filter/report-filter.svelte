@@ -33,6 +33,11 @@
     MAX_NUMBER_OF_SELECTABLE_CONTENT_ITEMS,
     MAX_NUMBER_OF_SELECTABLE_SLOTS,
   } from '../../config';
+  import {
+    contentItemIdMapping,
+    editionIdMapping,
+    slotIdMapping,
+  } from '../../stores/google-analytics';
 
   let isModalVisible = false;
   let sectionElement: HTMLElement;
@@ -283,127 +288,138 @@
   span.selected-repository {
     font-weight: bold;
   }
+
+  div.no-filters {
+    height: 40px;
+  }
 </style>
 
 {#if isModalVisible}
   <Overlay onClick={onCancelClick} />
 {/if}
-<section bind:this={sectionElement}>
-  <div class="report-filter">
-    <div
-      class="filter-selector"
-      data-testid="display-modal-button"
-      on:click={showModal}>
-      <div class={`icon-wrapper ${$gaQueryFilter ? 'active ' : ''}`}>
-        <Icon icon={FilterIcon} width="20px" height="20px" />
+{#if !$contentItemIdMapping && !$editionIdMapping && !$slotIdMapping}
+  <div class="no-filters" />
+{:else}
+  <section bind:this={sectionElement}>
+    <div class="report-filter">
+      <div
+        class="filter-selector"
+        data-testid="display-modal-button"
+        on:click={showModal}>
+        <div class={`icon-wrapper ${$gaQueryFilter ? 'active ' : ''}`}>
+          <Icon icon={FilterIcon} width="20px" height="20px" />
+        </div>
+        <div>
+          {#if $selectedFilter == FILTERS.EDITION && $selectedEdition}
+            Event/edition
+          {:else if $selectedFilter == FILTERS.CONTENT && $selectedContentRepository && $selectedContentItems.length > 0}
+            Repository
+            <span
+              class="selected-repository">{$selectedContentRepository.name}</span>
+          {:else if $selectedFilter == FILTERS.SLOT && $selectedSlotsRepository && $selectedSlots.length > 0}
+            Repository
+            <span
+              class="selected-repository">{$selectedSlotsRepository.name}</span>
+          {:else}No filters applied{/if}
+        </div>
       </div>
-      <div>
+      <div class="filter-chips">
         {#if $selectedFilter == FILTERS.EDITION && $selectedEdition}
-          Event/edition
-        {:else if $selectedFilter == FILTERS.CONTENT && $selectedContentRepository && $selectedContentItems.length > 0}
-          Repository
-          <span
-            class="selected-repository">{$selectedContentRepository.name}</span>
-        {:else if $selectedFilter == FILTERS.SLOT && $selectedSlotsRepository && $selectedSlots.length > 0}
-          Repository
-          <span
-            class="selected-repository">{$selectedSlotsRepository.name}</span>
-        {:else}No filters applied{/if}
+          <Chip
+            label={generateEditionLabel($selectedEdition)}
+            removeable={true}
+            on:close={resetFilter}
+            on:click={showModal}
+            clickable={true} />
+        {:else if $selectedFilter == FILTERS.CONTENT && $selectedContentItems.length > 0}
+          {#each $selectedContentItems as contentItem}
+            <Chip
+              label={contentItem.label}
+              removeable={true}
+              on:close={() => removeSelectedContentItem(selectedContentItems, contentItem)}
+              on:click={showModal}
+              clickable={true} />
+          {/each}
+        {:else if $selectedFilter == FILTERS.SLOT && $selectedSlots.length > 0}
+          {#each $selectedSlots as contentItem}
+            <Chip
+              label={contentItem.label}
+              removeable={true}
+              on:close={() => removeSelectedContentItem(selectedSlots, contentItem)}
+              on:click={showModal}
+              clickable={true} />
+          {/each}
+        {/if}
       </div>
-    </div>
-    <div class="filter-chips">
-      {#if $selectedFilter == FILTERS.EDITION && $selectedEdition}
-        <Chip
-          label={generateEditionLabel($selectedEdition)}
-          removeable={true}
-          on:close={resetFilter}
-          on:click={showModal}
-          clickable={true} />
-      {:else if $selectedFilter == FILTERS.CONTENT && $selectedContentItems.length > 0}
-        {#each $selectedContentItems as contentItem}
-          <Chip
-            label={contentItem.label}
-            removeable={true}
-            on:close={() => removeSelectedContentItem(selectedContentItems, contentItem)}
-            on:click={showModal}
-            clickable={true} />
-        {/each}
-      {:else if $selectedFilter == FILTERS.SLOT && $selectedSlots.length > 0}
-        {#each $selectedSlots as contentItem}
-          <Chip
-            label={contentItem.label}
-            removeable={true}
-            on:close={() => removeSelectedContentItem(selectedSlots, contentItem)}
-            on:click={showModal}
-            clickable={true} />
-        {/each}
+      {#if isModalVisible}
+        <div class="modal-popup" style={modalPositionStyle}>
+          <Widget>
+            <WidgetHeader>
+              <div slot="title">
+                <h3>Filter by</h3>
+                {#if $editionIdMapping}
+                  <FormField>
+                    <Radio
+                      bind:group={currentlySelectedFilter}
+                      value={FILTERS.EDITION} />
+                    <span slot="label">Edition</span>
+                  </FormField>
+                {/if}
+                {#if $contentItemIdMapping}
+                  <FormField>
+                    <Radio
+                      data-testid="content-radio"
+                      bind:group={currentlySelectedFilter}
+                      value={FILTERS.CONTENT} />
+                    <span slot="label">Content</span>
+                  </FormField>
+                {/if}
+                {#if $slotIdMapping}
+                  <FormField>
+                    <Radio
+                      data-testid="content-radio"
+                      bind:group={currentlySelectedFilter}
+                      value={FILTERS.SLOT} />
+                    <span slot="label">Slot</span>
+                  </FormField>
+                {/if}
+              </div>
+              <div slot="actions">
+                <Button primary={false} onClick={onCancelClick}>Cancel</Button>
+                <Button onClick={onApplyClick}>Apply</Button>
+              </div>
+            </WidgetHeader>
+            <WidgetBody>
+              {#if currentlySelectedFilter === FILTERS.EDITION && $editionIdMapping}
+                <EditionPicker bind:selectedEdition={uncomittedEdition} />
+              {:else if currentlySelectedFilter === FILTERS.CONTENT && $contentItemIdMapping}
+                <div class="content-chooser">
+                  <h3>Select content items (max 5 from single repository)</h3>
+                  <RepositoryPicker
+                    bind:selectedContentRepository={uncommitedContentRepository}
+                    bind:selectedContentItems={uncomittedContentItems} />
+                  <ContentItemPicker
+                    maxNumberOfSelectableItems={MAX_NUMBER_OF_SELECTABLE_CONTENT_ITEMS}
+                    bind:selectedContentRepository={uncommitedContentRepository}
+                    bind:selectedContentItems={uncomittedContentItems} />
+                </div>
+              {:else if currentlySelectedFilter === FILTERS.SLOT && $slotIdMapping}
+                <div class="content-chooser">
+                  <h3>Select slots (max 5 from single repository)</h3>
+                  <RepositoryPicker
+                    repositoryFeature="slots"
+                    bind:selectedContentRepository={uncommitedSlotsRepository}
+                    bind:selectedContentItems={uncomittedSlots} />
+                  <ContentItemPicker
+                    maxNumberOfSelectableItems={MAX_NUMBER_OF_SELECTABLE_SLOTS}
+                    bind:selectedContentRepository={uncommitedSlotsRepository}
+                    bind:selectedContentItems={uncomittedSlots} />
+                </div>
+              {/if}
+            </WidgetBody>
+          </Widget>
+        </div>
       {/if}
     </div>
-  </div>
-  {#if isModalVisible}
-    <div class="modal-popup" style={modalPositionStyle}>
-      <Widget>
-        <WidgetHeader>
-          <div slot="title">
-            <h3>Filter by</h3>
-            <FormField>
-              <Radio
-                bind:group={currentlySelectedFilter}
-                value={FILTERS.EDITION} />
-              <span slot="label">Edition</span>
-            </FormField>
-            <FormField>
-              <Radio
-                data-testid="content-radio"
-                bind:group={currentlySelectedFilter}
-                value={FILTERS.CONTENT} />
-              <span slot="label">Content</span>
-            </FormField>
-            <FormField>
-              <Radio
-                data-testid="content-radio"
-                bind:group={currentlySelectedFilter}
-                value={FILTERS.SLOT} />
-              <span slot="label">Slot</span>
-            </FormField>
-          </div>
-          <div slot="actions">
-            <Button primary={false} onClick={onCancelClick}>Cancel</Button>
-            <Button onClick={onApplyClick}>Apply</Button>
-          </div>
-        </WidgetHeader>
-        <WidgetBody>
-          {#if currentlySelectedFilter === FILTERS.EDITION}
-            <EditionPicker bind:selectedEdition={uncomittedEdition} />
-          {:else if currentlySelectedFilter === FILTERS.CONTENT}
-            <div class="content-chooser">
-              <h3>
-                Select content items
-                <span>(max 5 from single repository)</span>
-              </h3>
-              <RepositoryPicker
-                bind:selectedContentRepository={uncommitedContentRepository}
-                bind:selectedContentItems={uncomittedContentItems} />
-              <ContentItemPicker
-                maxNumberOfSelectableItems={MAX_NUMBER_OF_SELECTABLE_CONTENT_ITEMS}
-                bind:selectedContentRepository={uncommitedContentRepository}
-                bind:selectedContentItems={uncomittedContentItems} />
-            </div>
-          {:else if currentlySelectedFilter === FILTERS.SLOT}
-            <div class="content-chooser">
-              <h3>Select slots <span>(max 5 from single repository)</span></h3>
-              <RepositoryPicker
-                repositoryFeature="slots"
-                bind:selectedContentRepository={uncommitedSlotsRepository}
-                bind:selectedContentItems={uncomittedSlots} />
-              <ContentItemPicker
-                maxNumberOfSelectableItems={MAX_NUMBER_OF_SELECTABLE_SLOTS}
-                bind:selectedContentRepository={uncommitedSlotsRepository}
-                bind:selectedContentItems={uncomittedSlots} />
-            </div>
-          {/if}
-        </WidgetBody>
-      </Widget>
-    </div>
-  {/if}
-</section>
+  </section>
+{/if}

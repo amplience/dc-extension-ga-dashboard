@@ -2,6 +2,7 @@
   import { dateRange } from '../../../stores/date-range';
   import { gaViewId } from '../../../stores/google-analytics';
   import Loader from '../../loader/loader.svelte';
+  import NoDataPlaceholder from '../../no-data-placeholder/no-data-placeholder.svelte';
   import WidgetBody from '../../widget/widget-body/widget-body.svelte';
   import WidgetHeader from '../../widget/widget-header/widget-header.svelte';
   import Widget from '../../widget/widget.svelte';
@@ -19,6 +20,7 @@
   export let chartType: ChartType = ChartType.LINE;
   export let containerId = `ga-chart-${className}`;
 
+  let unableToLoad = false;
   let loading = true;
   let chartOptions = {};
   if (chartType === ChartType.BAR) {
@@ -55,6 +57,7 @@
   $: (async () => {
     try {
       loading = true;
+      unableToLoad = false;
       await backOff(() =>
         insertDataChart(
           $gapi,
@@ -71,6 +74,8 @@
           chartOptions
         )
       );
+    } catch (err) {
+      unableToLoad = true;
     } finally {
       loading = false;
     }
@@ -98,12 +103,16 @@
   <Widget>
     <WidgetHeader {title} />
     <WidgetBody>
-      <section class="ga-chart">
-        {#if loading}
-          <Loader zIndex={1} />
-        {/if}
-        <div id={containerId} />
-      </section>
+      {#if unableToLoad}
+        <NoDataPlaceholder message="No data currently available" />
+      {:else}
+        <section class="ga-chart">
+          {#if loading}
+            <Loader zIndex={1} />
+          {/if}
+          <div id={containerId} />
+        </section>
+      {/if}
     </WidgetBody>
   </Widget>
 </section>

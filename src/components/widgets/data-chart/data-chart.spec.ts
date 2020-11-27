@@ -119,5 +119,17 @@ describe('DataChart', () => {
       expect(insertDataChart).toHaveBeenCalledTimes(2);
       expect((insertDataChart as jest.Mock).mock.calls).toMatchSnapshot();
     });
+
+    it('should display no data currently available when no reponse from google', async () => {
+      (backOff as jest.Mock).mockImplementation((fn) => {
+        throw new Error();
+      });
+
+      const { container } = render(DataChart, dataChartOptions);
+      await tick();
+
+      expect((insertDataChart as jest.Mock).mock.calls).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
+    });
   });
 });

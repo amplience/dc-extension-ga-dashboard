@@ -1,5 +1,53 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`DataChart breakdown chart should display no data currently available when no reponse from google 1`] = `Array []`;
+
+exports[`DataChart breakdown chart should display no data currently available when no reponse from google 2`] = `
+<div>
+  <section
+    class="breakdown svelte-1vmaiqo"
+  >
+    <article
+      class="widget svelte-pntwh0"
+    >
+       
+      <section
+        class="widget-header svelte-1kld2ef"
+      >
+        <div
+          class="title svelte-1kld2ef"
+        >
+          <h2
+            class="svelte-1kld2ef"
+          >
+            Breakdown
+          </h2>
+           
+           
+        </div>
+         
+        <div
+          class="actions svelte-1kld2ef"
+        />
+      </section>
+       
+      <section
+        class="widget-body svelte-4p1s5s"
+      >
+        <div
+          class="no-data-container svelte-1kq81j9"
+        >
+          <p>
+            No data currently available
+          </p>
+        </div>
+        
+      </section>
+    </article>
+  </section>
+</div>
+`;
+
 exports[`DataChart breakdown chart should render the DataChart component 1`] = `
 Array [
   Array [
@@ -69,6 +117,7 @@ exports[`DataChart breakdown chart should render the DataChart component 2`] = `
             id="ga-chart-breakdown"
           />
         </section>
+        
       </section>
     </article>
   </section>
@@ -269,6 +318,7 @@ exports[`DataChart overview chart should render the DataChart component 2`] = `
             id="ga-chart-overview"
           />
         </section>
+        
       </section>
     </article>
   </section>
