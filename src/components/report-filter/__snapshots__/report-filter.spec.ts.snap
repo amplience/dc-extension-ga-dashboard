@@ -4,17 +4,17 @@ exports[`ReportFilter component - Editions should render initial state when a se
 <div>
    
   <section
-    class="svelte-13hqdzo"
+    class="svelte-1n33o8p"
   >
     <div
-      class="report-filter svelte-13hqdzo"
+      class="report-filter svelte-1n33o8p"
     >
       <div
-        class="filter-selector svelte-13hqdzo"
+        class="filter-selector svelte-1n33o8p"
         data-testid="display-modal-button"
       >
         <div
-          class="icon-wrapper  svelte-13hqdzo"
+          class="icon-wrapper  svelte-1n33o8p"
         >
           <div
             class=" svelte-zpbvvv"
@@ -32,7 +32,7 @@ exports[`ReportFilter component - Editions should render initial state when a se
       </div>
        
       <div
-        class="filter-chips svelte-13hqdzo"
+        class="filter-chips svelte-1n33o8p"
       />
     </div>
      
@@ -44,17 +44,17 @@ exports[`ReportFilter component - Editions should render the ReportFilter compon
 <div>
    
   <section
-    class="svelte-13hqdzo"
+    class="svelte-1n33o8p"
   >
     <div
-      class="report-filter svelte-13hqdzo"
+      class="report-filter svelte-1n33o8p"
     >
       <div
-        class="filter-selector svelte-13hqdzo"
+        class="filter-selector svelte-1n33o8p"
         data-testid="display-modal-button"
       >
         <div
-          class="icon-wrapper active  svelte-13hqdzo"
+          class="icon-wrapper active  svelte-1n33o8p"
         >
           <div
             class=" svelte-zpbvvv"
@@ -67,25 +67,25 @@ exports[`ReportFilter component - Editions should render the ReportFilter compon
         </div>
          
         <div>
-          Edition
+          Event/edition
         </div>
       </div>
        
       <div
-        class="filter-chips svelte-13hqdzo"
+        class="filter-chips svelte-1n33o8p"
       >
         <div
-          class=" clickable removeable svelte-dfh104"
+          class=" clickable removeable svelte-qh5bld"
           data-testid="chip"
         >
           <span
-            class="label svelte-dfh104"
+            class="label svelte-qh5bld"
           >
             Test Event / Test Edition
           </span>
            
           <span
-            class="cross svelte-dfh104"
+            class="cross svelte-qh5bld"
             data-testid="remove-chip-button"
           >
             <div

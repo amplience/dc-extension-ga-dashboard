@@ -849,11 +849,11 @@ exports[`TopContentReport should render the TopContentReport component 3`] = `
   color:#333;"
                               >
                                 <div
-                                  class="   svelte-dfh104"
+                                  class="   svelte-qh5bld"
                                   data-testid="chip"
                                 >
                                   <span
-                                    class="label svelte-dfh104"
+                                    class="label svelte-qh5bld"
                                   >
                                     dimension
                                   </span>

@@ -97,7 +97,7 @@
   }
 
   .container :global(.mdc-list-item__graphic) {
-    margin-right: 24px;
+    margin-right: 10px;
   }
 
   div.label span.content-item-label {

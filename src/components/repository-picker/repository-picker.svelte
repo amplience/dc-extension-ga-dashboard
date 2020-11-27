@@ -89,7 +89,7 @@
   }
 
   .container :global(*) {
-    font-size: 15px;
+    font-size: 14px;
   }
 
   .container :global(select, .select-width) {
@@ -100,7 +100,7 @@
     :global(.mdc-select:not(.mdc-select--disabled).mdc-select--focused
       .mdc-line-ripple) {
     background-color: transparent;
-    border-bottom: 3px solid #42a5f5;
+    border-bottom: 2px solid #42a5f5;
   }
 
   .container :global(.mdc-select__selected-text) {
@@ -109,6 +109,10 @@
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+  }
+
+  .container :global(.mdc-select--activated .mdc-select__dropdown-icon) {
+    transform: unset;
   }
 
   .container :global(.mdc-line-ripple) {
