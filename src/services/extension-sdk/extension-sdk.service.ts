@@ -1,5 +1,9 @@
-import { DashboardExtension, init, InitOptions } from 'dc-extensions-sdk';
-import type { Params } from 'dc-extensions-sdk/dist/types/lib/models/Params';
+import { init } from 'dc-extensions-sdk';
+import type {
+  DashboardExtension,
+  InitOptions,
+  Params,
+} from 'dc-extensions-sdk';
 
 export interface GADashboardParams extends Params {
   installation: ExtensionInstallation;
