@@ -12,17 +12,11 @@ import type AppLinkResolver from './app-link-resolver/app-link-resolver.interfac
 import ContentItemAppLinkResolver from './app-link-resolver/content-item-app-link-resolver';
 import EditionAppLinkResolver from './app-link-resolver/edition-app-link-resolver';
 
-const getStandaloneEnvVar = () => '__STANDALONE__';
-const isInStandaloneMode = (): boolean => getStandaloneEnvVar() === '1';
-
 export class ManagementSdkService {
   public readonly client: DynamicContent;
   private readonly appLinkResolvers: AppLinkResolver<HalResource>[];
 
   constructor(private readonly httpClient: HttpClient) {
-    if (isInStandaloneMode()) {
-      httpClient = new AxiosHttpClient({});
-    }
     this.client = this.buildManagementClient();
     this.appLinkResolvers = [
       new ContentItemAppLinkResolver(this.client),
@@ -31,20 +25,6 @@ export class ManagementSdkService {
   }
 
   private buildManagementClient(): DynamicContent {
-    if (isInStandaloneMode()) {
-      return new DynamicContent(
-        {
-          client_id: '__CLIENT_ID__',
-          client_secret: '__CLIENT_SECRET__',
-        },
-        {
-          apiUrl: '__API_URL__',
-          authUrl: '__AUTH_URL__',
-        },
-        new AxiosHttpClient({})
-      );
-    }
-
     return new DynamicContent(
       {
         client_id: '',
@@ -70,7 +50,7 @@ export class ManagementSdkService {
     if (hub.id != resolvedHub.id) {
       throw new Error('Resolved hub does not match');
     }
-    const baseUrl = get(sdkExtensionConfiguration)?.params?.locationHref?.split(
+    const baseUrl = get(sdkExtensionConfiguration)?.locationHref?.split(
       '#!'
     )[0];
 

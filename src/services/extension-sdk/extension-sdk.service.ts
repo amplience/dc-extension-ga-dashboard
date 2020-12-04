@@ -1,15 +1,15 @@
-import { init, Options, Params, SDK } from 'dc-extensions-sdk';
+import { DashboardExtension, init, InitOptions } from 'dc-extensions-sdk';
+import type { Params } from 'dc-extensions-sdk/dist/types/lib/models/Params';
 
-export type SdkExtensionConfiguration = SDK<
-  ExtensionConfiguration,
-  Params & { hubId: string; locationHref: string }
->;
+export interface GADashboardParams extends Params {
+  installation: ExtensionInstallation;
+}
 
 export interface BreakdownConfiguration {
   title: string;
   dimension: string;
 }
-export interface ExtensionConfiguration {
+export interface ExtensionInstallation {
   googleAnalyticsClientId: string;
   googleAnalyticsClientEmail?: string;
   googleAnalyticsViewId: string;
@@ -31,47 +31,8 @@ export interface ExtensionConfiguration {
   };
 }
 
-function isStandalone(): string {
-  return '__STANDALONE__';
-}
-
-async function standaloneClient(): Promise<SdkExtensionConfiguration> {
-  return ({
-    params: {
-      hubId: '__HUB_ID__',
-      locationHref: '__LOCATION_HREF__',
-      installation: {
-        googleAnalyticsKey: '__GOOGLE_ANALYTICS_KEY__',
-        googleAnalyticsClientId: '__GOOGLE_ANALYTICS_CLIENT_ID__',
-        googleAnalyticsClientEmail: '__GOOGLE_ANALYTICS_CLIENT_EMAIL__',
-        googleAnalyticsViewId: '__GOOGLE_ANALYTICS_VIEW_ID__',
-        mappings: {
-          contentItemId: 'ga:dimension1',
-          editionId: 'ga:dimension2',
-          slotId: 'ga:dimension3',
-        },
-        localization: {
-          locale: '__GOOGLE_ANALYTICS_LOCALE__',
-          currencyCode: '__GOOGLE_ANALYTICS_CURRENCY_CODE__',
-        },
-        breakdown: {
-          title: '__BREAKDOWN_CHART_TITLE__',
-          dimension: '__BREAKDOWN_CHART_DIMENSION__',
-        },
-      },
-    },
-  } as unknown) as SdkExtensionConfiguration;
-}
-
 export default async function getExtensionClient(
-  options?: Options
-): Promise<SdkExtensionConfiguration> {
-  if (isStandalone() === '1') {
-    return standaloneClient();
-  }
-
-  return await init<
-    ExtensionConfiguration,
-    Params & { hubId: string; locationHref: string }
-  >(options);
+  options: Partial<InitOptions>
+): Promise<DashboardExtension<GADashboardParams>> {
+  return await init<DashboardExtension<GADashboardParams>>(options);
 }
