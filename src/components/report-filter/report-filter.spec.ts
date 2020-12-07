@@ -164,8 +164,20 @@ describe('ReportFilter component - ContentItems', () => {
     slotIdMapping.set('SLOT_ID_MAPPING');
   });
   it('should render the no hub state for the repository picker', async () => {
-    const contentRepo = new ContentRepository({
-      id: 'CONTENT_REPOSITORY_ID',
+    const firstContentRepo = new ContentRepository({
+      id: 'FIRST_CONTENT_REPOSITORY_ID',
+      name: 'Content Repository',
+      contentTypes: [
+        {
+          hubContentTypeId: 'CONTENT_TYPE_ID',
+          contentTypeUri: 'http://example.com/schema.json',
+        },
+      ],
+      features: [],
+    });
+
+    const secondContentRepo = new ContentRepository({
+      id: 'SECOND_CONTENT_REPOSITORY_ID',
       name: 'Content Repository',
       contentTypes: [
         {
@@ -184,7 +196,7 @@ describe('ReportFilter component - ContentItems', () => {
         },
       },
     });
-    contentRepo.related.contentItems.list = jest.fn().mockResolvedValue({
+    firstContentRepo.related.contentItems.list = jest.fn().mockResolvedValue({
       getItems: () => [contentItem],
     });
     const mockHub = new Hub({
@@ -194,7 +206,7 @@ describe('ReportFilter component - ContentItems', () => {
       getItems: () => {
         return [
           new ContentRepository({
-            id: 'CONTENT_REPOSITORY_ID',
+            id: 'FIRST_CONTENT_REPOSITORY_ID',
             name: 'Content Repository',
           }),
         ];
@@ -203,7 +215,7 @@ describe('ReportFilter component - ContentItems', () => {
 
     mockHub.related.contentRepositories.list = jest.fn().mockResolvedValue({
       getItems: () => {
-        return [contentRepo];
+        return [firstContentRepo, secondContentRepo];
       },
     });
 
@@ -238,7 +250,7 @@ describe('ReportFilter component - ContentItems', () => {
     fireEvent.click(getByText(container, 'Apply'));
     await tick();
 
-    expect(get(selectedContentRepository)).toEqual(contentRepo);
+    expect(get(selectedContentRepository)).toEqual(firstContentRepo);
 
     // this should work, but the content item (smui list) component is buggy and doesn't respond to click events in test
     // expect(get(selectedContentItems)).toEqual([contentItem]);
