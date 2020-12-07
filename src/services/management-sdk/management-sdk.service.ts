@@ -50,14 +50,7 @@ export class ManagementSdkService {
     if (hub.id != resolvedHub.id) {
       throw new Error('Resolved hub does not match');
     }
-    const baseUrl = get(sdkExtensionConfiguration)?.locationHref?.split(
-      '#!'
-    )[0];
 
-    if (!baseUrl) {
-      throw new Error('locationHref is not present');
-    }
-
-    return baseUrl + '#!' + (await appLinkResolver.buildRoute(hub, id));
+    return await appLinkResolver.buildRoute(hub, id);
   }
 }

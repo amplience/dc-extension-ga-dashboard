@@ -4,6 +4,8 @@ import type {
   Hub,
 } from 'dc-management-sdk-js';
 import { Edition } from 'dc-management-sdk-js';
+import { get } from 'svelte/store';
+import { sdkExtensionConfiguration } from '../../../stores/sdk-extension-configuration';
 import type AppLinkResolver from './app-link-resolver.interface';
 
 export default class EditionAppLinkResolver
@@ -21,6 +23,9 @@ export default class EditionAppLinkResolver
 
   async buildRoute(hub: Hub, id: string): Promise<string> {
     const edition = await this.client.editions.get(id);
-    return `/${hub.name}/planning/edition/${edition.eventId}/${edition.id}/`;
+
+    return await get(
+      sdkExtensionConfiguration
+    ).applicationNavigator.openEdition(edition, { returnHref: true });
   }
 }
