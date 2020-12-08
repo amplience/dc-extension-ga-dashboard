@@ -113,6 +113,10 @@
     transform: unset;
   }
 
+  .container :global(.mdc-select__dropdown-icon) {
+    bottom: 6px;
+  }
+
   .container :global(.mdc-line-ripple) {
     padding-top: 0;
   }

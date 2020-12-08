@@ -115,8 +115,30 @@
     transform: unset;
   }
 
+  .container :global(.mdc-select__dropdown-icon) {
+    bottom: 6px;
+  }
+
   .container :global(.mdc-line-ripple) {
     padding-top: 0;
+  }
+
+  div.repository-label {
+    max-width: 600px;
+    font-weight: 400;
+    border-bottom: 1px solid #33333380;
+    letter-spacing: 0.00937em;
+  }
+  div.repository-label span {
+    color: #33333399;
+    font-size: 0.825rem;
+  }
+
+  div.repository-label h3 {
+    font-size: 14.2px;
+    color: #333333c7;
+    margin-top: 8px;
+    margin-bottom: 8px;
   }
 </style>
 
@@ -133,6 +155,11 @@
         No repositories currently exist for this hub
       </h3>
     </div>
+  {:else if repositories.length === 1}
+    <div class="repository-label">
+      <span>Repository</span>
+      <h3 data-testid="one-repository">{repositories[0].name}</h3>
+    </div>
   {:else}
     <div>
       <Select
@@ -141,7 +168,7 @@
         bind:value={selectValue}
         class="select-width"
         menu$class="select-width"
-        disabled={repositories.length <= 1 || selectedContentItems.length > 0}>
+        disabled={selectedContentItems.length > 0}>
         {#each repositories as repository}
           <Option
             value={repository.id}

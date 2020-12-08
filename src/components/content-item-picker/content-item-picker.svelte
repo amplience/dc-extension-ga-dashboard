@@ -101,12 +101,19 @@
   }
 
   div.label span.content-item-label {
-    font-size: 16px;
+    font-size: 14px;
   }
 
   div.label span {
     display: block;
     padding-bottom: 4px;
+  }
+
+  .container
+    :global(.mdc-select:not(.mdc-select--disabled).mdc-select--focused
+      .mdc-line-ripple) {
+    background-color: transparent;
+    border-bottom: 2px solid #42a5f5;
   }
 </style>
 

@@ -28,7 +28,8 @@
 
 <style>
   span.content-type-label {
-    font-style: italic;
+    font-size: 11px;
+    color: #999;
   }
 </style>
 

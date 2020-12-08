@@ -52,7 +52,7 @@
   }
 
   div.removeable > span.label {
-    padding: 0 6px;
+    padding: 0 6px 0 0;
   }
 
   div.clickable:hover {
@@ -60,13 +60,11 @@
   }
   span.cross {
     cursor: pointer;
-    font-weight: bold;
-    padding: 0 6px;
+    padding: 0;
   }
 
   span.cross :global(div) {
     position: relative;
-    top: 2px;
   }
 </style>
 
@@ -77,7 +75,7 @@
       data-testid="remove-chip-button"
       class="cross"
       on:click={onCloseClick}>
-      <Icon icon={DeleteIcon} width="12px" height="12px" />
+      <Icon icon={DeleteIcon} width="8px" height="8px" />
     </span>
   {/if}
 </div>
