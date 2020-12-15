@@ -1,6 +1,6 @@
 # dc-extension-ga-dashboard
 
-## Get started
+## Getting started
 
 Install the dependencies...
 
@@ -10,7 +10,7 @@ npm ci
 
 ## How to build
 
-To create an optimised version of the app:
+To build a version of the app:
 
 ```bash
 npm run build
@@ -40,7 +40,7 @@ Additional environments vars
 | AUTH_URL                          | Amplience Auth URL                                            | https://auth.adis.ws                     |
 | HUB_ID                            | Hub ID                                                        | abcdef...                                |
 | CLIENT_ID                         | Client ID for the Hub                                         | abcdef...                                |
-| CLIENT_SECRET                     | Client Secret                                                 | abdde...                                 |
+| CLIENT_SECRET                     | Client Secret                                                 | abddef...                                 |
 | LOCATION_HREF                     | Location href of parent                                       | http://localhost:3000                    |
 | BREAKDOWN_CHART_TITLE             | Breakdown chart title                                         | Breakdown chart                          |
 | BREAKDOWN_CHART_DIMENSION         | Dimension for the chart                                       | ga:deviceCategory                        |
@@ -54,7 +54,7 @@ Additional environments vars
 | GOOGLE_ANALYTICS_TOKEN_EXPIRES_IN | Used to manually set gapi token expires in value (in seconds) | 3600                                     |
 
 
-Example `.env` file
+### Example `.env` file
 
 ```
 CLIENT_ID=abcdef
@@ -86,7 +86,7 @@ Navigate to [localhost:3000](http://localhost:3000). You should see your app run
 
 An extension needs to be registered in the Dynamic Content Application under the type of dashboard.
 
-The dashboard requires certain configuration to work with Google analytics and the following example settings need to be defined:
+The dashboard requires a specific configuration to work with Google Analytics and the following example settings need to be defined:
 
 ### Permissions
 
@@ -128,17 +128,17 @@ To use the application the following permissions must be enabled:
 
 By default the dashboard will allow users to login to their Google account to view analytics data on the dashboard. To avoid this a Service Account can be created allowing the dashboard to authorize using a private key and client email.
 
-1. Create a Google APIs [Service account](https://console.cloud.google.com/iam-admin/serviceaccounts)
-1. In the Service account edit screen in the 'Keys' section add a key
+1. Create a Google APIs [Service Account](https://console.cloud.google.com/iam-admin/serviceaccounts)
+1. In the Service Account edit screen in the 'Keys' section add a key
 1. Securely store the generate json file
 1. From the json file copy the "private_key" and add it to the installation params as "googleAnalyticsKey"
 1. Do the same for "client_email" adding it as "googleAnalyticsClientEmail"
 1. Give the email "Read & Analyse" permission to your Analytics site
 
-#### Dimensions
+### Dimensions
 
-The dimensions provided should map to the fields in which have been set up in the Google analytics dashboard for the fields outlined above.
+The dimensions provided should map to the fields in which have been set up in the Google Analytics dashboard for the fields outlined above.
 
-#### Filters
+### Filters
 
-For each report, Top Content, Top Editions, Top Slots, it is possible to specify optional fields that are used to additionally filter the reports, for example to set up a fiter to show only data for an event category called 'Banners', set a filter of 'ga:eventCategory==Banners'
+For each report, Top Content, Top Editions, Top Slots, it is possible to specify optional fields that are used to additionally filter the reports, for example to set up a fiter to show only data for an event category called 'Banners', set a filter of 'ga:eventCategory==Banners'.
