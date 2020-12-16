@@ -14,13 +14,9 @@ export const insertDataChart = (
   query: Query,
   options: Record<string, unknown>
 ): Promise<void> => {
-  // 1. get the container
   const containerElement = document.getElementById(containerId);
-  // 2. remove all child elements from the dom (calling .remove() for each element is async, innerHTML is synchronous)
   containerElement.innerHTML = '';
-  // 3. create a new div element and add to the container
   const chartElement = document.createElement('div');
-  // 4. give the child container to the gapi sdk to use
   containerElement.appendChild(chartElement);
 
   const request = (): Promise<void> => {
@@ -61,7 +57,6 @@ export const insertDataChart = (
   };
 
   return gapiRequestGuard<void>(gapi, request).catch((e) => {
-    // gapi error - remove child element
     chartElement.remove();
     throw e;
   });

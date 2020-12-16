@@ -133,7 +133,6 @@ describe('gapi-token.service', () => {
         expect(gapiMockInFlight.analytics.auth.authorize).toBeCalledTimes(1);
       });
 
-      // resetting fetch mock without delay
       (global.fetch as jest.Mock).mockImplementation(() =>
         Promise.resolve({
           json: () =>

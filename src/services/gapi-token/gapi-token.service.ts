@@ -69,8 +69,6 @@ export async function refreshToken(
   email: string
 ): Promise<void> {
   if (inFlightPromise) {
-    // if a token request is already in flight wait for it's response
-    // to avoid gapi calls with an invalid token
     await inFlightPromise;
     return;
   }
