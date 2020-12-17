@@ -69,7 +69,7 @@ describe('Management SdkService', () => {
       );
     });
 
-    it('should throw an error of resolved hub does not match', async () => {
+    it('should return the route from the app link resolver', async () => {
       const service = new ManagementSdkService(fakeClient);
       const mockedContentItemAppLinkResolver = ContentItemAppLinkResolver as jest.Mock;
       const mockContentItemAppLinkResolver =
@@ -79,30 +79,9 @@ describe('Management SdkService', () => {
       mockContentItemAppLinkResolver.resolveHub.mockResolvedValue(
         new Hub({ id: 'HUB_A' })
       );
-
-      sdkExtensionConfiguration.set(null);
-      await expect(() =>
-        service.getAppLinkForResource(
-          new Hub({ id: 'HUB_A' }),
-          ContentItem,
-          'CONTENT_ITEM_ID'
-        )
-      ).rejects.toThrowErrorMatchingInlineSnapshot(
-        `"locationHref is not present"`
+      mockContentItemAppLinkResolver.buildRoute.mockResolvedValue(
+        'http://example.com/#!/new/route'
       );
-    });
-
-    it('should throw an error of resolved hub does not match', async () => {
-      const service = new ManagementSdkService(fakeClient);
-      const mockedContentItemAppLinkResolver = ContentItemAppLinkResolver as jest.Mock;
-      const mockContentItemAppLinkResolver =
-        mockedContentItemAppLinkResolver.mock.instances[0];
-
-      mockContentItemAppLinkResolver.supports.mockReturnValue(true);
-      mockContentItemAppLinkResolver.resolveHub.mockResolvedValue(
-        new Hub({ id: 'HUB_A' })
-      );
-      mockContentItemAppLinkResolver.buildRoute.mockResolvedValue('/new/route');
 
       sdkExtensionConfiguration.set(({
         locationHref: 'http://example.com/#!/dashboard',

@@ -1,4 +1,7 @@
+import type { DashboardExtension } from 'dc-extensions-sdk';
 import { DynamicContent, Edition, Hub } from 'dc-management-sdk-js';
+import { sdkExtensionConfiguration } from '../../../stores/sdk-extension-configuration';
+import type { GADashboardParams } from '../../extension-sdk/extension-sdk.service';
 import EditionAppLinkResolver from './edition-app-link-resolver';
 
 describe('EditionAppLinkResolver', () => {
@@ -39,17 +42,35 @@ describe('EditionAppLinkResolver', () => {
   });
 
   it('should build a route', async () => {
-    const mockGetEdition = jest.fn(
-      () => new Edition({ id: 'ID', eventId: 'EVENT_ID' })
-    );
+    const edition = new Edition({ id: 'ID', eventId: 'EVENT_ID' });
+    const mockGetEdition = jest.fn(() => edition);
     const resolver = new EditionAppLinkResolver(({
       editions: {
         get: mockGetEdition,
       },
     } as unknown) as DynamicContent);
 
+    const mockDashboard = {
+      applicationNavigator: {
+        openEdition: jest
+          .fn()
+          .mockReturnValue(
+            'http://example.com/#!/HUB_NAME/planning/edition/EVENT_ID/ID/'
+          ),
+      },
+    };
+
+    sdkExtensionConfiguration.set(
+      (mockDashboard as unknown) as DashboardExtension<GADashboardParams>
+    );
     await expect(
       resolver.buildRoute(new Hub({ name: 'HUB_NAME' }), 'ID')
-    ).resolves.toEqual('/HUB_NAME/planning/edition/EVENT_ID/ID/');
+    ).resolves.toEqual(
+      'http://example.com/#!/HUB_NAME/planning/edition/EVENT_ID/ID/'
+    );
+
+    expect(
+      mockDashboard.applicationNavigator.openEdition
+    ).toHaveBeenCalledWith(edition, { returnHref: true });
   });
 });

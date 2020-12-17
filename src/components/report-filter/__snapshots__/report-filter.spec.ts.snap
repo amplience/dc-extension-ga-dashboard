@@ -76,22 +76,22 @@ exports[`ReportFilter component - Editions should render the ReportFilter compon
         class="filter-chips svelte-112u3yn"
       >
         <div
-          class=" clickable removeable svelte-qh5bld"
+          class=" clickable removeable svelte-qoqlu9"
           data-testid="chip"
         >
           <span
-            class="label svelte-qh5bld"
+            class="label svelte-qoqlu9"
           >
             Test Event / Test Edition
           </span>
            
           <span
-            class="cross svelte-qh5bld"
+            class="cross svelte-qoqlu9"
             data-testid="remove-chip-button"
           >
             <div
               class=" svelte-zpbvvv"
-              style="--icon-width: 12px; --icon-height: 12px;"
+              style="--icon-width: 8px; --icon-height: 8px;"
             >
               <object
                 src="ic-delete.svg/"

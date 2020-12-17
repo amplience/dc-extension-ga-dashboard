@@ -101,12 +101,38 @@
   }
 
   div.label span.content-item-label {
-    font-size: 16px;
+    font-size: 14px;
   }
 
   div.label span {
     display: block;
     padding-bottom: 4px;
+  }
+
+  .container
+    :global(.mdc-select:not(.mdc-select--disabled).mdc-select--focused
+      .mdc-line-ripple) {
+    background-color: transparent;
+    border-bottom: 2px solid #42a5f5;
+  }
+
+  :global(.mdc-list:not(.mdc-list--non-interactive)
+      > :not(.mdc-list-item--disabled).mdc-list-item::before) {
+    background-color: transparent;
+  }
+
+  :global(.mdc-list:not(.mdc-list--non-interactive)
+      > :not(.mdc-list-item--disabled).mdc-list-item.mdc-ripple-upgraded--foreground-activation::before, .mdc-list:not(.mdc-list--non-interactive)
+      > :not(.mdc-list-item--disabled).mdc-list-item.mdc-ripple-upgraded--foreground-activation::after) {
+    background-color: transparent;
+    transition: none;
+  }
+
+  :global(.mdc-list:not(.mdc-list--non-interactive)
+      > :not(.mdc-list-item--disabled).mdc-list-item.mdc-ripple-upgraded--foreground-deactivation::before, .mdc-list:not(.mdc-list--non-interactive)
+      > :not(.mdc-list-item--disabled).mdc-list-item.mdc-ripple-upgraded--foreground-deactivation::after) {
+    background-color: transparent;
+    transition: none;
   }
 </style>
 
