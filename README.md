@@ -15,14 +15,16 @@ To build a version of the app:
 ```bash
 npm run build
 ```
+
 ### Build Configuration
 
-| Environment Var                        | Description                                | Default |
-| -------------------------------------- | ------------------------------------------ | ------- |
-| MAX_NUM_EDITIONS                       | Maximum number of editions to display      | 20      |
-| MAX_NUMBER_OF_SELECTABLE_CONTENT_ITEMS | Maximum number of selectable content items | 5       |
-| MAX_NUMBER_OF_SELECTABLE_SLOTS         | Maximum number of selectable slots         | 5       |
-
+| Environment Var                        | Description                                                   | Default   |
+| -------------------------------------- | ------------------------------------------------------------- | --------- |
+| MAX_NUM_EDITIONS                       | Maximum number of editions to display                         | 20        |
+| MAX_NUMBER_OF_SELECTABLE_CONTENT_ITEMS | Maximum number of selectable content items                    | 5         |
+| MAX_NUMBER_OF_SELECTABLE_SLOTS         | Maximum number of selectable slots                            | 5         |
+| GOOGLE_ANALYTICS_TIMEOUT               | How long we should wait before retrying a gapi request        | 30000     |
+| GOOGLE_ANALYTICS_TOKEN_EXPIRES_IN      | Used to manually set gapi token expires in value (in seconds) | undefined |
 
 ## Running tests
 
@@ -40,7 +42,7 @@ Additional environments vars
 | AUTH_URL                          | Amplience Auth URL                                            | https://auth.adis.ws                     |
 | HUB_ID                            | Hub ID                                                        | abcdef...                                |
 | CLIENT_ID                         | Client ID for the Hub                                         | abcdef...                                |
-| CLIENT_SECRET                     | Client Secret                                                 | abddef...                                 |
+| CLIENT_SECRET                     | Client Secret                                                 | abddef...                                |
 | LOCATION_HREF                     | Location href of parent                                       | http://localhost:3000                    |
 | BREAKDOWN_CHART_TITLE             | Breakdown chart title                                         | Breakdown chart                          |
 | BREAKDOWN_CHART_DIMENSION         | Dimension for the chart                                       | ga:deviceCategory                        |
@@ -52,7 +54,6 @@ Additional environments vars
 | GOOGLE_ANALYTICS_CURRENCY_CODE    | Google Analytics View ID                                      | GBP                                      |
 | GOOGLE_ANALYTICS_TIMEOUT          | How long we should wait before retrying a gapi request        | 30000                                    |
 | GOOGLE_ANALYTICS_TOKEN_EXPIRES_IN | Used to manually set gapi token expires in value (in seconds) | 3600                                     |
-
 
 ### Example `.env` file
 
@@ -77,7 +78,7 @@ GOOGLE_ANALYTICS_TIMEOUT=5000
 ...then start [Rollup](https://rollupjs.org):
 
 ```bash
-STANDALONE=1 npm run dev
+npm run dev
 ```
 
 Navigate to [localhost:3000](http://localhost:3000). You should see your app running. Edit a component file in `src`, save it, and reload the page to see your changes.

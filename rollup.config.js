@@ -51,28 +51,6 @@ export default {
   },
   plugins: [
     replace({
-      __CLIENT_ID__: process.env.CLIENT_ID,
-      __CLIENT_SECRET__: () => process.env.CLIENT_SECRET,
-      __HUB_ID__: () => process.env.HUB_ID,
-      __API_URL__: () => process.env.API_URL,
-      __AUTH_URL__: () => process.env.AUTH_URL,
-      __STANDALONE__: () => process.env.STANDALONE,
-      __DOCS_BASE_URL__: () => process.env.DOCS_BASE_URL,
-      __LOCATION_HREF__: () => process.env.LOCATION_HREF,
-      __BREAKDOWN_CHART_TITLE__: () => process.env.BREAKDOWN_CHART_TITLE,
-      __BREAKDOWN_CHART_DIMENSION__: () =>
-        process.env.BREAKDOWN_CHART_DIMENSION,
-      __GOOGLE_ANALYTICS_KEY__: () => process.env.GOOGLE_ANALYTICS_KEY || '',
-      __GOOGLE_ANALYTICS_CLIENT_EMAIL__: () =>
-        process.env.GOOGLE_ANALYTICS_CLIENT_EMAIL || '',
-      __GOOGLE_ANALYTICS_CLIENT_ID__: () =>
-        process.env.GOOGLE_ANALYTICS_CLIENT_ID || '',
-      __GOOGLE_ANALYTICS_VIEW_ID__: () =>
-        process.env.GOOGLE_ANALYTICS_VIEW_ID || '',
-      __GOOGLE_ANALYTICS_LOCALE__: () =>
-        process.env.GOOGLE_ANALYTICS_LOCALE || '',
-      __GOOGLE_ANALYTICS_CURRENCY_CODE__: () =>
-        process.env.GOOGLE_ANALYTICS_CURRENCY_CODE || '',
       __MAX_NUM_EDITIONS__: () => process.env.MAX_NUM_EDITIONS,
       __MAX_NUMBER_OF_SELECTABLE_CONTENT_ITEMS__: () =>
         process.env.MAX_NUMBER_OF_SELECTABLE_CONTENT_ITEMS,

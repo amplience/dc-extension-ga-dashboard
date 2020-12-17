@@ -4,6 +4,8 @@ import type {
   Hub,
 } from 'dc-management-sdk-js';
 import { ContentItem } from 'dc-management-sdk-js';
+import { get } from 'svelte/store';
+import { sdkExtensionConfiguration } from '../../../stores/sdk-extension-configuration';
 import type AppLinkResolver from './app-link-resolver.interface';
 
 export default class ContentItemAppLinkResolver
@@ -20,6 +22,8 @@ export default class ContentItemAppLinkResolver
   }
 
   async buildRoute(hub: Hub, id: string): Promise<string> {
-    return await `/${hub.name}/authoring/content-item/edit/${id}`;
+    return await get(
+      sdkExtensionConfiguration
+    ).applicationNavigator.openContentItem({ id }, { returnHref: true });
   }
 }
