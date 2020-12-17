@@ -69,8 +69,8 @@
     "typescript": "^3.9.6"
   },
   "dependencies": {
-    "dc-extensions-sdk": "^1.2.0",
-    "dc-management-sdk-js": "github:amplience/dc-management-sdk-js#master",
+    "dc-extensions-sdk": "github:amplience/dc-extensions-sdk#feature/dashboard-application-navigator",
+    "dc-management-sdk-js": "^1.9.0",
     "exponential-backoff": "^3.1.0",
     "jsrsasign": "^10.0.5",
     "message-event-channel": "^1.1.0",

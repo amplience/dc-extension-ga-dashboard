@@ -14,9 +14,9 @@ import {
   slotIdMapping,
 } from '../../stores/google-analytics';
 import { currencyCode, locale } from '../../stores/localization';
-import type { ExtensionConfiguration } from '../extension-sdk/extension-sdk.service';
+import type { ExtensionInstallation } from '../extension-sdk/extension-sdk.service';
 
-export function initialiseStores(config: ExtensionConfiguration): void {
+export function initialiseStores(config: ExtensionInstallation): void {
   gaViewId.set(config?.googleAnalyticsViewId || '');
   gaClientId.set(config?.googleAnalyticsClientId || '');
   gaClientEmail.set(config?.googleAnalyticsClientEmail);

@@ -1,4 +1,7 @@
+import type { DashboardExtension } from 'dc-extensions-sdk';
 import { ContentItem, DynamicContent, Hub } from 'dc-management-sdk-js';
+import { sdkExtensionConfiguration } from '../../../stores/sdk-extension-configuration';
+import type { GADashboardParams } from '../../extension-sdk/extension-sdk.service';
 import ContentItemAppLinkResolver from './content-item-app-link-resolver';
 
 describe('ContentItemAppLinkResolver', () => {
@@ -43,8 +46,27 @@ describe('ContentItemAppLinkResolver', () => {
       new DynamicContent({ client_id: '', client_secret: '' })
     );
 
+    const mockDashboard = {
+      applicationNavigator: {
+        openContentItem: jest
+          .fn()
+          .mockReturnValue(
+            'http://example.com/#!/HUB_NAME/authoring/content-item/edit/ID'
+          ),
+      },
+    };
+
+    sdkExtensionConfiguration.set(
+      (mockDashboard as unknown) as DashboardExtension<GADashboardParams>
+    );
     await expect(
       resolver.buildRoute(new Hub({ name: 'HUB_NAME' }), 'ID')
-    ).resolves.toEqual('/HUB_NAME/authoring/content-item/edit/ID');
+    ).resolves.toEqual(
+      'http://example.com/#!/HUB_NAME/authoring/content-item/edit/ID'
+    );
+
+    expect(
+      mockDashboard.applicationNavigator.openContentItem
+    ).toHaveBeenCalledWith({ id: 'ID' }, { returnHref: true });
   });
 });
