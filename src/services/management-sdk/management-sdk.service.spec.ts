@@ -1,10 +1,7 @@
 import { ContentItem, DynamicContent } from 'dc-management-sdk-js';
-import { sdkExtensionConfiguration } from '../../stores/sdk-extension-configuration';
-import type { GADashboardParams } from '../extension-sdk/extension-sdk.service';
 import ContentItemAppLinkResolver from './app-link-resolver/content-item-app-link-resolver';
 import EditionAppLinkResolver from './app-link-resolver/edition-app-link-resolver';
 import { ManagementSdkService } from './management-sdk.service';
-import type { DashboardExtension } from 'dc-extensions-sdk';
 
 jest.mock('dc-management-sdk-js');
 jest.mock('./app-link-resolver/edition-app-link-resolver');
@@ -83,9 +80,6 @@ describe('Management SdkService', () => {
         'http://example.com/#!/new/route'
       );
 
-      sdkExtensionConfiguration.set(({
-        locationHref: 'http://example.com/#!/dashboard',
-      } as unknown) as DashboardExtension<GADashboardParams>);
       expect(
         await service.getAppLinkForResource(
           new Hub({ id: 'HUB_A' }),
