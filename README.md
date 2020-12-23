@@ -136,6 +136,29 @@ By default the dashboard will allow users to login to their Google account to vi
 1. Do the same for "client_email" adding it as "googleAnalyticsClientEmail"
 1. Give the email "Read & Analyse" permission to your Analytics site
 
+### Setting up the Google Analytics Client ID
+
+These steps assume that you have an app already setup in the Google Developer console:
+
+1. Navigate to [Google Developer Console](https://console.developers.google.com)
+1. Select the app you want to use
+1. On the 'Dashboard' tab click on the 'Enable APIs and services' button
+1. Select 'Google Analytics API' from the API Library and click 'Enable'
+1. Back at your apps page on the Google Developer Console select the 'Credentials' tab
+1. Click on the 'Create credential' button and select 'OAuth client id'
+1. Fill out the form with your details (you may be required to complete an Oauth consent screen form first)
+1. Once you have completed the form you will get a popup containing the Client ID
+1. Copy and paste the Client ID in to the 'googleAnalyticsClientId' installation param
+
+### Setting up the Google Analytics View ID
+
+1. Navigate to [Google Analytics](https://analytics.google.com/)
+1. Click on 'Admin'
+1. In the 'All Web Site Data' section click on 'View Settings'
+1. The View ID should the top of the 'Basic settings section
+1. Copy this and prepend it with 'ga:' so you end up with something like `ga:1234567890`
+1. Add the modified View ID to the 'googleAnalyticsViewId' installation param
+
 ### Dimensions
 
 The dimensions provided should map to the fields in which have been set up in the Google Analytics dashboard for the fields outlined above.
