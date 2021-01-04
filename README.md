@@ -1,14 +1,99 @@
+[![Amplience Dynamic Content](media/header.png)](https://amplience.com/dynamic-content)
+
 # dc-extension-ga-dashboard
 
-## Getting started
+## How to install
+
+This extension needs to be [registered](https://amplience.com/docs/development/registeringextensions.html) against a Hub with in the Dynamic Content application (Developer -> Extensions), for it to load within that Hub.
+
+The dashboard requires a specific configuration to work with Google Analytics and the following example settings need to be defined.
+
+### Create Google Analytics Service Account
+
+By default the dashboard will allow users to login to their Google account to view analytics data on the dashboard. To avoid this a Service Account can be created allowing the dashboard to authorize using a private key and client email.
+
+1. Create a Google APIs [Service Account](https://console.cloud.google.com/iam-admin/serviceaccounts)
+1. In the Service Account edit screen in the 'Keys' section add a key
+1. Securely store the generate json file
+2. From the json file copy the "private_key" and add it to the [installation parameters](#installation-parameters) as "googleAnalyticsKey"
+3. Do the same for "client_email" adding it as "googleAnalyticsClientEmail"
+4. Give the email "Read & Analyse" permission to your Analytics site
+
+### Register the extension against a Hub
+
+![Setup](media/setup.png)
+
+* Category: Dashboard
+* Label: Google Analytics _(this will appear as the tab title in the Dashboard)_
+* Name: google-analytics _(needs to be unique with the Hub)_
+* Description: Google Analytics Dashboard _(can be left blank, if you wish)_
+
+#### URL
+You can use our deployed version of this extension (builds from the "production" branch) -
+
+[https://dc-extension-ga-dashboard.amplience.net](https://dc-extension-ga-dashboard.amplience.net)
+
+_As this is an open source project you're welcome to host your own "fork" of this project. You can use any standard static hosting service (Netlify, Amplify, Vercel, etc.) if you wish._
+
+### Permissions
+
+![Permissions](media/permissions.png)
+
+To use the application the following permissions must be enabled:
+
+API permissions
+- Read access
+
+Sandbox permissions
+- Allow same origin
+- Allow top navigation
+- Allow pop-ups
+
+### Installation parameters
+
+```json
+{
+  "googleAnalyticsKey": "<service_account_private_key>",
+  "googleAnalyticsClientEmail": "abc123@abc123.apps.googleusercontent.com",
+  "googleAnalyticsClientId": "abc123.apps.googleusercontent.com",
+  "googleAnalyticsViewId": "ga:1234567890",
+  "mappings": {
+    "contentItemId": "ga:dimension1",
+    "editionId": "ga:dimension2",
+    "slotId": "ga:dimension3"
+  },
+  "localization": {
+    "locale": "en-GB",
+    "currencyCode": "GBP"
+  },
+  "breakdown": {
+    "title": "Breakdown chart title",
+    "dimension": "ga:deviceCategory"
+  },
+  "filters": {
+    "contentItemFilter": "ga:eventCategory==StoreContent",
+    "editionFilter": "ga:eventCategory==StoreContent",
+    "slotFilter": "ga:eventCategory==StoreContent"
+  }
+}
+```
+
+#### Dimensions
+
+The dimensions provided should map to the fields in which have been set up in the Google Analytics dashboard for the fields outlined above.
+
+#### Filters
+
+For each report, Top Content, Top Editions, Top Slots, it is possible to specify optional fields that are used to additionally filter the reports, for example to set up a fiter to show only data for an event category called 'Banners', set a filter of 'ga:eventCategory==Banners'.
+
+
+## How to build
 
 Install the dependencies...
 
 ```bash
 npm ci
 ```
-
-## How to build
 
 To build a version of the app:
 
@@ -83,63 +168,3 @@ npm run dev
 
 Navigate to [localhost:3000](http://localhost:3000). You should see your app running. Edit a component file in `src`, save it, and reload the page to see your changes.
 
-## Dashboard extension configuration
-
-An extension needs to be registered in the Dynamic Content Application under the type of dashboard.
-
-The dashboard requires a specific configuration to work with Google Analytics and the following example settings need to be defined:
-
-### Permissions
-
-To use the application the following permissions must be enabled:
-
-- Allow same origin
-- Allow pop-ups
-
-### Installation parameters
-
-```json
-{
-  "googleAnalyticsKey": "<service_account_private_key>",
-  "googleAnalyticsClientEmail": "abc123@abc123.apps.googleusercontent.com",
-  "googleAnalyticsClientId": "abc123.apps.googleusercontent.com",
-  "googleAnalyticsViewId": "ga:1234567890",
-  "mappings": {
-    "contentItemId": "ga:dimension1",
-    "editionId": "ga:dimension2",
-    "slotId": "ga:dimension3"
-  },
-  "localization": {
-    "locale": "en-GB",
-    "currencyCode": "GBP"
-  },
-  "breakdown": {
-    "title": "Breakdown chart title",
-    "dimension": "ga:deviceCategory"
-  },
-  "filters": {
-    "contentItemFilter": "ga:eventCategory==StoreContent",
-    "editionFilter": "ga:eventCategory==StoreContent",
-    "slotFilter": "ga:eventCategory==StoreContent"
-  }
-}
-```
-
-### Google Analytics Service Account Authorization
-
-By default the dashboard will allow users to login to their Google account to view analytics data on the dashboard. To avoid this a Service Account can be created allowing the dashboard to authorize using a private key and client email.
-
-1. Create a Google APIs [Service Account](https://console.cloud.google.com/iam-admin/serviceaccounts)
-1. In the Service Account edit screen in the 'Keys' section add a key
-1. Securely store the generate json file
-1. From the json file copy the "private_key" and add it to the installation params as "googleAnalyticsKey"
-1. Do the same for "client_email" adding it as "googleAnalyticsClientEmail"
-1. Give the email "Read & Analyse" permission to your Analytics site
-
-### Dimensions
-
-The dimensions provided should map to the fields in which have been set up in the Google Analytics dashboard for the fields outlined above.
-
-### Filters
-
-For each report, Top Content, Top Editions, Top Slots, it is possible to specify optional fields that are used to additionally filter the reports, for example to set up a fiter to show only data for an event category called 'Banners', set a filter of 'ga:eventCategory==Banners'.
