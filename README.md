@@ -46,15 +46,16 @@ These steps assume that you have an app already setup in the Google Developer co
 
 ![Setup](media/setup.png)
 
-* Category: Dashboard
-* Label: Google Analytics _(this will appear as the tab title in the Dashboard)_
-* Name: google-analytics _(needs to be unique with the Hub)_
-* Description: Google Analytics Dashboard _(can be left blank, if you wish)_
+- Category: Dashboard
+- Label: Google Analytics _(this will appear as the tab title in the Dashboard)_
+- Name: google-analytics _(needs to be unique with the Hub)_
+- Description: Google Analytics Dashboard _(can be left blank, if you wish)_
 
 #### URL
+
 You can use our deployed version of this extension (builds from the "production" branch) -
 
-[https://dc-extension-ga-dashboard.amplience.net](https://dc-extension-ga-dashboard.amplience.net)
+[https://ga-dashboard.extensions.content.amplience.net](https://ga-dashboard.extensions.content.amplience.net)
 
 _As this is an open source project you're welcome to host your own "fork" of this project. You can use any standard static hosting service (Netlify, Amplify, Vercel, etc.) if you wish._
 
@@ -65,9 +66,11 @@ _As this is an open source project you're welcome to host your own "fork" of thi
 To use the application the following permissions must be enabled:
 
 API permissions
+
 - Read access
 
 Sandbox permissions
+
 - Allow same origin
 - Allow top navigation
 - Allow pop-ups
@@ -108,7 +111,6 @@ The dimensions provided should map to the fields in which have been set up in th
 #### Filters
 
 For each report, Top Content, Top Editions, Top Slots, it is possible to specify optional fields that are used to additionally filter the reports, for example to set up a fiter to show only data for an event category called 'Banners', set a filter of 'ga:eventCategory==Banners'.
-
 
 ## How to build
 
