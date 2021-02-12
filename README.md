@@ -149,7 +149,7 @@ Additional environments vars
 | Environment Var                   | Description                                                   | Example                                  |
 | --------------------------------- | ------------------------------------------------------------- | ---------------------------------------- |
 | API_URL                           | DC API URL                                                    | https://api.amplience.net/v2/content     |
-| AUTH_URL                          | Amplience Auth URL                                            | https://auth.adis.ws                     |
+| AUTH_URL                          | Amplience Auth URL                                            | https://auth.amplience.net                    |
 | HUB_ID                            | Hub ID                                                        | abcdef...                                |
 | CLIENT_ID                         | Client ID for the Hub                                         | abcdef...                                |
 | CLIENT_SECRET                     | Client Secret                                                 | abddef...                                |
@@ -172,7 +172,7 @@ CLIENT_ID=abcdef
 CLIENT_SECRET=abcdef
 HUB_ID=abcdef
 API_URL=https://api.amplience.net/v2/content
-AUTH_URL=https://auth.adis.ws
+AUTH_URL=https://auth.amplience.net
 LOCATION_HREF=http://localhost:3000
 BREAKDOWN_CHART_TITLE=Device Breakdown
 BREAKDOWN_CHART_DIMENSION=ga:deviceCategory
