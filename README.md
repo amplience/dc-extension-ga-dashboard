@@ -13,11 +13,14 @@ The dashboard requires a specific configuration to work with Google Analytics an
 By default the dashboard will allow users to login to their Google account to view analytics data on the dashboard. To avoid this a Service Account can be created allowing the dashboard to authorize using a private key and client email.
 
 1. Create a Google APIs [Service Account](https://console.cloud.google.com/iam-admin/serviceaccounts)
-1. In the Service Account edit screen in the 'Keys' section add a key
+1. Create a new Project within the Service Account section and give it a sensible name (e.g. my-hub-content-analytics)
+1. Select your project and click "Create Service Account" and enter your details (service name etc.), you don't need to assign any roles
+1. Select your new service account
+1. Click "Add Key", "Create a new key" & select JSON.
 1. Securely store the generate json file
 1. From the json file copy the "private_key" and add it to the installation params as "googleAnalyticsKey"
 1. Do the same for "client_email" adding it as "googleAnalyticsClientEmail"
-1. Give the email "Read & Analyse" permission to your Analytics site
+1. Within the Admin section of your Google Analytics, give the generated email "Read & Analyse" permission to your Analytics site
 
 ### Setting up the Google Analytics Client ID
 
