@@ -29,7 +29,7 @@ These steps assume that you have an app already setup in the Google Developer co
 1. Select 'Google Analytics API' from the API Library and click 'Enable'
 1. Back at your apps page on the Google Developer Console select the 'Credentials' tab
 1. Click on the 'Create credential' button and select 'OAuth client id'
-1. Fill out the form with your details (you may be required to complete an Oauth consent screen form first)
+1. Fill out the form with your details (you may be required to complete an Oauth consent screen form first). You will need to add the hostname of the Dashboard into the Authorised JavaScript Origins, e.g. "https://ga-dashboard.extensions.content.amplience.net" 
 1. Once you have completed the form you will get a popup containing the Client ID
 1. Copy and paste the Client ID in to the 'googleAnalyticsClientId' installation param
 
