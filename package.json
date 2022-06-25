@@ -72,7 +72,7 @@
     "dc-extensions-sdk": "^2.0.0",
     "dc-management-sdk-js": "^1.9.0",
     "exponential-backoff": "^3.1.0",
-    "jsrsasign": "^10.0.5",
+    "jsrsasign": "^10.5.25",
     "message-event-channel": "^1.1.0",
     "sirv-cli": "^1.0.6"
   },
