@@ -2,6 +2,10 @@
 
 # dc-extension-ga-dashboard
 
+## Deprecated
+
+This extension is for Universal Analytics properties, which will stop processing data on July 1, 2023 (July 1, 2024 for Analytics 360 properties). Google Analytics 4 properties are not supported.
+
 ## How to install
 
 This extension needs to be [registered](https://amplience.com/docs/development/registeringextensions.html) against a Hub with in the Dynamic Content application (Developer -> Extensions), for it to load within that Hub.
